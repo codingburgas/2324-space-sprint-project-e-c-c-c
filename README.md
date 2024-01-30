@@ -1,1 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/7i_7W-n2)
+Dependencies: SDL2
+<br>
+Install SDL2: https://lazyfoo.net/tutorials/SDL/01_hello_SDL/windows/msvc2019/index.php
