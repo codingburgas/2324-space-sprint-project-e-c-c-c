@@ -1,42 +1,93 @@
 #include "raylib.h"
-#include <iostream>
 
-void mainMenu()
+enum gameState
 {
-    // Set the window dimensions
+    MAIN_MENU,
+    GAME
+};
+
+void initializeWindow()
+{
     const int screenWidth = 1280;
     const int screenHeight = 720;
-
-    // Initialize the window
     InitWindow(screenWidth, screenHeight, "Game Main Menu");
-
-    // Set the frames-per-second (FPS) target
     SetTargetFPS(60);
+}
 
-    while (!WindowShouldClose())
+void DrawCenteredText(const char* text, int fontSize, Color color, int yOffset = 0)
+{
+    int textWidth = MeasureText(text, fontSize);
+    int textHeight = fontSize;
+
+    int xPos = (GetScreenWidth() - textWidth) / 2;
+    int yPos = (GetScreenHeight() - textHeight) / 2 - yOffset;
+
+    DrawText(text, xPos, yPos, fontSize, color);
+}
+
+void drawmainMenu()
+{
+    DrawCenteredText("Game Main Menu", 40, DARKGRAY, 50);
+    DrawCenteredText("1. Start Game", 20, DARKGRAY, 10);
+    DrawCenteredText("2. Exit", 20, DARKGRAY, -20);
+}
+
+void drawgameRunning()
+{
+    DrawText("Game Running", 400, 100, 40, DARKGRAY);
+    DrawText("Press ESC to return to Main Menu", 400, 200, 20, DARKGRAY);
+}
+
+void drawGame(gameState& gameState)
+{
+    BeginDrawing();
+    ClearBackground(RAYWHITE);
+
+    if (gameState == MAIN_MENU)
     {
-        // Draw
-        BeginDrawing();
-        ClearBackground(RAYWHITE);
+        SetExitKey(KEY_TWO);
 
-        // Draw main menu options
-        DrawText("Game Main Menu", 400, 100, 40, DARKGRAY);
-        DrawText("1. Start Game", 400, 200, 20, DARKGRAY);
-        DrawText("2. Exit", 400, 240, 20, DARKGRAY);
-
-        EndDrawing();
-
-        // Check for user input
         if (IsKeyPressed(KEY_ONE))
         {
-            std::cout << ("Starting the game...\n") << std::endl;;
+            gameState = GAME;
+            ToggleBorderlessWindowed();
         }
-        else if (IsKeyPressed(KEY_TWO))
+    }
+    else if (gameState == GAME)
+    {
+        SetExitKey(KEY_NULL);
+
+        if (IsKeyPressed(KEY_ESCAPE))
         {
-            break;
+            gameState = MAIN_MENU;
+            ToggleBorderlessWindowed();
         }
     }
 
-    // Clean up resources
+    switch (gameState)
+    {
+    case MAIN_MENU:
+        drawmainMenu();
+        break;
+
+    case GAME:
+        drawgameRunning();
+        break;
+    }
+
+    EndDrawing();
+}
+
+void mainMenu()
+{
+    gameState gameState = MAIN_MENU;
+
+    initializeWindow();
+
+    while (!WindowShouldClose())
+    {
+        drawGame(gameState);
+    }
+
     CloseWindow();
 }
