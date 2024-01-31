@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include "game.hpp"
 
 enum gameState
 {
@@ -10,7 +11,7 @@ void initializeWindow()
 {
     const int screenWidth = 1280;
     const int screenHeight = 720;
-    InitWindow(screenWidth, screenHeight, "Game Main Menu");
+    InitWindow(screenWidth, screenHeight, "E.C.C.C");
     SetTargetFPS(60);
 }
 
@@ -34,8 +35,7 @@ void drawmainMenu()
 
 void drawgameRunning()
 {
-    DrawCenteredText("Game Running", 40, DARKGRAY, (GetScreenHeight() / 2) - 20);
-    DrawText("Press ESC to return to Main Menu", 10, GetScreenHeight() - 30, 20, DARKGRAY);
+    game();
 }
 
 void drawGame(gameState& gameState)
