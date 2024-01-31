@@ -34,8 +34,8 @@ void drawmainMenu()
 
 void drawgameRunning()
 {
-    DrawText("Game Running", 400, 100, 40, DARKGRAY);
-    DrawText("Press ESC to return to Main Menu", 400, 200, 20, DARKGRAY);
+    DrawCenteredText("Game Running", 40, DARKGRAY, (GetScreenHeight() / 2) - 20);
+    DrawText("Press ESC to return to Main Menu", 10, GetScreenHeight() - 30, 20, DARKGRAY);
 }
 
 void drawGame(gameState& gameState)
