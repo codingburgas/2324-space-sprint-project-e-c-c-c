@@ -1,16 +1,4 @@
 ﻿  main.cpp
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.hpp(44,39): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'main.cpp')
-  
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.hpp(50,35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'main.cpp')
-  
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.hpp(51,36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'main.cpp')
-  
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.hpp(72,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'main.cpp')
-  
   main.vcxproj -> C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\x64\Debug\main.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
