@@ -1,9 +1,15 @@
 #pragma once
 
-void initializeWindow();
-void loadTextures();
-void loadGameTexture();
-void unloadGameTexture();
-void drawmainMenu();
-void drawgameRunning();
+/*
+struct Texture
+{
+	Texture2D background;
+	Texture2D gameImage;
+	void loadTextures()
+	{
+		gameImage = LoadTexture("");
+	}
+};
+*/
+
 void mainMenu();
