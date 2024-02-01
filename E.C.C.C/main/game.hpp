@@ -108,6 +108,7 @@ void game()
 			ball.Draw();
 			leftPaddle.Draw();
 			rightPaddle .Draw();
+			DrawText("Press ESC to return to Main Menu", 10, GetScreenHeight() - 30, 20, DARKGRAY);
 
 		EndDrawing();
 	}

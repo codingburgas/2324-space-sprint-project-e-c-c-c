@@ -7,12 +7,30 @@ enum gameState
     GAME
 };
 
+Texture2D background;
+Texture2D gameImage;
+
 void initializeWindow()
 {
     const int screenWidth = 1280;
     const int screenHeight = 720;
     InitWindow(screenWidth, screenHeight, "E.C.C.C");
     SetTargetFPS(60);
+}
+
+void loadTextures()
+{
+    background = LoadTexture("../assets/bg.png");
+}
+
+void loadGameTexture()
+{
+    gameImage = LoadTexture(""); // Replace with the path to your game image
+}
+
+void unloadGameTexture()
+{
+    UnloadTexture(gameImage);
 }
 
 void DrawCenteredText(const char* text, int fontSize, Color color, int yOffset = 0)
@@ -28,14 +46,14 @@ void DrawCenteredText(const char* text, int fontSize, Color color, int yOffset =
 
 void drawmainMenu()
 {
-    DrawCenteredText("Game Main Menu", 40, DARKGRAY, 50);
-    DrawCenteredText("1. Start Game", 20, DARKGRAY, 10);
-    DrawCenteredText("2. Exit", 20, DARKGRAY, -20);
+    DrawTexture(background, 0, 0, WHITE);
 }
 
 void drawgameRunning()
 {
-    game();
+    //game();
+    DrawCenteredText("Game Running", 40, DARKGRAY, (GetScreenHeight() / 2) - 20);
+    DrawText("Press ESC to return to Main Menu", 10, GetScreenHeight() - 30, 20, DARKGRAY);
 }
 
 void drawGame(gameState& gameState)
@@ -51,6 +69,7 @@ void drawGame(gameState& gameState)
         {
             gameState = GAME;
             ToggleBorderlessWindowed();
+            loadGameTexture();
         }
     }
     else if (gameState == GAME)
@@ -61,6 +80,7 @@ void drawGame(gameState& gameState)
         {
             gameState = MAIN_MENU;
             ToggleBorderlessWindowed();
+            unloadGameTexture();
         }
     }
 
@@ -83,11 +103,13 @@ void mainMenu()
     gameState gameState = MAIN_MENU;
 
     initializeWindow();
+    loadTextures();
 
     while (!WindowShouldClose())
     {
         drawGame(gameState);
     }
 
+    UnloadTexture(background);
     CloseWindow();
 }
