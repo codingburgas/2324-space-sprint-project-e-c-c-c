@@ -1,15 +1,5 @@
 #pragma once
 
-/*
-struct Texture
-{
-	Texture2D background;
-	Texture2D gameImage;
-	void loadTextures()
-	{
-		gameImage = LoadTexture("");
-	}
-};
-*/
+#include "raylib.h"
 
 void mainMenu();

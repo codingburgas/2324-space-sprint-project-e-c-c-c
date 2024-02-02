@@ -1,4 +1,3 @@
-#include "raylib.h"
 #include "mainMenu.hpp" 
 enum gameState
 {
@@ -37,67 +36,44 @@ void drawgameRunning()
 
 void drawmainMenu(gameState& gameState)
 {
-    // Initialization
-    //-------------------------------------------------------------------------------------
-
     const int maxFrame = 20;
     const int  minFrame = 1;
-
     int animFrames = 0;
+    int nextFrameDataOffset = 0;
+    int currentAnimFrame = 0;
+    int frameDelay = 0;
+    int frameCounter = 0;
 
-    // Load all GIF animation frames into a single Image
-    // NOTE: GIF data is always loaded as RGBA (32bit) by default
-    // NOTE: Frames are just appended one after another in image.data memory
     Image imScarfyAnim = LoadImageAnim("../assets/bg.gif", &animFrames);
 
-    // Load texture from image
-    // NOTE: We will update this texture when required with next frame data
-    // WARNING: It's not recommended to use this technique for sprites animation,
-    // use spritesheets instead, like illustrated in textures_sprite_anim example
     Texture2D texScarfyAnim = LoadTextureFromImage(imScarfyAnim);
     Texture2D buttonPlayIdle = LoadTexture("../assets/playidle.png"); 
     Texture2D buttonSettingsIdle = LoadTexture("../assets/settingsIdle.png");
     Texture2D buttonCreditsIdle = LoadTexture("../assets/creditsIdle.png");
     Texture2D buttonQuitIdle = LoadTexture("../assets/quitIdle.png");
-
-
-    unsigned int nextFrameDataOffset = 0;  // Current byte offset to next frame in image.data
-
-    int currentAnimFrame = 0;       // Current animation frame to load and draw
-    int frameDelay = 0;             // Frame delay to switch between animation frames
-    int frameCounter = 0;           // General frames counter
     
-    SetTargetFPS(24);               // Set our game to run at 60 frames-per-second
-    //--------------------------------------------------------------------------------------
+    SetTargetFPS(24);
 
-    // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!WindowShouldClose())
     {
-        // Update
-        //----------------------------------------------------------------------------------
         frameCounter++;
         if (frameCounter >= frameDelay)
         {
-            // Move to next frame
-            // NOTE: If final frame is reached we return to first frame
             currentAnimFrame++;
-            if (currentAnimFrame >= animFrames) currentAnimFrame = 0;
+            if (currentAnimFrame >= animFrames)
+            {
+                currentAnimFrame = 0;
+            }
 
-            // Get memory offset position for next frame data in image.data
             nextFrameDataOffset = imScarfyAnim.width * imScarfyAnim.height * 4 * currentAnimFrame;
-
-            // Update GPU texture data with next frame image data
-            // WARNING: Data size (frame size) and pixel format must match already created texture
             UpdateTexture(texScarfyAnim, ((unsigned char*)imScarfyAnim.data) + nextFrameDataOffset);
-
             frameCounter = 0;
         }
 
-        // Control frames delay
         if (IsKeyPressed(KEY_ONE))
         {
             gameState = GAME;
-            UnloadTexture(texScarfyAnim);   // Unload texture
+            UnloadTexture(texScarfyAnim);
             UnloadImage(imScarfyAnim);
             ToggleBorderlessWindowed();
         }
@@ -109,9 +85,6 @@ void drawmainMenu(gameState& gameState)
             break;
         }
 
-        //----------------------------------------------------------------------------------
-        // Draw
-        //----------------------------------------------------------------------------------
         BeginDrawing();
 
         for (int i = 0; i < maxFrame; i++)
@@ -126,18 +99,9 @@ void drawmainMenu(gameState& gameState)
         DrawTexture(buttonCreditsIdle, 89, 410, WHITE);
         DrawTexture(buttonQuitIdle, 90, 570, WHITE);
 
-         
-
         EndDrawing();
         //----------------------------------------------------------------------------------
     }
-
-    // De-Initialization
-     
-    //--------------------------------------------------------------------------------------
-    // Unload image (contains all frames)
-
-
 }
 
 void drawGame(gameState& gameState)
@@ -163,7 +127,6 @@ void drawGame(gameState& gameState)
         {
             gameState = MAIN_MENU;
             ToggleBorderlessWindowed();
-            UnloadTexture(gameImage);
         }
     }
 
