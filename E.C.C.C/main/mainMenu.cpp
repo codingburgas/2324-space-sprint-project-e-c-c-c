@@ -1,6 +1,5 @@
 #include "raylib.h"
-#include "mainMenu.hpp"
-
+#include "mainMenu.hpp" 
 enum gameState
 {
     MAIN_MENU,
@@ -56,13 +55,18 @@ void drawmainMenu(gameState& gameState)
     // WARNING: It's not recommended to use this technique for sprites animation,
     // use spritesheets instead, like illustrated in textures_sprite_anim example
     Texture2D texScarfyAnim = LoadTextureFromImage(imScarfyAnim);
+    Texture2D buttonPlayIdle = LoadTexture("../assets/playidle.png"); 
+    Texture2D buttonSettingsIdle = LoadTexture("../assets/settingsIdle.png");
+    Texture2D buttonCreditsIdle = LoadTexture("../assets/creditsIdle.png");
+    Texture2D buttonQuitIdle = LoadTexture("../assets/quitIdle.png");
+
 
     unsigned int nextFrameDataOffset = 0;  // Current byte offset to next frame in image.data
 
     int currentAnimFrame = 0;       // Current animation frame to load and draw
     int frameDelay = 0;             // Frame delay to switch between animation frames
     int frameCounter = 0;           // General frames counter
-
+    
     SetTargetFPS(24);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
@@ -106,7 +110,6 @@ void drawmainMenu(gameState& gameState)
         }
 
         //----------------------------------------------------------------------------------
-
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
@@ -118,14 +121,22 @@ void drawmainMenu(gameState& gameState)
         }
 
         DrawTexture(texScarfyAnim, GetScreenWidth() / 2 - texScarfyAnim.width / 2, 0, WHITE);
+        DrawTexture(buttonPlayIdle, 90, 250, WHITE);
+        DrawTexture(buttonSettingsIdle, 88, 330, WHITE);
+        DrawTexture(buttonCreditsIdle, 89, 410, WHITE);
+        DrawTexture(buttonQuitIdle, 90, 570, WHITE);
+
+         
 
         EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
+     
     //--------------------------------------------------------------------------------------
     // Unload image (contains all frames)
+
 
 }
 
