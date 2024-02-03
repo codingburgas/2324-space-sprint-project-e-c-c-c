@@ -5,9 +5,6 @@ enum gameState
     GAME
 };
 
-Texture2D background;
-Texture2D gameImage;
-
 void initializeWindow() 
 {
     const int screenWidth = 1280;
@@ -54,6 +51,7 @@ void drawmainMenu(gameState& gameState)
     Texture2D buttonCreditsIdle = LoadTexture("../assets/buttons/credits/creditsIdle.png");
     Texture2D buttonCreditsHover = LoadTexture("../assets/buttons/credits/creditsHover.png");
     Texture2D buttonQuitIdle = LoadTexture("../assets/buttons/quit/quitIdle.png");
+    Texture2D buttonQuitHover = LoadTexture("../assets/buttons/quit/quitHover.png");
     
     SetTargetFPS(24);
 
@@ -71,14 +69,6 @@ void drawmainMenu(gameState& gameState)
             nextFrameDataOffset = imScarfyAnim.width * imScarfyAnim.height * 4 * currentAnimFrame;
             UpdateTexture(texScarfyAnim, ((unsigned char*)imScarfyAnim.data) + nextFrameDataOffset);
             frameCounter = 0;
-        }
-
-        if (IsKeyPressed(KEY_ONE))
-        {
-            gameState = GAME;
-            UnloadTexture(texScarfyAnim);
-            UnloadImage(imScarfyAnim);
-            ToggleBorderlessWindowed();
         }
 
         switch (gameState)
@@ -113,16 +103,26 @@ void drawmainMenu(gameState& gameState)
         DrawTextureRec(buttonCreditsIdle, buttonCreditsIdleRec, Vector2{ 300, 60 }, buttonCreditsIdleColor);
 
         //DrawTexture(buttonQuitIdle, 90, 570, WHITE);
+        Rectangle buttonQuitIdleRec = { 90, 570, 166, 60 };
+        Color buttonQuitIdleColor = { 255, 255, 255, 0 };
+        DrawTextureRec(buttonQuitIdle, buttonQuitIdleRec, Vector2{ 166, 60 }, buttonQuitIdleColor);
 
         if (CheckCollisionPointRec(GetMousePosition(), buttonPlayIdleRec))
         {
             DrawTexture(buttonPlayHover, 90, 250, WHITE);
             if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
             {
-                gameState = GAME;
                 UnloadTexture(texScarfyAnim);
                 UnloadImage(imScarfyAnim);
-                ToggleBorderlessWindowed();
+                UnloadTexture(buttonPlayIdle);
+                UnloadTexture(buttonPlayHover);
+                UnloadTexture(buttonSettingsIdle);
+                UnloadTexture(buttonSettingsHover);
+                UnloadTexture(buttonCreditsIdle);
+                UnloadTexture(buttonCreditsHover);
+                UnloadTexture(buttonQuitIdle);
+                UnloadTexture(buttonQuitHover);
+                gameState = GAME;
             }
         }
         else
@@ -156,8 +156,38 @@ void drawmainMenu(gameState& gameState)
             DrawTexture(buttonCreditsIdle, 89, 407, WHITE);
         }
 
+        if (CheckCollisionPointRec(GetMousePosition(), buttonQuitIdleRec))
+        {
+            DrawTexture(buttonQuitHover, 90, 570, WHITE);
+            if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+            {
+                //Quit application
+            }
+        }
+        else
+        {
+            DrawTexture(buttonQuitIdle, 90, 567, WHITE);
+        }
+
 
         EndDrawing();
+
+        if (WindowShouldClose())
+        {
+            break;
+            UnloadTexture(texScarfyAnim);
+            UnloadImage(imScarfyAnim);
+            UnloadTexture(buttonPlayIdle);
+            UnloadTexture(buttonPlayHover);
+            UnloadTexture(buttonSettingsIdle);
+            UnloadTexture(buttonSettingsHover);
+            UnloadTexture(buttonCreditsIdle);
+            UnloadTexture(buttonCreditsHover);
+            UnloadTexture(buttonQuitIdle);
+            UnloadTexture(buttonQuitHover);
+
+            CloseWindow();
+        }
     }
 }
 
