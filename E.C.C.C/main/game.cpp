@@ -1,8 +1,7 @@
-﻿
-#include "raylib.h"
+﻿#include "game.hpp"
 #define MAX_INPUT_CHARS     9
 
-int main(void)
+void game()
 {
 
     const int screenWidth = 1920;
@@ -102,11 +101,9 @@ int main(void)
 
         if ((key >= 32) && (key <= 126)) keyPressed = true;
 
-        return keyPressed;
     }
 
 }
-
 
 
 
