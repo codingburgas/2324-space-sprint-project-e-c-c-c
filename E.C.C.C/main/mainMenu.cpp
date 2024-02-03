@@ -1,4 +1,5 @@
 #include "mainMenu.hpp" 
+#include "game.hpp"
 enum gameState
 {
     MAIN_MENU,
@@ -26,13 +27,14 @@ void drawcenteredText(const char* text, int fontSize, Color color, int yOffset =
 
 void drawgameRunning()
 {
-    //game();
+    game();
     drawcenteredText("Game Running", 40, DARKGRAY, (GetScreenHeight() / 2) - 20);
     DrawText("Press ESC to return to Main Menu", 10, GetScreenHeight() - 30, 20, DARKGRAY);
 }
 
 void drawmainMenu(gameState& gameState)
 {
+    bool exit = WindowShouldClose();
     const int maxFrame = 20;
     const int  minFrame = 1;
     int animFrames = 0;
@@ -55,8 +57,9 @@ void drawmainMenu(gameState& gameState)
     
     SetTargetFPS(24);
 
-    while (!WindowShouldClose())
+    while (!exit)
     {
+
         frameCounter++;
         if (frameCounter >= frameDelay)
         {
@@ -161,7 +164,7 @@ void drawmainMenu(gameState& gameState)
             DrawTexture(buttonQuitHover, 90, 570, WHITE);
             if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
             {
-                //Quit application
+                exit = true;
             }
         }
         else
@@ -174,6 +177,7 @@ void drawmainMenu(gameState& gameState)
 
         if (WindowShouldClose())
         {
+            CloseWindow();
             break;
             UnloadTexture(texScarfyAnim);
             UnloadImage(imScarfyAnim);
@@ -185,8 +189,8 @@ void drawmainMenu(gameState& gameState)
             UnloadTexture(buttonCreditsHover);
             UnloadTexture(buttonQuitIdle);
             UnloadTexture(buttonQuitHover);
-
-            CloseWindow();
+            
+            
         }
     }
 }
