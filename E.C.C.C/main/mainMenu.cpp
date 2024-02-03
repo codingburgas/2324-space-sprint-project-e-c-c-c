@@ -1,10 +1,5 @@
 #include "mainMenu.hpp" 
 #include "game.hpp"
-enum gameState
-{
-    MAIN_MENU,
-    GAME
-};
 
 void initializeWindow() 
 {
@@ -12,6 +7,24 @@ void initializeWindow()
     const int screenHeight = 720;
     InitWindow(screenWidth, screenHeight, "E.C.C.C");
     SetTargetFPS(60);
+}
+
+void unloadMainMenuResources(Texture2D& texScarfyAnim, Image& imScarfyAnim,
+                              Texture2D& buttonPlayIdle, Texture2D& buttonPlayHover,
+                              Texture2D& buttonSettingsIdle, Texture2D& buttonSettingsHover,
+                              Texture2D& buttonCreditsIdle, Texture2D& buttonCreditsHover,
+                              Texture2D& buttonQuitIdle, Texture2D& buttonQuitHover)
+{
+    UnloadTexture(texScarfyAnim);
+    UnloadImage(imScarfyAnim);
+    UnloadTexture(buttonPlayIdle);
+    UnloadTexture(buttonPlayHover);
+    UnloadTexture(buttonSettingsIdle);
+    UnloadTexture(buttonSettingsHover);
+    UnloadTexture(buttonCreditsIdle);
+    UnloadTexture(buttonCreditsHover);
+    UnloadTexture(buttonQuitIdle);
+    UnloadTexture(buttonQuitHover);
 }
 
 void drawcenteredText(const char* text, int fontSize, Color color, int yOffset = 0)
@@ -77,12 +90,18 @@ void drawmainMenu(gameState& gameState)
         switch (gameState)
         {
         case GAME:
+        unloadMainMenuResources(texScarfyAnim, imScarfyAnim, 
+                                    buttonPlayIdle, buttonPlayHover,
+                                    buttonSettingsIdle, buttonSettingsHover,
+                                    buttonCreditsIdle, buttonCreditsHover,
+                                    buttonQuitIdle, buttonQuitHover);
             drawgameRunning();
             break;
         }
 
         BeginDrawing();
 
+        //ch
         for (int i = 0; i < maxFrame; i++)
         {
             if (i < frameDelay) DrawRectangle(190 + 21 * i, 300, 20, 20, RED);
@@ -115,17 +134,8 @@ void drawmainMenu(gameState& gameState)
             DrawTexture(buttonPlayHover, 90, 250, WHITE);
             if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
             {
-                UnloadTexture(texScarfyAnim);
-                UnloadImage(imScarfyAnim);
-                UnloadTexture(buttonPlayIdle);
-                UnloadTexture(buttonPlayHover);
-                UnloadTexture(buttonSettingsIdle);
-                UnloadTexture(buttonSettingsHover);
-                UnloadTexture(buttonCreditsIdle);
-                UnloadTexture(buttonCreditsHover);
-                UnloadTexture(buttonQuitIdle);
-                UnloadTexture(buttonQuitHover);
                 gameState = GAME;
+                break;
             }
         }
         else
@@ -164,7 +174,14 @@ void drawmainMenu(gameState& gameState)
             DrawTexture(buttonQuitHover, 90, 570, WHITE);
             if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
             {
-                exit = true;
+                unloadMainMenuResources(texScarfyAnim, imScarfyAnim,
+                                    buttonPlayIdle, buttonPlayHover,
+                                    buttonSettingsIdle, buttonSettingsHover,
+                                    buttonCreditsIdle, buttonCreditsHover,
+                                    buttonQuitIdle, buttonQuitHover);
+
+            CloseWindow();
+            break;
             }
         }
         else
@@ -177,20 +194,13 @@ void drawmainMenu(gameState& gameState)
 
         if (WindowShouldClose())
         {
+            unloadMainMenuResources(texScarfyAnim, imScarfyAnim, 
+                                    buttonPlayIdle, buttonPlayHover,
+                                    buttonSettingsIdle, buttonSettingsHover,
+                                    buttonCreditsIdle, buttonCreditsHover,
+                                    buttonQuitIdle, buttonQuitHover);
             CloseWindow();
             break;
-            UnloadTexture(texScarfyAnim);
-            UnloadImage(imScarfyAnim);
-            UnloadTexture(buttonPlayIdle);
-            UnloadTexture(buttonPlayHover);
-            UnloadTexture(buttonSettingsIdle);
-            UnloadTexture(buttonSettingsHover);
-            UnloadTexture(buttonCreditsIdle);
-            UnloadTexture(buttonCreditsHover);
-            UnloadTexture(buttonQuitIdle);
-            UnloadTexture(buttonQuitHover);
-            
-            
         }
     }
 }
@@ -243,7 +253,7 @@ void mainMenu()
 
     while (!WindowShouldClose())
     {
-        drawGame(gameState);
+        drawmainMenu(gameState);
     }
 
     CloseWindow();
