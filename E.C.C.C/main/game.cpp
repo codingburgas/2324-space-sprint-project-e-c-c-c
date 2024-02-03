@@ -1,21 +1,20 @@
 ﻿#include "game.hpp"
+#include "mainMenu.hpp"
 #define MAX_INPUT_CHARS     9
 
 void game()
 {
-
     const int screenWidth = 1920;
-    const int screenHeight = 1040;
+    const int screenHeight = 1080;
 
     char name[MAX_INPUT_CHARS + 1] = "\0";
     int letterCount = 0;
+
 
     Rectangle textBox = { screenWidth / 2.0f - 270 , 835 , 450, 110 };
     bool mouseOnText = false;
 
     int framesCounter = 0;
-    InitWindow(screenWidth, screenHeight, "test");
-
 
     Texture2D texture = LoadTexture("../assets/contractTerminal.png");
 
@@ -90,9 +89,14 @@ void game()
 
         EndDrawing();
 
+        if (IsKeyPressed(KEY_ESCAPE))
+        {
+            UnloadTexture(texture);
+            ToggleBorderlessWindowed();
+        }
+
     }
     UnloadTexture(texture);
-    CloseWindow();
 
     bool IsAnyKeyPressed();
     {
@@ -102,7 +106,6 @@ void game()
         if ((key >= 32) && (key <= 126)) keyPressed = true;
 
     }
-
 }
 
 

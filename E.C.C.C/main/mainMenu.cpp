@@ -1,50 +1,10 @@
 #include "mainMenu.hpp" 
 #include "game.hpp"
-
-void initializeWindow(int width, int height)
+void mainMenu()
 {
-    InitWindow(width, height, "E.C.C.C");
+    InitWindow(1280, 720, "E.C.C.C");
     SetTargetFPS(60);
-}
 
-void unloadMainMenuResources(Texture2D& texScarfyAnim, Image& imScarfyAnim,
-    Texture2D& buttonPlayIdle, Texture2D& buttonPlayHover,
-    Texture2D& buttonSettingsIdle, Texture2D& buttonSettingsHover,
-    Texture2D& buttonCreditsIdle, Texture2D& buttonCreditsHover,
-    Texture2D& buttonQuitIdle, Texture2D& buttonQuitHover)
-{
-    UnloadTexture(texScarfyAnim);
-    UnloadImage(imScarfyAnim);
-    UnloadTexture(buttonPlayIdle);
-    UnloadTexture(buttonPlayHover);
-    UnloadTexture(buttonSettingsIdle);
-    UnloadTexture(buttonSettingsHover);
-    UnloadTexture(buttonCreditsIdle);
-    UnloadTexture(buttonCreditsHover);
-    UnloadTexture(buttonQuitIdle);
-    UnloadTexture(buttonQuitHover);
-}
-
-void drawcenteredText(const char* text, int fontSize, Color color, int yOffset = 0)
-{
-    int textWidth = MeasureText(text, fontSize);
-    int textHeight = fontSize;
-
-    int xPos = (GetScreenWidth() - textWidth) / 2;
-    int yPos = (GetScreenHeight() - textHeight) / 2 - yOffset;
-
-    DrawText(text, xPos, yPos, fontSize, color);
-}
-
-void drawgameRunning()
-{
-    game();
-}
-
-void drawmainMenu(gameState& gameState)
-{
-    const int maxFrame = 20;
-    const int  minFrame = 1;
     int animFrames = 0;
     int nextFrameDataOffset = 0;
     int currentAnimFrame = 0;
@@ -65,9 +25,7 @@ void drawmainMenu(gameState& gameState)
 
     SetTargetFPS(24);
 
-    bool exit = false;
-
-    while (!exit)
+    while (!WindowShouldClose())
     {
 
         frameCounter++;
@@ -84,21 +42,7 @@ void drawmainMenu(gameState& gameState)
             frameCounter = 0;
         }
 
-        switch (gameState)
-        {
-        case GAME:
-            drawgameRunning();
-            break;
-        }
-
         BeginDrawing();
-
-        //ch
-        for (int i = 0; i < maxFrame; i++)
-        {
-            if (i < frameDelay) DrawRectangle(190 + 21 * i, 300, 20, 20, RED);
-            DrawRectangleLines(190 + 21 * i, 300, 20, 20, MAROON);
-        }
 
         DrawTexture(texScarfyAnim, GetScreenWidth() / 2 - texScarfyAnim.width / 2, 0, WHITE);
         //DrawTexture(buttonPlayIdle, 90, 250, WHITE);
@@ -126,7 +70,8 @@ void drawmainMenu(gameState& gameState)
             DrawTexture(buttonPlayHover, 90, 250, WHITE);
             if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
             {
-                drawgameRunning();
+                ToggleBorderlessWindowed();
+                game();
             }
         }
         else
@@ -165,13 +110,8 @@ void drawmainMenu(gameState& gameState)
             DrawTexture(buttonQuitHover, 90, 570, WHITE);
             if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
             {
-                unloadMainMenuResources(texScarfyAnim, imScarfyAnim,
-                    buttonPlayIdle, buttonPlayHover,
-                    buttonSettingsIdle, buttonSettingsHover,
-                    buttonCreditsIdle, buttonCreditsHover,
-                    buttonQuitIdle, buttonQuitHover);
-                exit = true;
-                gameState = QUIT;
+                CloseWindow();
+                break;
             }
         }
         else
@@ -180,30 +120,5 @@ void drawmainMenu(gameState& gameState)
         }
 
         EndDrawing();
-
-        if (WindowShouldClose())
-        {
-            unloadMainMenuResources(texScarfyAnim, imScarfyAnim,
-                buttonPlayIdle, buttonPlayHover,
-                buttonSettingsIdle, buttonSettingsHover,
-                buttonCreditsIdle, buttonCreditsHover,
-                buttonQuitIdle, buttonQuitHover);
-            CloseWindow();
-            break;
-        }
     }
-}
-
-void mainMenu()
-{
-    gameState gameState = MAIN_MENU;
-
-    initializeWindow(1280, 720);
-
-    while (gameState != QUIT and !WindowShouldClose())
-    {
-        drawmainMenu(gameState);
-    }
-
-    CloseWindow();
 }
