@@ -1,5 +1,7 @@
 #include "mainMenu.hpp" 
 #include "game.hpp"
+#include "credits.hpp"
+#include "settings.hpp"
 void mainMenu()
 {
     InitWindow(1280, 720, "E.C.C.C");
@@ -84,7 +86,7 @@ void mainMenu()
             DrawTexture(buttonSettingsHover, 88, 333, WHITE);
             if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
             {
-                //Button Function
+                settings();
             }
         }
         else
@@ -97,7 +99,7 @@ void mainMenu()
             DrawTexture(buttonCreditsHover, 89, 410, WHITE);
             if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
             {
-                //Button Function
+                credits();
             }
         }
         else
