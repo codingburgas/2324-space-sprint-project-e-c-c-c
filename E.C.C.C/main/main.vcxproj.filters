@@ -21,7 +21,7 @@
     <ClCompile Include="mainMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game.cpp">
+    <ClCompile Include="terminal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="credits.cpp">
@@ -35,7 +35,7 @@
     <ClInclude Include="mainMenu.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game.hpp">
+    <ClInclude Include="terminal.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="credits.hpp">

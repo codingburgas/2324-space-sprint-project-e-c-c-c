@@ -1,8 +1,8 @@
-﻿#include "game.hpp"
+﻿#include "terminal.hpp"
 #include "mainMenu.hpp"
 #define MAX_INPUT_CHARS     9
 
-void game()
+void terminal()
 {
     const int screenWidth = 1920;
     const int screenHeight = 1080;

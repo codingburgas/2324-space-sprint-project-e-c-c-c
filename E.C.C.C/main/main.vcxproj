@@ -128,14 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="credits.cpp" />
-    <ClCompile Include="game.cpp" />
+    <ClCompile Include="terminal.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainMenu.cpp" />
     <ClCompile Include="settings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="credits.hpp" />
-    <ClInclude Include="game.hpp" />
+    <ClInclude Include="terminal.hpp" />
     <ClInclude Include="mainMenu.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

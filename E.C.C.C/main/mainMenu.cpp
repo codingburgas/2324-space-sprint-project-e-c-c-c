@@ -1,6 +1,6 @@
 #include <iostream>
 #include "mainMenu.hpp" 
-#include "game.hpp"
+#include "terminal.hpp"
 #include "credits.hpp"
 #include "settings.hpp"
 
@@ -77,7 +77,7 @@ void mainMenu()
             if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
             {
                 ToggleBorderlessWindowed();
-                game();
+                terminal();
             }
         }
         else
