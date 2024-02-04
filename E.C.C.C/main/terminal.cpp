@@ -6,34 +6,43 @@ void terminal()
 {
     const int screenWidth = 1920;
     const int screenHeight = 1080;
-
     char name[MAX_INPUT_CHARS + 1] = "\0";
     int letterCount = 0;
-
-
-    Rectangle textBox = { screenWidth / 2.0f - 270 , 835 , 450, 110 };
-    bool mouseOnText = false;
-
     int framesCounter = 0;
 
-    Texture2D texture = LoadTexture("../assets/contractTerminal.png");
-
-    while (!WindowShouldClose())
+    const char launchingTerminal[] = "####       E.C.C.C     X64     LAUNCUING   TERMINAL       ####";
+    const char contractText[] = "./E.C.C.C> In the year 2035, amidst the remnants of humanity, this contract binds the undersigned to the perilous task of\n\n             exploring a system teeming with 4 planets. Undertaking the duty to unearth potential havens for our surviving\n\n             brethren, the signee commits to face the inherent dangers and challenges that interstellar exploration entails.\n\n             The mission is clear: assess each celestial body for its suitability to sustain and nurture human life. In the \n\n             of this noble cause, the undersigned acknowledges the risks involved and pledges their skills, courage, and \n\n             resilience to the unprecedented venture, striving to secure a future for the last remnants of humanity.\n\n\n\n\n./E.C.C.C> Enter your name traveller:  ";
+    const char playerNameNotEntered[] = "Please enter your name";
+    SetTargetFPS(60);
+    while (!WindowShouldClose())    
     {
+        framesCounter+=10;
+        //framesCounter += 4;
+        if (IsKeyPressed(KEY_ENTER))
+        {
+            framesCounter += 10000;
+        }
+        if (IsKeyPressedRepeat(KEY_ENTER))
+        {
+            
+
+        }
+
+       //if((IsKeyPressedRepeat(KEY_ENTER) && letterCount == 0)){
+       //     DrawText(playerNameNotEntered, 40, 555, 22, MAROON);
+       //}
 
         int key = GetCharPressed();
-
         while (key > 0)
         {
-
-            if ((key >= 32) && (key <= 125) && (letterCount < MAX_INPUT_CHARS))
+            if ((key >= 32) && (key <= 122) && (letterCount < MAX_INPUT_CHARS))
             {
                 name[letterCount] = (char)key;
-                name[letterCount + 1] = '\0';
+                name[letterCount + 1] = '\0'; 
                 letterCount++;
             }
 
-            key = GetCharPressed();
+            key = GetCharPressed();  
         }
 
         if (IsKeyPressed(KEY_BACKSPACE))
@@ -43,69 +52,20 @@ void terminal()
             name[letterCount] = '\0';
         }
 
-        else SetMouseCursor(MOUSE_CURSOR_DEFAULT);
-
-        if (mouseOnText) framesCounter++;
-        else framesCounter = 0;
-
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);
+        ClearBackground(BLACK);
 
-        DrawTexture(texture, screenWidth / 2 - texture.width / 2, screenHeight / 2 - texture.height / 2 - 10, WHITE);
-
-        DrawRectangleRec(textBox, LIGHTGRAY);
-        if (mouseOnText) DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, DARKGREEN);
-        else DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, BLACK);
-
-        DrawText(name, (int)textBox.x + 5 * 2, (int)textBox.y + 16, 80, BLACK);
-
-        DrawText(TextFormat("INPUT CHARS: ", letterCount, MAX_INPUT_CHARS), 720, 950, 40, DARKGRAY);
-
-        switch (letterCount)
-        {
-        case 7:
-            DrawText(TextFormat("%i", letterCount, MAX_INPUT_CHARS), 1040, 950, 40, YELLOW);
-            break;
-
-        case 8:
-            DrawText(TextFormat("%i", letterCount, MAX_INPUT_CHARS), 1040, 950, 40, ORANGE);
-            break;
-        case 9:
-            DrawText(TextFormat("%i", letterCount, MAX_INPUT_CHARS), 1040, 950, 40, RED);
-            DrawText("Press BACKSPACE to delete chars...", 550, 780, 40, DARKGRAY);
-            break;
-        default:
-            DrawText(TextFormat("%i", letterCount, MAX_INPUT_CHARS), 1040, 950, 40, DARKGRAY);
-            break;
-        }
-
-        DrawText(TextFormat("/9", letterCount, MAX_INPUT_CHARS), 1065, 950, 40, DARKGRAY);
-        if (letterCount < MAX_INPUT_CHARS)
-        {
-            if (((framesCounter / 20) % 2) == 0) DrawText("_", (int)textBox.x + 8 * 2 + MeasureText(name, 40 * 2), (int)textBox.y + 12 * 2, 40 * 2, DARKGREEN);
-        }
-
+        DrawText(TextSubtext(launchingTerminal, 0, framesCounter / 10), screenWidth/2.0f-400, 10, 20, WHITE);
+        DrawText(TextSubtext(contractText, 0, framesCounter / 10), 40, 300, 20, WHITE);
+        DrawText(name, 450, 525, 22, MAROON);
 
         EndDrawing();
-
-        if (IsKeyPressed(KEY_ESCAPE))
-        {
-            UnloadTexture(texture);
-            ToggleBorderlessWindowed();
-        }
-
+        //----------------------------------------------------------------------------------
     }
-    UnloadTexture(texture);
+    
 
-    bool IsAnyKeyPressed();
-    {
-        bool keyPressed = false;
-        int key = GetKeyPressed();
-
-        if ((key >= 32) && (key <= 126)) keyPressed = true;
-
-    }
+   
 }
 
 
