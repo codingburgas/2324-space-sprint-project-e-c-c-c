@@ -1,11 +1,12 @@
+#include <iostream>
 #include "mainMenu.hpp" 
 #include "game.hpp"
 #include "credits.hpp"
 #include "settings.hpp"
+
 void mainMenu()
 {
     InitWindow(1280, 720, "E.C.C.C");
-    SetTargetFPS(60);
 
     int animFrames = 0;
     int nextFrameDataOffset = 0;
@@ -14,6 +15,7 @@ void mainMenu()
     int frameCounter = 0;
 
     Image imScarfyAnim = LoadImageAnim("../assets/bg.gif", &animFrames);
+    Image logo = LoadImage("../assets/logo.png");
 
     Texture2D texScarfyAnim = LoadTextureFromImage(imScarfyAnim);
     Texture2D buttonPlayIdle = LoadTexture("../assets/buttons/play/playidle.png");
@@ -25,6 +27,8 @@ void mainMenu()
     Texture2D buttonQuitIdle = LoadTexture("../assets/buttons/quit/quitIdle.png");
     Texture2D buttonQuitHover = LoadTexture("../assets/buttons/quit/quitHover.png");
 
+    system("cls");
+    SetWindowIcon(logo);
     SetTargetFPS(24);
 
     while (!WindowShouldClose())
