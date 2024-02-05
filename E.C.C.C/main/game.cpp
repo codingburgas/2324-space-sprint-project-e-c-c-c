@@ -40,13 +40,7 @@ void game()
     float jupiterRotationAngle = 0.0f;
 
     float zoomLevel = 1.25f;
-    const float maxZoomLevel = 5.0f;
-
-    Color mercuryColor = GRAY;
-    Color venusColor = ORANGE;
-    Color earthColor = BLUE;
-    Color marsColor = RED;
-    Color jupiterColor = GREEN;
+    const float maxZoomLevel = 5.0f;;
 
     Texture2D mercury = LoadTexture("../assets/planets/mercury.png");
     Texture2D mercuryLocked = LoadTexture("../assets/planets/mercuryLocked.png");
