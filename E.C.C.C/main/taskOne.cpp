@@ -2,14 +2,14 @@
 #include <iostream>
 #include <fstream>
 #include "raylib.h"
-
+#include "taskOneTerminal.hpp"
 float Vector2Distance(Vector2 v1, Vector2 v2)
 {
     float dx = v2.x - v1.x;
     float dy = v2.y - v1.y;
     return std::sqrt(dx * dx + dy * dy);
 }
-
+void taskOneTerminal();
 void taskOne()
 {
     const int screenWidth = GetScreenWidth();
@@ -70,7 +70,7 @@ void taskOne()
 
         BeginDrawing();
 
-        ClearBackground(DARKGRAY);
+        ClearBackground(DARKGREEN);
 
         // Draw character
         if (IsKeyDown(KEY_W))
@@ -105,7 +105,6 @@ void taskOne()
             if (IsKeyDown(KEY_R))
             {
                 // Fill with oxygen
-                DrawText("Oxygen filled", (GetScreenWidth() - MeasureText("Oxygen filled", 36)) / 2, GetScreenHeight() - 100, 36, RED);
                 flaskEquipped = true;
             }
         }
@@ -125,10 +124,13 @@ void taskOne()
             // Go to terminal() or perform other actions
             
         }
-
+        if (flaskEquipped == true)
+        {
+            DrawText("Oxygen filled", (GetScreenWidth() - MeasureText("Oxygen filled", 36)) / 2, GetScreenHeight() - 100, 36, RED); DrawText("Oxygen filled", (GetScreenWidth() - MeasureText("Oxygen filled", 36)) / 2, GetScreenHeight() - 100, 36, RED);
+        }
         if (distanceToMachine < 50.0f && flaskEquipped)
         {
-            DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 90, 36, RED);
+            DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 40, 36, RED);
 
             // Check if E key is pressed to interact
             if (IsKeyPressed(KEY_E))
@@ -141,8 +143,7 @@ void taskOne()
                     outputFile << passed;  // Save the entered name to the file
                     outputFile.close();
                 }
-                //Redirect to task2
-                break;
+                taskOneTerminal();
             }
         }
 
@@ -151,8 +152,12 @@ void taskOne()
 
         EndDrawing();
     }
-    UnloadTexture(flask);
+    if (WindowShouldClose)
+    {
+UnloadTexture(flask);
     UnloadTexture(machine);
     UnloadTexture(character);
     UnloadTexture(characterReversed);
+    }
+    
 }

@@ -130,6 +130,7 @@
     <ClCompile Include="credits.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="taskOne.cpp" />
+    <ClCompile Include="taskOneTerminal.cpp" />
     <ClCompile Include="terminal.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainMenu.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="game.hpp" />
     <ClInclude Include="settings.hpp" />
     <ClInclude Include="taskOne.hpp" />
+    <ClInclude Include="taskOneTerminal.hpp" />
     <ClInclude Include="terminal.hpp" />
     <ClInclude Include="mainMenu.hpp" />
   </ItemGroup>
