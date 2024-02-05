@@ -3,6 +3,7 @@
 #include <iostream>
 #include "game.hpp"
 #include "taskOne.hpp"
+#include "terminal.hpp"
 
 void game()
 {
@@ -41,7 +42,7 @@ void game()
 
     float zoomLevel = 1.25f;
     const float maxZoomLevel = 5.0f;;
-
+  
     Texture2D mercury = LoadTexture("../assets/planets/mercury.png");
     Texture2D mercuryLocked = LoadTexture("../assets/planets/mercuryLocked.png");
     Texture2D venus = LoadTexture("../assets/planets/venus.png");

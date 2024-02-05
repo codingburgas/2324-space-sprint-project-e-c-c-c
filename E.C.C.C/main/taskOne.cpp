@@ -7,6 +7,10 @@ void taskOne()
 
     Texture2D character = LoadTexture("../assets/player/player.png");
     Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
+    Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
+    Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
+    Texture2D characterJump = LoadTexture("../assets/player/playerJump.png");
+
 
     Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
     float characterScale = 3.0;
@@ -20,6 +24,7 @@ void taskOne()
         if (IsKeyDown(KEY_A)) characterPosition.x -= movementSpeed;
         if (IsKeyDown(KEY_W)) characterPosition.y -= movementSpeed;
         if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
+        
 
         // Reset character if it goes off-screen
         if (characterPosition.x > screenWidth)
@@ -43,17 +48,26 @@ void taskOne()
 
         BeginDrawing();
 
-        ClearBackground(BLACK);
+        ClearBackground(DARKGRAY);
 
         // Draw character
         if (IsKeyDown(KEY_W))
         {
             DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
         }
+        else if (IsKeyDown(KEY_D))
+        {
+            DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
+        }
+        else if (IsKeyDown(KEY_A))
+        {
+            DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
+        }
         else
         {
             DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
         }
+        
 
 
         DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);

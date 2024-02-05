@@ -18,6 +18,7 @@ void terminal()
     char playerNameNotEntered[] = "Please enter your name";
     char nameSubmit[] = "Hold enter to submit";
     SetTargetFPS(60);
+
     while (!WindowShouldClose())    
     {
         framesCounter+=10;
