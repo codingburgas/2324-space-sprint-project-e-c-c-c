@@ -4,8 +4,8 @@
 
 void credits()
 {
-    const int screenWidth = 1920;
-    const int screenHeight = 1080;
+    const int screenWidth = GetScreenWidth();
+    const int screenHeight = GetScreenHeight();
 
     Texture2D texture = LoadTexture("../assets/contractTerminal.png");
 
