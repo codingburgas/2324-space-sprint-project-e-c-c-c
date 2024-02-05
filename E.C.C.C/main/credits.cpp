@@ -1,6 +1,5 @@
 #include "credits.hpp"
 #include "mainMenu.hpp"
-#define MAX_INPUT_CHARS     9
 
 void credits()
 {

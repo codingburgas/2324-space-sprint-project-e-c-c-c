@@ -1,13 +1,13 @@
 ﻿#include "terminal.hpp"
 #include "mainMenu.hpp"
 #include "game.hpp"
-#define MAX_INPUT_CHARS     9
 
 void terminal()
 {
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
-    char name[MAX_INPUT_CHARS + 1] = "\0";
+    const int maxinputChars = 9;
+    char name[maxinputChars + 1] = "\0";
     int letterCount = 0;
     int framesCounter = 0;
 
@@ -38,7 +38,7 @@ void terminal()
             int key = GetCharPressed();
             while (key > 0)
             {
-                if ((key >= 32) && (key <= 122) && (letterCount < MAX_INPUT_CHARS))
+                if ((key >= 32) && (key <= 122) && (letterCount < maxinputChars))
                 {
                     name[letterCount] = (char)key;
                     name[letterCount + 1] = '\0';
