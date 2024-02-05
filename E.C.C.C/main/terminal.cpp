@@ -62,6 +62,10 @@ void terminal()
 
         EndDrawing();
         //----------------------------------------------------------------------------------
+        if (WindowShouldClose())
+        {
+            CloseWindow();
+        }
     }
     
 
