@@ -135,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="credits.hpp" />
+    <ClInclude Include="settings.hpp" />
     <ClInclude Include="terminal.hpp" />
     <ClInclude Include="mainMenu.hpp" />
   </ItemGroup>

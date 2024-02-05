@@ -32,19 +32,21 @@ void terminal()
        //     DrawText(playerNameNotEntered, 40, 555, 22, MAROON);
        //}
 
-        int key = GetCharPressed();
-        while (key > 0)
+        if (framesCounter > 3000)
         {
-            if ((key >= 32) && (key <= 122) && (letterCount < MAX_INPUT_CHARS))
+            int key = GetCharPressed();
+            while (key > 0)
             {
-                name[letterCount] = (char)key;
-                name[letterCount + 1] = '\0'; 
-                letterCount++;
+                if ((key >= 32) && (key <= 122) && (letterCount < MAX_INPUT_CHARS))
+                {
+                    name[letterCount] = (char)key;
+                    name[letterCount + 1] = '\0';
+                    letterCount++;
+                }
+
+                key = GetCharPressed();
             }
-
-            key = GetCharPressed();  
         }
-
         if (IsKeyPressed(KEY_BACKSPACE))
         {
             letterCount--;

@@ -41,5 +41,8 @@
     <ClInclude Include="credits.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="settings.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
