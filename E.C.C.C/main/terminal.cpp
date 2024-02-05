@@ -1,4 +1,6 @@
-﻿#include "terminal.hpp"
+﻿#include <iostream>
+#include <fstream>
+#include "terminal.hpp"
 #include "mainMenu.hpp"
 #include "game.hpp"
 
@@ -10,6 +12,7 @@ void terminal()
     char name[maxinputChars + 1] = "\0";
     int letterCount = 0;
     int framesCounter = 0;
+    int counter = 0;
 
     char launchingTerminal[] = "####       E.C.C.C     X64     LAUNCUING   TERMINAL       ####";
     char contractText[] = "./E.C.C.C> In the year 2035, amidst the remnants of humanity, this contract binds the undersigned to the perilous task of\n\n             exploring a system teeming with 4 planets. Undertaking the duty to unearth potential havens for our surviving\n\n             brethren, the signee commits to face the inherent dangers and challenges that interstellar exploration entails.\n\n             The mission is clear: assess each celestial body for its suitability to sustain and nurture human life. In the \n\n             of this noble cause, the undersigned acknowledges the risks involved and pledges their skills, courage, and \n\n             resilience to the unprecedented venture, striving to secure a future for the last remnants of humanity.\n\n\n\n\n./E.C.C.C> Enter your name traveller:  ";
@@ -26,6 +29,16 @@ void terminal()
         }
         if (IsKeyPressedRepeat(KEY_ENTER))
         {
+            std::string username = name;
+            std::string filename = "../data/playerName.csv";
+            std::ofstream outputFile(filename);
+            if (outputFile.is_open())
+            {
+                outputFile << username;  // Save the entered name to the file
+                outputFile.close();
+            }
+            counter++;
+            //std::cout << username << std::endl;
             game();
         }
 
@@ -73,7 +86,6 @@ void terminal()
         if (WindowShouldClose())
         {
             CloseWindow();
-            ToggleBorderlessWindowed();
             SetTargetFPS(24);
         }
     }

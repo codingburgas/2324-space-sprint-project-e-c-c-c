@@ -1,8 +1,10 @@
 #include <iostream>
+#include <fstream>
 #include "mainMenu.hpp" 
 #include "terminal.hpp"
 #include "credits.hpp"
 #include "settings.hpp"
+#include "game.hpp"
 
 void mainMenu()
 {
@@ -77,7 +79,19 @@ void mainMenu()
             if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
             {
                 ToggleBorderlessWindowed();
-                terminal();
+                std::ifstream inputFile("../data/playerName.csv");
+                if (inputFile.is_open())
+                {
+                    std::string username;
+                    inputFile >> username;
+                    inputFile.close();
+                    game();  // Load game if the file exists
+                }
+                else
+                {
+                    terminal();  // Load terminal if the file does not exist
+                }
+
             }
         }
         else

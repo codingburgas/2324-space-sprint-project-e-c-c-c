@@ -1,5 +1,7 @@
 #include <math.h>
+#include <fstream>
 #include "game.hpp"
+#include "mainmenu.hpp"
 
 void game()
 {
@@ -122,6 +124,13 @@ void game()
         DrawCircleV(Vector2{ jupiterX, jupiterY }, jupiterRadius, jupiterColor);
 
         EndDrawing();
+
+        if (IsKeyPressed(KEY_ESCAPE))
+        {
+            ToggleBorderlessWindowed();
+            SetTargetFPS(24);
+            break;
+        }
     }
 
     CloseWindow();
