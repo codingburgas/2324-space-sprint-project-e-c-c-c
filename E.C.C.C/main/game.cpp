@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include "game.hpp"
-#include "mainmenu.hpp"
+#include "taskOne.hpp"
 
 void game()
 {
@@ -136,6 +136,7 @@ void game()
                 if (isEarthClicked)
                 {
                     //Load Level 1
+                    taskOne();
                     std::cout << "Earth clicked" << std::endl;
                 }
             }

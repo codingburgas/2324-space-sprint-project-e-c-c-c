@@ -1,7 +1,6 @@
 ﻿#include <iostream>
 #include <fstream>
 #include "terminal.hpp"
-#include "mainMenu.hpp"
 #include "game.hpp"
 
 void terminal()
