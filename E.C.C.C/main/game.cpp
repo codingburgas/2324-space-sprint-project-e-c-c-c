@@ -49,9 +49,14 @@ void game()
     Color jupiterColor = GREEN;
 
     Texture2D mercury = LoadTexture("../assets/planets/mercury.png");
-    Texture2D venus = LoadTexture("../assets/planets/earth.png");
+    Texture2D mercuryLocked = LoadTexture("../assets/planets/mercuryLocked.png");
+    Texture2D venus = LoadTexture("../assets/planets/venus.png");
+    Texture2D venusLocked = LoadTexture("../assets/planets/venusLocked.png");
     Texture2D earth = LoadTexture("../assets/planets/earth.png");
     Texture2D mars = LoadTexture("../assets/planets/mars.png");
+    Texture2D marsLocked = LoadTexture("../assets/planets/marsLocked.png");
+    Texture2D jupiter = LoadTexture("../assets/planets/jupiter.png");
+    Texture2D jupiterLocked = LoadTexture("../assets/planets/jupiterLocked.png");
 
     bool isMercuryClicked = false;
     bool isVenusClicked = false;
@@ -163,25 +168,29 @@ void game()
         //DrawCircleV(Vector2{ mercuryX, mercuryY }, mercuryRadius, mercuryColor);
         Rectangle mercuryRec = { 0, 0, (float)mercury.width, (float)mercury.height };
         Vector2 mercuryPos = { mercuryX - mercuryRadius, mercuryY - mercuryRadius };
-        DrawTexturePro(mercury, mercuryRec, { mercuryPos.x, mercuryPos.y, mercuryRadius * 2, mercuryRadius * 2 }, { 0, 0 }, 0, WHITE);
+        DrawTexturePro(mercuryLocked, mercuryRec, { mercuryPos.x, mercuryPos.y, mercuryRadius * 2, mercuryRadius * 2 }, { 0, 0 }, 0, WHITE);
+
+        Rectangle venusRec = { 0, 0, (float)venus.width, (float)venus.height };
+        Vector2 venusPos = { venusX - venusRadius, venusY - venusRadius };
+        DrawTexturePro(venusLocked, venusRec, { venusPos.x, venusPos.y, venusRadius * 2, venusRadius * 2 }, { 0, 0 }, 0, WHITE);
 
         //DrawCircleV(Vector2{ earthX, earthY }, earthRadius, earthColor);
         Rectangle earthRec = { 0, 0, (float)earth.width, (float)earth.height };
         Vector2 earthPos = { earthX - earthRadius, earthY - earthRadius };
         DrawTexturePro(earth, earthRec, { earthPos.x, earthPos.y, earthRadius * 2, earthRadius * 2 }, { 0, 0 }, 0, WHITE);
 
-        Rectangle venusRec = { 0, 0, (float)venus.width, (float)venus.height };
-        Vector2 venusPos = { venusX - venusRadius, venusY - venusRadius };
-        DrawTexturePro(venus, venusRec, { venusPos.x, venusPos.y, venusRadius * 2, venusRadius * 2 }, { 0, 0 }, 0, WHITE);
-
         //DrawCircleV(Vector2{ marsX, marsY }, marsRadius, marsColor);
         Rectangle marsRec = { 0, 0, (float)mars.width, (float)mars.height };
         Vector2 marsPos = { marsX - marsRadius, marsY - marsRadius };
-        DrawTexturePro(mars, marsRec, { marsPos.x, marsPos.y, marsRadius * 2, marsRadius * 2 }, { 0, 0 }, 0, WHITE);
+        DrawTexturePro(marsLocked, marsRec, { marsPos.x, marsPos.y, marsRadius * 2, marsRadius * 2 }, { 0, 0 }, 0, WHITE);
 
-        DrawCircleV(Vector2{ jupiterX, jupiterY }, jupiterRadius, jupiterColor);
+        //DrawCircleV(Vector2{ jupiterX, jupiterY }, jupiterRadius, jupiterColor);
+        Rectangle jupiterRec = { 0, 0, (float)jupiter.width, (float)jupiter.height };
+        Vector2 jupiterPos = { jupiterX - jupiterRadius, jupiterY - jupiterRadius };
+        DrawTexturePro(jupiterLocked, jupiterRec, { jupiterPos.x, jupiterPos.y, jupiterRadius * 2, jupiterRadius * 2 }, { 0, 0 }, 0, WHITE);
 
         DrawText("Use scroll wheel to zoom in/out", 10, 10, 24, WHITE);
+        DrawText("Press ESC to quit", 10, 30, 24, WHITE);
 
         EndDrawing();
 
