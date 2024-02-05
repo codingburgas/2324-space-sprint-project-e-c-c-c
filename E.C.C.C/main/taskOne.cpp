@@ -1,30 +1,67 @@
-#include "taskOne.hpp"
+#include "raylib.h"
 
 void taskOne()
 {
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
 
-    Vector2 ballPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    Texture2D character = LoadTexture("../assets/player/player.png");
+    Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
+
+    Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    float characterScale = 3.0;
+    float movementSpeed = 8.0;
     SetTargetFPS(60);
 
     while (!WindowShouldClose())
     {
-        if (IsKeyDown(KEY_D)) ballPosition.x += 2.0f;
-        if (IsKeyDown(KEY_A)) ballPosition.x -= 2.0f;
-        if (IsKeyDown(KEY_W)) ballPosition.y -= 2.0f;
-        if (IsKeyDown(KEY_S)) ballPosition.y += 2.0f;
+        // Update character position
+        if (IsKeyDown(KEY_D)) characterPosition.x += movementSpeed;
+        if (IsKeyDown(KEY_A)) characterPosition.x -= movementSpeed;
+        if (IsKeyDown(KEY_W)) characterPosition.y -= movementSpeed;
+        if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
+
+        // Reset character if it goes off-screen
+        if (characterPosition.x > screenWidth)
+            characterPosition.x = -character.width * characterScale;
+        else if (characterPosition.x < -character.width * characterScale)
+            characterPosition.x = screenWidth;
+
+        if (characterPosition.y > screenHeight)
+            characterPosition.y = -character.height * characterScale;
+        else if (characterPosition.y < -character.height * characterScale)
+            characterPosition.y = screenHeight;
+
+        if (IsKeyPressed(KEY_LEFT_SHIFT))
+        {
+            movementSpeed = 12;
+        }
+        if (IsKeyReleased(KEY_LEFT_SHIFT))
+        {
+            movementSpeed = 8;
+        }
 
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);
+        ClearBackground(BLACK);
 
-        DrawText("move the ball with arrow keys", 10, 10, 20, DARKGRAY);
+        // Draw character
+        if (IsKeyDown(KEY_W))
+        {
+            DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
+        }
+        else
+        {
+            DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+        }
 
-        DrawCircleV(ballPosition, 50, MAROON);
+
+        DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
+        DrawText("Press ESC to quit", 10, 30, 24, WHITE);
 
         EndDrawing();
     }
 
-    CloseWindow();
+    UnloadTexture(character);
+    UnloadTexture(characterReversed);
 }

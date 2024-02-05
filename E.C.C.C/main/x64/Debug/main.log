@@ -1,4 +1,11 @@
 ﻿  taskOne.cpp
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\taskOne.cpp(28,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\taskOne.cpp(33,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+credits.obj : warning LNK4099: PDB '' was not found with 'credits.obj' or at ''; linking object as if no debug info
+terminal.obj : warning LNK4099: PDB '' was not found with 'terminal.obj' or at ''; linking object as if no debug info
+main.obj : warning LNK4099: PDB '' was not found with 'main.obj' or at ''; linking object as if no debug info
+mainMenu.obj : warning LNK4099: PDB '' was not found with 'mainMenu.obj' or at ''; linking object as if no debug info
+settings.obj : warning LNK4099: PDB '' was not found with 'settings.obj' or at ''; linking object as if no debug info
   main.vcxproj -> C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\x64\Debug\main.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
