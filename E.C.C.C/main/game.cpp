@@ -1,6 +1,7 @@
 #include <math.h>
 #include <fstream>
 #include <iostream>
+#include <string>
 #include "game.hpp"
 #include "taskOne.hpp"
 #include "terminal.hpp"
@@ -58,6 +59,15 @@ void game()
     bool isEarthClicked = false;
     bool isMarsClicked = false;
     bool isJupiterClicked = false;
+
+    std::ifstream inputFile("../data/playerName.csv");
+    std::string username;
+
+    if (inputFile.is_open())
+    {
+        std::getline(inputFile, username);
+        inputFile.close();
+    }
 
     while (!WindowShouldClose())
     {
@@ -187,7 +197,7 @@ void game()
 
         DrawText("Use scroll wheel to zoom in/out", 10, 10, 24, WHITE);
         DrawText("Press ESC to quit", 10, 30, 24, WHITE);
-
+        DrawText(("Welcome back, " + username).c_str(), GetScreenWidth() / 2, 0, 24, WHITE);
         EndDrawing();
 
         if (IsKeyPressed(KEY_ESCAPE))
