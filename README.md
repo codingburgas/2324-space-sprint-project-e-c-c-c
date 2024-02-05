@@ -1,15 +1,3 @@
-<style>
-  body {
-    font-family: 'VCR OSD Mono', monospace;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'VCR OSD Mono', monospace;
-  }
-</style>
-
-Dependencies: Raylib
-
 <p align="center">
      <img align="center" src="https://media.discordapp.net/attachments/1158441474220888074/1204077531578507344/logo.png?ex=65d36b96&is=65c0f696&hm=db4c92827a8ae96fb9f2608d9deedcf4f8144be2b5340e67d245015f53956805&=&format=webp&quality=lossless&width=500&height=500" alt="E.C.C.C. Logo" width="250", height="250">
 
