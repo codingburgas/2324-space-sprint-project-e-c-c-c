@@ -99,13 +99,13 @@ void taskOne()
         // Display message when close to flask
         if (distanceToFlask < 50.0f)
         {
-            DrawText("Hold R to fill with oxygen", 10, 50, 24, WHITE);
+            DrawText("Hold R to fill with oxygen", (GetScreenWidth() - MeasureText("Hold R to fill with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RED);
 
             // Check if R key is pressed to fill with oxygen
             if (IsKeyDown(KEY_R))
             {
                 // Fill with oxygen
-                DrawText("Oxygen filled", 10, 70, 24, WHITE);
+                DrawText("Oxygen filled", (GetScreenWidth() - MeasureText("Oxygen filled", 36)) / 2, GetScreenHeight() - 100, 36, RED);
                 flaskEquipped = true;
             }
         }
@@ -128,7 +128,7 @@ void taskOne()
 
         if (distanceToMachine < 50.0f && flaskEquipped)
         {
-            DrawText("Press E to interact", 10, 90, 24, WHITE);
+            DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 90, 36, RED);
 
             // Check if E key is pressed to interact
             if (IsKeyPressed(KEY_E))
