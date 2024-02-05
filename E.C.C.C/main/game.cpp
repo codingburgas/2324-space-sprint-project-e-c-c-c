@@ -11,25 +11,30 @@ void game()
 
     // Texture2D background = LoadTexture("../assets/gameBg.png");
 
-    float sunRadius = 25.0f;
-    float mercuryRadius = 5.0f;
-    float mercuryOrbitRadius = 50.0f;
-    float earthRadius = 12.0f;
-    float earthOrbitRadius = 110.0f;
-    float moonOrbitRadius = 15.0f;
-    float marsRadius = 10.0f;
-    float marsOrbitRadius = 150.0f;
-    float jupiterRadius = 20.0f;
-    float jupiterOrbitRadius = 200.0f;
+    float sunRadius = 25;
+    float mercuryRadius = 2;
+    float mercuryOrbitRadius = 25;
+    float venusRadius = 3;
+    float venusOrbitRadius = 40;
+    float earthRadius = 6;
+    float earthOrbitRadius = 75;
+    float moonOrbitRadius = 10;
+    float marsRadius = 5;
+    float marsOrbitRadius = 100;
+    float jupiterRadius = 10;
+    float jupiterOrbitRadius = 125;
+
 
     SetTargetFPS(60);
 
     float mercuryRotationSpeed = 0.5f;
+    float venusRotationSpeed = 0.15f;
     float earthRotationSpeed = 0.2f;
     float marsRotationSpeed = 0.3f;
     float jupiterRotationSpeed = 0.1f;
 
     float mercuryRotationAngle = 0.0f;
+    float venusRotationAngle = 0.0f;
     float earthRotationAngle = 0.0f;
     float marsRotationAngle = 0.0f;
     float jupiterRotationAngle = 0.0f;
@@ -38,14 +43,18 @@ void game()
     const float maxZoomLevel = 5.0f;
 
     Color mercuryColor = GRAY;
+    Color venusColor = ORANGE;
     Color earthColor = BLUE;
     Color marsColor = RED;
     Color jupiterColor = GREEN;
 
     Texture2D mercury = LoadTexture("../assets/planets/mercury.png");
+    Texture2D venus = LoadTexture("../assets/planets/earth.png");
     Texture2D earth = LoadTexture("../assets/planets/earth.png");
+    Texture2D mars = LoadTexture("../assets/planets/mars.png");
 
     bool isMercuryClicked = false;
+    bool isVenusClicked = false;
     bool isEarthClicked = false;
     bool isMarsClicked = false;
     bool isJupiterClicked = false;
@@ -53,6 +62,7 @@ void game()
     while (!WindowShouldClose())
     {
         mercuryRotationAngle += mercuryRotationSpeed;
+        venusRotationAngle += venusRotationSpeed;
         earthRotationAngle += earthRotationSpeed;
         marsRotationAngle += marsRotationSpeed;
         jupiterRotationAngle += jupiterRotationSpeed;
@@ -61,6 +71,8 @@ void game()
         zoomLevel = fmaxf(fminf(zoomLevel, maxZoomLevel), 0.1f);
         mercuryRadius = 5.0f * zoomLevel;
         mercuryOrbitRadius = 50.0f * zoomLevel;
+        venusRadius = 8.0f * zoomLevel;
+        venusOrbitRadius = 80.0f * zoomLevel;
         earthRadius = 12.0f * zoomLevel;
         earthOrbitRadius = 110.0f * zoomLevel;
         moonOrbitRadius = 15.0f * zoomLevel;
@@ -78,6 +90,7 @@ void game()
 
         //Draw Orbits
         DrawCircleLines(screenWidth / 2, screenHeight / 2, mercuryOrbitRadius, WHITE);
+        DrawCircleLines(screenWidth / 2, screenHeight / 2, venusOrbitRadius, WHITE);
         DrawCircleLines(screenWidth / 2, screenHeight / 2, earthOrbitRadius, WHITE);
         DrawCircleLines(screenWidth / 2, screenHeight / 2, marsOrbitRadius, WHITE);
         DrawCircleLines(screenWidth / 2, screenHeight / 2, jupiterOrbitRadius, WHITE);
@@ -85,6 +98,9 @@ void game()
         //Orbits params
         float mercuryX = screenWidth / 2 + mercuryOrbitRadius * cos(DEG2RAD * (5 + mercuryRotationAngle));
         float mercuryY = screenHeight / 2 + mercuryOrbitRadius * sin(DEG2RAD * (5 + mercuryRotationAngle));
+
+        float venusX = screenWidth / 2 + venusOrbitRadius * cos(DEG2RAD * (15 + venusRotationAngle));
+        float venusY = screenHeight / 2 + venusOrbitRadius * sin(DEG2RAD * (15 + venusRotationAngle));
 
         float earthX = screenWidth / 2 + earthOrbitRadius * cos(DEG2RAD * (25 + earthRotationAngle));
         float earthY = screenHeight / 2 + earthOrbitRadius * sin(DEG2RAD * (25 + earthRotationAngle));
@@ -104,6 +120,15 @@ void game()
                 if (isMercuryClicked)
                 {
                     std::cout << "Mercury clicked" << std::endl;
+                }
+            }
+            else if (CheckCollisionPointCircle(GetMousePosition(), Vector2{ venusX, venusY }, venusRadius))
+            {
+                isVenusClicked = !isVenusClicked;
+                if (isVenusClicked)
+                {
+                    std::cout << "Venus clicked" << std::endl;
+                    // Handle Venus click action if needed
                 }
             }
             else if (CheckCollisionPointCircle(GetMousePosition(), Vector2{ earthX, earthY }, earthRadius))
@@ -145,7 +170,15 @@ void game()
         Vector2 earthPos = { earthX - earthRadius, earthY - earthRadius };
         DrawTexturePro(earth, earthRec, { earthPos.x, earthPos.y, earthRadius * 2, earthRadius * 2 }, { 0, 0 }, 0, WHITE);
 
-        DrawCircleV(Vector2{ marsX, marsY }, marsRadius, marsColor);
+        Rectangle venusRec = { 0, 0, (float)venus.width, (float)venus.height };
+        Vector2 venusPos = { venusX - venusRadius, venusY - venusRadius };
+        DrawTexturePro(venus, venusRec, { venusPos.x, venusPos.y, venusRadius * 2, venusRadius * 2 }, { 0, 0 }, 0, WHITE);
+
+        //DrawCircleV(Vector2{ marsX, marsY }, marsRadius, marsColor);
+        Rectangle marsRec = { 0, 0, (float)mars.width, (float)mars.height };
+        Vector2 marsPos = { marsX - marsRadius, marsY - marsRadius };
+        DrawTexturePro(mars, marsRec, { marsPos.x, marsPos.y, marsRadius * 2, marsRadius * 2 }, { 0, 0 }, 0, WHITE);
+
         DrawCircleV(Vector2{ jupiterX, jupiterY }, jupiterRadius, jupiterColor);
 
         DrawText("Use scroll wheel to zoom in/out", 10, 10, 24, WHITE);
