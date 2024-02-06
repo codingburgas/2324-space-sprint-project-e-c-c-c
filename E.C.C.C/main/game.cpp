@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include "game.hpp"
+#include "settings.hpp"
 #include "taskOne.hpp"
 #include "terminal.hpp"
 
@@ -227,12 +228,15 @@ void game()
         DrawText("Use scroll wheel to zoom in/out", 10, 10, 24, WHITE);
         DrawText("Press ESC to quit", 10, 30, 24, WHITE);
         DrawText(("Welcome back, " + username).c_str(), GetScreenWidth() / 2-125, 10, 24, WHITE);
-        DrawText(moneyStr.c_str(), 15, 1040, 35, WHITE);
+        DrawText(moneyStr.c_str(), 15, screenHeight - 40, 35, WHITE);
         EndDrawing();
 
         if (IsKeyPressed(KEY_ESCAPE))
         {
-            ToggleBorderlessWindowed();
+            if (fullscreen)
+            {
+                ToggleBorderlessWindowed();
+            }
             SetTargetFPS(24);
             break;
         }

@@ -76,7 +76,7 @@ void terminal()
         ClearBackground(BLACK);
 
         DrawText(TextSubtext(launchingTerminal, 0, framesCounter / 10), screenWidth/2.0f-400, 10, 20, WHITE);
-        DrawText(TextSubtext(contractText, 0, framesCounter / 10), 40, 300, 20, WHITE);
+        DrawText(TextSubtext(contractText, 0, framesCounter / 10), screenWidth - (screenWidth - 40), 300, 20, WHITE);
         DrawText(name, 450, 525, 22, MAROON);
 
         EndDrawing();

@@ -78,7 +78,10 @@ void mainMenu()
             DrawTexture(buttonPlayHover, 90, 250, WHITE);
             if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
             {
-                ToggleBorderlessWindowed();
+                if (fullscreen)
+                {
+                    ToggleBorderlessWindowed();
+                }
                 std::ifstream inputFile("../data/playerName.csv");
                 if (inputFile.is_open())
                 {
@@ -91,7 +94,6 @@ void mainMenu()
                 {
                     terminal();  // Load terminal if the file does not exist
                 }
-
             }
         }
         else
