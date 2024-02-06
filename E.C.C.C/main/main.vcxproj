@@ -128,9 +128,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="credits.cpp" />
+    <ClCompile Include="earth.cpp" />
     <ClCompile Include="game.cpp" />
-    <ClCompile Include="taskOne.cpp" />
-    <ClCompile Include="taskTwo.cpp" />
     <ClCompile Include="terminal.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainMenu.cpp" />
@@ -140,8 +139,7 @@
     <ClInclude Include="credits.hpp" />
     <ClInclude Include="game.hpp" />
     <ClInclude Include="settings.hpp" />
-    <ClInclude Include="taskOne.hpp" />
-    <ClInclude Include="taskTwo.hpp" />
+    <ClInclude Include="earth.hpp" />
     <ClInclude Include="terminal.hpp" />
     <ClInclude Include="mainMenu.hpp" />
   </ItemGroup>

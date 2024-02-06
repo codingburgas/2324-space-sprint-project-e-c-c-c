@@ -5,8 +5,7 @@
 #include <sstream>
 #include "game.hpp"
 #include "settings.hpp"
-#include "taskOne.hpp"
-#include "taskTwo.hpp"
+#include "earth.hpp"
 #include "terminal.hpp"
 
 void game()
