@@ -2,14 +2,13 @@
 #include <iostream>
 #include <fstream>
 #include "raylib.h"
-#include "taskOneTerminal.hpp"
+#include "terminal.hpp"
 float Vector2Distance(Vector2 v1, Vector2 v2)
 {
     float dx = v2.x - v1.x;
     float dy = v2.y - v1.y;
     return std::sqrt(dx * dx + dy * dy);
 }
-void taskOneTerminal();
 void taskOne()
 {
     const int screenWidth = GetScreenWidth();
@@ -25,8 +24,8 @@ void taskOne()
     Texture2D flask = LoadTexture("../assets/flask.png");
     Texture2D machine = LoadTexture("../assets/machine.png");
 
-    Vector2 flaskPosition = { (float)GetRandomValue(0, screenWidth - flask.width), (float)GetRandomValue(0, screenHeight - flask.height) };
-    Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width), (float)GetRandomValue(0, screenHeight - machine.height) };
+    Vector2 flaskPosition = { (float)GetRandomValue(0, screenWidth - flask.width - 100), (float)GetRandomValue(0, screenHeight - flask.height - 100) };
+    Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
     Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
 
     float characterScale = 3.0;
@@ -46,7 +45,7 @@ void taskOne()
         if (IsKeyDown(KEY_A)) characterPosition.x -= movementSpeed;
         if (IsKeyDown(KEY_W)) characterPosition.y -= movementSpeed;
         if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
-        
+
 
         // Reset character if it goes off-screen
         if (characterPosition.x > screenWidth)
@@ -86,7 +85,7 @@ void taskOne()
         }
         else if (IsKeyDown(KEY_A))
         {
-                DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
+            DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
         }
         else
         {
@@ -95,11 +94,14 @@ void taskOne()
             else
                 DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
         }
-        
+
         // Display message when close to flask
         if (distanceToFlask < 50.0f)
         {
-            DrawText("Hold R to fill with oxygen", (GetScreenWidth() - MeasureText("Hold R to fill with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RED);
+            if (!flaskEquipped)
+            {
+                DrawText("Hold R to fill with oxygen", (GetScreenWidth() - MeasureText("Hold R to fill with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RED);
+            }
 
             // Check if R key is pressed to fill with oxygen
             if (IsKeyDown(KEY_R))
@@ -122,7 +124,7 @@ void taskOne()
         if (flaskEquipped && IsKeyPressed(KEY_ENTER))
         {
             // Go to terminal() or perform other actions
-            
+
         }
         if (flaskEquipped == true)
         {
@@ -152,12 +154,8 @@ void taskOne()
 
         EndDrawing();
     }
-    if (WindowShouldClose)
-    {
-UnloadTexture(flask);
+    UnloadTexture(flask);
     UnloadTexture(machine);
     UnloadTexture(character);
     UnloadTexture(characterReversed);
-    }
-    
 }

@@ -36,9 +36,6 @@
     <ClCompile Include="taskOne.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="taskOneTerminal.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mainMenu.hpp">
@@ -57,9 +54,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="taskOne.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="taskOneTerminal.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
