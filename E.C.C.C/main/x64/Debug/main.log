@@ -1,1 +1,14 @@
-﻿  main.vcxproj -> C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\x64\Debug\main.exe
+﻿  taskOne.cpp
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\taskOne.cpp(57,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\taskOne.cpp(62,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+  taskTwo.cpp
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\taskTwo.cpp(57,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\taskTwo.cpp(62,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+  terminal.cpp
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\terminal.cpp(84,89): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\terminal.cpp(127,99): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  LINK : C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\x64\Debug\main.exe not found or not built by the last incremental link; performing full link
+  main.vcxproj -> C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\x64\Debug\main.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.

@@ -6,6 +6,7 @@
 #include "game.hpp"
 #include "settings.hpp"
 #include "taskOne.hpp"
+#include "taskTwo.hpp"
 #include "terminal.hpp"
 
 void game()
@@ -175,8 +176,9 @@ void game()
                     {
                         taskOne();
                     }
-                    else
+                    else if(levelsPassed == 1)
                     {
+                        taskTwo();
                         std::cout << "Task 1 completed!" << std::endl;
                     }
                 }

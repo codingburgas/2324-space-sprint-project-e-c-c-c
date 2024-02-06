@@ -86,7 +86,7 @@ void terminal()
         DrawText(name, 450, 525, 22, MAROON);
         if (letterCount < maxInputChars && framesCounter>8000)
         {
-            if (((framesCounter / 240) % 2) == 0) DrawText("_", (int)textBox.x + 5 + MeasureText(name, 22), (int)textBox.y, 22, RED);
+            if (((framesCounter / 480) % 2) == 0) DrawText("_", (int)textBox.x + 5 + MeasureText(name, 22), (int)textBox.y, 22, RED);
         }
         
 

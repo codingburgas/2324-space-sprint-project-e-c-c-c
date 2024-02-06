@@ -3,17 +3,12 @@
 #include <fstream>
 #include "raylib.h"
 #include "terminal.hpp"
+
 float Vector2Distance(Vector2 v1, Vector2 v2)
 {
     float dx = v2.x - v1.x;
     float dy = v2.y - v1.y;
     return std::sqrt(dx * dx + dy * dy);
-}
-
-bool fileExists(const std::string& filename) 
-{
-    std::ifstream file(filename);
-    return file.good();
 }
 
 void taskOne()
@@ -106,7 +101,7 @@ void taskOne()
         }
 
         // Display message when close to flask
-        if (distanceToFlask < 50.0f)
+        if (distanceToFlask < 80.0f)
         {
             if (!flaskEquipped)
             {
@@ -140,7 +135,7 @@ void taskOne()
         {
             DrawText("Oxygen filled", (GetScreenWidth() - MeasureText("Oxygen filled", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE); DrawText("Oxygen filled", (GetScreenWidth() - MeasureText("Oxygen filled", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
         }
-        if (distanceToMachine < 50.0f && flaskEquipped)
+        if (distanceToMachine < 120.0f && flaskEquipped)
         {
             DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
 
