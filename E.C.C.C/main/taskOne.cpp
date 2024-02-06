@@ -110,7 +110,7 @@ void taskOne()
         {
             if (!flaskEquipped)
             {
-                DrawText("Hold R to fill with oxygen", (GetScreenWidth() - MeasureText("Hold R to fill with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RED);
+                DrawText("Hold R to fill with oxygen", (GetScreenWidth() - MeasureText("Hold R to fill with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
             }
 
             // Check if R key is pressed to fill with oxygen
@@ -138,11 +138,11 @@ void taskOne()
         }
         if (flaskEquipped == true)
         {
-            DrawText("Oxygen filled", (GetScreenWidth() - MeasureText("Oxygen filled", 36)) / 2, GetScreenHeight() - 100, 36, RED); DrawText("Oxygen filled", (GetScreenWidth() - MeasureText("Oxygen filled", 36)) / 2, GetScreenHeight() - 100, 36, RED);
+            DrawText("Oxygen filled", (GetScreenWidth() - MeasureText("Oxygen filled", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE); DrawText("Oxygen filled", (GetScreenWidth() - MeasureText("Oxygen filled", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
         }
         if (distanceToMachine < 50.0f && flaskEquipped)
         {
-            DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 40, 36, RED);
+            DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
 
             // Check if E key is pressed to interact
             if (IsKeyPressed(KEY_E))

@@ -103,7 +103,7 @@ void game()
 
         //Convert int to string with <sstream>
         std::stringstream ss;
-        ss << "Money: " << money;
+        ss << "Money: " << money;   
         std::string moneyStr = ss.str();
 
         //Get value from money.csv which is created when you complete Level1
@@ -227,7 +227,7 @@ void game()
         DrawText("Use scroll wheel to zoom in/out", 10, 10, 24, WHITE);
         DrawText("Press ESC to quit", 10, 30, 24, WHITE);
         DrawText(("Welcome back, " + username).c_str(), GetScreenWidth() / 2-125, 10, 24, WHITE);
-        DrawText(moneyStr.c_str(), 10, 200, 20, WHITE);
+        DrawText(moneyStr.c_str(), 15, 1040, 35, WHITE);
         EndDrawing();
 
         if (IsKeyPressed(KEY_ESCAPE))
