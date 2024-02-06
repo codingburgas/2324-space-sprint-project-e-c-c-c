@@ -23,7 +23,6 @@ void taskOne()
     Texture2D characterReversedFlask = LoadTexture("../assets/player/playerReversedFlask.png");
     Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
     Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
-    Texture2D characterJump = LoadTexture("../assets/player/playerJump.png");
     Texture2D flask = LoadTexture("../assets/flask.png");
     Texture2D machine = LoadTexture("../assets/machine.png");
 
@@ -105,7 +104,7 @@ void taskOne()
         {
             if (!flaskEquipped)
             {
-                DrawText("Hold R to fill with oxygen", (GetScreenWidth() - MeasureText("Hold R to fill with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+                DrawText("Press R to fill with oxygen", (GetScreenWidth() - MeasureText("Hold R to fill with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
             }
 
             // Check if R key is pressed to fill with oxygen
@@ -133,7 +132,7 @@ void taskOne()
         }
         if (flaskEquipped == true)
         {
-            DrawText("Oxygen filled", (GetScreenWidth() - MeasureText("Oxygen filled", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE); DrawText("Oxygen filled", (GetScreenWidth() - MeasureText("Oxygen filled", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
+            DrawText("Oxygen filled", (GetScreenWidth() - MeasureText("Oxygen filled", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
         }
         if (distanceToMachine < 120.0f && flaskEquipped)
         {
@@ -169,19 +168,16 @@ void taskOne()
     UnloadTexture(machine);
     UnloadTexture(character);
     UnloadTexture(characterReversed);
+    UnloadTexture(background);
+    UnloadTexture(characterFlask);
+    UnloadTexture(characterReversedFlask);
+    UnloadTexture(characterLeft);
+    UnloadTexture(characterRight);
 }
 
 
 
 //task 2
-
-float V2D(Vector2 v1, Vector2 v2)
-{
-    float dx = v2.x - v1.x;
-    float dy = v2.y - v1.y;
-    return std::sqrt(dx * dx + dy * dy);
-}
-
 void taskTwo()
 {
     const int screenWidth = GetScreenWidth();
@@ -189,30 +185,53 @@ void taskTwo()
 
     Texture2D background = LoadTexture("../assets/background/taskOneBackground.png");
     Texture2D character = LoadTexture("../assets/player/player.png");
-    Texture2D characterFlask = LoadTexture("../assets/player/playerFlask.png");
+    Texture2D characterRock = LoadTexture("../assets/player/playerRock.png");
+    Texture2D characterDirt = LoadTexture("../assets/player/playerDirt.png");
     Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
-    Texture2D characterReversedFlask = LoadTexture("../assets/player/playerReversedFlask.png");
+    Texture2D characterReversedRD = LoadTexture("../assets/player/playerRDReversed.png");
     Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
+    Texture2D characterLeftRock = LoadTexture("../assets/player/playerLeftRock.png");
+    Texture2D characterLeftDirt = LoadTexture("../assets/player/playerLeftDirt.png");
     Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
-    Texture2D characterJump = LoadTexture("../assets/player/playerJump.png");
-    //Texture2D flask = LoadTexture("../assets/flask.png");
+    Texture2D characterRightRock = LoadTexture("../assets/player/playerRightRock.png");
+    Texture2D characterRightDirt = LoadTexture("../assets/player/playerRightDirt.png");
+    Texture2D rock = LoadTexture("../assets/rock.png");
+    Texture2D dirt = LoadTexture("../assets/dirt.png");
     Texture2D machine = LoadTexture("../assets/machine.png");
 
-    //Vector2 flaskPosition = { (float)GetRandomValue(0, screenWidth - flask.width - 100), (float)GetRandomValue(0, screenHeight - flask.height - 100) };
+    Vector2 rockPosition{ (float)GetRandomValue(0, screenWidth - rock.width - 100), (float)GetRandomValue(0, screenHeight - rock.height - 100) };
+    Vector2 dirtPosition{ (float)GetRandomValue(0, screenWidth - dirt.width - 100), (float)GetRandomValue(0, screenHeight - dirt.height - 100) };
     Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
     Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+
+    float minDistanceBetweenDirtAndRock = 200.0f;
+
+    // Adjust dirt position if too close to rock
+    while (Vector2Distance(rockPosition, dirtPosition) < minDistanceBetweenDirtAndRock) 
+    {
+        dirtPosition = 
+        {
+            (float)GetRandomValue(0, screenWidth - dirt.width - 100),
+            (float)GetRandomValue(0, screenHeight - dirt.height - 100)
+        };
+    }
 
     float characterScale = 3.0;
     float movementSpeed = 8.0;
 
     SetTargetFPS(60);
 
-    //bool flaskEquipped = false;
+    bool rockEquipped = false;
+    bool dirtEquipped = false;
+    bool levelPassed = false;
+
+    int counter = 0;
 
     while (!WindowShouldClose())
     {
-        float distanceToMachine = V2D(characterPosition, machinePosition);
-        //float distanceToFlask = V2D(characterPosition, flaskPosition);
+        float distanceToMachine = Vector2Distance(characterPosition, machinePosition);
+        float distanceToRock = Vector2Distance(characterPosition, rockPosition);
+        float distanceToDirt = Vector2Distance(characterPosition, dirtPosition);
 
         // Update character position
         if (IsKeyDown(KEY_D)) characterPosition.x += movementSpeed;
@@ -250,98 +269,182 @@ void taskTwo()
         // Draw character
         if (IsKeyDown(KEY_W))
         {
-            //if (flaskEquipped)
-               // DrawTextureEx(characterReversedFlask, characterPosition, 0.0f, characterScale, WHITE);
-            //else
-            DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+            if (rockEquipped or dirtEquipped)
+                DrawTextureEx(characterReversedRD, characterPosition, 0.0f, characterScale, WHITE);
+            else
+                DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
         }
         else if (IsKeyDown(KEY_D))
         {
-            DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
+            if (rockEquipped)
+                DrawTextureEx(characterRightRock, characterPosition, 0.0f, characterScale, WHITE);
+            else if (dirtEquipped)
+                DrawTextureEx(characterRightDirt, characterPosition, 0.0f, characterScale, WHITE);
+            else
+                DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
         }
         else if (IsKeyDown(KEY_A))
         {
+            if (rockEquipped)
+                DrawTextureEx(characterLeftRock, characterPosition, 0.0f, characterScale, WHITE);
+            else if (dirtEquipped)
+                DrawTextureEx(characterLeftDirt, characterPosition, 0.0f, characterScale, WHITE);
             DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
         }
         else
         {
-            //if (flaskEquipped)
-              //  DrawTextureEx(characterFlask, characterPosition, 0.0f, characterScale, WHITE);
-            //else
-            DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+            if (rockEquipped)
+                DrawTextureEx(characterRock, characterPosition, 0.0f, characterScale, WHITE);
+            else if (dirtEquipped)
+                DrawTextureEx(characterDirt, characterPosition, 0.0f, characterScale, WHITE);
+            else
+                DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+
         }
 
-        /*
-        // Display message when close to flask
-        if (distanceToFlask < 80.0f)
+        // Display message when close to rock
+        if (distanceToRock < 80.0f and !dirtEquipped)
         {
-            if (!flaskEquipped)
-            {
-                DrawText("Hold R to fill with oxygen", (GetScreenWidth() - MeasureText("Hold R to fill with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
-            }
-
-            // Check if R key is pressed to fill with oxygen
+            DrawText("Press R to pick up the rock", (GetScreenWidth() - MeasureText("Press R to pick up the rock", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
             if (IsKeyDown(KEY_R))
             {
-                // Fill with oxygen
-                flaskEquipped = true;
+                rockEquipped = true;
             }
         }
 
-        // Draw flask if not equipped
-        if (!flaskEquipped)
+        // Draw rock if not equipped
+        if (!rockEquipped)
         {
-            DrawTextureEx(flask, flaskPosition, 0.0f, 1.25f, WHITE);
+            DrawTextureEx(rock, rockPosition, 0.0f, 1.25f, WHITE);
         }
-        */
+
+        // Display message when close to dirt
+        if (distanceToDirt < 80.0f and !rockEquipped)
+        {
+            DrawText("Press R to pick up dirt", (GetScreenWidth() - MeasureText("Press R to pick up dirt", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+            if (IsKeyDown(KEY_R))
+            {
+                dirtEquipped = true;
+            }
+        }
+
+        // Draw dirt if not equipped
+        if (!dirtEquipped)
+        {
+            DrawTextureEx(dirt, dirtPosition, 0.0f, 1.25f, WHITE);
+        }
 
         // Draw machine
         DrawTextureEx(machine, machinePosition, 0.0f, 4.5f, WHITE);
 
-        /*
-        // Check if Enter key is pressed when equipped with the flask
-        if (flaskEquipped && IsKeyPressed(KEY_ENTER))
+        if (dirtEquipped && IsKeyPressed(KEY_E))
         {
-            // Go to terminal() or perform other actions
-
+            counter = 1;
         }
-        if (flaskEquipped == true)
+
+        if (rockEquipped == true)
         {
-            DrawText("Oxygen filled", (GetScreenWidth() - MeasureText("Oxygen filled", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE); DrawText("Oxygen filled", (GetScreenWidth() - MeasureText("Oxygen filled", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
-        }*/
+            DrawText("Holding rock", (GetScreenWidth() - MeasureText("Holding rock", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
+        }
+        else if (dirtEquipped == true)
+        {
+            DrawText("Holding dirt", (GetScreenWidth() - MeasureText("Holding dirt", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
+        }
+
+        if (IsKeyPressed(KEY_Q) and (rockEquipped or dirtEquipped))
+        {
+            if (rockEquipped)
+            {
+                rockEquipped = !rockEquipped;
+            }
+            else if (dirtEquipped)
+            {
+                dirtEquipped = !dirtEquipped;
+            }
+        }
+
         //if (distanceToMachine < 120.0f && flaskEquipped)
-        if (distanceToMachine < 120.0f)
+        if (distanceToMachine < 120.0f and dirtEquipped)
+        {
+            DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+
+            // Check if E key is pressed to interact
+            if (IsKeyPressed(KEY_E))
+            {   
+                counter = 1;
+                taskOneTerminal();
+            }
+        }
+
+        if (distanceToMachine < 120.0f and (rockEquipped and counter == 1))
         {
             DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
 
             // Check if E key is pressed to interact
             if (IsKeyPressed(KEY_E))
             {
-                std::ofstream moneyFile("../data/money.csv");
+                int money = 0;
+                //Get value from money.csv which is created when you complete Level1
+                std::ifstream moneyFile("../data/money.csv");
                 if (moneyFile.is_open())
                 {
-                    moneyFile << "200";  // Save earned money to a file
+                    moneyFile >> money;
                     moneyFile.close();
+                }
+
+                std::ofstream moneyFileOf("../data/money.csv");
+                if (moneyFileOf.is_open())
+                {
+                    moneyFileOf << money + 200;  // Save earned money to a file
+                    moneyFileOf.close();
                 }
 
                 std::ofstream levelFile("../data/levelsPassed.csv");
                 if (levelFile.is_open())
                 {
-                    levelFile << "1";  // Save completed level to a file
+                    levelFile << "2";  // Save completed level to a file
                     levelFile.close();
                 }
-
+                levelPassed = true;
                 taskOneTerminal();
             }
         }
 
         DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
         DrawText("Press ESC to quit", 10, 30, 24, WHITE);
+        DrawText("Press Q to drop items", 10, 500, 24, WHITE);
+
+        while (dirtEquipped and counter == 1)
+        {
+            DrawText("Task: Drop dirt and pick up rock", 500, 10, 24, WHITE);
+            break;
+        }
+
+        if (counter == 0)
+        {
+            DrawText("Task: Bring dirt to the machine", 500, 10, 24, WHITE);
+        }
+        else if (counter == 1 and dirtEquipped == false and !levelPassed)
+        {
+            DrawText("Task: Bring a rock to the machine", 500, 10, 24, WHITE);
+        }
+
 
         EndDrawing();
     }
-    //UnloadTexture(flask);
+    UnloadTexture(rock);
+    UnloadTexture(dirt);
     UnloadTexture(machine);
     UnloadTexture(character);
     UnloadTexture(characterReversed);
+    UnloadTexture(background);
+    UnloadTexture(characterRock);
+    UnloadTexture(characterDirt);
+    UnloadTexture(characterReversedRD);
+    UnloadTexture(characterLeft);
+    UnloadTexture(characterLeftRock);
+    UnloadTexture(characterLeftDirt);
+    UnloadTexture(characterRight);
+    UnloadTexture(characterRightDirt);
+    UnloadTexture(characterRightRock);
 }

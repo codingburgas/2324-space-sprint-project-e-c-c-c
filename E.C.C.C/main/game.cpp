@@ -171,14 +171,13 @@ void game()
                 isEarthClicked = !isEarthClicked;
                 if (isEarthClicked)
                 {
-                    if (levelsPassed != 1)
+                    if (levelsPassed != 1 and levelsPassed != 2)
                     {
                         taskOne();
                     }
                     else if(levelsPassed == 1)
                     {
                         taskTwo();
-                        std::cout << "Task 1 completed!" << std::endl;
                     }
                 }
             }
