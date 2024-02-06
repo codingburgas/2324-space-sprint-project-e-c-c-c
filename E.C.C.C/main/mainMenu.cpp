@@ -81,18 +81,33 @@ void mainMenu()
                 if (fullscreen)
                 {
                     ToggleBorderlessWindowed();
-                }
-                std::ifstream inputFile("../data/playerName.csv");
-                if (inputFile.is_open())
-                {
-                    std::string username;
-                    inputFile >> username;
-                    inputFile.close();
-                    game();  // Load game if the file exists
+                    std::ifstream inputFile("../data/playerName.csv");
+                    if (inputFile.is_open())
+                    {
+                        std::string username;
+                        inputFile >> username;
+                        inputFile.close();
+                        game();  // Load game if the file exists
+                    }
+                    else
+                    {
+                        terminal();  // Load terminal if the file does not exist
+                    }
                 }
                 else
                 {
-                    terminal();  // Load terminal if the file does not exist
+                    std::ifstream inputFile("../data/playerName.csv");
+                    if (inputFile.is_open())
+                    {
+                        std::string username;
+                        inputFile >> username;
+                        inputFile.close();
+                        game();  // Load game if the file exists
+                    }
+                    else
+                    {
+                        terminal();  // Load terminal if the file does not exist
+                    }
                 }
             }
         }
