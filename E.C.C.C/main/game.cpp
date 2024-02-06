@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <sstream>
 #include "game.hpp"
 #include "taskOne.hpp"
 #include "terminal.hpp"
@@ -60,13 +61,13 @@ void game()
     bool isMarsClicked = false;
     bool isJupiterClicked = false;
 
-    std::ifstream inputFile("../data/playerName.csv");
+    std::ifstream playerName("../data/playerName.csv");
     std::string username;
 
-    if (inputFile.is_open())
+    if (playerName.is_open())
     {
-        std::getline(inputFile, username);
-        inputFile.close();
+        std::getline(playerName, username);
+        playerName.close();
     }
 
     while (!WindowShouldClose())
@@ -90,6 +91,29 @@ void game()
         marsOrbitRadius = 150.0f * zoomLevel;
         jupiterRadius = 25.0f * zoomLevel;
         jupiterOrbitRadius = 200.0f * zoomLevel;
+
+        //Get value from money.csv which is created when you complete Level1
+        int money = 0;
+        std::ifstream moneyFile("../data/money.csv");
+        if (moneyFile.is_open())
+        {
+            moneyFile >> money;
+            moneyFile.close();
+        }
+
+        //Convert int to string with <sstream>
+        std::stringstream ss;
+        ss << "Money: " << money;
+        std::string moneyStr = ss.str();
+
+        //Get value from money.csv which is created when you complete Level1
+        int levelsPassed = 0;
+        std::ifstream levelsFile("../data/levelsPassed.csv");
+        if (levelsFile.is_open())
+        {
+            levelsFile >> levelsPassed;
+            levelsFile.close();
+        }
 
         BeginDrawing();
 
@@ -146,9 +170,14 @@ void game()
                 isEarthClicked = !isEarthClicked;
                 if (isEarthClicked)
                 {
-                    //Load Level 1
-                    taskOne();
-                    std::cout << "Earth clicked" << std::endl;
+                    if (levelsPassed != 1)
+                    {
+                        taskOne();
+                    }
+                    else
+                    {
+                        std::cout << "Task 1 completed!" << std::endl;
+                    }
                 }
             }
             else if (CheckCollisionPointCircle(GetMousePosition(), Vector2{ marsX, marsY }, marsRadius))
@@ -198,6 +227,7 @@ void game()
         DrawText("Use scroll wheel to zoom in/out", 10, 10, 24, WHITE);
         DrawText("Press ESC to quit", 10, 30, 24, WHITE);
         DrawText(("Welcome back, " + username).c_str(), GetScreenWidth() / 2-125, 10, 24, WHITE);
+        DrawText(moneyStr.c_str(), 10, 200, 20, WHITE);
         EndDrawing();
 
         if (IsKeyPressed(KEY_ESCAPE))

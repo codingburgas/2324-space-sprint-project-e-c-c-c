@@ -9,11 +9,19 @@ float Vector2Distance(Vector2 v1, Vector2 v2)
     float dy = v2.y - v1.y;
     return std::sqrt(dx * dx + dy * dy);
 }
+
+bool fileExists(const std::string& filename) 
+{
+    std::ifstream file(filename);
+    return file.good();
+}
+
 void taskOne()
 {
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
 
+    Texture2D background = LoadTexture("../assets/background/taskOneBackground.png");
     Texture2D character = LoadTexture("../assets/player/player.png");
     Texture2D characterFlask = LoadTexture("../assets/player/playerFlask.png");
     Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
@@ -70,6 +78,8 @@ void taskOne()
         BeginDrawing();
 
         ClearBackground(DARKGREEN);
+
+        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2 - 10, WHITE);
 
         // Draw character
         if (IsKeyDown(KEY_W))
@@ -137,14 +147,20 @@ void taskOne()
             // Check if E key is pressed to interact
             if (IsKeyPressed(KEY_E))
             {
-                int passed = 1;
-                std::string filename = "../data/levelsPassed.csv";
-                std::ofstream outputFile(filename);
-                if (outputFile.is_open())
+                std::ofstream moneyFile("../data/money.csv");
+                if (moneyFile.is_open())
                 {
-                    outputFile << passed;  // Save the entered name to the file
-                    outputFile.close();
+                    moneyFile << "200";  // Save earned money to a file
+                    moneyFile.close();
                 }
+
+                std::ofstream levelFile("../data/levelsPassed.csv");
+                if (levelFile.is_open())
+                {
+                    levelFile << "1";  // Save completed level to a file
+                    levelFile.close();
+                }
+
                 taskOneTerminal();
             }
         }
