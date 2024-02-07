@@ -203,6 +203,8 @@ void taskTwo()
     Vector2 dirtPosition{ (float)GetRandomValue(0, screenWidth - dirt.width - 100), (float)GetRandomValue(0, screenHeight - dirt.height - 100) };
     Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
     Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    Vector2 rockPickedUpPosition;
+    Vector2 dirtPickedUpPosition;
 
     float minDistanceBetweenDirtAndRock = 200.0f;
 
@@ -309,6 +311,7 @@ void taskTwo()
             if (IsKeyDown(KEY_R))
             {
                 rockEquipped = true;
+                rockPickedUpPosition = rockPosition;
             }
         }
 
@@ -319,7 +322,7 @@ void taskTwo()
         }
 
         // Display message when close to dirt
-        if (distanceToDirt < 80.0f and !rockEquipped)
+        if (distanceToDirt < 80.0f and !rockEquipped and distanceToRock > 80.0f)
         {
             DrawText("Press R to pick up dirt", (GetScreenWidth() - MeasureText("Press R to pick up dirt", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
             if (IsKeyDown(KEY_R))
@@ -356,10 +359,12 @@ void taskTwo()
             if (rockEquipped)
             {
                 rockEquipped = !rockEquipped;
+                rockPosition = characterPosition;
             }
             else if (dirtEquipped)
             {
                 dirtEquipped = !dirtEquipped;
+                dirtPosition = characterPosition;
             }
         }
 

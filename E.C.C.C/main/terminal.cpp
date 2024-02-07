@@ -19,7 +19,7 @@ void terminal()
     if(fullscreen==true)
     {
         fontSize = 22;
-        nameX = 450;
+        nameX = 465;
     }
     else {
         fontSize = 18;
