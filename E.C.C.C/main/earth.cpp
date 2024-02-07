@@ -256,12 +256,28 @@ void taskTwo()
         if (IsKeyPressed(KEY_LEFT_SHIFT))
         {
             movementSpeed = 12;
+            if (rockEquipped)
+            {
+                movementSpeed = 7;
+            }
+            else if (dirtEquipped)
+            {
+                movementSpeed = 7;
+            }
         }
         if (IsKeyReleased(KEY_LEFT_SHIFT))
         {
             movementSpeed = 8;
+            if (rockEquipped)
+            {
+                movementSpeed = 4;
+            }
+            else if (dirtEquipped)
+            {
+                movementSpeed = 6;
+            }
         }
-
+        
         BeginDrawing();
 
         ClearBackground(DARKGREEN);
@@ -312,6 +328,7 @@ void taskTwo()
             {
                 rockEquipped = true;
                 rockPickedUpPosition = rockPosition;
+                
             }
         }
 
@@ -319,6 +336,8 @@ void taskTwo()
         if (!rockEquipped)
         {
             DrawTextureEx(rock, rockPosition, 0.0f, 1.25f, WHITE);
+            movementSpeed = 8;
+            
         }
 
         // Display message when close to dirt
@@ -335,6 +354,7 @@ void taskTwo()
         if (!dirtEquipped)
         {
             DrawTextureEx(dirt, dirtPosition, 0.0f, 1.25f, WHITE);
+            movementSpeed = 8;
         }
 
         // Draw machine
@@ -348,10 +368,12 @@ void taskTwo()
         if (rockEquipped == true)
         {
             DrawText("Holding rock", (GetScreenWidth() - MeasureText("Holding rock", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
+            movementSpeed = 4;
         }
         else if (dirtEquipped == true)
         {
             DrawText("Holding dirt", (GetScreenWidth() - MeasureText("Holding dirt", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
+            movementSpeed = 6;
         }
 
         if (IsKeyPressed(KEY_Q) and (rockEquipped or dirtEquipped))
@@ -359,12 +381,16 @@ void taskTwo()
             if (rockEquipped)
             {
                 rockEquipped = !rockEquipped;
-                rockPosition = characterPosition;
+                rockPosition.x = characterPosition.x + 45;
+                rockPosition.y = characterPosition.y + 100;
+
             }
             else if (dirtEquipped)
             {
                 dirtEquipped = !dirtEquipped;
-                dirtPosition = characterPosition;
+                dirtPosition.x = characterPosition.x + 50;
+                dirtPosition.y = characterPosition.y + 100;
+
             }
         }
 
@@ -377,7 +403,7 @@ void taskTwo()
             if (IsKeyPressed(KEY_E))
             {   
                 counter = 1;
-                taskOneTerminal();
+                taskTwoTerminalDirt();
             }
         }
 
@@ -411,7 +437,7 @@ void taskTwo()
                     levelFile.close();
                 }
                 levelPassed = true;
-                taskOneTerminal();
+                taskTwoTerminalRock();
             }
         }
 

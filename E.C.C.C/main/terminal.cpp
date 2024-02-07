@@ -14,7 +14,6 @@ void terminal()
     int framesCounter = 0;
     bool mouseOnText = false;
     float nameX = 0;
-
     int fontSize;
     if(fullscreen==true)
     {
@@ -126,27 +125,117 @@ void taskOneTerminal()
     char otherGasesAmount[] = "~ Other: 0.04 %";
     int framesCounter = 0;
     SetTargetFPS(60);
-
+    int fontSize;
+    if (fullscreen == true)
+    {
+        fontSize = 22;
+    }
+    else {
+        fontSize = 18;
+    }
 
     while (!WindowShouldClose())
     {
         framesCounter += 10;
         if (IsKeyPressed(KEY_ENTER))
         {
-            //2nd task
+            game();
         }
         BeginDrawing();
         ClearBackground(BLACK);
-        DrawText(TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), screenWidth / 2.0f - 400, 10, 20, WHITE);
-        DrawText(TextSubtext(terminalMessage, 0, framesCounter / 10), 40, 300, 20, WHITE);
-        DrawText(TextSubtext(oxygenAmount, 0, framesCounter / 10), 135, 400, 20, WHITE);
-        DrawText(TextSubtext(nitrogenAmount, 0, framesCounter / 10), 135, 450, 20, WHITE);
-        DrawText(TextSubtext(argonAmount, 0, framesCounter / 10), 135, 500, 20, WHITE);
-        DrawText(TextSubtext(otherGasesAmount, 0, framesCounter / 10), 135, 550, 20, WHITE);
+        DrawText(TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), screenWidth / 2.0f - 400, 10, fontSize, WHITE);
+        DrawText(TextSubtext(terminalMessage, 0, framesCounter / 10), 40, 300, fontSize, WHITE);
+        DrawText(TextSubtext(oxygenAmount, 0, framesCounter / 10), 135, 400, fontSize, WHITE);
+        DrawText(TextSubtext(nitrogenAmount, 0, framesCounter / 10), 135, 450, fontSize, WHITE);
+        DrawText(TextSubtext(argonAmount, 0, framesCounter / 10), 135, 500, fontSize, WHITE);
+        DrawText(TextSubtext(otherGasesAmount, 0, framesCounter / 10), 135, 550, fontSize, WHITE);
         EndDrawing();
     }
 }
 
+void taskTwoTerminalDirt()
+{
+    const int screenWidth = GetScreenWidth();
+    const int screenHeight = GetScreenHeight();
+
+    char taskOneLaunchingTerminal[] = "####       E.C.C.C     X64     LAUNCUING   TERMINAL       ####";
+    char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Soil contents:";
+    char waterAmount[] = "~ Water : 25 %";
+    char gasAmount[] = "~ Gases: 25 %";
+    char sandAmount[] = "~ Sand: 18 %";
+    char siltAmount[] = "~ Silt : 18 %";
+    char clayAmount[] = "~ Clay : 9 %";
+    char organicMatterAmount[] = "~ Organic matter : 5 %";
+    char terminalMsg[] = "./E.C.C.C> ";
+    char possibleOrganicLife[] = " Suitable for organic life";
+    int framesCounter = 0;
+    int fontSize;
+    if (fullscreen == true)
+    {
+        fontSize = 22;
+    }
+    else {
+        fontSize = 18;
+    }
+    SetTargetFPS(60);
+    SetExitKey(KEY_ENTER);
+
+    while (!WindowShouldClose())
+    {
+        framesCounter += 10;
+        BeginDrawing();
+        ClearBackground(BLACK);
+        DrawText(TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), screenWidth / 2.0f - 400, 10, fontSize, WHITE);
+        DrawText(TextSubtext(terminalMessage, 0, framesCounter / 10), 40, 300, fontSize, WHITE);
+        DrawText(TextSubtext(waterAmount, 0, framesCounter / 10), 135, 400, fontSize, WHITE);
+        DrawText(TextSubtext(gasAmount, 0, framesCounter / 10), 135, 450, fontSize, WHITE);
+        DrawText(TextSubtext(sandAmount, 0, framesCounter / 10), 135, 500, fontSize, WHITE);
+        DrawText(TextSubtext(siltAmount, 0, framesCounter / 10), 135, 550, fontSize, WHITE);
+        DrawText(TextSubtext(clayAmount, 0, framesCounter / 10), 135, 600, fontSize, WHITE);
+        DrawText(TextSubtext(organicMatterAmount, 0, framesCounter / 10), 135, 600, fontSize, WHITE);
+        DrawText(TextSubtext(terminalMsg, 0, framesCounter / 10), 40, 700, fontSize, WHITE);
+        DrawText(TextSubtext(possibleOrganicLife, 0, framesCounter / 10), 135, 700, fontSize, GREEN);
+        EndDrawing();
+    }
+}
+
+    void taskTwoTerminalRock()
+    {
+        const int screenWidth = GetScreenWidth();
+        const int screenHeight = GetScreenHeight();
+        SetExitKey(KEY_NULL);
+
+        char taskOneLaunchingTerminal[] = "####       E.C.C.C     X64     LAUNCUING   TERMINAL       ####";
+        char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Rock contents:";
+        char plagioclaseAmount[] = "~ Plagioclase : 42 %";
+        char feldsparAmount[] = "~ Feldspar: 22 %";
+        char quartzAmount[] = "~ Quartz: 18 %";
+        char amphiboleAmount[] = "~ Amphibole : 5 %";
+        char pyroxeneAmount[] = "~ Pyroxene : 4 %";
+        char biotiteAmount[] = "~ Biotite : 4 %";
+        int framesCounter = 0;
+        SetTargetFPS(60);
+
+        while (!WindowShouldClose())
+        {
+            framesCounter += 10;
+            if (IsKeyPressed(KEY_ENTER))
+            {
+                game();
+            }
+            BeginDrawing();
+            ClearBackground(BLACK);
+            DrawText(TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), screenWidth / 2.0f - 400, 10, 20, WHITE);
+            DrawText(TextSubtext(terminalMessage, 0, framesCounter / 10), 40, 300, 20, WHITE);
+            DrawText(TextSubtext(plagioclaseAmount, 0, framesCounter / 10), 135, 400, 20, WHITE);
+            DrawText(TextSubtext(feldsparAmount, 0, framesCounter / 10), 135, 450, 20, WHITE);
+            DrawText(TextSubtext(quartzAmount, 0, framesCounter / 10), 135, 500, 20, WHITE);
+            DrawText(TextSubtext(amphiboleAmount, 0, framesCounter / 10), 135, 550, 20, WHITE);
+            DrawText(TextSubtext(pyroxeneAmount, 0, framesCounter / 10), 135, 600, 20, WHITE);
+            DrawText(TextSubtext(biotiteAmount, 0, framesCounter / 10), 135, 650, 20, WHITE);
+            EndDrawing();
+        }
+    }
 
 
 

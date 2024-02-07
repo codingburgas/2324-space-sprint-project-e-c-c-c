@@ -216,6 +216,10 @@ void game()
                     {
                         taskTwo();
                     }
+                    else if (levelsPassed == 2)
+                    {
+                        taskThree();
+                    }
                 }
             }
             else if (CheckCollisionPointCircle(GetMousePosition(), Vector2{ marsX, marsY }, marsRadius))
