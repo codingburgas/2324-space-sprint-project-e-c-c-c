@@ -7,6 +7,7 @@
 #include "settings.hpp"
 #include "earth.hpp"
 #include "terminal.hpp"
+#include "vector"
 
 void game()
 {
@@ -71,6 +72,8 @@ void game()
         playerName.close();
     }
 
+    //std::vector is a template class from the Standard Template Library that represents dynamic array.
+    //push_back() is a member function of std::vector from STL. It's used to add elements at the end of the array
     std::vector<Vector2> starPositions;
     std::vector<Vector2> starVelocities;
 

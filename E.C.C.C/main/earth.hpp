@@ -5,3 +5,5 @@
 void taskOne();
 
 void taskTwo();
+
+void taskThree();
