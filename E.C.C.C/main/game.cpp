@@ -132,8 +132,8 @@ void game()
         for (size_t i = 0; i < starPositions.size(); ++i) 
         {
             // Move the stars faster
-            starPositions[i].x += starVelocities[i].x * GetFrameTime() * 0.1f;
-            starPositions[i].y += starVelocities[i].y * GetFrameTime() * 0.1f;
+            starPositions[i].x += starVelocities[i].x * GetFrameTime() * 0.5f;
+            starPositions[i].y += starVelocities[i].y * GetFrameTime() * 0.5f;
 
             // Wrap around screen edges
             if (starPositions[i].x > screenWidth) starPositions[i].x = 0;

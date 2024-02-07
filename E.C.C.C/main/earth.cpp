@@ -23,8 +23,8 @@ void taskOne()
     Texture2D characterReversedFlask = LoadTexture("../assets/player/playerReversedFlask.png");
     Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
     Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
-    Texture2D flask = LoadTexture("../assets/flask.png");
-    Texture2D machine = LoadTexture("../assets/machine.png");
+    Texture2D flask = LoadTexture("../assets/tasks/flask.png");
+    Texture2D machine = LoadTexture("../assets/tasks/machine.png");
 
     Vector2 flaskPosition = { (float)GetRandomValue(0, screenWidth - flask.width - 100), (float)GetRandomValue(0, screenHeight - flask.height - 100) };
     Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
@@ -195,9 +195,9 @@ void taskTwo()
     Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
     Texture2D characterRightRock = LoadTexture("../assets/player/playerRightRock.png");
     Texture2D characterRightDirt = LoadTexture("../assets/player/playerRightDirt.png");
-    Texture2D rock = LoadTexture("../assets/rock.png");
-    Texture2D dirt = LoadTexture("../assets/dirt.png");
-    Texture2D machine = LoadTexture("../assets/machine.png");
+    Texture2D rock = LoadTexture("../assets/tasks/rock.png");
+    Texture2D dirt = LoadTexture("../assets/tasks/dirt.png");
+    Texture2D machine = LoadTexture("../assets/tasks/machine.png");
 
     Vector2 rockPosition{ (float)GetRandomValue(0, screenWidth - rock.width - 100), (float)GetRandomValue(0, screenHeight - rock.height - 100) };
     Vector2 dirtPosition{ (float)GetRandomValue(0, screenWidth - dirt.width - 100), (float)GetRandomValue(0, screenHeight - dirt.height - 100) };
