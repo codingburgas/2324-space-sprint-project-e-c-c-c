@@ -2,7 +2,7 @@
 #include "settings.hpp"
 #include "mainMenu.hpp"
 
-bool fullscreen = true;
+bool fullscreen = false;
 
 void settings()
 {

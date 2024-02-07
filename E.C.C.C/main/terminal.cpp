@@ -125,6 +125,8 @@ void taskOneTerminal()
     char otherGasesAmount[] = "~ Other: 0.04 %";
     int framesCounter = 0;
     SetTargetFPS(60);
+    SetExitKey(KEY_NULL);
+
     int fontSize;
     if (fullscreen == true)
     {

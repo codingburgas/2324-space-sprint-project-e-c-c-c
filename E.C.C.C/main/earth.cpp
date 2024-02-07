@@ -34,6 +34,7 @@ void taskOne()
     float movementSpeed = 8.0;
 
     SetTargetFPS(60);
+    SetExitKey(KEY_NULL);
 
     bool flaskEquipped = false;
 
@@ -160,7 +161,6 @@ void taskOne()
         }
 
         DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
-        DrawText("Press ESC to quit", 10, 30, 24, WHITE);
 
         EndDrawing();
     }
@@ -443,7 +443,6 @@ void taskTwo()
 
         DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
         DrawText("Press ESC to quit", 10, 30, 24, WHITE);
-        DrawText("Press Q to drop items", 10, 500, 24, WHITE);
 
         while (dirtEquipped and counter == 1)
         {
@@ -643,7 +642,6 @@ void taskThree()
         }
 
         DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
-        DrawText("Press ESC to quit", 10, 30, 24, WHITE);
 
         EndDrawing();
     }

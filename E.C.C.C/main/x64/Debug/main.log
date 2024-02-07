@@ -1,1 +1,11 @@
-﻿  main.vcxproj -> C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\x64\Debug\main.exe
+﻿  earth.cpp
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(57,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(62,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(249,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(254,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(207,13): warning C4101: 'dirtPickedUpPosition': unreferenced local variable
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(529,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(534,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+  main.vcxproj -> C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\x64\Debug\main.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.
