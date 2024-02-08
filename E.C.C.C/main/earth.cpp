@@ -222,6 +222,7 @@ void taskTwo()
     float movementSpeed = 8.0;
 
     SetTargetFPS(60);
+    SetExitKey(KEY_NULL);
 
     bool rockEquipped = false;
     bool dirtEquipped = false;
@@ -321,7 +322,7 @@ void taskTwo()
         }
 
         // Display message when close to rock
-        if (distanceToRock < 80.0f and !dirtEquipped)
+        if (distanceToRock < 80.0f and !dirtEquipped and distanceToDirt > 80.0f and !rockEquipped)
         {
             DrawText("Press R to pick up the rock", (GetScreenWidth() - MeasureText("Press R to pick up the rock", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
             if (IsKeyDown(KEY_R))
@@ -341,7 +342,7 @@ void taskTwo()
         }
 
         // Display message when close to dirt
-        if (distanceToDirt < 80.0f and !rockEquipped and distanceToRock > 80.0f)
+        if (distanceToDirt < 80.0f and !rockEquipped and distanceToRock > 80.0f and !dirtEquipped)
         {
             DrawText("Press R to pick up dirt", (GetScreenWidth() - MeasureText("Press R to pick up dirt", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
             if (IsKeyDown(KEY_R))
@@ -442,7 +443,7 @@ void taskTwo()
         }
 
         DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
-        DrawText("Press ESC to quit", 10, 30, 24, WHITE);
+        //DrawText("Press ESC to quit", 10, 30, 24, WHITE);
 
         while (dirtEquipped and counter == 1)
         {
@@ -506,6 +507,7 @@ void taskThree()
 
 
     SetTargetFPS(60);
+    SetExitKey(KEY_NULL);
 
     bool levelPassed = false;
     bool radiationDetectorEquipped = false;

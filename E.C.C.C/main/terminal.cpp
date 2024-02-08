@@ -188,14 +188,14 @@ void taskTwoTerminalDirt()
         BeginDrawing();
         ClearBackground(BLACK);
         DrawText(TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), screenWidth / 2.0f - 400, 10, fontSize, WHITE);
-        DrawText(TextSubtext(terminalMessage, 0, framesCounter / 10), 40, 300, fontSize, WHITE);
-        DrawText(TextSubtext(waterAmount, 0, framesCounter / 10), 135, 400, fontSize, WHITE);
-        DrawText(TextSubtext(gasAmount, 0, framesCounter / 10), 135, 450, fontSize, WHITE);
-        DrawText(TextSubtext(sandAmount, 0, framesCounter / 10), 135, 500, fontSize, WHITE);
-        DrawText(TextSubtext(siltAmount, 0, framesCounter / 10), 135, 550, fontSize, WHITE);
-        DrawText(TextSubtext(clayAmount, 0, framesCounter / 10), 135, 600, fontSize, WHITE);
+        DrawText(TextSubtext(terminalMessage, 0, framesCounter / 10), 40, 250, fontSize, WHITE);
+        DrawText(TextSubtext(waterAmount, 0, framesCounter / 10), 135, 350, fontSize, WHITE);
+        DrawText(TextSubtext(gasAmount, 0, framesCounter / 10), 135, 400, fontSize, WHITE);
+        DrawText(TextSubtext(sandAmount, 0, framesCounter / 10), 135, 450, fontSize, WHITE);
+        DrawText(TextSubtext(siltAmount, 0, framesCounter / 10), 135, 500, fontSize, WHITE);
+        DrawText(TextSubtext(clayAmount, 0, framesCounter / 10), 135, 550, fontSize, WHITE);
         DrawText(TextSubtext(organicMatterAmount, 0, framesCounter / 10), 135, 600, fontSize, WHITE);
-        DrawText(TextSubtext(terminalMsg, 0, framesCounter / 10), 40, 700, fontSize, WHITE);
+        DrawText(TextSubtext(terminalMsg, 0, framesCounter / 10), 40, 650, fontSize, WHITE);
         DrawText(TextSubtext(possibleOrganicLife, 0, framesCounter / 10), 135, 700, fontSize, GREEN);
         EndDrawing();
     }
