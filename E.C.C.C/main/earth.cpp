@@ -161,6 +161,7 @@ void taskOne()
         }
 
         DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
+        //DrawText("Press ESC to quit", 10, 30, 24, WHITE);
 
         EndDrawing();
     }
@@ -644,6 +645,7 @@ void taskThree()
         }
 
         DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
+        //DrawText("Press ESC to quit", 10, 30, 24, WHITE);
 
         EndDrawing();
     }

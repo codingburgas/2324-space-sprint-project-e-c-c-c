@@ -3,11 +3,12 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <vector>
 #include "game.hpp"
 #include "settings.hpp"
 #include "earth.hpp"
 #include "terminal.hpp"
-#include "vector"
+#include "buy.hpp"
 
 void game()
 {
@@ -63,6 +64,11 @@ void game()
     bool isMarsClicked = false;
     bool isJupiterClicked = false;
 
+    bool mercuryLockedCh = true;
+    bool venusLockedCh = true;
+    bool marsLockedCh = true;
+    bool jupiterLockedCh = true;
+
     std::ifstream playerName("../data/playerName.csv");
     std::string username;
 
@@ -70,6 +76,15 @@ void game()
     {
         std::getline(playerName, username);
         playerName.close();
+    }
+
+    //Get value from levels.csv
+    int levelsPassed = 0;
+    std::ifstream levelsFile("../data/levelsPassed.csv");
+    if (levelsFile.is_open())
+    {
+        levelsFile >> levelsPassed;
+        levelsFile.close();
     }
 
     //std::vector is a template class from the Standard Template Library that represents dynamic array.
@@ -109,29 +124,6 @@ void game()
         jupiterRadius = 25.0f * zoomLevel;
         jupiterOrbitRadius = 200.0f * zoomLevel;
 
-        //Get value from money.csv which is created when you complete Level1
-        int money = 0;
-        std::ifstream moneyFile("../data/money.csv");
-        if (moneyFile.is_open())
-        {
-            moneyFile >> money;
-            moneyFile.close();
-        }
-
-        //Convert int to string with <sstream>
-        std::stringstream ss;
-        ss << "Money: " << money;   
-        std::string moneyStr = ss.str();
-
-        //Get value from money.csv which is created when you complete Level1
-        int levelsPassed = 0;
-        std::ifstream levelsFile("../data/levelsPassed.csv");
-        if (levelsFile.is_open())
-        {
-            levelsFile >> levelsPassed;
-            levelsFile.close();
-        }
-
         for (size_t i = 0; i < starPositions.size(); ++i) 
         {
             // Move the stars faster
@@ -145,6 +137,30 @@ void game()
             else if (starPositions[i].y < 0) starPositions[i].y = screenHeight;
         }
 
+        std::ifstream planetsFile("../data/planets.csv");
+
+        if (planetsFile.is_open())
+        {
+            planetsFile >> mercuryLockedCh;
+            planetsFile >> venusLockedCh;
+            planetsFile >> marsLockedCh;
+            planetsFile >> jupiterLockedCh;
+            planetsFile.close();
+        }
+
+        //Get value from money.csv which is created when you complete Level1
+        int money = 0;
+        std::ifstream moneyFile("../data/money.csv");
+        if (moneyFile.is_open())
+        {
+            moneyFile >> money;
+            moneyFile.close();
+        }
+
+        //Convert int to string with <sstream>
+        std::stringstream ss;
+        ss << "Money: " << money;
+        std::string moneyStr = ss.str();
 
         BeginDrawing();
 
@@ -167,7 +183,7 @@ void game()
         DrawCircleLines(screenWidth / 2, screenHeight / 2, marsOrbitRadius, WHITE);
         DrawCircleLines(screenWidth / 2, screenHeight / 2, jupiterOrbitRadius, WHITE);
 
-        //Orbits params
+        //Get planet coords
         float mercuryX = screenWidth / 2 + mercuryOrbitRadius * cos(DEG2RAD * (5 + mercuryRotationAngle));
         float mercuryY = screenHeight / 2 + mercuryOrbitRadius * sin(DEG2RAD * (5 + mercuryRotationAngle));
 
@@ -190,8 +206,13 @@ void game()
             {
                 isMercuryClicked = !isMercuryClicked;
                 if (isMercuryClicked)
-                {
-                    std::cout << "Mercury clicked" << std::endl;
+                {   
+                    std::cout << "Mercury clicked!" << std::endl;
+                    if (mercuryLockedCh == true)
+                    {
+                        std::cout << "if accessed" << std::endl;
+                        buyMercury();
+                    }
                 }
             }
             else if (CheckCollisionPointCircle(GetMousePosition(), Vector2{ venusX, venusY }, venusRadius))
@@ -240,16 +261,39 @@ void game()
             }
         }
 
-        //Draw planets
+        //Check for bool changes before planets load
+        if (planetsFile.is_open())
+        {
+            planetsFile >> mercuryLockedCh;
+            planetsFile >> venusLockedCh;
+            planetsFile >> marsLockedCh;
+            planetsFile >> jupiterLockedCh;
+            planetsFile.close();
+        }
 
+        //Draw planets
         //DrawCircleV(Vector2{ mercuryX, mercuryY }, mercuryRadius, mercuryColor);
         Rectangle mercuryRec = { 0, 0, (float)mercury.width, (float)mercury.height };
         Vector2 mercuryPos = { mercuryX - mercuryRadius, mercuryY - mercuryRadius };
-        DrawTexturePro(mercuryLocked, mercuryRec, { mercuryPos.x, mercuryPos.y, mercuryRadius * 2, mercuryRadius * 2 }, { 0, 0 }, 0, WHITE);
+        if (mercuryLockedCh == true)
+        {
+            DrawTexturePro(mercuryLocked, mercuryRec, { mercuryPos.x, mercuryPos.y, mercuryRadius * 2, mercuryRadius * 2 }, { 0, 0 }, 0, WHITE);
+        }
+        else
+        {
+            DrawTexturePro(mercury, mercuryRec, { mercuryPos.x, mercuryPos.y, mercuryRadius * 2, mercuryRadius * 2 }, { 0, 0 }, 0, WHITE);
+        }
 
         Rectangle venusRec = { 0, 0, (float)venus.width, (float)venus.height };
         Vector2 venusPos = { venusX - venusRadius, venusY - venusRadius };
-        DrawTexturePro(venusLocked, venusRec, { venusPos.x, venusPos.y, venusRadius * 2, venusRadius * 2 }, { 0, 0 }, 0, WHITE);
+        if (venusLockedCh == true)
+        {
+            DrawTexturePro(venusLocked, venusRec, { venusPos.x, venusPos.y, venusRadius * 2, venusRadius * 2 }, { 0, 0 }, 0, WHITE);
+        }
+        else
+        {
+            DrawTexturePro(venus, venusRec, { venusPos.x, venusPos.y, venusRadius * 2, venusRadius * 2 }, { 0, 0 }, 0, WHITE);
+        }
 
         //DrawCircleV(Vector2{ earthX, earthY }, earthRadius, earthColor);
         Rectangle earthRec = { 0, 0, (float)earth.width, (float)earth.height };
@@ -259,12 +303,26 @@ void game()
         //DrawCircleV(Vector2{ marsX, marsY }, marsRadius, marsColor);
         Rectangle marsRec = { 0, 0, (float)mars.width, (float)mars.height };
         Vector2 marsPos = { marsX - marsRadius, marsY - marsRadius };
-        DrawTexturePro(marsLocked, marsRec, { marsPos.x, marsPos.y, marsRadius * 2, marsRadius * 2 }, { 0, 0 }, 0, WHITE);
+        if (marsLockedCh == true)
+        {
+            DrawTexturePro(marsLocked, marsRec, { marsPos.x, marsPos.y, marsRadius * 2, marsRadius * 2 }, { 0, 0 }, 0, WHITE);
+        }
+        else
+        {
+            DrawTexturePro(mars, marsRec, { marsPos.x, marsPos.y, marsRadius * 2, marsRadius * 2 }, { 0, 0 }, 0, WHITE);
+        }
 
         //DrawCircleV(Vector2{ jupiterX, jupiterY }, jupiterRadius, jupiterColor);
         Rectangle jupiterRec = { 0, 0, (float)jupiter.width, (float)jupiter.height };
         Vector2 jupiterPos = { jupiterX - jupiterRadius, jupiterY - jupiterRadius };
-        DrawTexturePro(jupiterLocked, jupiterRec, { jupiterPos.x, jupiterPos.y, jupiterRadius * 2, jupiterRadius * 2 }, { 0, 0 }, 0, WHITE);
+        if (jupiterLockedCh == true)
+        {
+            DrawTexturePro(jupiterLocked, jupiterRec, { jupiterPos.x, jupiterPos.y, jupiterRadius * 2, jupiterRadius * 2 }, { 0, 0 }, 0, WHITE);
+        }
+        else
+        {
+            DrawTexturePro(jupiter, jupiterRec, { jupiterPos.x, jupiterPos.y, jupiterRadius * 2, jupiterRadius * 2 }, { 0, 0 }, 0, WHITE);
+        }
 
         DrawText("Use scroll wheel to zoom in/out", 10, 10, 24, WHITE);
         DrawText("Press ESC to quit", 10, 30, 24, WHITE);

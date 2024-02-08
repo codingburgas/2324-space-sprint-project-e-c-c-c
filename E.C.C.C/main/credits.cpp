@@ -10,9 +10,6 @@ void credits()
 
     while (!WindowShouldClose())
     {
-
-        int key = GetCharPressed();
-
         BeginDrawing();
 
         ClearBackground(RAYWHITE);

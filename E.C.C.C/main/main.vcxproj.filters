@@ -36,6 +36,9 @@
     <ClCompile Include="earth.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="buy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mainMenu.hpp">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="earth.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="buy.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

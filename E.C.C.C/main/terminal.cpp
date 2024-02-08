@@ -106,6 +106,10 @@ void terminal()
         //----------------------------------------------------------------------------------
         if (WindowShouldClose())
         {
+            if (fullscreen == true)
+            {
+                ToggleBorderlessWindowed();
+            }
             CloseWindow();
             SetTargetFPS(24);
         }
