@@ -18,11 +18,11 @@ void terminal()
     if(fullscreen==true)
     {
         fontSize = 22;
-        nameX = 465;
+        nameX = 580;
     }
     else {
         fontSize = 18;
-        nameX = 365;
+        nameX = 350;
     }
 
     Rectangle textBox = { nameX, 525, 225, 22};
@@ -94,7 +94,7 @@ void terminal()
         if (mouseOnText) DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, RED);
         else DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, BLACK);
 
-        DrawText(TextSubtext(launchingTerminal, 0, framesCounter / 10), screenWidth/2.0f-400, 10, fontSize, WHITE);
+        DrawText(TextSubtext(launchingTerminal, 0, framesCounter / 10), nameX, 10, fontSize, WHITE);
         DrawText(TextSubtext(contractText, 0, framesCounter / 10), screenWidth - (screenWidth - 40), 300, fontSize, WHITE);
         DrawText(name, nameX, 525, fontSize, MAROON);
         if (letterCount < maxInputChars && framesCounter>8000)
@@ -128,6 +128,7 @@ void taskOneTerminal()
     char argonAmount[] = "~ Argon: 0,93 %";
     char otherGasesAmount[] = "~ Other: 0.04 %";
     int framesCounter = 0;
+    float nameX = 0;
     SetTargetFPS(60);
     SetExitKey(KEY_NULL);
 
@@ -135,9 +136,11 @@ void taskOneTerminal()
     if (fullscreen == true)
     {
         fontSize = 22;
+        nameX = 465;
     }
     else {
         fontSize = 18;
+        nameX = 365;
     }
 
     while (!WindowShouldClose())
@@ -149,7 +152,7 @@ void taskOneTerminal()
         }
         BeginDrawing();
         ClearBackground(BLACK);
-        DrawText(TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), screenWidth / 2.0f - 400, 10, fontSize, WHITE);
+        DrawText(TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), nameX, 10, fontSize, WHITE);
         DrawText(TextSubtext(terminalMessage, 0, framesCounter / 10), 40, 300, fontSize, WHITE);
         DrawText(TextSubtext(oxygenAmount, 0, framesCounter / 10), 135, 400, fontSize, WHITE);
         DrawText(TextSubtext(nitrogenAmount, 0, framesCounter / 10), 135, 450, fontSize, WHITE);
@@ -176,12 +179,16 @@ void taskTwoTerminalDirt()
     char possibleOrganicLife[] = " Suitable for organic life";
     int framesCounter = 0;
     int fontSize;
+    float nameX = 0;
+
     if (fullscreen == true)
     {
         fontSize = 22;
+        nameX = 465;
     }
     else {
         fontSize = 18;
+        nameX = 365;
     }
     SetTargetFPS(60);
     SetExitKey(KEY_ENTER);
@@ -191,7 +198,7 @@ void taskTwoTerminalDirt()
         framesCounter += 10;
         BeginDrawing();
         ClearBackground(BLACK);
-        DrawText(TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), screenWidth / 2.0f - 400, 10, fontSize, WHITE);
+        DrawText(TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), nameX, 10, fontSize, WHITE);
         DrawText(TextSubtext(terminalMessage, 0, framesCounter / 10), 40, 250, fontSize, WHITE);
         DrawText(TextSubtext(waterAmount, 0, framesCounter / 10), 135, 350, fontSize, WHITE);
         DrawText(TextSubtext(gasAmount, 0, framesCounter / 10), 135, 400, fontSize, WHITE);
@@ -220,6 +227,17 @@ void taskTwoTerminalDirt()
         char pyroxeneAmount[] = "~ Pyroxene : 4 %";
         char biotiteAmount[] = "~ Biotite : 4 %";
         int framesCounter = 0;
+        float nameX = 0;
+        int fontSize;
+        if (fullscreen == true)
+        {
+            fontSize = 22;
+            nameX = 465;
+        }
+        else {
+            fontSize = 18;
+            nameX = 365;
+        }
         SetTargetFPS(60);
 
         while (!WindowShouldClose())
@@ -231,7 +249,7 @@ void taskTwoTerminalDirt()
             }
             BeginDrawing();
             ClearBackground(BLACK);
-            DrawText(TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), screenWidth / 2.0f - 400, 10, 20, WHITE);
+            DrawText(TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), nameX, 10, 20, WHITE);
             DrawText(TextSubtext(terminalMessage, 0, framesCounter / 10), 40, 300, 20, WHITE);
             DrawText(TextSubtext(plagioclaseAmount, 0, framesCounter / 10), 135, 400, 20, WHITE);
             DrawText(TextSubtext(feldsparAmount, 0, framesCounter / 10), 135, 450, 20, WHITE);

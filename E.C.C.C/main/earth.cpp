@@ -3,7 +3,9 @@
 #include <fstream>
 #include "raylib.h"
 #include "terminal.hpp"
+#include "settings.hpp"
 
+int taskText;
 float Vector2Distance(Vector2 v1, Vector2 v2)
 {
     float dx = v2.x - v1.x;
@@ -208,6 +210,7 @@ void taskTwo()
     Vector2 dirtPickedUpPosition;
 
     float minDistanceBetweenDirtAndRock = 200.0f;
+
 
     // Adjust dirt position if too close to rock
     while (Vector2Distance(rockPosition, dirtPosition) < minDistanceBetweenDirtAndRock) 
@@ -448,19 +451,36 @@ void taskTwo()
 
         while (dirtEquipped and counter == 1)
         {
-            DrawText("Task: Drop dirt and pick up rock", 500, 10, 24, WHITE);
+            if (fullscreen == true)
+            {
+             DrawText("Task: Drop dirt and pick up rock", 500, 10, 24, WHITE);
             break;
+            }
+            if(fullscreen != true)
+            {
+                DrawText("Task: Drop dirt and pick up rock", 400, 10, 24, WHITE);
+                break;
+            }
+            
         }
+        
 
-        if (counter == 0)
+        if (counter == 0 and fullscreen == true)
         {
             DrawText("Task: Bring dirt to the machine", 500, 10, 24, WHITE);
         }
-        else if (counter == 1 and dirtEquipped == false and !levelPassed)
+        if (counter == 0 and fullscreen != true)
+        {
+            DrawText("Task: Bring dirt to the machine", 400, 10, 24, WHITE);
+        }
+        if (counter == 1 and dirtEquipped == false and !levelPassed and fullscreen == true)
         {
             DrawText("Task: Bring a rock to the machine", 500, 10, 24, WHITE);
         }
-
+        if (counter == 1 and dirtEquipped == false and !levelPassed and fullscreen != true)
+        {
+            DrawText("Task: Bring a rock to the machine", 400, 10, 24, WHITE);
+        }
 
         EndDrawing();
     }
