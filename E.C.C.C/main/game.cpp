@@ -138,7 +138,7 @@ void game()
         }
 
         std::ifstream mercuryFile("../data/mercuryLockStatus.csv");
-        std::ifstream venusFile("../data/venusLockStatuys.csv");
+        std::ifstream venusFile("../data/venusLockStatus.csv");
         std::ifstream marsFile("../data/marsLockStatus.csv");
         std::ifstream jupiterFile("../data/jupiterLockStatus.csv");
 
