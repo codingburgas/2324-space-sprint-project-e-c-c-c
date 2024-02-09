@@ -137,15 +137,30 @@ void game()
             else if (starPositions[i].y < 0) starPositions[i].y = screenHeight;
         }
 
-        std::ifstream planetsFile("../data/planets.csv");
+        std::ifstream mercuryFile("../data/mercuryLockStatus.csv");
+        std::ifstream venusFile("../data/venusLockStatuys.csv");
+        std::ifstream marsFile("../data/marsLockStatus.csv");
+        std::ifstream jupiterFile("../data/jupiterLockStatus.csv");
 
-        if (planetsFile.is_open())
+        if (mercuryFile.is_open())
         {
-            planetsFile >> mercuryLockedCh;
-            planetsFile >> venusLockedCh;
-            planetsFile >> marsLockedCh;
-            planetsFile >> jupiterLockedCh;
-            planetsFile.close();
+            mercuryFile >> mercuryLockedCh;
+            mercuryFile.close();
+        }
+        if (venusFile.is_open())
+        {
+            venusFile >> venusLockedCh;
+            venusFile.close();
+        }
+        if (marsFile.is_open())
+        {
+            marsFile >> marsLockedCh;
+            marsFile.close();
+        }
+        if (jupiterFile.is_open())
+        {
+            jupiterFile >> jupiterLockedCh;
+            jupiterFile.close();
         }
 
         //Get value from money.csv which is created when you complete Level1
@@ -207,10 +222,8 @@ void game()
                 isMercuryClicked = !isMercuryClicked;
                 if (isMercuryClicked)
                 {   
-                    std::cout << "Mercury clicked!" << std::endl;
                     if (mercuryLockedCh == true)
                     {
-                        std::cout << "if accessed" << std::endl;
                         buyMercury();
                     }
                 }
@@ -220,8 +233,10 @@ void game()
                 isVenusClicked = !isVenusClicked;
                 if (isVenusClicked)
                 {
-                    std::cout << "Venus clicked" << std::endl;
-                    // Handle Venus click action if needed
+                    if (venusLockedCh == true)
+                    {
+                        buyVenus();
+                    }
                 }
             }
             else if (CheckCollisionPointCircle(GetMousePosition(), Vector2{ earthX, earthY }, earthRadius))
@@ -248,7 +263,10 @@ void game()
                 isMarsClicked = !isMarsClicked;
                 if (isMarsClicked)
                 {
-                    std::cout << "Mars clicked" << std::endl;
+                    if (marsLockedCh == true)
+                    {
+                        buyMars();
+                    }
                 }
             }
             else if (CheckCollisionPointCircle(GetMousePosition(), Vector2{ jupiterX, jupiterY }, jupiterRadius))
@@ -256,19 +274,34 @@ void game()
                 isJupiterClicked = !isJupiterClicked;
                 if (isJupiterClicked)
                 {
-                    std::cout << "Jupiter clicked" << std::endl;
+                    if (jupiterLockedCh == true)
+                    {
+                        buyJupiter();
+                    }
                 }
             }
         }
 
         //Check for bool changes before planets load
-        if (planetsFile.is_open())
+        if (mercuryFile.is_open())
         {
-            planetsFile >> mercuryLockedCh;
-            planetsFile >> venusLockedCh;
-            planetsFile >> marsLockedCh;
-            planetsFile >> jupiterLockedCh;
-            planetsFile.close();
+            mercuryFile >> mercuryLockedCh;
+            mercuryFile.close();
+        }
+        if (venusFile.is_open())
+        {
+            venusFile >> venusLockedCh;
+            venusFile.close();
+        }
+        if (marsFile.is_open())
+        {
+            marsFile >> marsLockedCh;
+            marsFile.close();
+        }
+        if (jupiterFile.is_open())
+        {
+            jupiterFile >> jupiterLockedCh;
+            jupiterFile.close();
         }
 
         //Draw planets
