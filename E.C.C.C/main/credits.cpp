@@ -59,16 +59,24 @@ void credits()
             DrawPixelV(starPositions[i], WHITE);
         }
 
-        slidingSpeed -= 0.8f; // Adjust the speed of image movement
+        slidingSpeed -= 1.5f; // Adjust the speed of image movement
 
         // Draw the image
-        DrawTexture(dimitarDimitrakov, (int)50, (int)slidingSpeed + 200, WHITE);
-        DrawTexture(borisMilev, (int)300, (int)slidingSpeed+200, WHITE);
-        DrawTexture(konstantinNachev, (int)550, (int)slidingSpeed + 200, WHITE);
-        DrawTexture(nikolaiKalashnik, (int)800, (int)slidingSpeed + 200, WHITE);
+        DrawTexture(dimitarDimitrakov, (int)96, (int)slidingSpeed + 200, WHITE);
+        DrawTexture(borisMilev, (int)392, (int)slidingSpeed+200, WHITE);
+        DrawTexture(konstantinNachev, (int)688, (int)slidingSpeed + 200, WHITE);
+        DrawTexture(nikolaiKalashnik, (int)984, (int)slidingSpeed + 200, WHITE);
 
         // Draw the text
         DrawText("Thank you for playing!", 50, (int)slidingSpeed, 100, WHITE);
+
+        DrawText("Our team,\n\n\nEast Coast Coding Crew\n\n\n(E.C.C.C)", 50, (int)slidingSpeed-300, 50, WHITE);
+        DrawText("    Scrum Trainer", 96, (int)slidingSpeed + 420, 20, WHITE);
+        DrawText("Back-End Developer", 392, (int)slidingSpeed + 420, 20, WHITE);
+        DrawText("Back-End Developer", 688, (int)slidingSpeed + 420, 20, WHITE);
+        DrawText("Front-End Developer", 984, (int)slidingSpeed + 420, 20, WHITE);
+
+
 
         EndDrawing();
 
