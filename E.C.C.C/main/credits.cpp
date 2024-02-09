@@ -9,12 +9,15 @@ void credits()
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
 
-    float imgY = (float)screenHeight;
-    float textY = (float)screenHeight;
+    float slidingSpeed = (float)screenHeight;
 
     //Texture2D background = LoadTexture("../assets/background/settingsBackground.png");
     Texture2D fullscreenChecked = LoadTexture("../assets/settings/FullscreenChecked.png");
     Texture2D fullscreenUnchecked = LoadTexture("../assets/settings/fullscreenUnchecked.png");
+    Texture2D borisMilev = LoadTexture("../assets/credits/borisMilev.png");
+    Texture2D nikolaiKalashnik = LoadTexture("../assets/credits/nikolaiKalashnik.png");
+    Texture2D konstantinNachev = LoadTexture("../assets/credits/konstantinNachev.png");
+    Texture2D dimitarDimitrakov = LoadTexture("../assets/credits/dimitarDimitrakov.png");
 
     std::vector<Vector2> starPositions;
     std::vector<Vector2> starVelocities;
@@ -44,8 +47,7 @@ void credits()
         }
 
         int scrollAmount = GetMouseWheelMove();
-        imgY += scrollAmount * 10; // Adjust the scroll speed
-        textY += scrollAmount * 10; // Adjust the scroll speed
+        slidingSpeed += scrollAmount * 10; // Adjust the scroll speed
 
         BeginDrawing();
 
@@ -57,14 +59,16 @@ void credits()
             DrawPixelV(starPositions[i], WHITE);
         }
 
-        imgY -= 0.8f; // Adjust the speed of image movement
-        textY -= 0.8f; // Adjust the speed of text movement
+        slidingSpeed -= 0.8f; // Adjust the speed of image movement
 
         // Draw the image
-        DrawRectangle(screenWidth / 2 - 50, (int)imgY, 100, 100, BLUE);
+        DrawTexture(dimitarDimitrakov, (int)50, (int)slidingSpeed + 200, WHITE);
+        DrawTexture(borisMilev, (int)300, (int)slidingSpeed+200, WHITE);
+        DrawTexture(konstantinNachev, (int)550, (int)slidingSpeed + 200, WHITE);
+        DrawTexture(nikolaiKalashnik, (int)800, (int)slidingSpeed + 200, WHITE);
 
         // Draw the text
-        DrawText("Smooth Movement", screenWidth / 2 - MeasureText("Smooth Movement", 20) / 2, (int)textY, 20, WHITE);
+        DrawText("Thank you for playing!", 50, (int)slidingSpeed, 100, WHITE);
 
         EndDrawing();
 

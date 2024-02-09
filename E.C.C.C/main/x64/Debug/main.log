@@ -1,31 +1,7 @@
-﻿  buy.cpp
-  credits.cpp
-  earth.cpp
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\credits.cpp(41,67): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\credits.cpp(43,67): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\credits.cpp(46,26): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(59,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(64,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(254,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(259,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(210,13): warning C4101: 'dirtPickedUpPosition': unreferenced local variable
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(552,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(557,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-  game.cpp
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(135,67): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(137,67): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-  terminal.cpp
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\terminal.cpp(97,73): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\terminal.cpp(99,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\terminal.cpp(155,80): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\terminal.cpp(201,80): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\terminal.cpp(252,84): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  main.cpp
-  mainMenu.cpp
-  settings.cpp
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\settings.cpp(38,67): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\settings.cpp(40,67): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-  Generating Code...
+﻿  credits.cpp
+C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\credits.cpp(44,67): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\credits.cpp(46,67): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\credits.cpp(49,26): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   main.vcxproj -> C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\x64\Debug\main.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
