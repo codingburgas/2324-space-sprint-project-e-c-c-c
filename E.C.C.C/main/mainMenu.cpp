@@ -32,7 +32,6 @@ void mainMenu()
     system("cls");
     SetWindowIcon(logo);
     SetTargetFPS(24);
-
     while (!WindowShouldClose())
     {
 

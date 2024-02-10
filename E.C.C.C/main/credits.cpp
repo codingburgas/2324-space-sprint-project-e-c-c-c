@@ -14,6 +14,7 @@ void credits()
     //Texture2D background = LoadTexture("../assets/background/settingsBackground.png");
     Texture2D fullscreenChecked = LoadTexture("../assets/settings/FullscreenChecked.png");
     Texture2D fullscreenUnchecked = LoadTexture("../assets/settings/fullscreenUnchecked.png");
+    Texture2D creditsActive = LoadTexture("../assets/buttons/credits");
     Texture2D borisMilev = LoadTexture("../assets/credits/borisMilev.png");
     Texture2D nikolaiKalashnik = LoadTexture("../assets/credits/nikolaiKalashnik.png");
     Texture2D konstantinNachev = LoadTexture("../assets/credits/konstantinNachev.png");
@@ -64,6 +65,7 @@ void credits()
         // Draw the image
         DrawTexture(dimitarDimitrakov, (int)96, (int)slidingSpeed + 200, WHITE);
         DrawTexture(borisMilev, (int)392, (int)slidingSpeed+200, WHITE);
+        DrawTexture(creditsActive, (int)400, (int)slidingSpeed - 4000, WHITE);
         DrawTexture(konstantinNachev, (int)688, (int)slidingSpeed + 200, WHITE);
         DrawTexture(nikolaiKalashnik, (int)984, (int)slidingSpeed + 200, WHITE);
 
@@ -71,7 +73,8 @@ void credits()
         DrawText("Thank you for playing!", 50, (int)slidingSpeed, 100, WHITE);
 
         DrawText("Our team,\n\n\nEast Coast Coding Crew\n\n\n(E.C.C.C)", 50, (int)slidingSpeed-300, 50, WHITE);
-        DrawText("    Scrum Trainer", 96, (int)slidingSpeed + 420, 20, WHITE);
+        DrawText("Kvo praish tuka ve?", 50, (int)slidingSpeed-4000, 100, WHITE);
+        DrawText("Scrum Trainer", 96, (int)slidingSpeed + 420, 20, WHITE);
         DrawText("Back-End Developer", 392, (int)slidingSpeed + 420, 20, WHITE);
         DrawText("Back-End Developer", 688, (int)slidingSpeed + 420, 20, WHITE);
         DrawText("Front-End Developer", 984, (int)slidingSpeed + 420, 20, WHITE);
