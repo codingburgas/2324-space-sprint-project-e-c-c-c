@@ -20,17 +20,24 @@ void terminal()
 	if (fullscreen == true)
 	{
 		fontSize = 22;
-		nameX = 580;
+		nameX = 420;
 	}
 	else {
 		fontSize = 18;
 		nameX = 350;
 	}
-
+	Rectangle textBox = { nameX, 0, 0, 0 };
 	// Load the custom font
 	Font font = LoadFont("../2324-space-sprint-project-e-c-c-c/E.C.C.C/assets/vcrOsd.ttf");
-
-	Rectangle textBox = { nameX, 525, 225, 22 };
+	if (fullscreen == true)
+	{
+        Rectangle textBox = { nameX, 525, 205, 0 };
+	}
+	else
+	{
+		Rectangle textBox = { nameX, 525, 225, 0 };
+	}
+	
 
 	char launchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
 	char contractText[] = "./E.C.C.C> In the year 2035, amidst the remnants of humanity, this contract binds the undersigned to the perilous task of\n\n             exploring a system teeming with 4 planets. Undertaking the duty to unearth potential havens for our surviving\n\n             brethren, the signee commits to face the inherent dangers and challenges that interstellar exploration entails.\n\n             The mission is clear: assess each celestial body for its suitability to sustain and nurture human life. In the \n\n             of this noble cause, the undersigned acknowledges the risks involved and pledges their skills, courage, and \n\n             resilience to the unprecedented venture, striving to secure a future for the last remnants of humanity.\n\n\n\n\n./E.C.C.C> Enter your name traveller:  ";
@@ -104,7 +111,7 @@ void terminal()
 		DrawTextEx(font, name, Vector2 { nameX + 10, 525 }, fontSize, 1, MAROON);
 		if (letterCount < maxInputChars && framesCounter > 8000)
 		{
-			if (((framesCounter / 480) % 2) == 0) DrawTextEx(font, "_", Vector2 { textBox.x + 13 + MeasureText(name, fontSize), textBox.y }, fontSize, 1, RED);
+			if (((framesCounter / 480) % 2) == 0) DrawTextEx(font, "_", Vector2{ nameX + 13 + MeasureText(name, fontSize), textBox.y }, fontSize, 1, RED);
 		}
 
 		EndDrawing();
@@ -223,7 +230,7 @@ void taskTwoTerminalDirt()
 		DrawTextEx(font, TextSubtext(clayAmount, 0, framesCounter / 10), Vector2 { 135, 550 }, fontSize, 1, WHITE);
 		DrawTextEx(font, TextSubtext(organicMatterAmount, 0, framesCounter / 10), Vector2 { 135, 600 }, fontSize, 1, WHITE);
 		DrawTextEx(font, TextSubtext(terminalMsg, 0, framesCounter / 10), Vector2 { 40, 650 }, fontSize, 1, WHITE);
-		DrawTextEx(font, TextSubtext(possibleOrganicLife, 0, framesCounter / 10), Vector2 { 135, 700 }, fontSize, 1, GREEN);
+		DrawTextEx(font, TextSubtext(possibleOrganicLife, 0, framesCounter / 10), Vector2 { 135, 650 }, fontSize, 1, GREEN);
 		EndDrawing();
 	}
 
