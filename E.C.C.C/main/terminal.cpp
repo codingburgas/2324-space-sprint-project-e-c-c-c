@@ -15,27 +15,33 @@ void terminal()
 	int framesCounter = 0;
 	bool mouseOnText = false;
 	float nameX = 0;
+	float nameY = 0;
+	float nameWidth = 0;
 	int fontSize;
 
 	if (fullscreen == true)
 	{
-		fontSize = 22;
-		nameX = 420;
+		fontSize = 24;
+		nameX = 480;
+		nameY = 205;
+		nameWidth = 205;
 	}
 	else {
-		fontSize = 18;
-		nameX = 350;
+		fontSize = 20;
+		nameX = 420;
+		nameY = 225;
+		nameWidth = 225;
 	}
-	Rectangle textBox = { nameX, 0, 0, 0 };
+	Rectangle textBox = { nameX, nameY, 0, 0 };
 	// Load the custom font
 	Font font = LoadFont("../2324-space-sprint-project-e-c-c-c/E.C.C.C/assets/vcrOsd.ttf");
 	if (fullscreen == true)
 	{
-        Rectangle textBox = { nameX, 525, 205, 0 };
+        Rectangle textBox = { nameX, nameY, nameWidth, 0 };
 	}
 	else
 	{
-		Rectangle textBox = { nameX, 525, 225, 0 };
+		Rectangle textBox = { nameX, nameY, nameWidth, 0 };
 	}
 	
 
@@ -106,14 +112,14 @@ void terminal()
 		if (mouseOnText) DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, RED);
 		else DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, BLACK);
 
-		DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2 { nameX, 10 }, fontSize, 2, WHITE);
-		DrawTextEx(font, TextSubtext(contractText, 0, framesCounter / 10), Vector2 { screenWidth - (screenWidth - 40), 300 }, fontSize, 1, WHITE);
-		DrawTextEx(font, name, Vector2 { nameX + 10, 525 }, fontSize, 1, MAROON);
+		DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2 { nameX, 10 }, fontSize, 3, WHITE);
+		DrawTextEx(font, TextSubtext(contractText, 0, framesCounter / 10), Vector2 { screenWidth - (screenWidth - 40), 300 }, fontSize, 2, WHITE);
+
+        DrawTextEx(font, name, Vector2{ nameX + 10, 525 }, fontSize, 2, MAROON);
 		if (letterCount < maxInputChars && framesCounter > 8000)
 		{
-			if (((framesCounter / 480) % 2) == 0) DrawTextEx(font, "_", Vector2{ nameX + 13 + MeasureText(name, fontSize), textBox.y }, fontSize, 1, RED);
-		}
-
+			if (((framesCounter / 480) % 2) == 0) DrawTextEx(font, "_", Vector2{ nameX + 12 + MeasureText(name, fontSize), 525 }, fontSize, 0, RED);
+	    }
 		EndDrawing();
 		//----------------------------------------------------------------------------------
 		if (WindowShouldClose())
