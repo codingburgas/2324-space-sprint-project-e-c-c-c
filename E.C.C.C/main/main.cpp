@@ -4,7 +4,7 @@
 
 int main()
 {
-	std::thread audioThread(initializeSoundtrack);
+	//std::thread audioThread(initializeSoundtrack);
 	mainMenu();
 	return 0;
 }
