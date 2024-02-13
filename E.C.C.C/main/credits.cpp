@@ -1,5 +1,4 @@
 #include "credits.hpp"
-#include "raylib.h"
 #include "mainMenu.hpp"
 #include <vector>
 
@@ -8,8 +7,6 @@ void credits()
 {
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
-
-    SetExitKey(KEY_ESCAPE);
 
     float slidingSpeed = (float)screenHeight;
 
@@ -21,6 +18,19 @@ void credits()
     Texture2D nikolaiKalashnik = LoadTexture("../assets/credits/nikolaiKalashnik.png");
     Texture2D konstantinNachev = LoadTexture("../assets/credits/konstantinNachev.png");
     Texture2D dimitarDimitrakov = LoadTexture("../assets/credits/dimitarDimitrakov.png");
+
+    Texture2D VS = LoadTexture("../assets/credits/Technology_and_Tools/Visual_Studio.png");
+    Texture2D VSCode = LoadTexture("../assets/credits/Technology_and_Tools/Visual_Studio_Code.png");
+    Texture2D GitHub = LoadTexture("../assets/credits/Technology_and_Tools/Github.png");
+    Texture2D Discord = LoadTexture("../assets/credits/Technology_and_Tools/Discord.png");
+    Texture2D MSWord = LoadTexture("../assets/credits/Technology_and_Tools/Word.png");
+    Texture2D MSExcel = LoadTexture("../assets/credits/Technology_and_Tools/Excel.png");
+    Texture2D MSPowerPoint = LoadTexture("../assets/credits/Technology_and_Tools/PowerPoint.png");
+    Texture2D MSTeams = LoadTexture("../assets/credits/Technology_and_Tools/Teams.png");
+
+    Texture2D Cpp = LoadTexture("../assets/credits/Technology_and_Tools/C++.png");
+    Texture2D Raylib = LoadTexture("../assets/credits/Technology_and_Tools/Raylib.png");
+
 
     std::vector<Vector2> starPositions;
     std::vector<Vector2> starVelocities;
@@ -50,7 +60,7 @@ void credits()
         }
 
         int scrollAmount = GetMouseWheelMove();
-        slidingSpeed += scrollAmount * 10; // Adjust the scroll speed
+        slidingSpeed += scrollAmount * 20; // Adjust the scroll speed
 
         BeginDrawing();
 
@@ -62,24 +72,64 @@ void credits()
             DrawPixelV(starPositions[i], WHITE);
         }
 
-        slidingSpeed -= 1.5f; // Adjust the speed of image movement
+        slidingSpeed -= 2; // Adjust the speed of image movement
+
 
         // Draw the image
         DrawTexture(dimitarDimitrakov, (int)96, (int)slidingSpeed + 200, WHITE);
-        DrawTexture(borisMilev, (int)392, (int)slidingSpeed+200, WHITE);
+        DrawTexture(borisMilev, (int)392, (int)slidingSpeed + 200, WHITE);
         DrawTexture(creditsActive, (int)400, (int)slidingSpeed - 4000, WHITE);
         DrawTexture(konstantinNachev, (int)688, (int)slidingSpeed + 200, WHITE);
         DrawTexture(nikolaiKalashnik, (int)984, (int)slidingSpeed + 200, WHITE);
 
+        DrawTexture(VS, (int)96, (int)slidingSpeed + 950, WHITE);
+        DrawTexture(VSCode, (int)392, (int)slidingSpeed + 950, WHITE);
+        DrawTexture(GitHub, (int)688, (int)slidingSpeed + 950, WHITE);
+        DrawTexture(Discord, (int)984, (int)slidingSpeed + 950, WHITE);
+        DrawTexture(MSWord, (int)96, (int)slidingSpeed + 950 + 250, WHITE);
+        DrawTexture(MSExcel, (int)392, (int)slidingSpeed + 950 + 250, WHITE);
+        DrawTexture(MSPowerPoint, (int)688, (int)slidingSpeed + 950 + 250, WHITE);
+        DrawTexture(MSTeams, (int)984, (int)slidingSpeed + 950 + 250, WHITE);
+
+        DrawTexture(Cpp, (int)540, (int)slidingSpeed + 1470 + 50, WHITE);
+        DrawTexture(Raylib, (int)550, (int)slidingSpeed + 1620 + 220, WHITE);
+
+
+
         // Draw the text
         DrawText("Thank you for playing!", 50, (int)slidingSpeed, 100, WHITE);
 
-        DrawText("Our team,\n\n\nEast Coast Coding Crew\n\n\n(E.C.C.C)", 50, (int)slidingSpeed-300, 50, WHITE);
-        DrawText("Kvo praish tuka ve?", 50, (int)slidingSpeed-4000, 100, WHITE);
-        DrawText("Scrum Trainer", 96, (int)slidingSpeed + 420, 20, WHITE);
-        DrawText("Back-End Developer", 392, (int)slidingSpeed + 420, 20, WHITE);
-        DrawText("Back-End Developer", 688, (int)slidingSpeed + 420, 20, WHITE);
-        DrawText("Front-End Developer", 984, (int)slidingSpeed + 420, 20, WHITE);
+        DrawText("Our team,\n\n\nEast Coast Coding Crew\n\n\n(E.C.C.C)", 50, (int)slidingSpeed - 300, 50, WHITE);
+        DrawText("Kvo praish tuka ve?", 50, (int)slidingSpeed - 4000, 100, WHITE);
+        DrawText("Scrum Trainer", 96, (int)slidingSpeed + 420 + 20, 20, WHITE);
+        DrawText("Dimitar Dimitrakov", 96, (int)slidingSpeed + 420, 20, WHITE);
+        DrawText("Back-End Developer", 392, (int)slidingSpeed + 420 + 20, 20, WHITE);
+        DrawText("Boris Milev", 392, (int)slidingSpeed + 420, 20, WHITE);
+        DrawText("Back-End Developer", 688, (int)slidingSpeed + 420 + 20, 20, WHITE);
+        DrawText("Konstantin Nachev", 688, (int)slidingSpeed + 420, 20, WHITE);
+        DrawText("Front-End Developer", 984, (int)slidingSpeed + 420 + 20, 20, WHITE);
+        DrawText("Nikolai Kalashnik", 984, (int)slidingSpeed + 420, 20, WHITE);
+        DrawText("Special Thanks:", 50, (int)slidingSpeed + 500, 50, WHITE);
+
+        DrawText("Mentor - Bojidar Dimov", 50, (int)slidingSpeed + 530 + 40, 30, WHITE);
+        DrawText("Art - Nikolai Kalashnik", 50, (int)slidingSpeed + 570 + 40, 30, WHITE);
+
+        DrawText("Art and Sound Credits:", 50, (int)slidingSpeed + 670, 50, WHITE);
+        DrawText("Art - Nikolai Kalashnik", 50, (int)slidingSpeed + 700 + 40, 30, WHITE);
+        DrawText("Sound Track - Boris Milev", 50, (int)slidingSpeed + 730 + 50, 30, WHITE);
+
+        DrawText("Technology_and_Tools:", 50, (int)slidingSpeed + 780 + 100, 30, WHITE);
+        DrawText("Visual Studio 2022", 96, (int)slidingSpeed + 1170, 20, WHITE);
+        DrawText(" Visual Studio Code", 392, (int)slidingSpeed + 1170, 20, WHITE);
+        DrawText("         GitHub", 688, (int)slidingSpeed + 1170, 20, WHITE);
+        DrawText("        Discord", 984, (int)slidingSpeed + 1170, 20, WHITE);
+        DrawText("        MS Word", 96, (int)slidingSpeed + 1180 + 240, 20, WHITE);
+        DrawText("        MS Excel", 392, (int)slidingSpeed + 1180 + 240, 20, WHITE);
+        DrawText("     MS PowerPoint", 688, (int)slidingSpeed + 1180 + 240, 20, WHITE);
+        DrawText("       MS Teams", 984, (int)slidingSpeed + 1180 + 240, 20, WHITE);
+
+        DrawText("Programing languages:", 480, (int)slidingSpeed + 1470, 30, WHITE);
+        DrawText("Graphics Libraries:", 500, (int)slidingSpeed + 1520 + 250, 30, WHITE);
 
 
 

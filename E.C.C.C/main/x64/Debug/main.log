@@ -1,7 +1,7 @@
 ﻿  credits.cpp
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\credits.cpp(47,67): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\credits.cpp(49,67): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\credits.cpp(52,26): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  main.vcxproj -> C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\x64\Debug\main.exe
+C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\credits.cpp(57,67): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\credits.cpp(59,67): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\credits.cpp(62,26): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  main.vcxproj -> C:\Users\Koce\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\x64\Debug\main.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
