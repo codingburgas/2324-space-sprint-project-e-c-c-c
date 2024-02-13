@@ -3,9 +3,11 @@
 #include <fstream>
 #include "raylib.h"
 #include "terminal.hpp"
+#include "earth.hpp"
 #include "settings.hpp"
-
+#include "game.hpp"
 int taskText;
+
 float Vector2Distance(Vector2 v1, Vector2 v2)
 {
     float dx = v2.x - v1.x;
@@ -36,7 +38,7 @@ void taskOne()
     float movementSpeed = 8.0;
 
     SetTargetFPS(60);
-    SetExitKey(KEY_NULL);
+    SetExitKey(KEY_ESCAPE);
 
     bool flaskEquipped = false;
 
@@ -178,9 +180,59 @@ void taskOne()
     UnloadTexture(characterRight);
 }
 
+void taskOneTerminal()
+{
+    const int screenWidth = GetScreenWidth();
+    const int screenHeight = GetScreenHeight();
 
+    char taskOneLaunchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
+    char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Atmosphere contents:";
+    char oxygenAmount[] = "~ Oxygen: 20,95 %";
+    char nitrogenAmount[] = "~ Nitrogen: 78,08 %";
+    char argonAmount[] = "~ Argon: 0,93 %";
+    char otherGasesAmount[] = "~ Other: 0.04 %";
+    int framesCounter = 0;
+    float nameX = 0;
+    int fontSize;
+    if (fullscreen == true)
+    {
+        fontSize = 22;
+        nameX = 465;
+    }
+    else {
+        fontSize = 18;
+        nameX = 365;
+    }
+
+    Font font = LoadFont("../2324-space-sprint-project-e-c-c-c/E.C.C.C/assets/vcrOsd.ttf");
+
+    SetTargetFPS(60);
+    SetExitKey(KEY_ESCAPE);
+
+    while (!WindowShouldClose())
+    {
+        framesCounter += 10;
+        if (IsKeyPressed(KEY_ENTER))
+        {
+            game();
+        }
+        BeginDrawing();
+        ClearBackground(BLACK);
+        DrawTextEx(font, TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), Vector2{ nameX, 10 }, fontSize, 2, WHITE);
+        DrawTextEx(font, TextSubtext(terminalMessage, 0, framesCounter / 10), Vector2{ 40, 300 }, fontSize, 1, WHITE);
+        DrawTextEx(font, TextSubtext(oxygenAmount, 0, framesCounter / 10), Vector2{ 135, 400 }, fontSize, 1, WHITE);
+        DrawTextEx(font, TextSubtext(nitrogenAmount, 0, framesCounter / 10), Vector2{ 135, 450 }, fontSize, 1, WHITE);
+        DrawTextEx(font, TextSubtext(argonAmount, 0, framesCounter / 10), Vector2{ 135, 500 }, fontSize, 1, WHITE);
+        DrawTextEx(font, TextSubtext(otherGasesAmount, 0, framesCounter / 10), Vector2{ 135, 550 }, fontSize, 1, WHITE);
+        EndDrawing();
+    }
+
+    // Unload the font when done
+    UnloadFont(font);
+}
 
 //task 2
+int counter = 0;
 void taskTwo()
 {
     const int screenWidth = GetScreenWidth();
@@ -213,9 +265,9 @@ void taskTwo()
 
 
     // Adjust dirt position if too close to rock
-    while (Vector2Distance(rockPosition, dirtPosition) < minDistanceBetweenDirtAndRock) 
+    while (Vector2Distance(rockPosition, dirtPosition) < minDistanceBetweenDirtAndRock)
     {
-        dirtPosition = 
+        dirtPosition =
         {
             (float)GetRandomValue(0, screenWidth - dirt.width - 100),
             (float)GetRandomValue(0, screenHeight - dirt.height - 100)
@@ -226,13 +278,13 @@ void taskTwo()
     float movementSpeed = 8.0;
 
     SetTargetFPS(60);
-    SetExitKey(KEY_NULL);
+    SetExitKey(KEY_ESCAPE);
 
     bool rockEquipped = false;
     bool dirtEquipped = false;
     bool levelPassed = false;
 
-    int counter = 0;
+
 
     while (!WindowShouldClose())
     {
@@ -282,7 +334,7 @@ void taskTwo()
                 movementSpeed = 6;
             }
         }
-        
+
         BeginDrawing();
 
         ClearBackground(DARKGREEN);
@@ -333,7 +385,7 @@ void taskTwo()
             {
                 rockEquipped = true;
                 rockPickedUpPosition = rockPosition;
-                
+
             }
         }
 
@@ -342,7 +394,7 @@ void taskTwo()
         {
             DrawTextureEx(rock, rockPosition, 0.0f, 1.25f, WHITE);
             movementSpeed = 8;
-            
+
         }
 
         // Display message when close to dirt
@@ -364,11 +416,6 @@ void taskTwo()
 
         // Draw machine
         DrawTextureEx(machine, machinePosition, 0.0f, 4.5f, WHITE);
-
-        if (dirtEquipped && IsKeyPressed(KEY_E))
-        {
-            counter = 1;
-        }
 
         if (rockEquipped == true)
         {
@@ -406,9 +453,9 @@ void taskTwo()
 
             // Check if E key is pressed to interact
             if (IsKeyPressed(KEY_E))
-            {   
+            {
                 counter = 1;
-                taskTwoTerminalDirt();
+                taskTwoTerminal();
             }
         }
 
@@ -442,7 +489,8 @@ void taskTwo()
                     levelFile.close();
                 }
                 levelPassed = true;
-                taskTwoTerminalRock();
+                counter = 2;
+                taskTwoTerminal();
             }
         }
 
@@ -453,17 +501,17 @@ void taskTwo()
         {
             if (fullscreen == true)
             {
-             DrawText("Task: Drop dirt and pick up rock", 500, 10, 24, WHITE);
-            break;
+                DrawText("Task: Drop dirt and pick up rock", 500, 10, 24, WHITE);
+                break;
             }
-            if(fullscreen != true)
+            if (fullscreen != true)
             {
                 DrawText("Task: Drop dirt and pick up rock", 400, 10, 24, WHITE);
                 break;
             }
-            
+
         }
-        
+
 
         if (counter == 0 and fullscreen == true)
         {
@@ -501,9 +549,100 @@ void taskTwo()
     UnloadTexture(characterRightRock);
 }
 
+int rockDirt;
+
+void taskTwoTerminal()
+{
+    const int screenWidth = GetScreenWidth();
+    const int screenHeight = GetScreenHeight();
+
+    char taskOneLaunchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
+    char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Rock contents:";
+    char terminalMessageTwo[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Dirt contents:";
+    char plagioclaseAmount[] = "~ Plagioclase : 42 %";
+    char feldsparAmount[] = "~ Feldspar: 22 %";
+    char quartzAmount[] = "~ Quartz: 18 %";
+    char amphiboleAmount[] = "~ Amphibole : 5 %";
+    char pyroxeneAmount[] = "~ Pyroxene : 4 %";
+    char biotiteAmount[] = "~ Biotite : 4 %";
+    char waterAmount[] = "~ Water : 25 %";
+    char gasAmount[] = "~ Gases: 25 %";
+    char sandAmount[] = "~ Sand: 18 %";
+    char siltAmount[] = "~ Silt : 18 %";
+    char clayAmount[] = "~ Clay : 9 %";
+    char organicMatterAmount[] = "~ Organic matter : 5 %";
+    char terminalMsg[] = "./E.C.C.C> ";
+    char possibleOrganicLife[] = " Suitable for organic life";
+    int framesCounter = 0;
+    float nameX = 0;
+    int fontSize;
+
+    if (fullscreen == true)
+    {
+        fontSize = 22;
+        nameX = 465;
+    }
+    else {
+        fontSize = 18;
+        nameX = 365;
+    }
+
+    Font font = LoadFont("../2324-space-sprint-project-e-c-c-c/E.C.C.C/assets/vcrOsd.ttf");
+
+    SetTargetFPS(60);
+    SetExitKey(KEY_ESCAPE);
+
+    while (!WindowShouldClose())
+    {
+        framesCounter += 10;
+            
+        if (counter == 1)
+        {
+            if (IsKeyPressed(KEY_ENTER))
+            {
+                taskTwo();
+            }
+            framesCounter += 10;
+            BeginDrawing();
+            ClearBackground(BLACK);
+            DrawTextEx(font, TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), Vector2{ nameX, 10 }, fontSize, 2, WHITE);
+            DrawTextEx(font, TextSubtext(terminalMessageTwo, 0, framesCounter / 10), Vector2{ 40, 250 }, fontSize, 1, WHITE);
+            DrawTextEx(font, TextSubtext(waterAmount, 0, framesCounter / 10), Vector2{ 135, 350 }, fontSize, 1, WHITE);
+            DrawTextEx(font, TextSubtext(gasAmount, 0, framesCounter / 10), Vector2{ 135, 400 }, fontSize, 1, WHITE);
+            DrawTextEx(font, TextSubtext(sandAmount, 0, framesCounter / 10), Vector2{ 135, 450 }, fontSize, 1, WHITE);
+            DrawTextEx(font, TextSubtext(siltAmount, 0, framesCounter / 10), Vector2{ 135, 500 }, fontSize, 1, WHITE);
+            DrawTextEx(font, TextSubtext(clayAmount, 0, framesCounter / 10), Vector2{ 135, 550 }, fontSize, 1, WHITE);
+            DrawTextEx(font, TextSubtext(organicMatterAmount, 0, framesCounter / 10), Vector2{ 135, 600 }, fontSize, 1, WHITE);
+            DrawTextEx(font, TextSubtext(terminalMsg, 0, framesCounter / 10), Vector2{ 40, 650 }, fontSize, 1, WHITE);
+            DrawTextEx(font, TextSubtext(possibleOrganicLife, 0, framesCounter / 10), Vector2{ 135, 650 }, fontSize, 1, GREEN);
+            EndDrawing();
+            
+        }
+        else if(counter==2)
+        {
+            if (IsKeyPressed(KEY_ENTER))
+            {
+                taskThree();
+            }
+            framesCounter += 10;
+            BeginDrawing();
+            ClearBackground(BLACK);
+            DrawTextEx(font, TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), Vector2{ nameX, 10 }, 20, 2, WHITE);
+            DrawTextEx(font, TextSubtext(terminalMessage, 0, framesCounter / 10), Vector2{ 40, 300 }, 20, 1, WHITE);
+            DrawTextEx(font, TextSubtext(plagioclaseAmount, 0, framesCounter / 10), Vector2{ 135, 400 }, 20, 1, WHITE);
+            DrawTextEx(font, TextSubtext(feldsparAmount, 0, framesCounter / 10), Vector2{ 135, 450 }, 20, 1, WHITE);
+            DrawTextEx(font, TextSubtext(quartzAmount, 0, framesCounter / 10), Vector2{ 135, 500 }, 20, 1, WHITE);
+            DrawTextEx(font, TextSubtext(amphiboleAmount, 0, framesCounter / 10), Vector2{ 135, 550 }, 20, 1, WHITE);
+            DrawTextEx(font, TextSubtext(pyroxeneAmount, 0, framesCounter / 10), Vector2{ 135, 600 }, 20, 1, WHITE);
+            DrawTextEx(font, TextSubtext(biotiteAmount, 0, framesCounter / 10), Vector2{ 135, 650 }, 20, 1, WHITE);
+            EndDrawing();
+        }
+
+        // Unload the font 
+        UnloadFont(font);
+    }
+}
 //task 3
-
-
 void taskThree()
 {
     const int screenWidth = GetScreenWidth();
@@ -513,7 +652,6 @@ void taskThree()
     Texture2D character = LoadTexture("../assets/player/player.png");
     Texture2D characterRadiationDetector = LoadTexture("../assets/player/playerRadiationDetector.png");
     Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
-    Texture2D characterReversedRadiationDetector = LoadTexture("../assets/player/playerReversedRadiationDetector.png");
     Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
     Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
     Texture2D radiationDetector = LoadTexture("../assets/tasks/radiationDetector.png");
@@ -528,13 +666,13 @@ void taskThree()
 
 
     SetTargetFPS(60);
-    SetExitKey(KEY_NULL);
 
     bool levelPassed = false;
     bool radiationDetectorEquipped = false;
 
     while (!WindowShouldClose())
     {
+        SetExitKey(KEY_ESCAPE);
         float distanceToMachine = Vector2Distance(characterPosition, machinePosition);
         float distanceToRadiationDetector = Vector2Distance(characterPosition, radiationDetectorPosition);
 
@@ -575,9 +713,9 @@ void taskThree()
         if (IsKeyDown(KEY_W))
         {
             if (radiationDetectorEquipped)
-                DrawTextureEx(characterReversedRadiationDetector, characterPosition, 0.0f, characterScale, WHITE);
+                DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
             else
-                DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+                DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
         }
         else if (IsKeyDown(KEY_D))
         {
@@ -590,7 +728,7 @@ void taskThree()
         else
         {
             if (radiationDetectorEquipped)
-                DrawTextureEx(characterRadiationDetector, characterPosition, 0.0f, characterScale, WHITE);
+                DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
             else
                 DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
         }
@@ -660,7 +798,7 @@ void taskThree()
                     levelFile.close();
                 }
                 levelPassed = true;
-                taskOneTerminal();
+                taskThreeTerminal();
             }
         }
 
@@ -675,7 +813,54 @@ void taskThree()
     UnloadTexture(characterReversed);
     UnloadTexture(background);
     UnloadTexture(characterRadiationDetector);
-    UnloadTexture(characterReversedRadiationDetector);
     UnloadTexture(characterLeft);
     UnloadTexture(characterRight);
+}
+
+
+void taskThreeTerminal()
+{
+    const int screenWidth = GetScreenWidth();
+    const int screenHeight = GetScreenHeight();
+
+    char taskOneLaunchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
+    char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Radiation level:";
+    char radiationAmount[] = "~ 0.21 mSv";
+    char radiationLevel[] = "Normal level";
+    int framesCounter = 0;
+    float nameX = 0;
+    int fontSize;
+    if (fullscreen == true)
+    {
+        fontSize = 22;
+        nameX = 465;
+    }
+    else {
+        fontSize = 18;
+        nameX = 365;
+    }
+
+    Font font = LoadFont("../2324-space-sprint-project-e-c-c-c/E.C.C.C/assets/vcrOsd.ttf");
+
+    SetTargetFPS(60);
+    SetExitKey(KEY_ESCAPE);
+
+    while(!WindowShouldClose())
+    {
+        framesCounter += 10;
+        if (IsKeyPressed(KEY_ENTER))
+        {
+            game();
+        }
+        BeginDrawing();
+        ClearBackground(BLACK);
+        DrawTextEx(font, TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), Vector2{ nameX, 10 }, fontSize, 2, WHITE);
+        DrawTextEx(font, TextSubtext(terminalMessage, 0, framesCounter / 10), Vector2{ 40, 300 }, fontSize, 1, WHITE);
+        DrawTextEx(font, TextSubtext(radiationAmount, 0, framesCounter / 10), Vector2{ 135, 400 }, fontSize, 1, WHITE);
+        DrawTextEx(font, TextSubtext(radiationLevel, 0, framesCounter / 10), Vector2{ 135, 450 }, fontSize, 1, GREEN);
+        EndDrawing();
+    }
+
+    // Unload the font when done
+    UnloadFont(font);
 }

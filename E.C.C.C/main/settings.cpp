@@ -6,6 +6,7 @@ bool fullscreen = false;
 
 void settings()
 {
+    SetExitKey(KEY_ESCAPE);
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
 
@@ -27,6 +28,7 @@ void settings()
 
     while (!WindowShouldClose())
     {
+      
         for (size_t i = 0; i < starPositions.size(); ++i) 
         {
             // Move the stars faster

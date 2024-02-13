@@ -22,13 +22,13 @@ void terminal()
 	if (fullscreen == true)
 	{
 		fontSize = 24;
-		nameX = 510;
+		nameX = 480;
 		nameY = 205;
 		nameWidth = 205;
 	}
 	else {
 		fontSize = 19;
-		nameX = 280;
+		nameX = 400;
 		nameY = 225;
 		nameWidth = 225;
 	}
@@ -118,7 +118,7 @@ void terminal()
         DrawTextEx(font, name, Vector2{ nameX + 10, 525 }, fontSize, 2, MAROON);
 		if (letterCount < maxInputChars && framesCounter > 8000)
 		{
-			if (((framesCounter / 480) % 2) == 0) DrawTextEx(font, "_", Vector2{ nameX + 12 + MeasureText(name, fontSize), 525 }, fontSize, 0, RED);
+			if (((framesCounter / 480) % 2) == 0) DrawTextEx(font, "_", Vector2{ nameX + 15 + MeasureText(name, fontSize), 525 }, fontSize, 0, RED);
 	    }
 		EndDrawing();
 		//----------------------------------------------------------------------------------
@@ -136,167 +136,3 @@ void terminal()
 	// Unload the font when done
 	UnloadFont(font);
 }
-
-void taskOneTerminal()
-{
-	const int screenWidth = GetScreenWidth();
-	const int screenHeight = GetScreenHeight();
-
-	char taskOneLaunchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
-	char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Atmosphere contents:";
-	char oxygenAmount[] = "~ Oxygen: 20,95 %";
-	char nitrogenAmount[] = "~ Nitrogen: 78,08 %";
-	char argonAmount[] = "~ Argon: 0,93 %";
-	char otherGasesAmount[] = "~ Other: 0.04 %";
-	int framesCounter = 0;
-	float nameX = 0;
-	int fontSize;
-	if (fullscreen == true)
-	{
-		fontSize = 22;
-		nameX = 465;
-	}
-	else {
-		fontSize = 18;
-		nameX = 365;
-	}
-
-	Font font = LoadFont("../2324-space-sprint-project-e-c-c-c/E.C.C.C/assets/vcrOsd.ttf");
-
-	SetTargetFPS(60);
-	SetExitKey(KEY_NULL);
-
-	while (!WindowShouldClose())
-	{
-		framesCounter += 10;
-		if (IsKeyPressed(KEY_ENTER))
-		{
-			game();
-		}
-		BeginDrawing();
-		ClearBackground(BLACK);
-		DrawTextEx(font, TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), Vector2 { nameX, 10 }, fontSize, 2, WHITE);
-		DrawTextEx(font, TextSubtext(terminalMessage, 0, framesCounter / 10), Vector2 { 40, 300 }, fontSize, 1, WHITE);
-		DrawTextEx(font, TextSubtext(oxygenAmount, 0, framesCounter / 10), Vector2 { 135, 400 }, fontSize, 1, WHITE);
-		DrawTextEx(font, TextSubtext(nitrogenAmount, 0, framesCounter / 10), Vector2 { 135, 450 }, fontSize, 1, WHITE);
-		DrawTextEx(font, TextSubtext(argonAmount, 0, framesCounter / 10), Vector2 { 135, 500 }, fontSize, 1, WHITE);
-		DrawTextEx(font, TextSubtext(otherGasesAmount, 0, framesCounter / 10), Vector2 { 135, 550 }, fontSize, 1, WHITE);
-		EndDrawing();
-	}
-
-	// Unload the font when done
-	UnloadFont(font);
-}
-
-void taskTwoTerminalDirt()
-{
-	const int screenWidth = GetScreenWidth();
-	const int screenHeight = GetScreenHeight();
-
-	char taskOneLaunchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
-	char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Soil contents:";
-	char waterAmount[] = "~ Water : 25 %";
-	char gasAmount[] = "~ Gases: 25 %";
-	char sandAmount[] = "~ Sand: 18 %";
-	char siltAmount[] = "~ Silt : 18 %";
-	char clayAmount[] = "~ Clay : 9 %";
-	char organicMatterAmount[] = "~ Organic matter : 5 %";
-	char terminalMsg[] = "./E.C.C.C> ";
-	char possibleOrganicLife[] = " Suitable for organic life";
-	int framesCounter = 0;
-	int fontSize;
-	float nameX = 0;
-
-	if (fullscreen == true)
-	{
-		fontSize = 22;
-		nameX = 465;
-	}
-	else {
-		fontSize = 18;
-		nameX = 365;
-	}
-
-	Font font = LoadFont("../2324-space-sprint-project-e-c-c-c/E.C.C.C/assets/vcrOsd.ttf");
-
-	SetTargetFPS(60);
-	SetExitKey(KEY_ENTER);
-
-	while (!WindowShouldClose())
-	{
-		framesCounter += 10;
-		BeginDrawing();
-		ClearBackground(BLACK);
-		DrawTextEx(font, TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), Vector2 { nameX, 10 }, fontSize, 2, WHITE);
-		DrawTextEx(font, TextSubtext(terminalMessage, 0, framesCounter / 10), Vector2 { 40, 250 }, fontSize, 1, WHITE);
-		DrawTextEx(font, TextSubtext(waterAmount, 0, framesCounter / 10), Vector2 { 135, 350 }, fontSize, 1, WHITE);
-		DrawTextEx(font, TextSubtext(gasAmount, 0, framesCounter / 10), Vector2 { 135, 400 }, fontSize, 1, WHITE);
-		DrawTextEx(font, TextSubtext(sandAmount, 0, framesCounter / 10), Vector2 { 135, 450 }, fontSize, 1, WHITE);
-		DrawTextEx(font, TextSubtext(siltAmount, 0, framesCounter / 10), Vector2 { 135, 500 }, fontSize, 1, WHITE);
-		DrawTextEx(font, TextSubtext(clayAmount, 0, framesCounter / 10), Vector2 { 135, 550 }, fontSize, 1, WHITE);
-		DrawTextEx(font, TextSubtext(organicMatterAmount, 0, framesCounter / 10), Vector2 { 135, 600 }, fontSize, 1, WHITE);
-		DrawTextEx(font, TextSubtext(terminalMsg, 0, framesCounter / 10), Vector2 { 40, 650 }, fontSize, 1, WHITE);
-		DrawTextEx(font, TextSubtext(possibleOrganicLife, 0, framesCounter / 10), Vector2 { 135, 650 }, fontSize, 1, GREEN);
-		EndDrawing();
-	}
-
-	// Unload the font when done
-	UnloadFont(font);
-}
-
-void taskTwoTerminalRock()
-{
-	const int screenWidth = GetScreenWidth();
-	const int screenHeight = GetScreenHeight();
-
-	char taskOneLaunchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
-	char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Rock contents:";
-	char plagioclaseAmount[] = "~ Plagioclase : 42 %";
-	char feldsparAmount[] = "~ Feldspar: 22 %";
-	char quartzAmount[] = "~ Quartz: 18 %";
-	char amphiboleAmount[] = "~ Amphibole : 5 %";
-	char pyroxeneAmount[] = "~ Pyroxene : 4 %";
-	char biotiteAmount[] = "~ Biotite : 4 %";
-	int framesCounter = 0;
-	float nameX = 0;
-	int fontSize;
-
-	if (fullscreen == true)
-	{
-		fontSize = 22;
-		nameX = 465;
-	}
-	else {
-		fontSize = 18;
-		nameX = 365;
-	}
-
-	Font font = LoadFont("../2324-space-sprint-project-e-c-c-c/E.C.C.C/assets/vcrOsd.ttf");
-
-	SetTargetFPS(60);
-	SetExitKey(KEY_NULL);
-
-	while (!WindowShouldClose())
-	{
-		framesCounter += 10;
-		if (IsKeyPressed(KEY_ENTER))
-		{
-			game();
-		}
-		BeginDrawing();
-		ClearBackground(BLACK);
-		DrawTextEx(font, TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), Vector2 { nameX, 10 }, 20, 2, WHITE);
-		DrawTextEx(font, TextSubtext(terminalMessage, 0, framesCounter / 10), Vector2 { 40, 300 }, 20, 1, WHITE);
-		DrawTextEx(font, TextSubtext(plagioclaseAmount, 0, framesCounter / 10), Vector2 { 135, 400 }, 20, 1, WHITE);
-		DrawTextEx(font, TextSubtext(feldsparAmount, 0, framesCounter / 10), Vector2 { 135, 450 }, 20, 1, WHITE);
-		DrawTextEx(font, TextSubtext(quartzAmount, 0, framesCounter / 10), Vector2 { 135, 500 }, 20, 1, WHITE);
-		DrawTextEx(font, TextSubtext(amphiboleAmount, 0, framesCounter / 10), Vector2 { 135, 550 }, 20, 1, WHITE);
-		DrawTextEx(font, TextSubtext(pyroxeneAmount, 0, framesCounter / 10), Vector2{ 135, 600 }, 20, 1, WHITE);
-		DrawTextEx(font, TextSubtext(biotiteAmount, 0, framesCounter / 10), Vector2 { 135, 650 }, 20, 1, WHITE);
-		EndDrawing();
-	}
-
-	// Unload the font when done
-	UnloadFont(font);
-}
-

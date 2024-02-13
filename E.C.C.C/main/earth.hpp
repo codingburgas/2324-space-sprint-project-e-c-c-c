@@ -7,3 +7,9 @@ void taskOne();
 void taskTwo();
 
 void taskThree();
+
+void taskOneTerminal();
+
+void taskTwoTerminal();
+
+void taskThreeTerminal();

@@ -9,6 +9,7 @@
 #include "earth.hpp"
 #include "terminal.hpp"
 #include "buy.hpp"
+#include "mainMenu.hpp"
 
 void game()
 {
@@ -68,7 +69,7 @@ void game()
     bool venusLockedCh = true;
     bool marsLockedCh = true;
     bool jupiterLockedCh = true;
-
+    SetExitKey(KEY_NULL);
     std::ifstream playerName("../data/playerName.csv");
     std::string username;
 
@@ -104,6 +105,10 @@ void game()
 
     while (!WindowShouldClose())
     {
+        if (IsKeyPressed(KEY_ESCAPE))
+        {
+            mainMenu();
+        }
         mercuryRotationAngle += mercuryRotationSpeed;
         venusRotationAngle += venusRotationSpeed;
         earthRotationAngle += earthRotationSpeed;
