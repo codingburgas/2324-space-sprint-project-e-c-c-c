@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="audio.cpp" />
     <ClCompile Include="buy.cpp" />
     <ClCompile Include="credits.cpp" />
     <ClCompile Include="earth.cpp" />
@@ -137,6 +138,7 @@
     <ClCompile Include="settings.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="audio.hpp" />
     <ClInclude Include="buy.hpp" />
     <ClInclude Include="credits.hpp" />
     <ClInclude Include="game.hpp" />

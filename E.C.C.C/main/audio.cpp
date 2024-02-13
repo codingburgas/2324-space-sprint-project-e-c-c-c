@@ -1,17 +1,19 @@
 #include "audio.hpp"
 
+bool soundtrackEnd = false;
+
 void initializeSoundtrack()
 {
     InitAudioDevice();
 
     Sound soundtrack = LoadSound("../assets/audio/soundtrack.ogg");
-    SetSoundVolume(soundtrack, 0.5);
+    SetSoundVolume(soundtrack, 0.05);
 
-    while (true)
+    while (!soundtrackEnd)
     {
         PlaySound(soundtrack);
 
-        while (IsSoundPlaying(soundtrack))
+        while (IsSoundPlaying(soundtrack) && !soundtrackEnd)
         {
             
         }

@@ -165,7 +165,7 @@ void taskOne()
         }
 
         DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
-        //DrawText("Press ESC to quit", 10, 30, 24, WHITE);
+        DrawText("Press ESC to quit", 10, 30, 24, WHITE);
 
         EndDrawing();
     }
@@ -495,7 +495,7 @@ void taskTwo()
         }
 
         DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
-        //DrawText("Press ESC to quit", 10, 30, 24, WHITE);
+        DrawText("Press ESC to quit", 10, 30, 24, WHITE);
 
         while (dirtEquipped and counter == 1)
         {
@@ -598,10 +598,6 @@ void taskTwoTerminal()
             
         if (counter == 1)
         {
-            if (IsKeyPressed(KEY_ENTER))
-            {
-                taskTwo();
-            }
             framesCounter += 10;
             BeginDrawing();
             ClearBackground(BLACK);
@@ -803,7 +799,7 @@ void taskThree()
         }
 
         DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
-        //DrawText("Press ESC to quit", 10, 30, 24, WHITE);
+        DrawText("Press ESC to quit", 10, 30, 24, WHITE);
 
         EndDrawing();
     }

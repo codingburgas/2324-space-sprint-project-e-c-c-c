@@ -4,7 +4,9 @@
 
 int main()
 {
-	//std::thread audioThread(initializeSoundtrack);
+	std::thread audioThread(initializeSoundtrack);
 	mainMenu();
+	soundtrackEnd = true;
+	audioThread.join();
 	return 0;
 }
