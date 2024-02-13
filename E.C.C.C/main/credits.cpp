@@ -9,6 +9,8 @@ void credits()
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
 
+    SetExitKey(KEY_ESCAPE);
+
     float slidingSpeed = (float)screenHeight;
 
     //Texture2D background = LoadTexture("../assets/background/settingsBackground.png");

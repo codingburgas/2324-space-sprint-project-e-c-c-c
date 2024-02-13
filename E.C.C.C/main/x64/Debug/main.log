@@ -1,31 +1,7 @@
-﻿  earth.cpp
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(61,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(66,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(221,110): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(222,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(223,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(224,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(225,96): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(226,101): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(306,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(311,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(262,13): warning C4101: 'dirtPickedUpPosition': unreferenced local variable
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(604,114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(605,106): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(606,100): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(607,98): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(608,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(609,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(610,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(611,108): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(612,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(613,108): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(686,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(691,35): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(853,110): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(854,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(855,100): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\earth.cpp(856,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  credits.cpp
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\credits.cpp(47,67): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\credits.cpp(49,67): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\credits.cpp(52,26): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   main.vcxproj -> C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\x64\Debug\main.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

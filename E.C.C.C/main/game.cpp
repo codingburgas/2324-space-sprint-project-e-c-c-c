@@ -249,7 +249,7 @@ void game()
                 isEarthClicked = !isEarthClicked;
                 if (isEarthClicked)
                 {
-                    if (levelsPassed != 1 and levelsPassed != 2)
+                    if (levelsPassed != 1 and levelsPassed != 2 and levelsPassed != 3)
                     {
                         taskOne();
                     }
@@ -260,6 +260,10 @@ void game()
                     else if (levelsPassed == 2)
                     {
                         taskThree();
+                    }
+                    else if (levelsPassed == 3)
+                    {
+                        // Task four
                     }
                 }
             }

@@ -5,6 +5,7 @@
 #include "credits.hpp"
 #include "settings.hpp"
 #include "game.hpp"
+#include "audio.hpp"
 
 void mainMenu()
 {
@@ -153,6 +154,11 @@ void mainMenu()
         else
         {
             DrawTexture(buttonQuitIdle, 90, 567, WHITE);
+        }
+
+        if (IsKeyPressed(KEY_ENTER))
+        {
+            soundtrackEnd = !soundtrackEnd;
         }
 
         EndDrawing();
