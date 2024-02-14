@@ -639,6 +639,7 @@ void taskThree()
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
 
+    // Load textures
     Texture2D background = LoadTexture("../assets/background/taskOneBackground.png");
     Texture2D character = LoadTexture("../assets/player/player.png");
     Texture2D characterRadiationDetector = LoadTexture("../assets/player/playerRadiationDetector.png");
@@ -649,18 +650,19 @@ void taskThree()
     Texture2D radiationDetector = LoadTexture("../assets/tasks/radiationDetector.png");
     Texture2D machine = LoadTexture("../assets/tasks/machine.png");
 
+    // Initialize positions and variables
     Vector2 radiationDetectorPosition = { (float)GetRandomValue(0, screenWidth - radiationDetector.width - 100), (float)GetRandomValue(0, screenHeight - radiationDetector.height - 100) };
     Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
     Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
-
     float characterScale = 3.0;
     float movementSpeed = 8.0;
-
-
-    SetTargetFPS(60);
-
     bool levelPassed = false;
     bool radiationDetectorEquipped = false;
+    int loadingBarWidth = 0;
+    int framesCounter = 0;
+    bool scanComplete{};
+
+    SetTargetFPS(60);
 
     while (!WindowShouldClose())
     {
@@ -673,7 +675,6 @@ void taskThree()
         if (IsKeyDown(KEY_A)) characterPosition.x -= movementSpeed;
         if (IsKeyDown(KEY_W)) characterPosition.y -= movementSpeed;
         if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
-
 
         // Reset character if it goes off-screen
         if (characterPosition.x > screenWidth)
@@ -730,14 +731,14 @@ void taskThree()
         {
             if (!radiationDetectorEquipped)
             {
-                DrawText("Press R to equip the radiation detector", (GetScreenWidth() - MeasureText("Press R to equip the radiation detector", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+                DrawText("Press R to equip the radiation detector", (GetScreenWidth() - MeasureText("Press R to measure the radiation level", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
             }
 
             // Check if R key is pressed to equip the radiation detector
             if (IsKeyDown(KEY_R))
             {
-                // Equip the radiation detector
                 radiationDetectorEquipped = true;
+                
             }
         }
 
@@ -753,52 +754,104 @@ void taskThree()
                 radiationDetectorEquipped = !radiationDetectorEquipped;
                 radiationDetectorPosition.x = characterPosition.x + 50;
                 radiationDetectorPosition.y = characterPosition.y + 120;
-
+                
             }
+        }
+        if (radiationDetectorEquipped&&!scanComplete)
+        {
+            DrawText("Radiation detector equipped", (GetScreenWidth() - MeasureText("Radiation detector equipped", 36)) / 2, GetScreenHeight() - 120, 36, RAYWHITE);
+            DrawText("Hold SPACE to measure radiation level", (GetScreenWidth() - MeasureText("Hold SPACE to measure radiation level", 36)) / 2, GetScreenHeight() - 80, 36, RAYWHITE);
+
         }
         // Draw machine
         DrawTextureEx(machine, machinePosition, 0.0f, 4.5f, WHITE);
 
-        // Check if Enter key is pressed when equipped with the radiationDetector
-        if (radiationDetectorEquipped && IsKeyPressed(KEY_ENTER))
+        // Draw text for radiation detector equipped
+        if (radiationDetectorEquipped && IsKeyDown(KEY_SPACE) && fullscreen!=true)
         {
-            // Go to terminal() or perform other actions
+            if(scanComplete!=true)
+           {
+           // Draw loading bar background
+           DrawRectangle(480, GetScreenHeight() - 170, 300, 40, LIGHTGRAY);
+           DrawRectangleLines(480, GetScreenHeight() - 170, 300, 40, GRAY);
 
-        }
-        if (radiationDetectorEquipped == true)
-        {
-            DrawText("Radiation detector equipped", (GetScreenWidth() - MeasureText("Radiation detector equipped", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
-        }
-        if (distanceToMachine < 120.0f && radiationDetectorEquipped)
-        {
-            DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+           // Draw loading bar
+           DrawRectangle(480, GetScreenHeight() - 170, loadingBarWidth, 40, GRAY);
 
-            // Check if E key is pressed to interact
+           // Draw "Loading..." text
+           if ((framesCounter / 59) % 2 == 0)
+           {
+            DrawText("Measuring...", 580, GetScreenHeight() - 160,  20, WHITE);
+           }
+           if (scanComplete == true)
+           {
+               DrawText("Scan complete", 400, 10, 36, WHITE);
+               
+           }
+           
+           framesCounter+=4;
+           if (framesCounter >= 60)
+           {
+            framesCounter = 0;
+            loadingBarWidth += 10;
+            if (loadingBarWidth >= 310)
+            {
+                scanComplete = true;
+                loadingBarWidth = 0;
+            }
+           }
+           }
+        }
+
+
+        //----------------------------------------------
+
+
+        else if (radiationDetectorEquipped && IsKeyDown(KEY_SPACE) && fullscreen == true)
+        {
+            if (scanComplete != true)
+            {
+                // Draw loading bar background
+                DrawRectangle(800, GetScreenHeight() - 170, 300, 40, LIGHTGRAY);
+                DrawRectangleLines(800, GetScreenHeight() - 170, 300, 40, GRAY);
+
+                // Draw loading bar
+                DrawRectangle(800, GetScreenHeight() - 170, loadingBarWidth, 40, GRAY);
+
+                // Draw "Loading..." text
+                if ((framesCounter / 59) % 2 == 0)
+                {
+                    DrawText("Measuring...", 900, GetScreenHeight() - 160, 20, WHITE);
+                }
+                if (scanComplete == true)
+                {
+                    DrawText("Scan complete", 400, 10, 36, WHITE);
+
+                }
+
+                framesCounter += 4;
+                if (framesCounter >= 60)
+                {
+                    framesCounter = 0;
+                    loadingBarWidth += 10;
+                    if (loadingBarWidth >= 310)
+                    {
+                        scanComplete = true;
+                        loadingBarWidth = 0;
+                    }
+                }
+            }
+        }
+        if (scanComplete == true)
+        {
+           DrawText("Scan complete", 500, 10, 24, WHITE);
+        }
+        // Draw text for interacting with machine
+        if (distanceToMachine < 120.0f && scanComplete)
+        {
+            DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 40, 36, RAYWHITE);
             if (IsKeyPressed(KEY_E))
             {
-                int money = 0;
-                //Get value from money.csv which is created when you complete Level1
-                std::ifstream moneyFile("../data/money.csv");
-                if (moneyFile.is_open())
-                {
-                    moneyFile >> money;
-                    moneyFile.close();
-                }
-
-                std::ofstream moneyFileOf("../data/money.csv");
-                if (moneyFileOf.is_open())
-                {
-                    moneyFileOf << money + 200;  // Save earned money to a file
-                    moneyFileOf.close();
-                }
-
-                std::ofstream levelFile("../data/levelsPassed.csv");
-                if (levelFile.is_open())
-                {
-                    levelFile << "3";  // Save completed level to a file
-                    levelFile.close();
-                }
-                levelPassed = true;
                 taskThreeTerminal();
             }
         }
@@ -808,6 +861,8 @@ void taskThree()
 
         EndDrawing();
     }
+
+    // Unload textures
     UnloadTexture(radiationDetector);
     UnloadTexture(machine);
     UnloadTexture(character);
