@@ -309,37 +309,28 @@ void taskTwo()
             characterPosition.y = -character.height * characterScale;
         else if (characterPosition.y < -character.height * characterScale)
             characterPosition.y = screenHeight;
-
-        if (IsKeyPressed(KEY_LEFT_SHIFT))
+        if (rockEquipped)
+        {
+            movementSpeed = 4;
+        }
+        if (dirtEquipped)
+        {
+            movementSpeed = 6;
+        }
+        if (IsKeyPressed(KEY_LEFT_SHIFT)&&!rockEquipped||!dirtEquipped)
         {
             movementSpeed = 12;
-            if (rockEquipped)
-            {
-                movementSpeed = 7;
-            }
-            else if (dirtEquipped)
-            {
-                movementSpeed = 7;
-            }
         }
-        if (IsKeyReleased(KEY_LEFT_SHIFT))
+        if (IsKeyReleased(KEY_LEFT_SHIFT) && !rockEquipped || !dirtEquipped)
         {
             movementSpeed = 8;
-            if (rockEquipped)
-            {
-                movementSpeed = 4;
-            }
-            else if (dirtEquipped)
-            {
-                movementSpeed = 6;
-            }
         }
 
         BeginDrawing();
 
         ClearBackground(DARKGREEN);
 
-        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2 - 10, WHITE);
+        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
 
         // Draw character
         if (IsKeyDown(KEY_W))
@@ -598,6 +589,10 @@ void taskTwoTerminal()
             
         if (counter == 1)
         {
+            if (IsKeyPressed(KEY_ENTER))
+            {
+                taskTwo();
+            }
             framesCounter += 10;
             BeginDrawing();
             ClearBackground(BLACK);
@@ -618,7 +613,7 @@ void taskTwoTerminal()
         {
             if (IsKeyPressed(KEY_ENTER))
             {
-                taskThree();
+                game();
             }
             framesCounter += 10;
             BeginDrawing();
@@ -648,6 +643,7 @@ void taskThree()
     Texture2D character = LoadTexture("../assets/player/player.png");
     Texture2D characterRadiationDetector = LoadTexture("../assets/player/playerRadiationDetector.png");
     Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
+    Texture2D characterReversedRadiationDetector = LoadTexture("../assets/player/playerReversedRadiationDetector.png");
     Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
     Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
     Texture2D radiationDetector = LoadTexture("../assets/tasks/radiationDetector.png");
@@ -703,13 +699,13 @@ void taskThree()
 
         ClearBackground(DARKGREEN);
 
-        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2 - 10, WHITE);
+        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
 
         // Draw character
         if (IsKeyDown(KEY_W))
         {
             if (radiationDetectorEquipped)
-                DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
+                DrawTextureEx(characterReversedRadiationDetector, characterPosition, 0.0f, characterScale, WHITE);
             else
                 DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
         }
@@ -724,7 +720,7 @@ void taskThree()
         else
         {
             if (radiationDetectorEquipped)
-                DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+                DrawTextureEx(characterRadiationDetector, characterPosition, 0.0f, characterScale, WHITE);
             else
                 DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
         }
@@ -750,7 +746,16 @@ void taskThree()
         {
             DrawTextureEx(radiationDetector, radiationDetectorPosition, 0.0f, 1.25f, WHITE);
         }
+        if (IsKeyPressed(KEY_Q) and (radiationDetectorEquipped))
+        {
+            if (radiationDetectorEquipped)
+            {
+                radiationDetectorEquipped = !radiationDetectorEquipped;
+                radiationDetectorPosition.x = characterPosition.x + 50;
+                radiationDetectorPosition.y = characterPosition.y + 120;
 
+            }
+        }
         // Draw machine
         DrawTextureEx(machine, machinePosition, 0.0f, 4.5f, WHITE);
 
