@@ -3,7 +3,7 @@
 #include <fstream>
 #include "raylib.h"
 #include "terminal.hpp"
-#include "earth.hpp"
+#include "tasks.hpp"
 #include "settings.hpp"
 #include "game.hpp"
 int taskText;
@@ -485,6 +485,7 @@ void taskTwo()
 
         DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
         DrawText("Press ESC to quit", 10, 30, 24, WHITE);
+        DrawText("Press Q to drop", 10, 50, 24, WHITE);
 
         while (dirtEquipped and counter == 1)
         {
@@ -936,4 +937,266 @@ void taskThreeTerminal()
 
     // Unload the font when done
     UnloadFont(font);
+}
+
+void mercuryTaskOne()
+{
+    const int screenWidth = GetScreenWidth();
+    const int screenHeight = GetScreenHeight();
+
+    // Load textures
+    Texture2D background = LoadTexture("../assets/background/taskOneBackground.png");
+    Texture2D character = LoadTexture("../assets/player/player.png");
+    Texture2D characterRadiationDetector = LoadTexture("../assets/player/playerRadiationDetector.png");
+    Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
+    Texture2D characterReversedRadiationDetector = LoadTexture("../assets/player/playerReversedRadiationDetector.png");
+    Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
+    Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
+    Texture2D radiationDetector = LoadTexture("../assets/tasks/radiationDetector.png");
+    Texture2D machine = LoadTexture("../assets/tasks/machine.png");
+
+    // Initialize positions and variables
+    Vector2 radiationDetectorPosition = { (float)GetRandomValue(0, screenWidth - radiationDetector.width - 100), (float)GetRandomValue(0, screenHeight - radiationDetector.height - 100) };
+    Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
+    Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    float characterScale = 3.0;
+    float movementSpeed = 8.0;
+    bool levelPassed = false;
+    bool radiationDetectorEquipped = false;
+    int loadingBarWidth = 0;
+    int framesCounter = 0;
+    bool scanComplete{};
+
+    SetTargetFPS(60);
+
+    while (!WindowShouldClose())
+    {
+        SetExitKey(KEY_ESCAPE);
+        float distanceToMachine = Vector2Distance(characterPosition, machinePosition);
+        float distanceToRadiationDetector = Vector2Distance(characterPosition, radiationDetectorPosition);
+
+        // Update character position
+        if (IsKeyDown(KEY_D)) characterPosition.x += movementSpeed;
+        if (IsKeyDown(KEY_A)) characterPosition.x -= movementSpeed;
+        if (IsKeyDown(KEY_W)) characterPosition.y -= movementSpeed;
+        if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
+
+        // Reset character if it goes off-screen
+        if (characterPosition.x > screenWidth)
+            characterPosition.x = -character.width * characterScale;
+        else if (characterPosition.x < -character.width * characterScale)
+            characterPosition.x = screenWidth;
+
+        if (characterPosition.y > screenHeight)
+            characterPosition.y = -character.height * characterScale;
+        else if (characterPosition.y < -character.height * characterScale)
+            characterPosition.y = screenHeight;
+
+        if (IsKeyPressed(KEY_LEFT_SHIFT))
+        {
+            movementSpeed = 12;
+        }
+        if (IsKeyReleased(KEY_LEFT_SHIFT))
+        {
+            movementSpeed = 8;
+        }
+
+        BeginDrawing();
+
+        ClearBackground(DARKGRAY);
+
+        //DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
+
+        // Draw character
+        if (IsKeyDown(KEY_W))
+        {
+            if (radiationDetectorEquipped)
+                DrawTextureEx(characterReversedRadiationDetector, characterPosition, 0.0f, characterScale, WHITE);
+            else
+                DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
+        }
+        else if (IsKeyDown(KEY_D))
+        {
+            DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
+        }
+        else if (IsKeyDown(KEY_A))
+        {
+            DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
+        }
+        else
+        {
+            if (radiationDetectorEquipped)
+                DrawTextureEx(characterRadiationDetector, characterPosition, 0.0f, characterScale, WHITE);
+            else
+                DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+        }
+
+        // Display message when close to radiationDetector
+        if (distanceToRadiationDetector < 80.0f)
+        {
+            if (!radiationDetectorEquipped)
+            {
+                DrawText("Press R to equip the radiation detector", (GetScreenWidth() - MeasureText("Press R to measure the radiation level", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+            }
+
+            // Check if R key is pressed to equip the radiation detector
+            if (IsKeyDown(KEY_R))
+            {
+                radiationDetectorEquipped = true;
+                
+            }
+        }
+
+        // Draw radiationDetector if not equipped
+        if (!radiationDetectorEquipped)
+        {
+            DrawTextureEx(radiationDetector, radiationDetectorPosition, 0.0f, 1.25f, WHITE);
+        }
+        if (IsKeyPressed(KEY_Q) and (radiationDetectorEquipped))
+        {
+            if (radiationDetectorEquipped)
+            {
+                radiationDetectorEquipped = !radiationDetectorEquipped;
+                radiationDetectorPosition.x = characterPosition.x + 50;
+                radiationDetectorPosition.y = characterPosition.y + 120;
+                
+            }
+        }
+        if (radiationDetectorEquipped&&!scanComplete)
+        {
+            DrawText("Radiation detector equipped", (GetScreenWidth() - MeasureText("Radiation detector equipped", 36)) / 2, GetScreenHeight() - 120, 36, RAYWHITE);
+            DrawText("Hold SPACE to measure radiation level", (GetScreenWidth() - MeasureText("Hold SPACE to measure radiation level", 36)) / 2, GetScreenHeight() - 80, 36, RAYWHITE);
+
+        }
+        // Draw machine
+        DrawTextureEx(machine, machinePosition, 0.0f, 4.5f, WHITE);
+
+        // Draw text for radiation detector equipped
+        if (radiationDetectorEquipped && IsKeyDown(KEY_SPACE) && fullscreen!=true)
+        {
+            if(scanComplete!=true)
+           {
+           // Draw loading bar background
+           DrawRectangle(480, GetScreenHeight() - 170, 300, 40, LIGHTGRAY);
+           DrawRectangleLines(480, GetScreenHeight() - 170, 300, 40, GRAY);
+
+           // Draw loading bar
+           DrawRectangle(480, GetScreenHeight() - 170, loadingBarWidth, 40, GRAY);
+
+           // Draw "Loading..." text
+           if ((framesCounter / 59) % 2 == 0)
+           {
+            DrawText("Measuring...", 580, GetScreenHeight() - 160,  20, WHITE);
+           }
+           if (scanComplete == true)
+           {
+               DrawText("Scan complete", 400, 10, 36, WHITE);
+               
+           }
+           
+           framesCounter+=4;
+           if (framesCounter >= 60)
+           {
+            framesCounter = 0;
+            loadingBarWidth += 10;
+            if (loadingBarWidth >= 310)
+            {
+                scanComplete = true;
+                loadingBarWidth = 0;
+            }
+           }
+           }
+        }
+
+
+        //----------------------------------------------
+
+
+        else if (radiationDetectorEquipped && IsKeyDown(KEY_SPACE) && fullscreen == true)
+        {
+            if (scanComplete != true)
+            {
+                // Draw loading bar background
+                DrawRectangle(800, GetScreenHeight() - 170, 300, 40, LIGHTGRAY);
+                DrawRectangleLines(800, GetScreenHeight() - 170, 300, 40, GRAY);
+
+                // Draw loading bar
+                DrawRectangle(800, GetScreenHeight() - 170, loadingBarWidth, 40, GRAY);
+
+                // Draw "Loading..." text
+                if ((framesCounter / 59) % 2 == 0)
+                {
+                    DrawText("Measuring...", 900, GetScreenHeight() - 160, 20, WHITE);
+                }
+                if (scanComplete == true)
+                {
+                    DrawText("Scan complete", 400, 10, 36, WHITE);
+
+                }
+
+                framesCounter += 4;
+                if (framesCounter >= 60)
+                {
+                    framesCounter = 0;
+                    loadingBarWidth += 10;
+                    if (loadingBarWidth >= 310)
+                    {
+                        scanComplete = true;
+                        loadingBarWidth = 0;
+                    }
+                }
+            }
+        }
+        if (scanComplete == true)
+        {
+           DrawText("Scan complete", 500, 10, 24, WHITE);
+        }
+        // Draw text for interacting with machine
+        if (distanceToMachine < 120.0f && scanComplete)
+        {
+            DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 40, 36, RAYWHITE);
+            if (IsKeyPressed(KEY_E))
+            {
+                int money = 0;
+                //Get value from money.csv which is created when you complete Level1
+                std::ifstream moneyFile("../data/money.csv");
+                if (moneyFile.is_open())
+                {
+                    moneyFile >> money;
+                    moneyFile.close();
+                }
+
+                std::ofstream moneyFileOf("../data/money.csv");
+                if (moneyFileOf.is_open())
+                {
+                    moneyFileOf << money + 250;  // Save earned money to a file
+                    moneyFileOf.close();
+                }
+
+                std::ofstream levelFile("../data/levelsPassedMercury.csv");
+                if (levelFile.is_open())
+                {
+                    levelFile << "1";  // Save completed level to a file
+                    levelFile.close();
+                }
+
+                taskThreeTerminal();
+            }
+        }
+
+        DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
+        DrawText("Press ESC to quit", 10, 30, 24, WHITE);
+
+        EndDrawing();
+    }
+
+    // Unload textures
+    UnloadTexture(radiationDetector);
+    UnloadTexture(machine);
+    UnloadTexture(character);
+    UnloadTexture(characterReversed);
+    UnloadTexture(background);
+    UnloadTexture(characterRadiationDetector);
+    UnloadTexture(characterLeft);
+    UnloadTexture(characterRight);
 }

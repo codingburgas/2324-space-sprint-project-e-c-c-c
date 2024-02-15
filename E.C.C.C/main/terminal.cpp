@@ -2,7 +2,7 @@
 #include <fstream>
 #include "raylib.h" 
 #include "game.hpp"
-#include "earth.hpp"
+#include "tasks.hpp"
 #include "settings.hpp"
 
 void terminal()
@@ -26,7 +26,8 @@ void terminal()
 		nameY = 205;
 		nameWidth = 205;
 	}
-	else {
+	else 
+	{
 		fontSize = 19;
 		nameX = 400;
 		nameY = 225;

@@ -6,7 +6,7 @@
 #include <vector>
 #include "game.hpp"
 #include "settings.hpp"
-#include "earth.hpp"
+#include "tasks.hpp"
 #include "terminal.hpp"
 #include "buy.hpp"
 #include "mainMenu.hpp"
@@ -86,6 +86,15 @@ void game()
     {
         levelsFile >> levelsPassed;
         levelsFile.close();
+    }
+
+    //Get value from levelsPassedMercury.csv
+    int levelsPassedMercury = 0;
+    std::ifstream levelsFileMercury("../data/levelsPassedMercury.csv");
+    if (levelsFileMercury.is_open())
+    {
+        levelsFileMercury >> levelsPassedMercury;
+        levelsFileMercury.close();
     }
 
     //std::vector is a template class from the Standard Template Library that represents dynamic array.
@@ -230,6 +239,13 @@ void game()
                     if (mercuryLockedCh == true)
                     {
                         buyMercury();
+                    }
+                    else
+                    {
+                        if (levelsPassedMercury != 1)
+                        {
+                            mercuryTaskOne();
+                        }
                     }
                 }
             }

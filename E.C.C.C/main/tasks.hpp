@@ -13,3 +13,5 @@ void taskOneTerminal();
 void taskTwoTerminal();
 
 void taskThreeTerminal();
+
+void mercuryTaskOne();
