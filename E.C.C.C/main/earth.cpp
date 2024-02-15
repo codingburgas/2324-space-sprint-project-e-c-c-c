@@ -318,23 +318,6 @@ void taskTwo()
             characterPosition.y = -character.height * characterScale;
         else if (characterPosition.y < -character.height * characterScale)
             characterPosition.y = screenHeight;
-        if (rockEquipped)
-        {
-            movementSpeed = 4;
-        }
-        if (dirtEquipped)
-        {
-            movementSpeed = 6;
-        }
-        if (IsKeyPressed(KEY_LEFT_SHIFT) && !(rockEquipped || dirtEquipped))
-        {
-            movementSpeed = 12;
-        }
-        if (IsKeyReleased(KEY_LEFT_SHIFT) && !(rockEquipped || dirtEquipped))
-        {
-            movementSpeed = 8;
-        }
-
 
         BeginDrawing();
 
@@ -394,7 +377,6 @@ void taskTwo()
         if (!rockEquipped)
         {
             DrawTextureEx(rock, rockPosition, 0.0f, 1.25f, WHITE);
-            movementSpeed = 8;
 
         }
 
@@ -412,7 +394,6 @@ void taskTwo()
         if (!dirtEquipped)
         {
             DrawTextureEx(dirt, dirtPosition, 0.0f, 1.25f, WHITE);
-            movementSpeed = 8;
         }
 
         // Draw machine
@@ -421,12 +402,19 @@ void taskTwo()
         if (rockEquipped == true)
         {
             DrawText("Holding rock", (GetScreenWidth() - MeasureText("Holding rock", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
-            movementSpeed = 4;
         }
         else if (dirtEquipped == true)
         {
             DrawText("Holding dirt", (GetScreenWidth() - MeasureText("Holding dirt", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
-            movementSpeed = 6;
+        }
+
+        if (IsKeyPressed(KEY_LEFT_SHIFT) and (!dirtEquipped and !rockEquipped))
+        {
+            movementSpeed = 12;
+        }
+        if (IsKeyReleased(KEY_LEFT_SHIFT) and (!dirtEquipped and !rockEquipped))
+        {
+            movementSpeed = 8;
         }
 
         if (IsKeyPressed(KEY_Q) and (rockEquipped or dirtEquipped))
