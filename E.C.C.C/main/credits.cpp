@@ -82,17 +82,17 @@ void credits()
         DrawTexture(konstantinNachev, (int)688, (int)slidingSpeed + 200, WHITE);
         DrawTexture(nikolaiKalashnik, (int)984, (int)slidingSpeed + 200, WHITE);
 
-        DrawTexture(VS, (int)96, (int)slidingSpeed + 950, WHITE);
-        DrawTexture(VSCode, (int)392, (int)slidingSpeed + 950, WHITE);
-        DrawTexture(GitHub, (int)688, (int)slidingSpeed + 950, WHITE);
-        DrawTexture(Discord, (int)984, (int)slidingSpeed + 950, WHITE);
-        DrawTexture(MSWord, (int)96, (int)slidingSpeed + 950 + 250, WHITE);
-        DrawTexture(MSExcel, (int)392, (int)slidingSpeed + 950 + 250, WHITE);
-        DrawTexture(MSPowerPoint, (int)688, (int)slidingSpeed + 950 + 250, WHITE);
-        DrawTexture(MSTeams, (int)984, (int)slidingSpeed + 950 + 250, WHITE);
+        DrawTexture(VS, (int)96, (int)slidingSpeed + 900, WHITE);
+        DrawTexture(VSCode, (int)392, (int)slidingSpeed + 900, WHITE);
+        DrawTexture(GitHub, (int)688, (int)slidingSpeed + 900, WHITE);
+        DrawTexture(Discord, (int)984, (int)slidingSpeed + 900, WHITE);
+        DrawTexture(MSWord, (int)96, (int)slidingSpeed + 900 + 250, WHITE);
+        DrawTexture(MSExcel, (int)392, (int)slidingSpeed + 900 + 250, WHITE);
+        DrawTexture(MSPowerPoint, (int)688, (int)slidingSpeed + 900 + 250, WHITE);
+        DrawTexture(MSTeams, (int)984, (int)slidingSpeed + 900 + 250, WHITE);
 
-        DrawTexture(Cpp, (int)540, (int)slidingSpeed + 1470 + 50, WHITE);
-        DrawTexture(Raylib, (int)550, (int)slidingSpeed + 1620 + 220, WHITE);
+        DrawTexture(Cpp, (int)392, (int)slidingSpeed + 1500, WHITE);
+        DrawTexture(Raylib, (int)688, (int)slidingSpeed + 1500, WHITE);
 
 
 
@@ -116,18 +116,19 @@ void credits()
         DrawText("Art Credits:", 50, (int)slidingSpeed + 670, 50, WHITE);
         DrawText("Art - Nikolai Kalashnik", 50, (int)slidingSpeed + 700 + 40, 30, WHITE);
 
-        DrawText("Technology and Tools:", 50, (int)slidingSpeed + 780 + 100, 30, WHITE);
-        DrawText("Visual Studio 2022", 96, (int)slidingSpeed + 1170, 20, WHITE);
-        DrawText(" Visual Studio Code", 392, (int)slidingSpeed + 1170, 20, WHITE);
-        DrawText("         GitHub", 688, (int)slidingSpeed + 1170, 20, WHITE);
-        DrawText("        Discord", 984, (int)slidingSpeed + 1170, 20, WHITE);
-        DrawText("        MS Word", 96, (int)slidingSpeed + 1180 + 240, 20, WHITE);
-        DrawText("        MS Excel", 392, (int)slidingSpeed + 1180 + 240, 20, WHITE);
-        DrawText("     MS PowerPoint", 688, (int)slidingSpeed + 1180 + 240, 20, WHITE);
-        DrawText("       MS Teams", 984, (int)slidingSpeed + 1180 + 240, 20, WHITE);
+        DrawText("Technology and Tools:", 50, (int)slidingSpeed + 780 + 50, 30, WHITE);
+        DrawText("Visual Studio 2022", 96, (int)slidingSpeed + 1120, 20, WHITE);
+        DrawText(" Visual Studio Code", 392, (int)slidingSpeed + 1120, 20, WHITE);
+        DrawText("         GitHub", 688, (int)slidingSpeed + 1120, 20, WHITE);
+        DrawText("        Discord", 984, (int)slidingSpeed + 1120, 20, WHITE);
+        DrawText("        MS Word", 96, (int)slidingSpeed + 1130 + 240, 20, WHITE);
+        DrawText("        MS Excel", 392, (int)slidingSpeed + 1130 + 240, 20, WHITE);
+        DrawText("     MS PowerPoint", 688, (int)slidingSpeed + 1130 + 240, 20, WHITE);
+        DrawText("       MS Teams", 984, (int)slidingSpeed + 1130 + 240, 20, WHITE);
 
-        DrawText("Programing languages:", 480, (int)slidingSpeed + 1470, 30, WHITE);
-        DrawText("Graphics Libraries:", 500, (int)slidingSpeed + 1520 + 250, 30, WHITE);
+        DrawText("Programing languages and Graphics libraries:", 300, (int)slidingSpeed + 1420, 30, WHITE);
+        DrawText("Contact us:", 550 , (int)slidingSpeed + 1750, 30, WHITE);
+        DrawText("Send e-mail to DPDimitralov@codingburgas.bg or find the others' e-mail in our repository.", 200, (int)slidingSpeed + 1800, 20, WHITE);
 
 
 
