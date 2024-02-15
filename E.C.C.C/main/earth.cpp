@@ -86,7 +86,7 @@ void taskOne()
             if (flaskEquipped)
                 DrawTextureEx(characterReversedFlask, characterPosition, 0.0f, characterScale, WHITE);
             else
-                DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+                DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
         }
         else if (IsKeyDown(KEY_D))
         {
@@ -146,11 +146,20 @@ void taskOne()
             // Check if E key is pressed to interact
             if (IsKeyPressed(KEY_E))
             {
-                std::ofstream moneyFile("../data/money.csv");
+                int money = 0;
+                //Get value from money.csv which is created when you complete Level1
+                std::ifstream moneyFile("../data/money.csv");
                 if (moneyFile.is_open())
                 {
-                    moneyFile << "200";  // Save earned money to a file
+                    moneyFile >> money;
                     moneyFile.close();
+                }
+
+                std::ofstream moneyFileOf("../data/money.csv");
+                if (moneyFileOf.is_open())
+                {
+                    moneyFileOf << money + 200;  // Save earned money to a file
+                    moneyFileOf.close();
                 }
 
                 std::ofstream levelFile("../data/levelsPassed.csv");
@@ -317,14 +326,15 @@ void taskTwo()
         {
             movementSpeed = 6;
         }
-        if (IsKeyPressed(KEY_LEFT_SHIFT)&&!rockEquipped||!dirtEquipped)
+        if (IsKeyPressed(KEY_LEFT_SHIFT) && !(rockEquipped || dirtEquipped))
         {
             movementSpeed = 12;
         }
-        if (IsKeyReleased(KEY_LEFT_SHIFT) && !rockEquipped || !dirtEquipped)
+        if (IsKeyReleased(KEY_LEFT_SHIFT) && !(rockEquipped || dirtEquipped))
         {
             movementSpeed = 8;
         }
+
 
         BeginDrawing();
 

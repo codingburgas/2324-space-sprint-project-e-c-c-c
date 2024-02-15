@@ -112,13 +112,11 @@ void credits()
         DrawText("Special Thanks:", 50, (int)slidingSpeed + 500, 50, WHITE);
 
         DrawText("Mentor - Bojidar Dimov", 50, (int)slidingSpeed + 530 + 40, 30, WHITE);
-        DrawText("Art - Nikolai Kalashnik", 50, (int)slidingSpeed + 570 + 40, 30, WHITE);
 
-        DrawText("Art and Sound Credits:", 50, (int)slidingSpeed + 670, 50, WHITE);
+        DrawText("Art Credits:", 50, (int)slidingSpeed + 670, 50, WHITE);
         DrawText("Art - Nikolai Kalashnik", 50, (int)slidingSpeed + 700 + 40, 30, WHITE);
-        DrawText("Sound Track - Boris Milev", 50, (int)slidingSpeed + 730 + 50, 30, WHITE);
 
-        DrawText("Technology_and_Tools:", 50, (int)slidingSpeed + 780 + 100, 30, WHITE);
+        DrawText("Technology and Tools:", 50, (int)slidingSpeed + 780 + 100, 30, WHITE);
         DrawText("Visual Studio 2022", 96, (int)slidingSpeed + 1170, 20, WHITE);
         DrawText(" Visual Studio Code", 392, (int)slidingSpeed + 1170, 20, WHITE);
         DrawText("         GitHub", 688, (int)slidingSpeed + 1170, 20, WHITE);
