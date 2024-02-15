@@ -469,7 +469,7 @@ void taskTwo()
                 std::ofstream moneyFileOf("../data/money.csv");
                 if (moneyFileOf.is_open())
                 {
-                    moneyFileOf << money + 200;  // Save earned money to a file
+                    moneyFileOf << money + 300;  // Save earned money to a file
                     moneyFileOf.close();
                 }
 
@@ -589,10 +589,6 @@ void taskTwoTerminal()
             
         if (counter == 1)
         {
-            if (IsKeyPressed(KEY_ENTER))
-            {
-                taskTwo();
-            }
             framesCounter += 10;
             BeginDrawing();
             ClearBackground(BLACK);
@@ -852,6 +848,29 @@ void taskThree()
             DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 40, 36, RAYWHITE);
             if (IsKeyPressed(KEY_E))
             {
+                int money = 0;
+                //Get value from money.csv which is created when you complete Level1
+                std::ifstream moneyFile("../data/money.csv");
+                if (moneyFile.is_open())
+                {
+                    moneyFile >> money;
+                    moneyFile.close();
+                }
+
+                std::ofstream moneyFileOf("../data/money.csv");
+                if (moneyFileOf.is_open())
+                {
+                    moneyFileOf << money + 400;  // Save earned money to a file
+                    moneyFileOf.close();
+                }
+
+                std::ofstream levelFile("../data/levelsPassed.csv");
+                if (levelFile.is_open())
+                {
+                    levelFile << "3";  // Save completed level to a file
+                    levelFile.close();
+                }
+
                 taskThreeTerminal();
             }
         }
