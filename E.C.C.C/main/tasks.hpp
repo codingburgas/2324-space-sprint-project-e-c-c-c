@@ -17,3 +17,9 @@ void taskThreeTerminal();
 void mercuryTaskOne();
 
 void mercuryTaskOneTerminal();
+
+void venusTaskOne();
+
+void marsTaskOne();
+
+void jupiterTaskOne();

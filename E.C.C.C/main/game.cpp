@@ -97,6 +97,33 @@ void game()
         levelsFileMercury.close();
     }
 
+    //Get value from levelsPassedVenus.csv
+    int levelsPassedVenus = 0;
+    std::ifstream levelsFileVenus("../data/levelsPassedVenus.csv");
+    if (levelsFileVenus.is_open())
+    {
+        levelsFileVenus >> levelsPassedVenus;
+        levelsFileVenus.close();
+    }
+
+    //Get value from levelsPassedMars.csv
+    int levelsPassedMars = 0;
+    std::ifstream levelsFileMars("../data/levelsPassedMars.csv");
+    if (levelsFileMars.is_open())
+    {
+        levelsFileMars >> levelsPassedMars;
+        levelsFileMars.close();
+    }
+
+    //Get value from levelsPassedJupiter.csv
+    int levelsPassedJupiter = 0;
+    std::ifstream levelsFileJupiter("../data/levelsPassedJupiter.csv");
+    if (levelsFileJupiter.is_open())
+    {
+        levelsFileJupiter >> levelsPassedJupiter;
+        levelsFileJupiter.close();
+    }
+
     //std::vector is a template class from the Standard Template Library that represents dynamic array.
     //push_back() is a member function of std::vector from STL. It's used to add elements at the end of the array
     std::vector<Vector2> starPositions;
@@ -258,6 +285,13 @@ void game()
                     {
                         buyVenus();
                     }
+                    else
+                    {
+                        if (levelsPassedVenus != 1)
+                        {
+                            venusTaskOne();
+                        }
+                    }
                 }
             }
             else if (CheckCollisionPointCircle(GetMousePosition(), Vector2{ earthX, earthY }, earthRadius))
@@ -292,6 +326,13 @@ void game()
                     {
                         buyMars();
                     }
+                    else
+                    {
+                        if (levelsPassedMars != 1)
+                        {
+                            marsTaskOne();
+                        }
+                    }
                 }
             }
             else if (CheckCollisionPointCircle(GetMousePosition(), Vector2{ jupiterX, jupiterY }, jupiterRadius))
@@ -302,6 +343,13 @@ void game()
                     if (jupiterLockedCh == true)
                     {
                         buyJupiter();
+                    }
+                    else
+                    {
+                        if (levelsPassedJupiter != 1)
+                        {
+                            jupiterTaskOne();
+                        }
                     }
                 }
             }
