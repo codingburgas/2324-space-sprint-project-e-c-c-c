@@ -22,7 +22,7 @@ void terminal()
 	if (fullscreen == true)
 	{
 		fontSize = 24;
-		nameX = 480;
+		nameX = 680;
 		nameY = 205;
 		nameWidth = 205;
 	}
