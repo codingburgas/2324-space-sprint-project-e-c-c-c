@@ -7,26 +7,32 @@
 #include "settings.hpp"
 #include "game.hpp"
 int taskText;
-
+int currentCharacter = getCharacterShop();
 float Vector2Distance(Vector2 v1, Vector2 v2)
 {
     float dx = v2.x - v1.x;
     float dy = v2.y - v1.y;
     return std::sqrt(dx * dx + dy * dy);
 }
-
 void taskOne()
 {
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
-
+    
     Texture2D background = LoadTexture("../assets/background/taskOneBackground.png");
     Texture2D character = LoadTexture("../assets/player/player.png");
+    Texture2D cookieCharacter = LoadTexture("../assets/player/cookiePlayer.png");
+    Texture2D diverCharacter = LoadTexture("../assets/player/diver.png");
     Texture2D characterFlask = LoadTexture("../assets/player/playerFlask.png");
+    Texture2D diverFlask = LoadTexture("../assets/player/diverFlask.png");
     Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
+    Texture2D diverReversed = LoadTexture("../assets/player/diverBack.png");
     Texture2D characterReversedFlask = LoadTexture("../assets/player/playerReversedFlask.png");
+    Texture2D diverReversedFlask = LoadTexture("../assets/player/diverFlaskBack.png");
     Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
+    Texture2D diverLeft = LoadTexture("../assets/player/diverLeft.png");
     Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
+    Texture2D diverRight = LoadTexture("../assets/player/diverRight.png");
     Texture2D flask = LoadTexture("../assets/tasks/flask.png");
     Texture2D machine = LoadTexture("../assets/tasks/machine.png");
 
@@ -39,6 +45,7 @@ void taskOne()
     int framesCounter = 0;
     int loadingBarWidth = 0;
     bool scanComplete = false;
+
 
     SetTargetFPS(60);
     SetExitKey(KEY_ESCAPE);
@@ -86,24 +93,63 @@ void taskOne()
         if (IsKeyDown(KEY_W))
         {
             if (flaskEquipped)
-                DrawTextureEx(characterReversedFlask, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 3)
+                {
+                    DrawTextureEx(diverReversedFlask, characterPosition, 0.0f, characterScale, WHITE);
+
+                }
+                if (currentCharacter == 1) DrawTextureEx(characterReversedFlask, characterPosition, 0.0f, characterScale, WHITE);
+            }  
             else
-                DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 3)
+                {
+                    DrawTextureEx(diverReversed, characterPosition, 0.0f, characterScale, WHITE);
+
+                }
+                if (currentCharacter == 1) DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
+
+            }
         }
         else if (IsKeyDown(KEY_D))
         {
-            DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
+            if (currentCharacter == 3)
+            {
+                DrawTextureEx(diverRight, characterPosition, 0.0f, characterScale, WHITE);
+
+            }
+            if (currentCharacter == 1) DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
         }
         else if (IsKeyDown(KEY_A))
         {
-            DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
+            if (currentCharacter == 3)
+            {
+                DrawTextureEx(diverLeft, characterPosition, 0.0f, characterScale, WHITE);
+
+            }
+            if(currentCharacter==1) DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
         }
         else
         {
             if (flaskEquipped)
-                DrawTextureEx(characterFlask, characterPosition, 0.0f, characterScale, WHITE);
+                if (currentCharacter == 3)
+                {
+                    DrawTextureEx(diverFlask, characterPosition, 0.0f, characterScale, WHITE);
+
+                }
+                if (currentCharacter == 1) DrawTextureEx(characterFlask, characterPosition, 0.0f, characterScale, WHITE);
             else
-                DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 3)
+                {
+                 DrawTextureEx(diverCharacter, characterPosition, 0.0f, characterScale, WHITE);
+
+                }
+                if (currentCharacter == 1) DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+            }
+                
+                
         }
 
         // Display message when close to flask
@@ -322,16 +368,27 @@ void taskTwo()
 
     Texture2D background = LoadTexture("../assets/background/taskOneBackground.png");
     Texture2D character = LoadTexture("../assets/player/player.png");
+    Texture2D diver = LoadTexture("../assets/player/diver.png");
     Texture2D characterRock = LoadTexture("../assets/player/playerRock.png");
+    Texture2D diverRock = LoadTexture("../assets/player/diverRock.png");
     Texture2D characterDirt = LoadTexture("../assets/player/playerDirt.png");
+    Texture2D diverDirt = LoadTexture("../assets/player/diverDirt.png");
     Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
+    Texture2D diverReversed = LoadTexture("../assets/player/diverReversed.png");
     Texture2D characterReversedRD = LoadTexture("../assets/player/playerRDReversed.png");
+    Texture2D diverReversedRD = LoadTexture("../assets/player/diverReversed.png");
     Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
+    Texture2D diverLeft = LoadTexture("../assets/player/diverLeft.png");
     Texture2D characterLeftRock = LoadTexture("../assets/player/playerLeftRock.png");
+    Texture2D diverLeftRock = LoadTexture("../assets/player/diverRockLeft.png");
     Texture2D characterLeftDirt = LoadTexture("../assets/player/playerLeftDirt.png");
+    Texture2D diverLeftDirt = LoadTexture("../assets/player/diverDirtLeft.png");
     Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
+    Texture2D diverRight = LoadTexture("../assets/player/diverRight.png");
     Texture2D characterRightRock = LoadTexture("../assets/player/playerRightRock.png");
+    Texture2D diverRightRock = LoadTexture("../assets/player/diverRockRight.png");
     Texture2D characterRightDirt = LoadTexture("../assets/player/playerRightDirt.png");
+    Texture2D diverRightDirt = LoadTexture("../assets/player/diverDirtRight.png");
     Texture2D rock = LoadTexture("../assets/tasks/rock.png");
     Texture2D dirt = LoadTexture("../assets/tasks/dirt.png");
     Texture2D machine = LoadTexture("../assets/tasks/machine.png");
@@ -402,211 +459,330 @@ void taskTwo()
         if (IsKeyDown(KEY_W))
         {
             if (rockEquipped or dirtEquipped)
-                DrawTextureEx(characterReversedRD, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 1)
+                {
+                    DrawTextureEx(characterReversedRD, characterPosition, 0.0f, characterScale, WHITE);
+                }
+                if (currentCharacter == 2)
+                    if (currentCharacter == 3)
+                    {
+                        DrawTextureEx(diverReversedRD, characterPosition, 0.0f, characterScale, WHITE);
+                    }
+            }
+
             else
-                DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 1)
+                {
+                    DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
+                }
+                if (currentCharacter == 2)
+                    if (currentCharacter == 3)
+                    {
+                        DrawTextureEx(diverReversed, characterPosition, 0.0f, characterScale, WHITE);
+                    }
+            }
+
         }
         else if (IsKeyDown(KEY_D))
         {
             if (rockEquipped)
-                DrawTextureEx(characterRightRock, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 1)
+                {
+                    DrawTextureEx(characterRightRock, characterPosition, 0.0f, characterScale, WHITE);
+                }
+                if (currentCharacter == 2)
+                    if (currentCharacter == 3)
+                    {
+                        DrawTextureEx(diverRightRock, characterPosition, 0.0f, characterScale, WHITE);
+                    }
+
+            }
+
             else if (dirtEquipped)
-                DrawTextureEx(characterRightDirt, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 1)
+                {
+                    DrawTextureEx(characterRightDirt, characterPosition, 0.0f, characterScale, WHITE);
+                }
+                if (currentCharacter == 2)
+                    if (currentCharacter == 3)
+                    {
+                        DrawTextureEx(diverRightDirt, characterPosition, 0.0f, characterScale, WHITE);
+                    }
+
+            }
+
             else
-                DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 1)
+                {
+                    DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
+                }
+                if (currentCharacter == 2)
+                    if (currentCharacter == 3)
+                    {
+                        DrawTextureEx(diverRight, characterPosition, 0.0f, characterScale, WHITE);
+                    }
+            }
+
         }
         else if (IsKeyDown(KEY_A))
         {
             if (rockEquipped)
-                DrawTextureEx(characterLeftRock, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 1)
+                {
+                    DrawTextureEx(characterLeftRock, characterPosition, 0.0f, characterScale, WHITE);
+                }
+                if (currentCharacter == 2)
+                    if (currentCharacter == 3)
+                    {
+                        DrawTextureEx(diverLeftRock, characterPosition, 0.0f, characterScale, WHITE);
+                    }
+
+            }
+
             else if (dirtEquipped)
-                DrawTextureEx(characterLeftDirt, characterPosition, 0.0f, characterScale, WHITE);
-            DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 1)
+                {
+                    DrawTextureEx(characterLeftDirt, characterPosition, 0.0f, characterScale, WHITE);
+                }
+                if (currentCharacter == 2)
+                    if (currentCharacter == 3)
+                    {
+                        DrawTextureEx(diverLeftDirt, characterPosition, 0.0f, characterScale, WHITE);
+                    }
+
+            }
+            if (currentCharacter == 1)
+            {
+                DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
+            }
+            if (currentCharacter == 2)
+                if (currentCharacter == 3)
+                {
+                    DrawTextureEx(diverLeft, characterPosition, 0.0f, characterScale, WHITE);
+                }
         }
         else
         {
             if (rockEquipped)
-                DrawTextureEx(characterRock, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 1)
+                {
+                    DrawTextureEx(characterRock, characterPosition, 0.0f, characterScale, WHITE);
+                }
+                if (currentCharacter == 2)
+                    if (currentCharacter == 3)
+                    {
+                        DrawTextureEx(diverRock, characterPosition, 0.0f, characterScale, WHITE);
+                    }
+            }
             else if (dirtEquipped)
-                DrawTextureEx(characterDirt, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 1)
+                {
+                    DrawTextureEx(characterDirt, characterPosition, 0.0f, characterScale, WHITE);
+                }
+                if (currentCharacter == 2)
+                    if (currentCharacter == 3)
+                    {
+                        DrawTextureEx(diverDirt, characterPosition, 0.0f, characterScale, WHITE);
+                    }
+            }
+
             else
-                DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
-
-        }
-
-
-        // Draw rock if not equipped
-        if (!rockEquipped)
-        {
-            DrawTextureEx(rock, rockPosition, 0.0f, 1.25f, WHITE);
-
-        }
-        // Draw dirt if not equipped
-        if (!dirtEquipped)
-        {
-            DrawTextureEx(dirt, dirtPosition, 0.0f, 1.25f, WHITE);
-        }
-
-        // Draw machine
-        DrawTextureEx(machine, machinePosition, 0.0f, 4.5f, WHITE);
-
-
-        if (IsKeyPressed(KEY_LEFT_SHIFT) and (!dirtEquipped and !rockEquipped))
-        {
-            movementSpeed = 12;
-        }
-        if (IsKeyReleased(KEY_LEFT_SHIFT) and (!dirtEquipped and !rockEquipped))
-        {
-            movementSpeed = 8;
-        }
-
-        if (IsKeyPressed(KEY_Q) and (rockEquipped or dirtEquipped))
-        {
-            if (rockEquipped)
             {
-                rockEquipped = !rockEquipped;
-                rockPosition.x = characterPosition.x + 45;
-                rockPosition.y = characterPosition.y + 100;
-
-            }
-            else if (dirtEquipped)
-            {
-                dirtEquipped = !dirtEquipped;
-                dirtPosition.x = characterPosition.x + 50;
-                dirtPosition.y = characterPosition.y + 100;
-
-            }
-        }
-
-        //if (distanceToMachine < 120.0f && flaskEquipped)
-        if (distanceToMachine < 120.0f and dirtEquipped)
-        {
-            DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
-
-            // Check if E key is pressed to interact
-            if (IsKeyPressed(KEY_E))
-            {
-                counter = 1;
-                taskTwoTerminal();
-            }
-        }
-
-        if (distanceToMachine < 120.0f and (rockEquipped and counter == 1))
-        {
-            DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
-
-            // Check if E key is pressed to interact
-            if (IsKeyPressed(KEY_E))
-            {
-                int money = 0;
-                //Get value from money.csv which is created when you complete Level1
-                std::ifstream moneyFile("../data/money.csv");
-                if (moneyFile.is_open())
+                if (currentCharacter == 1)
                 {
-                    moneyFile >> money;
-                    moneyFile.close();
+                    DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+                }
+                if (currentCharacter == 2)
+                    if (currentCharacter == 3)
+                    {
+                        DrawTextureEx(diver, characterPosition, 0.0f, characterScale, WHITE);
+                    }
+            }
+
+
+            // Draw rock if not equipped
+            if (!rockEquipped)
+            {
+                DrawTextureEx(rock, rockPosition, 0.0f, 1.25f, WHITE);
+            }
+            // Draw dirt if not equipped
+            if (!dirtEquipped)
+            {
+                DrawTextureEx(dirt, dirtPosition, 0.0f, 1.25f, WHITE);
+            }
+
+            // Draw machine
+            DrawTextureEx(machine, machinePosition, 0.0f, 4.5f, WHITE);
+
+
+            if (IsKeyPressed(KEY_LEFT_SHIFT) and (!dirtEquipped and !rockEquipped))
+            {
+                movementSpeed = 12;
+            }
+            if (IsKeyReleased(KEY_LEFT_SHIFT) and (!dirtEquipped and !rockEquipped))
+            {
+                movementSpeed = 8;
+            }
+
+            if (IsKeyPressed(KEY_Q) and (rockEquipped or dirtEquipped))
+            {
+                if (rockEquipped)
+                {
+                    rockEquipped = !rockEquipped;
+                    rockPosition.x = characterPosition.x + 45;
+                    rockPosition.y = characterPosition.y + 100;
+
+                }
+                else if (dirtEquipped)
+                {
+                    dirtEquipped = !dirtEquipped;
+                    dirtPosition.x = characterPosition.x + 50;
+                    dirtPosition.y = characterPosition.y + 100;
+
+                }
+            }
+
+            //if (distanceToMachine < 120.0f && flaskEquipped)
+            if (distanceToMachine < 120.0f and dirtEquipped)
+            {
+                DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+
+                // Check if E key is pressed to interact
+                if (IsKeyPressed(KEY_E))
+                {
+                    counter = 1;
+                    taskTwoTerminal();
+                }
+            }
+
+            if (distanceToMachine < 120.0f and (rockEquipped and counter == 1))
+            {
+                DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+
+                // Check if E key is pressed to interact
+                if (IsKeyPressed(KEY_E))
+                {
+                    int money = 0;
+                    //Get value from money.csv which is created when you complete Level1
+                    std::ifstream moneyFile("../data/money.csv");
+                    if (moneyFile.is_open())
+                    {
+                        moneyFile >> money;
+                        moneyFile.close();
+                    }
+
+                    std::ofstream moneyFileOf("../data/money.csv");
+                    if (moneyFileOf.is_open())
+                    {
+                        moneyFileOf << money + 300;  // Save earned money to a file
+                        moneyFileOf.close();
+                    }
+
+                    std::ofstream levelFile("../data/levelsPassed.csv");
+                    if (levelFile.is_open())
+                    {
+                        levelFile << "2";  // Save completed level to a file
+                        levelFile.close();
+                    }
+                    levelPassed = true;
+                    counter = 2;
+                    taskTwoTerminal();
+                }
+            }
+            if (rockEquipped == true)
+            {
+                DrawText("Holding rock", (GetScreenWidth() - MeasureText("Holding rock", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
+            }
+            else if (dirtEquipped == true)
+            {
+                DrawText("Holding dirt", (GetScreenWidth() - MeasureText("Holding dirt", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
+            }
+            // Display message when close to rock
+            if (distanceToRock < 80.0f and !dirtEquipped and distanceToDirt > 80.0f and !rockEquipped)
+            {
+                DrawText("Press R to pick up the rock", (GetScreenWidth() - MeasureText("Press R to pick up the rock", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+                if (IsKeyDown(KEY_R))
+                {
+                    rockEquipped = true;
+                    rockPickedUpPosition = rockPosition;
+
+                }
+            }
+            // Display message when close to dirt
+            if (distanceToDirt < 80.0f and !rockEquipped and distanceToRock > 80.0f and !dirtEquipped)
+            {
+                DrawText("Press R to pick up dirt", (GetScreenWidth() - MeasureText("Press R to pick up dirt", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+                if (IsKeyDown(KEY_R))
+                {
+                    dirtEquipped = true;
+                }
+            }
+            DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
+            DrawText("Press ESC to quit", 10, 30, 24, WHITE);
+            DrawText("Press Q to drop", 10, 50, 24, WHITE);
+
+            while (dirtEquipped and counter == 1)
+            {
+                if (fullscreen == true)
+                {
+                    DrawText("Task: Drop dirt and pick up rock", 500, 10, 24, WHITE);
+                    break;
+                }
+                if (fullscreen != true)
+                {
+                    DrawText("Task: Drop dirt and pick up rock", 400, 10, 24, WHITE);
+                    break;
                 }
 
-                std::ofstream moneyFileOf("../data/money.csv");
-                if (moneyFileOf.is_open())
-                {
-                    moneyFileOf << money + 300;  // Save earned money to a file
-                    moneyFileOf.close();
-                }
-
-                std::ofstream levelFile("../data/levelsPassed.csv");
-                if (levelFile.is_open())
-                {
-                    levelFile << "2";  // Save completed level to a file
-                    levelFile.close();
-                }
-                levelPassed = true;
-                counter = 2;
-                taskTwoTerminal();
             }
-        }
-        if (rockEquipped == true)
-        {
-            DrawText("Holding rock", (GetScreenWidth() - MeasureText("Holding rock", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
-        }
-        else if (dirtEquipped == true)
-        {
-            DrawText("Holding dirt", (GetScreenWidth() - MeasureText("Holding dirt", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
-        }
-        // Display message when close to rock
-        if (distanceToRock < 80.0f and !dirtEquipped and distanceToDirt > 80.0f and !rockEquipped)
-        {
-            DrawText("Press R to pick up the rock", (GetScreenWidth() - MeasureText("Press R to pick up the rock", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
-            if (IsKeyDown(KEY_R))
+
+
+            if (counter == 0 and fullscreen == true)
             {
-                rockEquipped = true;
-                rockPickedUpPosition = rockPosition;
-
+                DrawText("Task: Bring dirt to the machine", 500, 10, 24, WHITE);
             }
-        }
-        // Display message when close to dirt
-        if (distanceToDirt < 80.0f and !rockEquipped and distanceToRock > 80.0f and !dirtEquipped)
-        {
-            DrawText("Press R to pick up dirt", (GetScreenWidth() - MeasureText("Press R to pick up dirt", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
-            if (IsKeyDown(KEY_R))
+            if (counter == 0 and fullscreen != true)
             {
-                dirtEquipped = true;
+                DrawText("Task: Bring dirt to the machine", 400, 10, 24, WHITE);
             }
-        }
-        DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
-        DrawText("Press ESC to quit", 10, 30, 24, WHITE);
-        DrawText("Press Q to drop", 10, 50, 24, WHITE);
-
-        while (dirtEquipped and counter == 1)
-        {
-            if (fullscreen == true)
+            if (counter == 1 and dirtEquipped == false and !levelPassed and fullscreen == true)
             {
-                DrawText("Task: Drop dirt and pick up rock", 500, 10, 24, WHITE);
-                break;
+                DrawText("Task: Bring a rock to the machine", 500, 10, 24, WHITE);
             }
-            if (fullscreen != true)
+            if (counter == 1 and dirtEquipped == false and !levelPassed and fullscreen != true)
             {
-                DrawText("Task: Drop dirt and pick up rock", 400, 10, 24, WHITE);
-                break;
+                DrawText("Task: Bring a rock to the machine", 400, 10, 24, WHITE);
             }
 
+            EndDrawing();
         }
+        
 
-
-        if (counter == 0 and fullscreen == true)
-        {
-            DrawText("Task: Bring dirt to the machine", 500, 10, 24, WHITE);
-        }
-        if (counter == 0 and fullscreen != true)
-        {
-            DrawText("Task: Bring dirt to the machine", 400, 10, 24, WHITE);
-        }
-        if (counter == 1 and dirtEquipped == false and !levelPassed and fullscreen == true)
-        {
-            DrawText("Task: Bring a rock to the machine", 500, 10, 24, WHITE);
-        }
-        if (counter == 1 and dirtEquipped == false and !levelPassed and fullscreen != true)
-        {
-            DrawText("Task: Bring a rock to the machine", 400, 10, 24, WHITE);
-        }
-
-        EndDrawing();
     }
-    UnloadTexture(rock);
-    UnloadTexture(dirt);
-    UnloadTexture(machine);
-    UnloadTexture(character);
-    UnloadTexture(characterReversed);
-    UnloadTexture(background);
-    UnloadTexture(characterRock);
-    UnloadTexture(characterDirt);
-    UnloadTexture(characterReversedRD);
-    UnloadTexture(characterLeft);
-    UnloadTexture(characterLeftRock);
-    UnloadTexture(characterLeftDirt);
-    UnloadTexture(characterRight);
-    UnloadTexture(characterRightDirt);
-    UnloadTexture(characterRightRock);
+        UnloadTexture(rock);
+        UnloadTexture(dirt);
+        UnloadTexture(machine);
+        UnloadTexture(character);
+        UnloadTexture(characterReversed);
+        UnloadTexture(background);
+        UnloadTexture(characterRock);
+        UnloadTexture(characterDirt);
+        UnloadTexture(characterReversedRD);
+        UnloadTexture(characterLeft);
+        UnloadTexture(characterLeftRock);
+        UnloadTexture(characterLeftDirt);
+        UnloadTexture(characterRight);
+        UnloadTexture(characterRightDirt);
+        UnloadTexture(characterRightRock);
 }
 int rockDirt;
 
@@ -720,15 +896,20 @@ void taskThree()
     // Load textures
     Texture2D background = LoadTexture("../assets/background/taskOneBackground.png");
     Texture2D character = LoadTexture("../assets/player/player.png");
+    Texture2D diver = LoadTexture("../assets/player/diver.png");
     Texture2D characterRadiationDetector = LoadTexture("../assets/player/playerRadiationDetector.png");
+    Texture2D diverRadiationDetector = LoadTexture("../assets/player/diverRadiationDetector.png");
     Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
+    Texture2D diverReversed = LoadTexture("../assets/player/diverBack.png");
     Texture2D characterReversedRadiationDetector = LoadTexture("../assets/player/playerReversedRadiationDetector.png");
+    Texture2D diverReversedRadiationDetector = LoadTexture("../assets/player/diverReversedRadiationBack.png");
     Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
+    Texture2D diverLeft = LoadTexture("../assets/player/diverLeft.png");
     Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
+    Texture2D diverRight = LoadTexture("../assets/player/diverRight.png");
     Texture2D radiationDetector = LoadTexture("../assets/tasks/radiationDetector.png");
     Texture2D machine = LoadTexture("../assets/tasks/machine.png");
 
-    // Initialize positions and variables
     Vector2 radiationDetectorPosition = { (float)GetRandomValue(0, screenWidth - radiationDetector.width - 100), (float)GetRandomValue(0, screenHeight - radiationDetector.height - 100) };
     Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
     Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
@@ -796,18 +977,56 @@ void taskThree()
         }
         else if (IsKeyDown(KEY_D))
         {
-            DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
+            if (currentCharacter == 1)
+            {
+                DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
+            }
+            if (currentCharacter == 2)
+                if (currentCharacter == 3)
+                {
+                    DrawTextureEx(diverRight, characterPosition, 0.0f, characterScale, WHITE);
+                }
+
         }
         else if (IsKeyDown(KEY_A))
         {
-            DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
+            if (currentCharacter == 1)
+            {
+                DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
+            }
+            if (currentCharacter == 2)
+                if (currentCharacter == 3)
+                {
+                    DrawTextureEx(diverLeft, characterPosition, 0.0f, characterScale, WHITE);
+                }
         }
         else
         {
             if (radiationDetectorEquipped)
-                DrawTextureEx(characterRadiationDetector, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 1)
+                {
+                    DrawTextureEx(characterRadiationDetector, characterPosition, 0.0f, characterScale, WHITE);
+                }
+                if (currentCharacter == 2)
+                    if (currentCharacter == 3)
+                    {
+                        DrawTextureEx(diverRadiationDetector, characterPosition, 0.0f, characterScale, WHITE);
+                    }
+            }
             else
-                DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 1)
+                {
+                    DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+                }
+                if (currentCharacter == 2)
+                    if (currentCharacter == 3)
+                    {
+                        DrawTextureEx(diver, characterPosition, 0.0f, characterScale, WHITE);
+                    }
+            }
+
         }
 
         // Display message when close to radiationDetector
@@ -958,6 +1177,7 @@ void taskThree()
     UnloadTexture(characterRadiationDetector);
     UnloadTexture(characterLeft);
     UnloadTexture(characterRight);
+
 }
 
 
@@ -1007,19 +1227,23 @@ void taskThreeTerminal()
     // Unload the font when done
     UnloadFont(font);
 }
-
 void mercuryTaskOne()
 {
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
-
     Texture2D background = LoadTexture("../assets/background/mercuryBackground.png");
     Texture2D character = LoadTexture("../assets/player/player.png");
+    Texture2D diver = LoadTexture("../assets/player/diver.png");
     Texture2D characterFlask = LoadTexture("../assets/player/playerFlask.png");
+    Texture2D diverFlask = LoadTexture("../assets/player/diverFlask.png");
     Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
+    Texture2D diverReversed = LoadTexture("../assets/player/diverBack.png");
     Texture2D characterReversedFlask = LoadTexture("../assets/player/playerReversedFlask.png");
+    Texture2D diverReversedFlask = LoadTexture("../assets/player/diverFlaskBack.png");
     Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
+    Texture2D diverLeft = LoadTexture("../assets/player/diverLeft.png");
     Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
+    Texture2D diverRight = LoadTexture("../assets/player/diverRight.png");
     Texture2D flask = LoadTexture("../assets/tasks/flask.png");
     Texture2D machine = LoadTexture("../assets/tasks/mercuryMachine.png");
 
@@ -1085,24 +1309,87 @@ void mercuryTaskOne()
         if (IsKeyDown(KEY_W))
         {
             if (flaskEquipped)
-                DrawTextureEx(characterReversedFlask, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 1)
+                {
+                    DrawTextureEx(characterReversedFlask, characterPosition, 0.0f, characterScale, WHITE);
+                }
+                if (currentCharacter == 2);
+                if (currentCharacter == 3)
+                {
+                    DrawTextureEx(diverReversedFlask, characterPosition, 0.0f, characterScale, WHITE);
+                }
+            }
+                
             else
-                DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 1) 
+                {
+                    DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
+                }
+                if (currentCharacter == 2);
+                if (currentCharacter == 3)
+                {
+                    DrawTextureEx(diverReversed, characterPosition, 0.0f, characterScale, WHITE);
+                }
+            }
+                
         }
         else if (IsKeyDown(KEY_D))
         {
-            DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
+            if (currentCharacter == 1)
+            {
+                DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
+            }
+            if (currentCharacter == 2);
+            if (currentCharacter == 3)
+            {
+                DrawTextureEx(diverRight, characterPosition, 0.0f, characterScale, WHITE);
+            }
+            
         }
         else if (IsKeyDown(KEY_A))
         {
-            DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
+            if (currentCharacter == 1)
+            {
+                DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
+            }
+            if (currentCharacter == 2);
+            if (currentCharacter == 3)
+            {
+                DrawTextureEx(diverLeft, characterPosition, 0.0f, characterScale, WHITE);
+            }
+            
         }
         else
         {
             if (flaskEquipped)
-                DrawTextureEx(characterFlask, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 1);
+                {
+                    if (currentCharacter == 1)DrawTextureEx(characterFlask, characterPosition, 0.0f, characterScale, WHITE);
+                }
+                if (currentCharacter == 2);
+                if (currentCharacter == 3)
+                {
+                    DrawTextureEx(diverFlask, characterPosition, 0.0f, characterScale, WHITE);
+                }
+
+            }
+
             else
-                DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+            {
+                if (currentCharacter == 1)
+                {
+                    DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+                }
+                if (currentCharacter == 2);
+                if (currentCharacter == 3)
+                {
+                    DrawTextureEx(diver, characterPosition, 0.0f, characterScale, WHITE);
+                }
+            }
+                
         }
 
         // Display message when close to flask
@@ -1248,11 +1535,10 @@ void mercuryTaskOne()
     UnloadTexture(characterRight);
 }
 
-
 void mercuryTaskOneTerminal()
 {
     const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
+    const int screenHeigh; = GetScreenHeight();
 
     char taskOneLaunchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
     char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Atmosphere contents:";
@@ -1312,7 +1598,7 @@ void mercuryTaskOneTerminal()
 void venusTaskOne()
 {
     const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
+    const int screenHeigh; = GetScreenHeight();
 
     Texture2D background = LoadTexture("../assets/background/mercuryBackground.png");
     Texture2D character = LoadTexture("../assets/player/player.png");
@@ -1521,7 +1807,7 @@ void venusTaskOne()
 void marsTaskOne()
 {
     const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
+    const int screenHeigh; = GetScreenHeight();
 
     Texture2D background = LoadTexture("../assets/background/mercuryBackground.png");
     Texture2D character = LoadTexture("../assets/player/player.png");
@@ -1730,7 +2016,7 @@ void marsTaskOne()
 void jupiterTaskOne()
 {
     const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
+    const int screenHeigh; = GetScreenHeight();
 
     Texture2D background = LoadTexture("../assets/background/mercuryBackground.png");
     Texture2D character = LoadTexture("../assets/player/player.png");
