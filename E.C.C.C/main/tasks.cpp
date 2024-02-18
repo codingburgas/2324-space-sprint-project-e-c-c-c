@@ -80,7 +80,7 @@ void taskOne()
 
         ClearBackground(DARKGREEN);
 
-        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2 - 10, WHITE);
+        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
 
         // Draw character
         if (IsKeyDown(KEY_W))
@@ -173,20 +173,23 @@ void taskOne()
             flaskPosition.x = characterPosition.x + 48;
             flaskPosition.y = characterPosition.y + 115;
         }
-        if (flaskEquipped and IsKeyDown(KEY_SPACE) and !scanComplete)
+
+        if (flaskEquipped && IsKeyDown(KEY_SPACE) && !scanComplete)
         {
+            if(!fullscreen)
+            { 
             // Draw loading bar background
-            DrawRectangle(480, screenHeight - 170, 300, 40, LIGHTGRAY);
-            DrawRectangle(480, screenHeight - 170, loadingBarWidth, 40, GRAY); // Draw loading bar
+            DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 250, 300, 40, LIGHTGRAY);
+            DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 250, loadingBarWidth, 40, DARKGREEN); // Draw loading bar
 
             // Draw "Measuring..." text
             if ((framesCounter / 59) % 2 == 0)
             {
-                DrawText("Filling...", 600, screenHeight - 160, 20, WHITE);
+                DrawText("Filling...", GetScreenWidth() / 2-30, GetScreenHeight() / 2 + 260, 20, WHITE);
             }
             if (scanComplete)
             {
-                DrawText("Complete", 400, 10, 36, WHITE);
+                DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 220, 36, WHITE);
             }
 
             framesCounter += 4;
@@ -198,6 +201,35 @@ void taskOne()
                 {
                     scanComplete = true;
                     loadingBarWidth = 0;
+                }
+            }
+            }
+            else
+            {
+                // Draw loading bar background
+                DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 430, 300, 40, LIGHTGRAY);
+                DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 430, loadingBarWidth, 40, DARKGREEN); // Draw loading bar
+
+                // Draw "Measuring..." text
+                if ((framesCounter / 59) % 2 == 0)
+                {
+                    DrawText("Filling...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 440, 20, WHITE);
+                }
+                if (scanComplete)
+                {
+                    DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 400, 36, WHITE);
+                }
+
+                framesCounter += 4;
+                if (framesCounter >= 60)
+                {
+                    framesCounter = 0;
+                    loadingBarWidth += 10;
+                    if (loadingBarWidth >= 310)
+                    {
+                        scanComplete = true;
+                        loadingBarWidth = 0;
+                    }
                 }
             }
         }
@@ -229,7 +261,7 @@ void taskOneTerminal()
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
     char taskOneLaunchingTerminal[] = "####     E.C.C.C     X64     LAUNCHING     TERMINAL     ####";
-    char terminalMessage[] = " ./ E.C.C.C> Scan complete. \n\n\n./ E.C.C.C> contents:";
+    char terminalMessage[] = " . / E.C.C.C> Scan complete. \n\n\n. / E.C.C.C> Contents:";
     char oxygenAmount[] = "~Oxygen: 20.95 %";
     char nitrogenAmount[] = "~ Nitrogen: 78.08 %";
     char argonAmount[] = "~ Argon: 0.93 %";
@@ -240,22 +272,21 @@ void taskOneTerminal()
     int framesCounter = 0;
     float nameX = 0;
     int fontSize;
-    if (fullscreen == true)
-    {
-        fontSize = 22;
-        nameX = 465;
-    }
-    else
-    {
-        fontSize = 18;
-        nameX = 365;
-    }
 
     Font font = LoadFont("../2324-space-sprint-project-e-c-c-c/E.C.C.C/assets/vcrOsd.ttf");
 
     SetTargetFPS(60);
     SetExitKey(KEY_ESCAPE);
-
+    if (fullscreen == true)
+    {
+        fontSize = 22;
+        nameX = 600;
+    }
+    else
+    {
+        fontSize = 18;
+        nameX = 335;
+    }
     while (!WindowShouldClose())
     {
         framesCounter += 10;
@@ -584,7 +615,7 @@ void taskTwoTerminal()
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
 
-    char taskOneLaunchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
+    char launchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
     char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Rock contents:";
     char terminalMessageTwo[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Dirt contents:";
     char plagioclaseAmount[] = "~ Plagioclase : 42 %";
@@ -608,11 +639,11 @@ void taskTwoTerminal()
     if (fullscreen == true)
     {
         fontSize = 22;
-        nameX = 465;
+        nameX = 530;
     }
     else {
         fontSize = 18;
-        nameX = 365;
+        nameX = 400;
     }
 
     Font font = LoadFont("../2324-space-sprint-project-e-c-c-c/E.C.C.C/assets/vcrOsd.ttf");
@@ -629,7 +660,14 @@ void taskTwoTerminal()
             framesCounter += 10;
             BeginDrawing();
             ClearBackground(BLACK);
-            DrawTextEx(font, TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), Vector2{ nameX, 10 }, fontSize, 2, WHITE);
+            if (!fullscreen)
+            {
+                DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX - 100, 10 }, fontSize, 3, WHITE);
+            }
+            else
+            {
+                DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX + 20, 10 }, fontSize, 3, WHITE);
+            }
             DrawTextEx(font, TextSubtext(terminalMessageTwo, 0, framesCounter / 10), Vector2{ 40, 250 }, fontSize, 2, WHITE);
             DrawTextEx(font, TextSubtext(waterAmount, 0, framesCounter / 10), Vector2{ 135, 350 }, fontSize, 2, WHITE);
             DrawTextEx(font, TextSubtext(gasAmount, 0, framesCounter / 10), Vector2{ 135, 400 }, fontSize, 2, WHITE);
@@ -651,7 +689,14 @@ void taskTwoTerminal()
             framesCounter += 10;
             BeginDrawing();
             ClearBackground(BLACK);
-            DrawTextEx(font, TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), Vector2{ nameX, 10 }, 20, 2, WHITE);
+            if (!fullscreen)
+            {
+                DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX - 100, 10 }, fontSize, 3, WHITE);
+            }
+            else
+            {
+                DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX + 20, 10 }, fontSize, 3, WHITE);
+            }
             DrawTextEx(font, TextSubtext(terminalMessage, 0, framesCounter / 10), Vector2{ 40, 300 }, 20, 2, WHITE);
             DrawTextEx(font, TextSubtext(plagioclaseAmount, 0, framesCounter / 10), Vector2{ 135, 400 }, 20, 2, WHITE);
             DrawTextEx(font, TextSubtext(feldsparAmount, 0, framesCounter / 10), Vector2{ 135, 450 }, 20, 2, WHITE);
@@ -797,30 +842,62 @@ void taskThree()
             DrawText("Hold SPACE to measure radiation level", (GetScreenWidth() - MeasureText("Hold SPACE to measure radiation level", 36)) / 2, GetScreenHeight() - 80, 36, RAYWHITE);
 
             // Draw loading bar if SPACE is held down
-            if (IsKeyDown(KEY_SPACE))
+            if (radiationDetectorEquipped && IsKeyDown(KEY_SPACE) && !scanComplete)
             {
-                // Draw loading bar background
-                DrawRectangle(480, GetScreenHeight() - 170, 300, 40, LIGHTGRAY);
-                DrawRectangleLines(480, GetScreenHeight() - 170, 300, 40, GRAY);
-
-                // Draw loading bar
-                DrawRectangle(480, GetScreenHeight() - 170, loadingBarWidth, 40, GRAY);
-
-                // Draw "Measuring..." text
-                if ((framesCounter / 59) % 2 == 0)
+                if (!fullscreen)
                 {
-                    DrawText("Measuring...", 580, GetScreenHeight() - 160, 20, WHITE);
-                }
+                    // Draw loading bar background
+                    DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 200, 300, 40, LIGHTGRAY);
+                    DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 200, loadingBarWidth, 40, DARKGREEN); // Draw loading bar
 
-                framesCounter += 4;
-                if (framesCounter >= 60)
-                {
-                    framesCounter = 0;
-                    loadingBarWidth += 10;
-                    if (loadingBarWidth >= 310)
+                    // Draw "Measuring..." text
+                    if ((framesCounter / 59) % 2 == 0)
                     {
-                        scanComplete = true;
-                        loadingBarWidth = 0;
+                        DrawText("Filling...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 210, 20, WHITE);
+                    }
+                    if (scanComplete)
+                    {
+                        DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 210, 36, WHITE);
+                    }
+
+                    framesCounter += 4;
+                    if (framesCounter >= 60)
+                    {
+                        framesCounter = 0;
+                        loadingBarWidth += 10;
+                        if (loadingBarWidth >= 310)
+                        {
+                            scanComplete = true;
+                            loadingBarWidth = 0;
+                        }
+                    }
+                }
+                else
+                {
+                    // Draw loading bar background
+                    DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 380, 300, 40, LIGHTGRAY);
+                    DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 380, loadingBarWidth, 40, DARKGREEN); // Draw loading bar
+
+                    // Draw "Measuring..." text
+                    if ((framesCounter / 59) % 2 == 0)
+                    {
+                        DrawText("Filling...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 390, 20, WHITE);
+                    }
+                    if (scanComplete)
+                    {
+                        DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 400, 36, WHITE);
+                    }
+
+                    framesCounter += 4;
+                    if (framesCounter >= 60)
+                    {
+                        framesCounter = 0;
+                        loadingBarWidth += 10;
+                        if (loadingBarWidth >= 310)
+                        {
+                            scanComplete = true;
+                            loadingBarWidth = 0;
+                        }
                     }
                 }
             }
@@ -996,7 +1073,7 @@ void mercuryTaskOne()
 
         ClearBackground(DARKGREEN);
 
-        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2 - 10, WHITE);
+        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
 
         // Draw flask if not equipped
         if (!flaskEquipped)
@@ -1052,31 +1129,62 @@ void mercuryTaskOne()
             flaskPosition.y = characterPosition.y + 115;
         }
         // Draw loading bar if SPACE is held down
-        if (flaskEquipped and IsKeyDown(KEY_SPACE) and !scanComplete)
+        if (flaskEquipped && IsKeyDown(KEY_SPACE) && !scanComplete)
         {
-            // Draw loading bar background
-            DrawRectangle(480, screenHeight - 170, 300, 40, LIGHTGRAY);
-            DrawRectangle(480, screenHeight - 170, loadingBarWidth, 40, GRAY);
+            if (!fullscreen)
+            {
+                // Draw loading bar background
+                DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 250, 300, 40, LIGHTGRAY);
+                DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 250, loadingBarWidth, 40, DARKGREEN); // Draw loading bar
 
-            // Draw "Measuring..." text
-            if ((framesCounter / 59) % 2 == 0)
-            {
-                DrawText("Filling...", 600, screenHeight - 160, 20, WHITE);
-            }
-            if (scanComplete)
-            {
-                DrawText("Complete", 400, 10, 36, WHITE);
-            }
-
-            framesCounter += 4;
-            if (framesCounter >= 60)
-            {
-                framesCounter = 0;
-                loadingBarWidth += 10;
-                if (loadingBarWidth >= 310)
+                // Draw "Measuring..." text
+                if ((framesCounter / 59) % 2 == 0)
                 {
-                    scanComplete = true;
-                    loadingBarWidth = 0;
+                    DrawText("Filling...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 260, 20, WHITE);
+                }
+                if (scanComplete)
+                {
+                    DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 220, 36, WHITE);
+                }
+
+                framesCounter += 4;
+                if (framesCounter >= 60)
+                {
+                    framesCounter = 0;
+                    loadingBarWidth += 10;
+                    if (loadingBarWidth >= 310)
+                    {
+                        scanComplete = true;
+                        loadingBarWidth = 0;
+                    }
+                }
+            }
+            else
+            {
+                // Draw loading bar background
+                DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 430, 300, 40, LIGHTGRAY);
+                DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 430, loadingBarWidth, 40, DARKGREEN); // Draw loading bar
+
+                // Draw "Measuring..." text
+                if ((framesCounter / 59) % 2 == 0)
+                {
+                    DrawText("Filling...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 440, 20, WHITE);
+                }
+                if (scanComplete)
+                {
+                    DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 400, 36, WHITE);
+                }
+
+                framesCounter += 4;
+                if (framesCounter >= 60)
+                {
+                    framesCounter = 0;
+                    loadingBarWidth += 10;
+                    if (loadingBarWidth >= 310)
+                    {
+                        scanComplete = true;
+                        loadingBarWidth = 0;
+                    }
                 }
             }
         }
@@ -1266,7 +1374,7 @@ void venusTaskOne()
 
         ClearBackground(DARKGREEN);
 
-        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2 - 10, WHITE);
+        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2 , WHITE);
 
         // Draw flask if not equipped
         if (!flaskEquipped)

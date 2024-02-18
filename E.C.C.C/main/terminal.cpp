@@ -18,11 +18,11 @@ void terminal()
 	float nameY = 0;
 	float nameWidth = 0;
 	int fontSize;
-
+	SetExitKey(KEY_ESCAPE);
 	if (fullscreen == true)
 	{
 		fontSize = 24;
-		nameX = 680;
+		nameX = 480;
 		nameY = 205;
 		nameWidth = 205;
 	}
@@ -33,18 +33,9 @@ void terminal()
 		nameY = 225;
 		nameWidth = 225;
 	}
-	Rectangle textBox = { nameX, nameY, 0, 0 };
+	Rectangle textBox = { nameX-200, nameY, 0, 0 };
 	// Load the custom font
 	Font font = LoadFont("../2324-space-sprint-project-e-c-c-c/E.C.C.C/assets/vcrOsd.ttf");
-	if (fullscreen == true)
-	{
-        Rectangle textBox = { nameX, nameY, nameWidth, 0 };
-	}
-	else
-	{
-		Rectangle textBox = { nameX, nameY, nameWidth, 0 };
-	}
-	
 
 	char launchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
 	char contractText[] = "./E.C.C.C> In the year 2035, amidst the remnants of humanity, this contract binds the undersigned to the perilous task of\n\n             exploring a system teeming with 4 planets. Undertaking the duty to unearth potential havens for our surviving\n\n             brethren, the signee commits to face the inherent dangers and challenges that interstellar exploration entails.\n\n             The mission is clear: assess each celestial body for its suitability to sustain and nurture human life. In the \n\n             of this noble cause, the undersigned acknowledges the risks involved and pledges their skills, courage, and \n\n             resilience to the unprecedented venture, striving to secure a future for the last remnants of humanity.\n\n\n\n\n./E.C.C.C> Enter your name traveller:  ";
@@ -74,10 +65,6 @@ void terminal()
 			game();
 		}
 
-		//if((IsKeyPressedRepeat(KEY_ENTER) && letterCount == 0)){
-		//     DrawText(playerNameNotEntered, 40, 555, 22, MAROON);
-		//}
-
 		if (framesCounter > 8000)
 		{
 			int key = GetCharPressed();
@@ -100,7 +87,7 @@ void terminal()
 			name[letterCount] = '\0';
 		}
 
-		if (letterCount != 0)
+		if (letterCount != 0)	
 		{
 			DrawText(nameSubmit, 450, 575, 22, WHITE);
 		}
@@ -112,8 +99,15 @@ void terminal()
 		DrawRectangleRec(textBox, BLACK);
 		if (mouseOnText) DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, RED);
 		else DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, BLACK);
+		if (!fullscreen)
+		{
+		DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2 { nameX-100, 10 }, fontSize, 3, WHITE);
+		}
+		else
+		{
+			DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX+20, 10 }, fontSize, 3, WHITE);
 
-		DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2 { nameX, 10 }, fontSize, 3, WHITE);
+		}
 		DrawTextEx(font, TextSubtext(contractText, 0, framesCounter / 10), Vector2 { screenWidth - (screenWidth - 40), 300 }, fontSize, 2, WHITE);
 
         DrawTextEx(font, name, Vector2{ nameX + 10, 525 }, fontSize, 2, MAROON);

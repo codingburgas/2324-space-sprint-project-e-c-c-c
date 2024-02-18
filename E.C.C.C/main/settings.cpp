@@ -97,6 +97,11 @@ void settings()
             soundtrackOffSett = true;
             soundtrackEnd = !soundtrackEnd;
         }
+        if (mouseOverSoundIcon && IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && !soundtrackEnd)
+        {
+            soundtrackOffSett = false;
+            soundtrackEnd = true;
+        }
     }
 
     UnloadTexture(fullscreenChecked);

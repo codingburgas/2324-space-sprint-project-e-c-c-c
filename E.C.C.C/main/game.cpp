@@ -70,6 +70,10 @@ void game()
     bool marsLockedCh = true;
     bool jupiterLockedCh = true;
     SetExitKey(KEY_NULL);
+    if (IsKeyPressed(KEY_ESCAPE))
+    {
+        mainMenu();
+    }
     std::ifstream playerName("../data/playerName.csv");
     std::string username;
 
@@ -141,10 +145,6 @@ void game()
 
     while (!WindowShouldClose())
     {
-        if (IsKeyPressed(KEY_ESCAPE))
-        {
-            mainMenu();
-        }
         mercuryRotationAngle += mercuryRotationSpeed;
         venusRotationAngle += venusRotationSpeed;
         earthRotationAngle += earthRotationSpeed;
