@@ -292,6 +292,10 @@
                                 mercuryTaskOne();
                             }
                         }
+                        if (levelsPassedMercury == 1)
+                        {
+                            mercuryTaskTwo();
+                        }
                     }
                 }
                 else if (CheckCollisionPointCircle(GetMousePosition(), Vector2{ venusX, venusY }, venusRadius))
@@ -471,7 +475,7 @@
             {
                 characterShop = 3;
                 setCharacterShop(characterShop);
-                std::cout << 3;
+                std::cout << 3; 
             }
 
             EndDrawing();

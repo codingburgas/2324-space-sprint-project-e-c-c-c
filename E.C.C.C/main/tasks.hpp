@@ -18,6 +18,10 @@ void mercuryTaskOne();
 
 void mercuryTaskOneTerminal();
 
+void mercuryTaskTwo();
+
+void mercuryTaskTwoTerminal();
+
 void venusTaskOne();
 
 void marsTaskOne();
