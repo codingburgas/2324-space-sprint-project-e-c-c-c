@@ -11,16 +11,7 @@
     #include "buy.hpp"
     #include "mainMenu.hpp"
 
-    int characterShop=1;
-
-    void setCharacterShop(int value)
-    {
-        characterShop = value;
-    }
-    int getCharacterShop()
-    {
-        return characterShop;
-    }
+    int characterShop = 1;
 
     void game()
     {
@@ -59,8 +50,6 @@
         float jupiterRotationAngle = 0.0f;
         float zoomLevel = 1.25f;
         const float maxZoomLevel = 5.0f;;
-        int characterShop;
-
 
         Texture2D mercury = LoadTexture("../assets/planets/mercury.png");
         Texture2D mercuryLocked = LoadTexture("../assets/planets/mercuryLocked.png");
@@ -87,6 +76,10 @@
         bool venusLockedCh = true;
         bool marsLockedCh = true;
         bool jupiterLockedCh = true;
+
+        bool bought = false;
+        bool noBal = false;
+
         SetExitKey(KEY_NULL);
         if (IsKeyPressed(KEY_ESCAPE))
         {
@@ -144,6 +137,24 @@
         {
             levelsFileJupiter >> levelsPassedJupiter;
             levelsFileJupiter.close();
+        }
+
+        //Get value from diverLockStatus.csv
+        int diverLockStatus = 1;
+        std::ifstream diverLockStatusFile("../data/levelsPassedJupiter.csv");
+        if (diverLockStatusFile.is_open())
+        {
+            diverLockStatusFile >> diverLockStatus;
+            diverLockStatusFile.close();
+        }
+
+        //Get value from cookieLockStatus.csv
+        int cookieLockStatus = 1;
+        std::ifstream cookieLockStatusFile("../data/cookieLockStatus.csv");
+        if (cookieLockStatusFile.is_open())
+        {
+            cookieLockStatusFile >> cookieLockStatus;
+            cookieLockStatusFile.close();
         }
 
         //std::vector is a template class from the Standard Template Library that represents dynamic array.
@@ -463,9 +474,40 @@
 
             if (CheckCollisionPointRec(GetMousePosition(), button100Bounds) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
-                characterShop = 2;
-                setCharacterShop(characterShop);
-                std::cout << 2;
+                if (cookieLockStatus != 0)
+                {
+                    if (money >= 100)
+                    {
+                        cookieLockStatus = 0;
+                        money -= 100;
+                        //DrawText("Purchased succesfully!", 200, 50, 24, WHITE);
+                        bought = true;
+                        std::ofstream cookieLockStatusFile("../data/cookieLockStatus.csv");
+                        if (cookieLockStatusFile.is_open())
+                        {
+                            cookieLockStatusFile << cookieLockStatus << std::endl;
+                        }
+                    }
+                    else
+                    {
+                        //DrawText("Insufficent balance!", 200, 50, 24, WHITE);
+                        noBal = true;
+                    }
+                }
+                else
+                {
+                    characterShop = 3;
+                }
+            }
+
+            if (bought == true)
+            {
+                DrawText("Purchased succesfully!", 200, 50, 24, WHITE);
+            }
+
+            if (noBal == true)
+            {
+                DrawText("Insufficent balance!", 200, 50, 24, WHITE);
             }
 
             DrawTextureEx(playerShopTwo, Vector2{ vectorScreenWidth - 210, vectorScreenHeight / 2 - 10 }, 0, 2, WHITE);
@@ -473,9 +515,30 @@
 
             if (CheckCollisionPointRec(GetMousePosition(), button200Bounds) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
-                characterShop = 3;
-                setCharacterShop(characterShop);
-                std::cout << 3; 
+                if (diverLockStatus != 0)
+                {
+                    if (money >= 200)
+                    {
+                        diverLockStatus = 0;
+                        money -= 200;
+                        //DrawText("Purchased succesfully!", 200, 50, 24, WHITE);
+                        bought = true;
+                        std::ofstream diverLockStatusFile("../data/diverLockStatus.csv");
+                        if (diverLockStatusFile.is_open())
+                        {
+                            diverLockStatusFile << diverLockStatus << std::endl;
+                        }
+                    }
+                    else
+                    {
+                        //DrawText("Insufficent balance!", 200, 50, 24, WHITE);
+                        noBal = true;
+                    }
+                }
+                else
+                {
+                    characterShop = 2;
+                }
             }
 
             EndDrawing();
@@ -488,6 +551,13 @@
                 }
                 SetTargetFPS(24);
                 break;
+            }
+
+            //Update money
+            std::ofstream moneyPathOf("../data/money.csv");
+            if (moneyPathOf.is_open())
+            {
+                moneyPathOf << money << std::endl;
             }
         }
 

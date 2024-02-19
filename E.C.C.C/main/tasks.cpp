@@ -28,14 +28,6 @@ void taskOne()
 
     // Load textures based on character shop selection
     switch (characterShop) {
-    case 1:
-        character = LoadTexture("../assets/player/player.png");
-        characterFlask = LoadTexture("../assets/player/playerFlask.png");
-        characterReversed = LoadTexture("../assets/player/playerReversed.png");
-        characterReversedFlask = LoadTexture("../assets/player/playerReversedFlask.png");
-        characterLeft = LoadTexture("../assets/player/playerLeft.png");
-        characterRight = LoadTexture("../assets/player/playerRight.png");
-        break;
     case 2:
         character = LoadTexture("../assets/player/diver.png");
         characterFlask = LoadTexture("../assets/player/diverFlask.png");
@@ -45,6 +37,7 @@ void taskOne()
         characterRight = LoadTexture("../assets/player/diverRight.png");
         break;
     case 3:
+        break;
     default: // Assuming default character
         character = LoadTexture("../assets/player/player.png");
         characterFlask = LoadTexture("../assets/player/playerFlask.png");

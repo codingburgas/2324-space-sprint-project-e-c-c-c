@@ -7,7 +7,7 @@ void initializeSoundtrack()
     InitAudioDevice();
 
     Sound soundtrack = LoadSound("../assets/audio/soundtrack.ogg");
-    //SetSoundVolume(soundtrack, 0.05);
+    SetSoundVolume(soundtrack, 0.05);
 
     while (soundtrackEnd == false)
     {
