@@ -341,18 +341,54 @@ void taskTwo()
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
 
+
+    Texture2D character;
+    Texture2D characterRock;
+    Texture2D characterDirt;
+    Texture2D characterReversed;
+    Texture2D characterReversedRD;
+    Texture2D characterLeft;
+    Texture2D characterLeftRock;
+    Texture2D characterLeftDirt;
+    Texture2D characterRight;
+    Texture2D characterRightRock;
+    Texture2D characterRightDirt;
+
+     
+
+    switch (characterShop) {
+    case 2:
+        
+        break;
+    case 3:
+        
+        character = LoadTexture("../assets/player/diver.png");
+        characterRock = LoadTexture("../assets/player/diverRock.png");
+        characterDirt = LoadTexture("../assets/player/diverDirt.png");
+        characterReversed = LoadTexture("../assets/player/diverBack.png");
+        characterReversedRD = LoadTexture("../assets/player/diverItemBack.png");
+        characterLeft = LoadTexture("../assets/player/diverLeft.png");
+        characterLeftRock = LoadTexture("../assets/player/diverRockLeft.png");
+        characterLeftDirt = LoadTexture("../assets/player/diverDirtLeft.png");
+        characterRight = LoadTexture("../assets/player/diverRight.png");
+        characterRightRock = LoadTexture("../assets/player/diverRockRight.png");
+        characterRightDirt = LoadTexture("../assets/player/diverDirtRight.png");
+        break;
+    default: // Assuming default character
+        character = LoadTexture("../assets/player/player.png");
+        characterRock = LoadTexture("../assets/player/playerRock.png");
+        characterDirt = LoadTexture("../assets/player/playerDirt.png");
+        characterReversed = LoadTexture("../assets/player/playerReversed.png");
+        characterReversedRD = LoadTexture("../assets/player/playerRDReversed.png");
+        characterLeft = LoadTexture("../assets/player/playerLeft.png");
+        characterLeftRock = LoadTexture("../assets/player/playerLeftRock.png");
+        characterLeftDirt = LoadTexture("../assets/player/playerLeftDirt.png");
+        characterRight = LoadTexture("../assets/player/playerRight.png");
+        characterRightRock = LoadTexture("../assets/player/playerRightRock.png");
+        characterRightDirt = LoadTexture("../assets/player/playerRightDirt.png");
+        break;
+    }
     Texture2D background = LoadTexture("../assets/background/taskOneBackground.png");
-    Texture2D character = LoadTexture("../assets/player/player.png");
-    Texture2D characterRock = LoadTexture("../assets/player/playerRock.png");
-    Texture2D characterDirt = LoadTexture("../assets/player/playerDirt.png");
-    Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
-    Texture2D characterReversedRD = LoadTexture("../assets/player/playerRDReversed.png");
-    Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
-    Texture2D characterLeftRock = LoadTexture("../assets/player/playerLeftRock.png");
-    Texture2D characterLeftDirt = LoadTexture("../assets/player/playerLeftDirt.png");
-    Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
-    Texture2D characterRightRock = LoadTexture("../assets/player/playerRightRock.png");
-    Texture2D characterRightDirt = LoadTexture("../assets/player/playerRightDirt.png");
     Texture2D rock = LoadTexture("../assets/tasks/rock.png");
     Texture2D dirt = LoadTexture("../assets/tasks/dirt.png");
     Texture2D machine = LoadTexture("../assets/tasks/machine.png");

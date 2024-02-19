@@ -62,8 +62,10 @@
         Texture2D jupiterLocked = LoadTexture("../assets/planets/jupiterLocked.png");
         Texture2D playerShopOne = LoadTexture("../assets/player/cookiePlayer.png");
         Texture2D playerShopTwo = LoadTexture("../assets/player/diver.png");
-        Rectangle button100Bounds = { (float)GetScreenWidth() - 100, (float)GetScreenHeight() / 2 - 50, 90, 30 };
-        Rectangle button200Bounds = { (float)GetScreenWidth() - 100, (float)GetScreenHeight() / 2 + 20, 90, 30 };
+        Rectangle button100Bounds = { vectorScreenWidth - 100, vectorScreenHeight / 2 - 50, 60, 20 };
+        Rectangle button200Bounds = { vectorScreenWidth - 100, vectorScreenHeight / 2 + 20, 60, 20 };
+        Rectangle buttonCookie = { vectorScreenWidth - 210, vectorScreenHeight / 2 - 80 , 75, 75 };
+        Rectangle buttonDiver = { vectorScreenWidth - 210, vectorScreenHeight / 2 + 10 , 75, 75 };
 
 
         bool isMercuryClicked = false;
@@ -77,7 +79,8 @@
         bool marsLockedCh = true;
         bool jupiterLockedCh = true;
 
-        bool bought = false;
+        bool boughtCookie = false;
+        bool boughtDiver = false;
         bool noBal = false;
 
         SetExitKey(KEY_NULL);
@@ -469,6 +472,7 @@
             DrawText(moneyStr.c_str(), 15, screenHeight - 40, 35, WHITE);
 
             DrawRectangleLines(screenWidth - 200, screenHeight / 2 - 75, 200, 150, RAYWHITE);
+            //cookie
             DrawTextureEx(playerShopOne, Vector2{ vectorScreenWidth - 210, vectorScreenHeight / 2 - 80 }, 0, 2, WHITE);
             DrawText("100", screenWidth - 100, screenHeight / 2 - 50, 30, WHITE);
 
@@ -480,36 +484,46 @@
                     {
                         cookieLockStatus = 0;
                         money -= 100;
-                        //DrawText("Purchased succesfully!", 200, 50, 24, WHITE);
-                        bought = true;
+                        boughtCookie = true;
+                        // Update cookie lock status file
                         std::ofstream cookieLockStatusFile("../data/cookieLockStatus.csv");
                         if (cookieLockStatusFile.is_open())
                         {
                             cookieLockStatusFile << cookieLockStatus << std::endl;
+                            cookieLockStatusFile.close(); // Close the file after writing
                         }
                     }
                     else
                     {
-                        //DrawText("Insufficent balance!", 200, 50, 24, WHITE);
                         noBal = true;
                     }
                 }
-                else
-                {
-                    characterShop = 3;
-                }
+            }
+            else if (cookieLockStatus == 0 && CheckCollisionPointRec(GetMousePosition(), buttonCookie) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            {
+                characterShop = 2;
+                boughtCookie = false; // Reset flag
+                boughtDiver = false; // Reset diver flag
             }
 
-            if (bought == true)
+            if (characterShop == 2)
             {
-                DrawText("Purchased succesfully!", 200, 50, 24, WHITE);
+                DrawText("Equipped cookie successfully", 10, 98, 24, WHITE);
+                std::cout << "equipped cookie\n";
+            }
+
+            if (boughtCookie == true||cookieLockStatus==0)
+            {
+                DrawText("Purchased cookie successfully!", 10, 53, 24, WHITE);
+                std::cout << "purchased cookie\n";
             }
 
             if (noBal == true)
             {
-                DrawText("Insufficent balance!", 200, 50, 24, WHITE);
+                DrawText("Insufficient balance!", 10, 53, 24, WHITE);
+                std::cout << "insufficient bal\n";
             }
-
+            //diver
             DrawTextureEx(playerShopTwo, Vector2{ vectorScreenWidth - 210, vectorScreenHeight / 2 - 10 }, 0, 2, WHITE);
             DrawText("200", screenWidth - 100, screenHeight / 2 + 20, 30, WHITE);
 
@@ -522,7 +536,7 @@
                         diverLockStatus = 0;
                         money -= 200;
                         //DrawText("Purchased succesfully!", 200, 50, 24, WHITE);
-                        bought = true;
+                        boughtDiver = true;
                         std::ofstream diverLockStatusFile("../data/diverLockStatus.csv");
                         if (diverLockStatusFile.is_open())
                         {
@@ -535,10 +549,30 @@
                         noBal = true;
                     }
                 }
-                else
-                {
-                    characterShop = 2;
-                }
+            }
+            else if (diverLockStatus == 0 && CheckCollisionPointRec(GetMousePosition(), buttonDiver) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+{
+    characterShop = 3;
+    boughtDiver = false; // Reset flag
+    boughtCookie = false; // Reset cookie flag
+}
+
+if (characterShop == 3)
+{
+    DrawText("Equipped diver successfully", 10, 88, 24, WHITE);
+    std::cout << "equipped diver\n";
+}
+
+            if (boughtDiver == true)
+            {
+                DrawText("Purchased diver successfully!", 10, 73, 24, WHITE);
+                std::cout << "purchased diver\n";
+            }
+
+            if (noBal == true)
+            {
+                DrawText("Insufficient balance!", 10, 53, 24, WHITE);
+                std::cout << "insuficcient bal\n";
             }
 
             EndDrawing();
