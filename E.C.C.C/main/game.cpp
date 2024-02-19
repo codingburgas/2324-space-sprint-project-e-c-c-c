@@ -62,8 +62,8 @@
         Texture2D jupiterLocked = LoadTexture("../assets/planets/jupiterLocked.png");
         Texture2D playerShopOne = LoadTexture("../assets/player/cookiePlayer.png");
         Texture2D playerShopTwo = LoadTexture("../assets/player/diver.png");
-        Rectangle button100Bounds = { screenWidth - 100, screenHeight / 2 - 50, 90, 30 };
-        Rectangle button200Bounds = { screenWidth - 100, screenHeight / 2 + 20, 90, 30 };
+        Rectangle button100Bounds = { (float)GetScreenWidth() - 100, (float)GetScreenHeight() / 2 - 50, 90, 30 };
+        Rectangle button200Bounds = { (float)GetScreenWidth() - 100, (float)GetScreenHeight() / 2 + 20, 90, 30 };
 
 
         bool isMercuryClicked = false;
