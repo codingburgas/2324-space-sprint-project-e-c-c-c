@@ -1306,6 +1306,7 @@ void mercuryTaskOne()
 }
 
 
+//Mercury tasks terminal
 void mercuryTaskOneTerminal()
 {
     const int screenWidth = GetScreenWidth();
@@ -1650,6 +1651,246 @@ void mercuryTaskTwoTerminal()
         EndDrawing();
     }
 }
+
+void mercuryTaskThree()
+{
+	const int screenWidth = GetScreenWidth();
+	const int screenHeight = GetScreenHeight();
+
+	Texture2D background = LoadTexture("../assets/background/mercuryBackground.png");
+	Texture2D character = LoadTexture("../assets/player/player.png");
+	Texture2D characterFlask = LoadTexture("../assets/player/playerFlask.png");
+	Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
+	Texture2D characterReversedFlask = LoadTexture("../assets/player/playerReversedFlask.png");
+	Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
+	Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
+	Texture2D flask = LoadTexture("../assets/tasks/flask.png");
+	Texture2D machine = LoadTexture("../assets/tasks/mercuryMachine.png");
+
+	Vector2 flaskPosition = { (float)GetRandomValue(0, screenWidth - flask.width - 100), (float)GetRandomValue(0, screenHeight - flask.height - 100) };
+	Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
+	Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+
+	float characterScale = 3.0f;
+	float movementSpeed = 8.0f;
+	int loadingBarWidth = 0;
+	int framesCounter = 0;
+	bool scanComplete = false;
+
+	SetTargetFPS(60);
+	SetExitKey(KEY_ESCAPE);
+
+	bool flaskEquipped = false;
+
+	while (!WindowShouldClose())
+	{
+		float distanceToMachine = Vector2Distance(characterPosition, machinePosition);
+		float distanceToFlask = Vector2Distance(characterPosition, flaskPosition);
+
+		// Update character position
+		if (IsKeyDown(KEY_D)) characterPosition.x += movementSpeed;
+		if (IsKeyDown(KEY_A)) characterPosition.x -= movementSpeed;
+		if (IsKeyDown(KEY_W)) characterPosition.y -= movementSpeed;
+		if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
+
+		// Reset character if it goes off-screen
+		if (characterPosition.x > screenWidth)
+			characterPosition.x = -character.width * characterScale;
+		else if (characterPosition.x < -character.width * characterScale)
+			characterPosition.x = screenWidth;
+
+		if (characterPosition.y > screenHeight)
+			characterPosition.y = -character.height * characterScale;
+		else if (characterPosition.y < -character.height * characterScale)
+			characterPosition.y = screenHeight;
+
+		if (IsKeyPressed(KEY_LEFT_SHIFT))
+		{
+			movementSpeed = 12;
+		}
+		if (IsKeyReleased(KEY_LEFT_SHIFT))
+		{
+			movementSpeed = 8;
+		}
+
+		BeginDrawing();
+
+		ClearBackground(DARKGREEN);
+
+		DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
+
+		// Draw flask if not equipped
+		if (!flaskEquipped)
+		{
+			DrawTextureEx(flask, flaskPosition, 0.0f, 1.25f, WHITE);
+		}
+
+		// Draw character
+		if (IsKeyDown(KEY_W))
+		{
+			if (flaskEquipped)
+				DrawTextureEx(characterReversedFlask, characterPosition, 0.0f, characterScale, WHITE);
+			else
+				DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
+		}
+		else if (IsKeyDown(KEY_D))
+		{
+			DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
+		}
+		else if (IsKeyDown(KEY_A))
+		{
+			DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
+		}
+		else
+		{
+			if (flaskEquipped)
+				DrawTextureEx(characterFlask, characterPosition, 0.0f, characterScale, WHITE);
+			else
+				DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+		}
+
+		// Display message when close to flask
+		if (distanceToFlask < 80.0f)
+		{
+			if (!flaskEquipped)
+			{
+				DrawText("Press R to pick up with oxygen", (GetScreenWidth() - MeasureText("Press R to pick up with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+			}
+			if (IsKeyDown(KEY_R))
+			{
+				flaskEquipped = true;
+			}
+		}
+		if (flaskEquipped and !scanComplete)
+		{
+			DrawText("Hold SPACE to fill with oxygen", (GetScreenWidth() - MeasureText("Hold SPACE to fill with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+		}
+
+		if (IsKeyPressed(KEY_Q) and flaskEquipped)
+		{
+			flaskEquipped = !flaskEquipped;
+			flaskPosition.x = characterPosition.x + 48;
+			flaskPosition.y = characterPosition.y + 115;
+		}
+		// Draw loading bar if SPACE is held down
+		if (flaskEquipped && IsKeyDown(KEY_SPACE) && !scanComplete)
+		{
+			if (!fullscreen)
+			{
+				// Draw loading bar background
+				DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 250, 300, 40, LIGHTGRAY);
+				DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 250, loadingBarWidth, 40, DARKGREEN); // Draw loading bar
+
+				// Draw "Measuring..." text
+				if ((framesCounter / 59) % 2 == 0)
+				{
+					DrawText("Filling...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 260, 20, WHITE);
+				}
+				if (scanComplete)
+				{
+					DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 220, 36, WHITE);
+				}
+
+				framesCounter += 4;
+				if (framesCounter >= 60)
+				{
+					framesCounter = 0;
+					loadingBarWidth += 10;
+					if (loadingBarWidth >= 310)
+					{
+						scanComplete = true;
+						loadingBarWidth = 0;
+					}
+				}
+			}
+			else
+			{
+				// Draw loading bar background
+				DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 430, 300, 40, LIGHTGRAY);
+				DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 430, loadingBarWidth, 40, DARKGREEN); // Draw loading bar
+
+				// Draw "Measuring..." text
+				if ((framesCounter / 59) % 2 == 0)
+				{
+					DrawText("Filling...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 440, 20, WHITE);
+				}
+				if (scanComplete)
+				{
+					DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 400, 36, WHITE);
+				}
+
+				framesCounter += 4;
+				if (framesCounter >= 60)
+				{
+					framesCounter = 0;
+					loadingBarWidth += 10;
+					if (loadingBarWidth >= 310)
+					{
+						scanComplete = true;
+						loadingBarWidth = 0;
+					}
+				}
+			}
+		}
+
+		// Draw machine
+		DrawTextureEx(machine, machinePosition, 0.0f, 4.5f, WHITE);
+
+		// Check if Enter key is pressed when equipped with the flask
+		if (flaskEquipped and scanComplete)
+		{
+			DrawText("Air filled", (GetScreenWidth() - MeasureText("Air filled", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
+		}
+		if (distanceToMachine < 120.0f and flaskEquipped and scanComplete)
+		{
+			DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 40, 36, RAYWHITE);
+			if (IsKeyPressed(KEY_E))
+			{
+				int money = 0;
+				// Get value from money.csv which is created when you complete Level1
+				std::ifstream moneyFile("../data/money.csv");
+				if (moneyFile.is_open())
+				{
+					moneyFile >> money;
+					moneyFile.close();
+				}
+
+				std::ofstream moneyFileOf("../data/money.csv");
+				if (moneyFileOf.is_open())
+				{
+					moneyFileOf << money + 250; // Save earned money to a file
+					moneyFileOf.close();
+				}
+
+				std::ofstream levelFile("../data/levelsPassedMercury.csv");
+				if (levelFile.is_open())
+				{
+					levelFile << "1"; // Save completed level to a file
+					levelFile.close();
+				}
+
+				mercuryTaskOneTerminal();
+			}
+		}
+
+		DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
+		DrawText("Press ESC to quit", 10, 30, 24, WHITE);
+
+
+		EndDrawing();
+	}
+
+	// Unload textures
+	UnloadTexture(flask);
+	UnloadTexture(machine);
+	UnloadTexture(character);
+	UnloadTexture(characterFlask);
+	UnloadTexture(background);
+	UnloadTexture(characterReversed);
+	UnloadTexture(characterReversedFlask);
+	UnloadTexture(characterLeft);
+	UnloadTexture(characterRight);
+}
 void venusTaskOne()
 {
     const int screenWidth = GetScreenWidth();
@@ -1663,7 +1904,7 @@ void venusTaskOne()
     Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
     Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
     Texture2D flask = LoadTexture("../assets/tasks/flask.png");
-    Texture2D machine = LoadTexture("../assets/tasks/mercuryMachine.png");
+    Texture2D machine = LoadTexture("../assets/tasks/venusMachine.png");
 
     Vector2 flaskPosition = { (float)GetRandomValue(0, screenWidth - flask.width - 100), (float)GetRandomValue(0, screenHeight - flask.height - 100) };
     Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
@@ -1836,7 +2077,7 @@ void venusTaskOne()
                     levelFile.close();
                 }
 
-                mercuryTaskOneTerminal();
+                venusTaskOneTerminal();
             }
         }
 
@@ -1857,6 +2098,353 @@ void venusTaskOne()
     UnloadTexture(characterReversedFlask);
     UnloadTexture(characterLeft);
     UnloadTexture(characterRight);
+}
+
+void mercuryTaskThree()
+{
+
+}
+
+void venusTaskOneTerminal()
+{
+    const int screenWidth = GetScreenWidth();
+    const int screenHeight = GetScreenHeight();
+
+    char taskOneLaunchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
+    char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Atmosphere contents:";
+    char carbonDioxideAmount[] = "~ Carbon Dioxide: 96.5 %";
+    char nitrogenAmount[] = "~ Nitrogen: 3.5 %";
+    char sulfurDioxideAmount[] = "~  Sulfur Dioxide: 0,15 %";
+    char argonAmount[] = "~ Argon: below 0.01 %";
+    char waterVapourAmount[] = "~ Water Vapour: below 0.01%";
+    char atmospherePressure[] = "~ Atmospheric Pressure: <0.5 nanobars";
+    char possibilityOfLife[] = "~ Possible life: ";
+    char possibilityOfLifeValue[] = "No"; // Change this line according to the analysis of the atmosphere
+    int framesCounter = 0;
+    float nameX = 0;
+    int fontSize;
+    if (fullscreen == true)
+    {
+        fontSize = 22;
+        nameX = 565;
+    }
+    else {
+        fontSize = 18;
+        nameX = 325;
+    }
+
+    Font font = LoadFont("../2324-space-sprint-project-e-c-c-c/E.C.C.C/assets/vcrOsd.ttf");
+
+    SetTargetFPS(60);
+    SetExitKey(KEY_ESCAPE);
+
+    while (!WindowShouldClose())
+    {
+        framesCounter += 10;
+        if (IsKeyPressed(KEY_ENTER))
+        {
+            game();
+        }
+        BeginDrawing();
+        ClearBackground(BLACK);
+        DrawTextEx(font, TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), Vector2{ nameX, 10 }, fontSize, 2, WHITE);
+        DrawTextEx(font, TextSubtext(terminalMessage, 0, framesCounter / 10), Vector2{ 40, 250 }, fontSize, 2, WHITE);
+        DrawTextEx(font, TextSubtext(carbonDioxideAmount, 0, framesCounter / 10), Vector2{ 135, 350 }, fontSize, 2, WHITE);
+        DrawTextEx(font, TextSubtext(nitrogenAmount, 0, framesCounter / 10), Vector2{ 135, 400 }, fontSize, 2, WHITE);
+        DrawTextEx(font, TextSubtext(sulfurDioxideAmount, 0, framesCounter / 10), Vector2{ 135, 450 }, fontSize, 2, WHITE);
+        DrawTextEx(font, TextSubtext(argonAmount, 0, framesCounter / 10), Vector2{ 135, 500 }, fontSize, 2, WHITE);
+        DrawTextEx(font, TextSubtext(waterVapourAmount, 0, framesCounter / 10), Vector2{ 135, 550 }, fontSize, 2, WHITE);
+        DrawTextEx(font, TextSubtext(atmospherePressure, 0, framesCounter / 10), Vector2{ 135, 600 }, fontSize, 2, WHITE);
+        DrawTextEx(font, TextSubtext(possibilityOfLife, 0, framesCounter / 10), Vector2{ 135, 650 }, fontSize, 2, WHITE);
+        DrawTextEx(font, TextSubtext(possibilityOfLifeValue, 0, framesCounter / 10), Vector2{ 315, 650 }, fontSize, 2, MAROON);
+
+        EndDrawing();
+    }
+
+    // Unload the font when done
+    UnloadFont(font);
+    
+}
+void venusTaskTwo()
+{
+    const int screenWidth = GetScreenWidth();
+    const int screenHeight = GetScreenHeight();
+
+    Texture2D character;
+    Texture2D characterRock;
+    Texture2D characterDirt;
+    Texture2D characterReversed;
+    Texture2D characterReversedRD;
+    Texture2D characterLeft;
+    Texture2D characterLeftRock;
+    Texture2D characterLeftDirt;
+    Texture2D characterRight;
+    Texture2D characterRightRock;
+    Texture2D characterRightDirt;
+
+    switch (characterShop) {
+    case 1:
+        character = LoadTexture("../assets/player/player.png");
+        characterRock = LoadTexture("../assets/player/playerMercuryRock.png");
+        characterReversed = LoadTexture("../assets/player/playerReversed.png");
+        characterReversedRD = LoadTexture("../assets/player/playerRDReversed.png");
+        characterLeft = LoadTexture("../assets/player/playerLeft.png");
+        characterLeftRock = LoadTexture("../assets/player/playerLeftMercuryRock.png");
+        characterRight = LoadTexture("../assets/player/playerRight.png");
+        characterRightRock = LoadTexture("../assets/player/playerRightMercuryRock.png");
+    case 2:
+
+        break;
+    case 3:
+        character = LoadTexture("../assets/player/diver.png");
+        characterRock = LoadTexture("../assets/player/diverMercuryRock.png");
+        characterReversed = LoadTexture("../assets/player/diverBack.png");
+        characterReversedRD = LoadTexture("../assets/player/diverItemBack.png");
+        characterLeft = LoadTexture("../assets/player/diverLeft.png");
+        characterLeftRock = LoadTexture("../assets/player/diverMercuryRockLeft.png");
+        characterRight = LoadTexture("../assets/player/diverRight.png");
+        characterRightRock = LoadTexture("../assets/player/diverMercuryRockRight.png");
+        break;
+    default:
+        character = LoadTexture("../assets/player/player.png");
+        characterRock = LoadTexture("../assets/player/playerMercuryRock.png");
+        characterReversed = LoadTexture("../assets/player/playerReversed.png");
+        characterReversedRD = LoadTexture("../assets/player/playerRDReversed.png");
+        characterLeft = LoadTexture("../assets/player/playerLeft.png");
+        characterLeftRock = LoadTexture("../assets/player/playerLeftMercuryRock.png");
+        characterRight = LoadTexture("../assets/player/playerRight.png");
+        characterRightRock = LoadTexture("../assets/player/playerRightMercuryRock.png");
+        break;
+    }
+    Texture2D background = LoadTexture("../assets/background/mercuryBackground.png");
+    Texture2D rock = LoadTexture("../assets/tasks/mercuryRock.png");
+    Texture2D machine = LoadTexture("../assets/tasks/mercuryMachine.png");
+
+
+    Vector2 rockPosition{ (float)GetRandomValue(0, screenWidth - rock.width - 100), (float)GetRandomValue(0, screenHeight - rock.height - 100) };
+    Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
+    Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    Vector2 rockPickedUpPosition;
+    Vector2 dirtPickedUpPosition;
+
+    float minDistanceBetweenDirtAndRock = 200.0f;
+
+    float characterScale = 3.0;
+    float movementSpeed = 8.0;
+
+    SetTargetFPS(60);
+    SetExitKey(KEY_ESCAPE);
+
+    bool rockEquipped = false;
+    bool levelPassed = false;
+
+
+
+    while (!WindowShouldClose())
+    {
+        float distanceToMachine = Vector2Distance(characterPosition, machinePosition);
+        float distanceToRock = Vector2Distance(characterPosition, rockPosition);
+
+        // Update character position
+        if (IsKeyDown(KEY_D)) characterPosition.x += movementSpeed;
+        if (IsKeyDown(KEY_A)) characterPosition.x -= movementSpeed;
+        if (IsKeyDown(KEY_W)) characterPosition.y -= movementSpeed;
+        if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
+
+
+        // Reset character if it goes off-screen
+        if (characterPosition.x > screenWidth)
+            characterPosition.x = -character.width * characterScale;
+        else if (characterPosition.x < -character.width * characterScale)
+            characterPosition.x = screenWidth;
+
+        if (characterPosition.y > screenHeight)
+            characterPosition.y = -character.height * characterScale;
+        else if (characterPosition.y < -character.height * characterScale)
+            characterPosition.y = screenHeight;
+
+        BeginDrawing();
+
+        ClearBackground(DARKGREEN);
+
+        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
+
+        // Draw character
+        if (IsKeyDown(KEY_W))
+        {
+            if (rockEquipped)
+                DrawTextureEx(characterReversedRD, characterPosition, 0.0f, characterScale, WHITE);
+            else
+                DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
+        }
+        else if (IsKeyDown(KEY_D))
+        {
+            if (rockEquipped)
+                DrawTextureEx(characterRightRock, characterPosition, 0.0f, characterScale, WHITE);
+            else
+                DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
+        }
+        else if (IsKeyDown(KEY_A))
+        {
+            if (rockEquipped)
+                DrawTextureEx(characterLeftRock, characterPosition, 0.0f, characterScale, WHITE);
+            else
+                DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
+        }
+        else
+        {
+            if (rockEquipped)
+                DrawTextureEx(characterRock, characterPosition, 0.0f, characterScale, WHITE);
+            else
+                DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+
+        }
+
+
+        // Draw rock if not equipped
+        if (!rockEquipped)
+        {
+            DrawTextureEx(rock, rockPosition, 0.0f, 1.25f, WHITE);
+
+        }
+        // Draw dirt if not equipped
+
+
+        // Draw machine
+        DrawTextureEx(machine, machinePosition, 0.0f, 4.5f, WHITE);
+
+
+        if (IsKeyPressed(KEY_LEFT_SHIFT) and (!rockEquipped))
+        {
+            movementSpeed = 12;
+        }
+        if (IsKeyReleased(KEY_LEFT_SHIFT) and (!rockEquipped))
+        {
+            movementSpeed = 8;
+        }
+
+        if (IsKeyPressed(KEY_Q) and (rockEquipped))
+        {
+            if (rockEquipped)
+            {
+                rockEquipped = !rockEquipped;
+                rockPosition.x = characterPosition.x + 45;
+                rockPosition.y = characterPosition.y + 100;
+            }
+
+        }
+
+        if (distanceToMachine < 120.0f and (rockEquipped))
+        {
+            DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+
+            // Check if E key is pressed to interact
+            if (IsKeyPressed(KEY_E))
+            {
+                int money = 0;
+                //Get value from money.csv which is created when you complete Level1
+                std::ifstream moneyFile("../data/money.csv");
+                if (moneyFile.is_open())
+                {
+                    moneyFile >> money;
+                    moneyFile.close();
+                }
+
+                std::ofstream moneyFileOf("../data/money.csv");
+                if (moneyFileOf.is_open())
+                {
+                    moneyFileOf << money + 300;  // Save earned money to a file
+                    moneyFileOf.close();
+                }
+
+                std::ofstream levelFile("../data/levelsPassedVenus.csv");
+                if (levelFile.is_open())
+                {
+                    levelFile << "2";  // Save completed level to a file
+                    levelFile.close();
+                }
+                levelPassed = true;
+                counter = 2;
+                venusTaskTwoTerminal();
+            }
+        }
+        if (rockEquipped == true)
+        {
+            DrawText("Holding rock", (GetScreenWidth() - MeasureText("Holding rock", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
+        }
+
+        // Display message when close to rock
+        if (distanceToRock < 80.0f and !rockEquipped)
+        {
+            DrawText("Press R to pick up the rock", (GetScreenWidth() - MeasureText("Press R to pick up the rock", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+            if (IsKeyDown(KEY_R))
+            {
+                rockEquipped = true;
+                rockPickedUpPosition = rockPosition;
+
+            }
+        }
+
+        DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
+        DrawText("Press ESC to quit", 10, 30, 24, WHITE);
+        DrawText("Press Q to drop", 10, 50, 24, WHITE);
+
+
+
+        if (!levelPassed and fullscreen == true)
+        {
+            DrawText("Task: Bring a rock to the machine", 500, 10, 24, WHITE);
+        }
+        if (!levelPassed and fullscreen != true)
+        {
+            DrawText("Task: Bring a rock to the machine", 400, 10, 24, WHITE);
+        }
+        EndDrawing();
+    }
+}
+
+void venusTaskTwoTerminal()
+{
+    const int screenWidth = GetScreenWidth();
+    const int screenHeight = GetScreenHeight();
+    char taskOneLaunchingTerminal[] = "####     E.C.C.C     X64     LAUNCHING     TERMINAL     ####";
+    char terminalMessage[] = " . / E.C.C.C> Scan complete. \n\n\n. / E.C.C.C> Contents:";
+    char basaltAmount[] = "~ Metallic: 60 %";
+    char volcanicRocksAmount[] = "~ Volcanic Rocks: 40 %";
+    int framesCounter = 0;
+    float nameX = 0;
+    int fontSize;
+
+    Font font = LoadFont("../2324-space-sprint-project-e-c-c-c/E.C.C.C/assets/vcrOsd.ttf");
+
+    SetTargetFPS(60);
+    SetExitKey(KEY_ESCAPE);
+    if (fullscreen == true)
+    {
+        fontSize = 22;
+        nameX = 600;
+    }
+    else
+    {
+        fontSize = 18;
+        nameX = 335;
+    }
+    while (!WindowShouldClose())
+    {
+        framesCounter += 10;
+        if (IsKeyPressed(KEY_ENTER))
+        {
+            game();
+        }
+        BeginDrawing();
+        ClearBackground(BLACK);
+        DrawTextEx(font, TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), Vector2{ nameX, 10 }, fontSize, 2, WHITE);
+        DrawTextEx(font, TextSubtext(terminalMessage, 0, framesCounter / 10), Vector2{ 40, 300 }, fontSize, 2, WHITE);
+        DrawTextEx(font, TextSubtext(basaltAmount, 0, framesCounter / 10), Vector2{ 135, 400 }, fontSize, 2, WHITE);
+        DrawTextEx(font, TextSubtext(volcanicRocksAmount, 0, framesCounter / 10), Vector2{ 135, 450 }, fontSize, 2, WHITE);
+
+        EndDrawing();
+    }
 }
 
 void marsTaskOne()
