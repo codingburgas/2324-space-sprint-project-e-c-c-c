@@ -688,7 +688,7 @@ void taskTwoTerminal()
     char clayAmount[] = "~ Clay : 9 %";
     char organicMatterAmount[] = "~ Organic matter : 5 %";
     char terminalMsg[] = "./E.C.C.C> ";
-    char possibleOrganicLife[] = " Suitable for organic life";
+    char possibleOrganicLife[] = "  Suitable for organic life";
     int framesCounter = 0;
     float nameX = 0;
     int fontSize;
@@ -696,7 +696,7 @@ void taskTwoTerminal()
     if (fullscreen == true)
     {
         fontSize = 22;
-        nameX = 530;
+        nameX = 500;
     }
     else {
         fontSize = 18;
@@ -938,7 +938,7 @@ void taskThree()
                     // Draw "Measuring..." text
                     if ((framesCounter / 59) % 2 == 0)
                     {
-                        DrawText("Filling...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 390, 20, WHITE);
+                        DrawText("Scanning  ...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 390, 20, WHITE);
                     }
                     if (scanComplete)
                     {
@@ -1387,13 +1387,13 @@ void mercuryTaskTwo()
     switch (characterShop) {
     case 1:
         character = LoadTexture("../assets/player/player.png");
-        characterRock = LoadTexture("../assets/player/playerMercuryRock.png");
+        characterRock = LoadTexture("../assets/player/playerMercuryDirt.png");
         characterReversed = LoadTexture("../assets/player/playerReversed.png");
         characterReversedRD = LoadTexture("../assets/player/playerRDReversed.png");
         characterLeft = LoadTexture("../assets/player/playerLeft.png");
-        characterLeftRock = LoadTexture("../assets/player/playerLeftMercuryRock.png");
+        characterLeftRock = LoadTexture("../assets/player/playerLeftMercuryDirt.png");
         characterRight = LoadTexture("../assets/player/playerRight.png");
-        characterRightRock = LoadTexture("../assets/player/playerRightMercuryRock.png");
+        characterRightRock = LoadTexture("../assets/player/playerMercuryRightDirt.png");
     case 2:
 
         break;
@@ -1409,13 +1409,13 @@ void mercuryTaskTwo()
         break;
     default:
         character = LoadTexture("../assets/player/player.png");
-        characterRock = LoadTexture("../assets/player/playerMercuryRock.png");
+        characterRock = LoadTexture("../assets/player/playerMercuryDirt.png");
         characterReversed = LoadTexture("../assets/player/playerReversed.png");
         characterReversedRD = LoadTexture("../assets/player/playerRDReversed.png");
         characterLeft = LoadTexture("../assets/player/playerLeft.png");
-        characterLeftRock = LoadTexture("../assets/player/playerLeftMercuryRock.png");
+        characterLeftRock = LoadTexture("../assets/player/playerLeftMercuryDirt.png");
         characterRight = LoadTexture("../assets/player/playerRight.png");
-        characterRightRock = LoadTexture("../assets/player/playerRightMercuryRock.png");
+        characterRightRock = LoadTexture("../assets/player/playerMercuryRightDirt.png");
         break;
     }
     Texture2D background = LoadTexture("../assets/background/mercuryBackground.png");
@@ -1570,6 +1570,8 @@ void mercuryTaskTwo()
                 counter = 2;
                 mercuryTaskTwoTerminal();
             }
+
+            
         }
         if (rockEquipped == true)
         {
@@ -1652,245 +1654,192 @@ void mercuryTaskTwoTerminal()
     }
 }
 
+
 void mercuryTaskThree()
 {
-	const int screenWidth = GetScreenWidth();
-	const int screenHeight = GetScreenHeight();
+    
+    const int screenWidth = GetScreenWidth();
+    const int screenHeight = GetScreenHeight();
 
-	Texture2D background = LoadTexture("../assets/background/mercuryBackground.png");
-	Texture2D character = LoadTexture("../assets/player/player.png");
-	Texture2D characterFlask = LoadTexture("../assets/player/playerFlask.png");
-	Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
-	Texture2D characterReversedFlask = LoadTexture("../assets/player/playerReversedFlask.png");
-	Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
-	Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
-	Texture2D flask = LoadTexture("../assets/tasks/flask.png");
-	Texture2D machine = LoadTexture("../assets/tasks/mercuryMachine.png");
+    // Load textures
+    Texture2D background = LoadTexture("../assets/background/taskOneBackground.png");
+    Texture2D character = LoadTexture("../assets/player/player.png");
+    Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
+    Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
+    Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
+    Texture2D thermometer = LoadTexture("../assets/tasks/flask.png");
+    Texture2D machine = LoadTexture("../assets/tasks/machine.png");
 
-	Vector2 flaskPosition = { (float)GetRandomValue(0, screenWidth - flask.width - 100), (float)GetRandomValue(0, screenHeight - flask.height - 100) };
-	Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
-	Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    // Load thermometer animation frames
+    const int MAX_FRAME_COUNT = 10;
+    Texture2D thermometerAnimation[MAX_FRAME_COUNT];
+    for (int i = 0; i < MAX_FRAME_COUNT; ++i) {
+        char framePath[64];
+        sprintf(framePath, "../assets/animations/thermometer/frame_%02d.png", i);
+        thermometerAnimation[i] = LoadTexture(framePath);
+    }
 
-	float characterScale = 3.0f;
-	float movementSpeed = 8.0f;
-	int loadingBarWidth = 0;
-	int framesCounter = 0;
-	bool scanComplete = false;
+    // Initialize positions and variables
+    Vector2 thermometerPosition = { (float)GetRandomValue(0, screenWidth - thermometer.width - 100), (float)GetRandomValue(0, screenHeight - thermometer.height - 100) };
+    Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
+    Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    float characterScale = 3.0;
+    float movementSpeed = 8.0;
+    bool levelPassed = false;
+    bool thermometerEquipped = false;
+    int loadingBarWidth = 0;
+    int framesCounter = 0;
+    int frameCount = 0;
+    bool measurementComplete = false;
 
-	SetTargetFPS(60);
-	SetExitKey(KEY_ESCAPE);
+    SetTargetFPS(60);
 
-	bool flaskEquipped = false;
+    while (!WindowShouldClose())
+    {
+        SetExitKey(KEY_ESCAPE);
+        float distanceToMachine = Vector2Distance(characterPosition, machinePosition);
+        float distanceToThermometer = Vector2Distance(characterPosition, thermometerPosition);
 
-	while (!WindowShouldClose())
-	{
-		float distanceToMachine = Vector2Distance(characterPosition, machinePosition);
-		float distanceToFlask = Vector2Distance(characterPosition, flaskPosition);
+        // Update character position
+        if (IsKeyDown(KEY_D)) characterPosition.x += movementSpeed;
+        if (IsKeyDown(KEY_A)) characterPosition.x -= movementSpeed;
+        if (IsKeyDown(KEY_W)) characterPosition.y -= movementSpeed;
+        if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
 
-		// Update character position
-		if (IsKeyDown(KEY_D)) characterPosition.x += movementSpeed;
-		if (IsKeyDown(KEY_A)) characterPosition.x -= movementSpeed;
-		if (IsKeyDown(KEY_W)) characterPosition.y -= movementSpeed;
-		if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
+        // Reset character if it goes off-screen
+        if (characterPosition.x > screenWidth)
+            characterPosition.x = -character.width * characterScale;
+        else if (characterPosition.x < -character.width * characterScale)
+            characterPosition.x = screenWidth;
 
-		// Reset character if it goes off-screen
-		if (characterPosition.x > screenWidth)
-			characterPosition.x = -character.width * characterScale;
-		else if (characterPosition.x < -character.width * characterScale)
-			characterPosition.x = screenWidth;
+        if (characterPosition.y > screenHeight)
+            characterPosition.y = -character.height * characterScale;
+        else if (characterPosition.y < -character.height * characterScale)
+            characterPosition.y = screenHeight;
 
-		if (characterPosition.y > screenHeight)
-			characterPosition.y = -character.height * characterScale;
-		else if (characterPosition.y < -character.height * characterScale)
-			characterPosition.y = screenHeight;
+        if (IsKeyPressed(KEY_LEFT_SHIFT))
+        {
+            movementSpeed = 12;
+        }
+        if (IsKeyReleased(KEY_LEFT_SHIFT))
+        {
+            movementSpeed = 8;
+        }
 
-		if (IsKeyPressed(KEY_LEFT_SHIFT))
-		{
-			movementSpeed = 12;
-		}
-		if (IsKeyReleased(KEY_LEFT_SHIFT))
-		{
-			movementSpeed = 8;
-		}
+        BeginDrawing();
 
-		BeginDrawing();
+        ClearBackground(DARKGREEN);
 
-		ClearBackground(DARKGREEN);
+        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
 
-		DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
+        // Draw thermometer if not equipped
+        if (!thermometerEquipped)
+        {
+            DrawTextureEx(thermometer, thermometerPosition, 0.0f, 1.25f, WHITE);
+        }
 
-		// Draw flask if not equipped
-		if (!flaskEquipped)
-		{
-			DrawTextureEx(flask, flaskPosition, 0.0f, 1.25f, WHITE);
-		}
+        // Draw character
+        if (IsKeyDown(KEY_W))
+        {
+            if (thermometerEquipped)
+                DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
+            else
+                DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
+        }
+        else if (IsKeyDown(KEY_D))
+        {
+            DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
+        }
+        else if (IsKeyDown(KEY_A))
+        {
+            DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
+        }
+        else
+        {
+            DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+        }
 
-		// Draw character
-		if (IsKeyDown(KEY_W))
-		{
-			if (flaskEquipped)
-				DrawTextureEx(characterReversedFlask, characterPosition, 0.0f, characterScale, WHITE);
-			else
-				DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
-		}
-		else if (IsKeyDown(KEY_D))
-		{
-			DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
-		}
-		else if (IsKeyDown(KEY_A))
-		{
-			DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
-		}
-		else
-		{
-			if (flaskEquipped)
-				DrawTextureEx(characterFlask, characterPosition, 0.0f, characterScale, WHITE);
-			else
-				DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
-		}
+        // Display message when close to thermometer
+        if (distanceToThermometer < 80.0f)
+        {
+            if (!thermometerEquipped)
+            {
+                DrawText("Press R to equip the thermometer", (GetScreenWidth() - MeasureText("Press R to equip the thermometer", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+            }
 
-		// Display message when close to flask
-		if (distanceToFlask < 80.0f)
-		{
-			if (!flaskEquipped)
-			{
-				DrawText("Press R to pick up with oxygen", (GetScreenWidth() - MeasureText("Press R to pick up with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
-			}
-			if (IsKeyDown(KEY_R))
-			{
-				flaskEquipped = true;
-			}
-		}
-		if (flaskEquipped and !scanComplete)
-		{
-			DrawText("Hold SPACE to fill with oxygen", (GetScreenWidth() - MeasureText("Hold SPACE to fill with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
-		}
+            // Check if R key is pressed to equip the thermometer
+            if (IsKeyDown(KEY_R))
+            {
+                thermometerEquipped = true;
+            }
+        }
 
-		if (IsKeyPressed(KEY_Q) and flaskEquipped)
-		{
-			flaskEquipped = !flaskEquipped;
-			flaskPosition.x = characterPosition.x + 48;
-			flaskPosition.y = characterPosition.y + 115;
-		}
-		// Draw loading bar if SPACE is held down
-		if (flaskEquipped && IsKeyDown(KEY_SPACE) && !scanComplete)
-		{
-			if (!fullscreen)
-			{
-				// Draw loading bar background
-				DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 250, 300, 40, LIGHTGRAY);
-				DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 250, loadingBarWidth, 40, DARKGREEN); // Draw loading bar
+        // Draw machine
+        DrawTextureEx(machine, machinePosition, 0.0f, 4.5f, WHITE);
 
-				// Draw "Measuring..." text
-				if ((framesCounter / 59) % 2 == 0)
-				{
-					DrawText("Filling...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 260, 20, WHITE);
-				}
-				if (scanComplete)
-				{
-					DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 220, 36, WHITE);
-				}
+        // Draw text for thermometer equipped and measuring
+        if (thermometerEquipped && !measurementComplete)
+        {
+            DrawText("Thermometer equipped", (GetScreenWidth() - MeasureText("Thermometer equipped", 36)) / 2, GetScreenHeight() - 120, 36, RAYWHITE);
+            DrawText("Hold SPACE to measure temperature", (GetScreenWidth() - MeasureText("Hold SPACE to measure temperature", 36)) / 2, GetScreenHeight() - 80, 36, RAYWHITE);
 
-				framesCounter += 4;
-				if (framesCounter >= 60)
-				{
-					framesCounter = 0;
-					loadingBarWidth += 10;
-					if (loadingBarWidth >= 310)
-					{
-						scanComplete = true;
-						loadingBarWidth = 0;
-					}
-				}
-			}
-			else
-			{
-				// Draw loading bar background
-				DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 430, 300, 40, LIGHTGRAY);
-				DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 430, loadingBarWidth, 40, DARKGREEN); // Draw loading bar
+           
+            if (IsKeyDown(KEY_SPACE))
+            {
+           
 
-				// Draw "Measuring..." text
-				if ((framesCounter / 59) % 2 == 0)
-				{
-					DrawText("Filling...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 440, 20, WHITE);
-				}
-				if (scanComplete)
-				{
-					DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 400, 36, WHITE);
-				}
+                // Draw "Sticking into ground..." text
+                DrawText("Sticking into ground...", GetScreenWidth() / 2 - 100, GetScreenHeight() / 2 + 210, 20, WHITE);
 
-				framesCounter += 4;
-				if (framesCounter >= 60)
-				{
-					framesCounter = 0;
-					loadingBarWidth += 10;
-					if (loadingBarWidth >= 310)
-					{
-						scanComplete = true;
-						loadingBarWidth = 0;
-					}
-				}
-			}
-		}
+                frameCount++;
+                // Update loading bar
+                loadingBarWidth += 10;
+                if (loadingBarWidth >= 310)
+                {
+                    measurementComplete = true;
+                    loadingBarWidth = 0;
+                }
+            }
+        }
 
-		// Draw machine
-		DrawTextureEx(machine, machinePosition, 0.0f, 4.5f, WHITE);
+        // Draw text for measurement complete
+        if (measurementComplete)
+        {
+            DrawText("Measurement complete", 500, 10, 24, WHITE);
+        }
 
-		// Check if Enter key is pressed when equipped with the flask
-		if (flaskEquipped and scanComplete)
-		{
-			DrawText("Air filled", (GetScreenWidth() - MeasureText("Air filled", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
-		}
-		if (distanceToMachine < 120.0f and flaskEquipped and scanComplete)
-		{
-			DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 40, 36, RAYWHITE);
-			if (IsKeyPressed(KEY_E))
-			{
-				int money = 0;
-				// Get value from money.csv which is created when you complete Level1
-				std::ifstream moneyFile("../data/money.csv");
-				if (moneyFile.is_open())
-				{
-					moneyFile >> money;
-					moneyFile.close();
-				}
+        // Draw text for interacting with machine
+        if (distanceToMachine < 120.0f && measurementComplete)
+        {
+            DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 40, 36, RAYWHITE);
+            if (IsKeyPressed(KEY_E))
+            {
+                // Process thermometer readings and interact with the machine
+                taskThreeTerminal();
+            }
+        }
 
-				std::ofstream moneyFileOf("../data/money.csv");
-				if (moneyFileOf.is_open())
-				{
-					moneyFileOf << money + 250; // Save earned money to a file
-					moneyFileOf.close();
-				}
+        DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
+        DrawText("Press ESC to quit", 10, 30, 24, WHITE);
 
-				std::ofstream levelFile("../data/levelsPassedMercury.csv");
-				if (levelFile.is_open())
-				{
-					levelFile << "1"; // Save completed level to a file
-					levelFile.close();
-				}
+        EndDrawing();
+    }
 
-				mercuryTaskOneTerminal();
-			}
-		}
+    // Unload textures
+    UnloadTexture(thermometer);
+    UnloadTexture(machine);
+    UnloadTexture(character);
+    UnloadTexture(characterReversed);
+    UnloadTexture(background);
+    UnloadTexture(characterLeft);
+    UnloadTexture(characterRight);
 
-		DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
-		DrawText("Press ESC to quit", 10, 30, 24, WHITE);
-
-
-		EndDrawing();
-	}
-
-	// Unload textures
-	UnloadTexture(flask);
-	UnloadTexture(machine);
-	UnloadTexture(character);
-	UnloadTexture(characterFlask);
-	UnloadTexture(background);
-	UnloadTexture(characterReversed);
-	UnloadTexture(characterReversedFlask);
-	UnloadTexture(characterLeft);
-	UnloadTexture(characterRight);
+    // Unload thermometer animation frames
+    for (int i = 0; i < MAX_FRAME_COUNT; ++i) {
+        UnloadTexture(thermometerAnimation[i]);
+    }
 }
+
 void venusTaskOne()
 {
     const int screenWidth = GetScreenWidth();
@@ -2100,10 +2049,7 @@ void venusTaskOne()
     UnloadTexture(characterRight);
 }
 
-void mercuryTaskThree()
-{
-
-}
+void mercuryTaskThree();
 
 void venusTaskOneTerminal()
 {

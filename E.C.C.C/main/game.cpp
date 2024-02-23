@@ -290,25 +290,25 @@
             // Check for clicks on planets
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
-                if (CheckCollisionPointCircle(GetMousePosition(), Vector2{ mercuryX, mercuryY }, mercuryRadius))
-                {
+                if (CheckCollisionPointCircle(GetMousePosition(), Vector2{ mercuryX, mercuryY }, mercuryRadius)) {
                     isMercuryClicked = !isMercuryClicked;
-                    if (isMercuryClicked)
-                    {
-                        if (mercuryLockedCh == true)
-                        {
+                    if (isMercuryClicked) {
+                        if (mercuryLockedCh == true) {
                             buyMercury();
                         }
-                        else
-                        {
-                            if (levelsPassedMercury != 1)
-                            {
+                        else {
+                            if (levelsPassedMercury != 1 && levelsPassedMercury != 2 && levelsPassedMercury != 3) {
                                 mercuryTaskOne();
                             }
-                        }
-                        if (levelsPassedMercury == 1)
-                        {
-                            mercuryTaskTwo();
+                            else if (levelsPassedMercury == 1) {
+                                mercuryTaskTwo();
+                            }
+                            else if (levelsPassedMercury == 2) {
+                                mercuryTaskThree();
+                            }
+                            else if (levelsPassedMercury == 3) {
+                                // Task four
+                            }
                         }
                     }
                 }

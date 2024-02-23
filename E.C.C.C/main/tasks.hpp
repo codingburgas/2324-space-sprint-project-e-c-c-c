@@ -23,6 +23,8 @@ void mercuryTaskTwo();
 
 void mercuryTaskTwoTerminal();
 
+void mercuryTaskThree();
+
 //Venus
 void venusTaskOne();
 
