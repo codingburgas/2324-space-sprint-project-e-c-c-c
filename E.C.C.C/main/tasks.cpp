@@ -29,6 +29,8 @@ void taskOne()
     // Load textures based on character shop selection
     switch (characterShop) {
     case 2:
+        break;
+    case 3:
         character = LoadTexture("../assets/player/diver.png");
         characterFlask = LoadTexture("../assets/player/diverFlask.png");
         characterReversed = LoadTexture("../assets/player/diverBack.png");
@@ -36,9 +38,7 @@ void taskOne()
         characterLeft = LoadTexture("../assets/player/diverLeft.png");
         characterRight = LoadTexture("../assets/player/diverRight.png");
         break;
-    case 3:
-        break;
-    default: // Assuming default character
+    default: 
         character = LoadTexture("../assets/player/player.png");
         characterFlask = LoadTexture("../assets/player/playerFlask.png");
         characterReversed = LoadTexture("../assets/player/playerReversed.png");
@@ -478,6 +478,7 @@ void taskTwo()
                 DrawTextureEx(characterLeftRock, characterPosition, 0.0f, characterScale, WHITE);
             else if (dirtEquipped)
                 DrawTextureEx(characterLeftDirt, characterPosition, 0.0f, characterScale, WHITE);
+            else
             DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
         }
         else
@@ -774,18 +775,37 @@ void taskThree()
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
 
-    // Load textures
-    Texture2D background = LoadTexture("../assets/background/taskOneBackground.png");
-    Texture2D character = LoadTexture("../assets/player/player.png");
-    Texture2D characterRadiationDetector = LoadTexture("../assets/player/playerRadiationDetector.png");
-    Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
-    Texture2D characterReversedRadiationDetector = LoadTexture("../assets/player/playerReversedRadiationDetector.png");
-    Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
-    Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
-    Texture2D radiationDetector = LoadTexture("../assets/tasks/radiationDetector.png");
-    Texture2D machine = LoadTexture("../assets/tasks/machine.png");
+    Texture2D character;
+    Texture2D characterRadiationDetector;
+    Texture2D characterReversed;
+    Texture2D characterReversedRadiationDetector;
+    Texture2D characterLeft;
+    Texture2D characterRight;
 
-    // Initialize positions and variables
+    switch (characterShop) {
+    case 2:
+        break;
+    case 3:
+        character = LoadTexture("../assets/player/diver.png");
+        characterRadiationDetector = LoadTexture("../assets/player/diverRadiationDetector.png");
+        characterReversed = LoadTexture("../assets/player/diverBack.png");
+        characterReversedRadiationDetector = LoadTexture("../assets/player/diverRadiationDetectorBack.png");
+        characterLeft = LoadTexture("../assets/player/diverLeft.png");
+        characterRight = LoadTexture("../assets/player/diverRight.png");
+        break;
+    default:
+        character = LoadTexture("../assets/player/player.png");
+        characterRadiationDetector = LoadTexture("../assets/player/playerRadiationDetector.png");
+        characterReversed = LoadTexture("../assets/player/playerReversed.png");
+        characterReversedRadiationDetector = LoadTexture("../assets/player/playerReversedRadiationDetector.png");
+        characterLeft = LoadTexture("../assets/player/playerLeft.png");
+        characterRight = LoadTexture("../assets/player/playerRight.png");
+        break;
+    }
+    Texture2D background = LoadTexture("../assets/background/taskOneBackground.png");
+    Texture2D machine = LoadTexture("../assets/tasks/machine.png");
+    Texture2D radiationDetector = LoadTexture("../assets/tasks/radiationDetector.png");
+// Initialize positions and variables
     Vector2 radiationDetectorPosition = { (float)GetRandomValue(0, screenWidth - radiationDetector.width - 100), (float)GetRandomValue(0, screenHeight - radiationDetector.height - 100) };
     Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
     Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
@@ -1070,16 +1090,38 @@ void mercuryTaskOne()
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
 
+    Texture2D character;
+    Texture2D characterFlask;
+    Texture2D characterReversed;
+    Texture2D characterReversedFlask;
+    Texture2D characterLeft;
+    Texture2D characterRight;
+    
+    switch (characterShop) 
+    {
+    case 2:
+        break;
+    case 3:
+        character = LoadTexture("../assets/player/diver.png");
+        characterFlask = LoadTexture("../assets/player/diverFlask.png");
+        characterReversed = LoadTexture("../assets/player/diverBack.png");
+        characterReversedFlask = LoadTexture("../assets/player/diverFlaskBack.png");
+        characterLeft = LoadTexture("../assets/player/diverLeft.png");
+        characterRight = LoadTexture("../assets/player/diverRight.png");
+        break;
+    default:
+        character = LoadTexture("../assets/player/player.png");
+        characterFlask = LoadTexture("../assets/player/playerFlask.png");
+        characterReversed = LoadTexture("../assets/player/playerReversed.png");
+        characterReversedFlask = LoadTexture("../assets/player/playerReversedFlask.png");
+        characterLeft = LoadTexture("../assets/player/playerLeft.png");
+        characterRight = LoadTexture("../assets/player/playerRight.png");
+        break;
+    }
+
     Texture2D background = LoadTexture("../assets/background/mercuryBackground.png");
-    Texture2D character = LoadTexture("../assets/player/player.png");
-    Texture2D characterFlask = LoadTexture("../assets/player/playerFlask.png");
-    Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
-    Texture2D characterReversedFlask = LoadTexture("../assets/player/playerReversedFlask.png");
-    Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
-    Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
     Texture2D flask = LoadTexture("../assets/tasks/flask.png");
     Texture2D machine = LoadTexture("../assets/tasks/mercuryMachine.png");
-
     Vector2 flaskPosition = { (float)GetRandomValue(0, screenWidth - flask.width - 100), (float)GetRandomValue(0, screenHeight - flask.height - 100) };
     Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
     Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
@@ -1385,15 +1427,6 @@ void mercuryTaskTwo()
     Texture2D characterRightDirt;
 
     switch (characterShop) {
-    case 1:
-        character = LoadTexture("../assets/player/player.png");
-        characterRock = LoadTexture("../assets/player/playerMercuryDirt.png");
-        characterReversed = LoadTexture("../assets/player/playerReversed.png");
-        characterReversedRD = LoadTexture("../assets/player/playerRDReversed.png");
-        characterLeft = LoadTexture("../assets/player/playerLeft.png");
-        characterLeftRock = LoadTexture("../assets/player/playerLeftMercuryDirt.png");
-        characterRight = LoadTexture("../assets/player/playerRight.png");
-        characterRightRock = LoadTexture("../assets/player/playerMercuryRightDirt.png");
     case 2:
 
         break;
@@ -1560,7 +1593,7 @@ void mercuryTaskTwo()
                     moneyFileOf.close();
                 }
 
-                std::ofstream levelFile("../data/levelsPassed.csv");
+                std::ofstream levelFile("../data/levelsPassedMercury.csv");
                 if (levelFile.is_open())
                 {
                     levelFile << "2";  // Save completed level to a file
@@ -1662,20 +1695,46 @@ void mercuryTaskThree()
     const int screenHeight = GetScreenHeight();
 
     // Load textures
-    Texture2D background = LoadTexture("../assets/background/taskOneBackground.png");
-    Texture2D character = LoadTexture("../assets/player/player.png");
-    Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
-    Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
-    Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
-    Texture2D thermometer = LoadTexture("../assets/tasks/flask.png");
-    Texture2D machine = LoadTexture("../assets/tasks/machine.png");
+   
+    Texture2D character;
+    Texture2D characterReversed;
+    Texture2D characterLeft;
+    Texture2D characterRight;
+    Texture2D characterReversedThermometer;
+    Texture2D characterThermometer;
+
+    switch (characterShop) {
+    case 2:
+        break;
+    case 3:
+        character = LoadTexture("../assets/player/diver.png");
+        characterThermometer = LoadTexture("../assets/player/diverThermometer.png");
+        characterReversed = LoadTexture("../assets/player/diverBack.png");
+        characterReversedThermometer = LoadTexture("../assets/player/diverReversedThermometer.png");
+        characterLeft = LoadTexture("../assets/player/diverLeft.png");
+        characterRight = LoadTexture("../assets/player/diverRight.png");
+        break;
+    default:
+        character = LoadTexture("../assets/player/player.png");
+        characterThermometer = LoadTexture("../assets/player/playerThermometer.png");
+        characterReversed = LoadTexture("../assets/player/playerReversed.png");
+        characterReversedThermometer = LoadTexture("../assets/player/playerReversedThermometer.png");
+        characterLeft = LoadTexture("../assets/player/playerLeft.png");
+        characterRight = LoadTexture("../assets/player/playerRight.png");
+        break;
+    }
+    
+
 
     // Load thermometer animation frames
+    Texture2D thermometer = LoadTexture("../assets/tasks/thermometer.png");
+    Texture2D machine = LoadTexture("../assets/tasks/machine.png"); 
+    Texture2D background = LoadTexture("../assets/background/mercuryBackground.png");
     const int MAX_FRAME_COUNT = 10;
     Texture2D thermometerAnimation[MAX_FRAME_COUNT];
     for (int i = 0; i < MAX_FRAME_COUNT; ++i) {
         char framePath[64];
-        sprintf(framePath, "../assets/animations/thermometer/frame_%02d.png", i);
+        sprintf_s(framePath, "../assets/animations/thermometer/frame_%02d.png", i);
         thermometerAnimation[i] = LoadTexture(framePath);
     }
 
@@ -1742,7 +1801,7 @@ void mercuryTaskThree()
         if (IsKeyDown(KEY_W))
         {
             if (thermometerEquipped)
-                DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
+                DrawTextureEx(characterReversedThermometer, characterPosition, 0.0f, characterScale, WHITE);
             else
                 DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
         }
@@ -1756,6 +1815,9 @@ void mercuryTaskThree()
         }
         else
         {
+            if (thermometerEquipped)
+                DrawTextureEx(characterThermometer, characterPosition, 0.0f, characterScale, WHITE);
+            else
             DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
         }
 
@@ -1786,8 +1848,8 @@ void mercuryTaskThree()
            
             if (IsKeyDown(KEY_SPACE))
             {
-           
-
+                //draw animation
+                DrawTextureEx(thermometerAnimation[frameCount], thermometerPosition, 0.0f, 1.25f, WHITE);
                 // Draw "Sticking into ground..." text
                 DrawText("Sticking into ground...", GetScreenWidth() / 2 - 100, GetScreenHeight() / 2 + 210, 20, WHITE);
 

@@ -509,19 +509,16 @@
             if (characterShop == 2)
             {
                 DrawText("Equipped cookie successfully", 10, 98, 24, WHITE);
-                std::cout << "equipped cookie\n";
             }
 
             if (boughtCookie == true||cookieLockStatus==0)
             {
                 DrawText("Purchased cookie successfully!", 10, 53, 24, WHITE);
-                std::cout << "purchased cookie\n";
             }
 
             if (noBal == true)
             {
                 DrawText("Insufficient balance!", 10, 53, 24, WHITE);
-                std::cout << "insufficient bal\n";
             }
             //diver
             DrawTextureEx(playerShopTwo, Vector2{ vectorScreenWidth - 210, vectorScreenHeight / 2 - 10 }, 0, 2, WHITE);
@@ -560,19 +557,16 @@
 if (characterShop == 3)
 {
     DrawText("Equipped diver successfully", 10, 88, 24, WHITE);
-    std::cout << "equipped diver\n";
 }
 
             if (boughtDiver == true)
             {
                 DrawText("Purchased diver successfully!", 10, 73, 24, WHITE);
-                std::cout << "purchased diver\n";
             }
 
             if (noBal == true)
             {
                 DrawText("Insufficient balance!", 10, 53, 24, WHITE);
-                std::cout << "insuficcient bal\n";
             }
 
             EndDrawing();
