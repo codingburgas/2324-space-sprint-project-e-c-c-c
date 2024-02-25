@@ -1,6 +1,7 @@
 #include <cmath>
 #include <iostream>
 #include <fstream>
+#include <stdio.h>
 #include "raylib.h"
 #include "terminal.hpp"
 #include "tasks.hpp"
@@ -1209,7 +1210,7 @@ void mercuryTaskOne()
         {
             if (!flaskEquipped)
             {
-                DrawText("Press R to pick up with oxygen", (GetScreenWidth() - MeasureText("Press R to pick up with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+                DrawText("Press R to pick up ", (GetScreenWidth() - MeasureText("Press R to pick up ", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
             }
             if (IsKeyDown(KEY_R))
             {
@@ -1218,7 +1219,7 @@ void mercuryTaskOne()
         }
         if (flaskEquipped and !scanComplete)
         {
-            DrawText("Hold SPACE to fill with oxygen", (GetScreenWidth() - MeasureText("Hold SPACE to fill with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+            DrawText("Hold SPACE to fill with air", (GetScreenWidth() - MeasureText("Hold SPACE to fill with air", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
         }
 
         if (IsKeyPressed(KEY_Q) and flaskEquipped)
@@ -1688,14 +1689,13 @@ void mercuryTaskTwoTerminal()
 }
 
 
+
 void mercuryTaskThree()
 {
-    
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
 
     // Load textures
-   
     Texture2D character;
     Texture2D characterReversed;
     Texture2D characterLeft;
@@ -1723,12 +1723,10 @@ void mercuryTaskThree()
         characterRight = LoadTexture("../assets/player/playerRight.png");
         break;
     }
-    
-
 
     // Load thermometer animation frames
     Texture2D thermometer = LoadTexture("../assets/tasks/thermometer.png");
-    Texture2D machine = LoadTexture("../assets/tasks/machine.png"); 
+    Texture2D machine = LoadTexture("../assets/tasks/mercuryMachine.png");
     Texture2D background = LoadTexture("../assets/background/mercuryBackground.png");
     const int MAX_FRAME_COUNT = 10;
     Texture2D thermometerAnimation[MAX_FRAME_COUNT];
@@ -1750,6 +1748,7 @@ void mercuryTaskThree()
     int framesCounter = 0;
     int frameCount = 0;
     bool measurementComplete = false;
+
 
     SetTargetFPS(60);
 
@@ -1818,7 +1817,7 @@ void mercuryTaskThree()
             if (thermometerEquipped)
                 DrawTextureEx(characterThermometer, characterPosition, 0.0f, characterScale, WHITE);
             else
-            DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
+                DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
         }
 
         // Display message when close to thermometer
@@ -1835,54 +1834,85 @@ void mercuryTaskThree()
                 thermometerEquipped = true;
             }
         }
-
+        if (IsKeyPressed(KEY_Q) and thermometerEquipped)
+        {
+            thermometerEquipped = !thermometerEquipped;
+            thermometerPosition.x = characterPosition.x + 48;
+            thermometerPosition.y = characterPosition.y + 115;
+        }
         // Draw machine
         DrawTextureEx(machine, machinePosition, 0.0f, 4.5f, WHITE);
-
-        // Draw text for thermometer equipped and measuring
-        if (thermometerEquipped && !measurementComplete)
+        if (thermometerEquipped && !fullscreen)
         {
-            DrawText("Thermometer equipped", (GetScreenWidth() - MeasureText("Thermometer equipped", 36)) / 2, GetScreenHeight() - 120, 36, RAYWHITE);
-            DrawText("Hold SPACE to measure temperature", (GetScreenWidth() - MeasureText("Hold SPACE to measure temperature", 36)) / 2, GetScreenHeight() - 80, 36, RAYWHITE);
+            // Draw "Thermometer equipped" and "Hold SPACE to measure temperature" text
+            DrawText("Thermometer equipped", (GetScreenWidth() - MeasureText("Thermometer equipped", 36)) / 2, GetScreenHeight() - 70, 36, RAYWHITE);
+            DrawText("Hold SPACE to measure temperature", (GetScreenWidth() - MeasureText("Hold SPACE to measure temperature", 36)) / 2, GetScreenHeight() - 40, 36, RAYWHITE);
 
-           
+            // Increment frameCount continuously
+            frameCount++;
+
+            // Draw "Measuring..." text if space key is held down
             if (IsKeyDown(KEY_SPACE))
             {
-                //draw animation
-                DrawTextureEx(thermometerAnimation[frameCount], thermometerPosition, 0.0f, 1.25f, WHITE);
-                // Draw "Sticking into ground..." text
-                DrawText("Sticking into ground...", GetScreenWidth() / 2 - 100, GetScreenHeight() / 2 + 210, 20, WHITE);
+                DrawText("Temperature in C", GetScreenWidth() - 225, GetScreenHeight() / 2 + 300, 25, WHITE);
 
-                frameCount++;
-                // Update loading bar
-                loadingBarWidth += 10;
-                if (loadingBarWidth >= 310)
-                {
-                    measurementComplete = true;
-                    loadingBarWidth = 0;
-                }
+                // Generate a random temperature within the specified range
+                float minTemperature = 340.1;
+                float maxTemperature = 340.9;
+                float temperature = GetRandomValue(minTemperature * 10, maxTemperature * 10) / 10.0f; // Random float with one decimal place
+
+                // Display the random temperature
+
+                DrawText(TextFormat("%.1f", temperature), GetScreenWidth()  - 70, GetScreenHeight() / 2 + 330, 25, WHITE);
             }
         }
-
-        // Draw text for measurement complete
-        if (measurementComplete)
+        if (thermometerEquipped && fullscreen)
         {
-            DrawText("Measurement complete", 500, 10, 24, WHITE);
+            // Draw "Thermometer equipped" and "Hold SPACE to measure temperature" text
+            DrawText("Thermometer equipped", (GetScreenWidth() - MeasureText("Thermometer equipped", 36)) / 2, GetScreenHeight() - 70, 36, RAYWHITE);
+            DrawText("Hold SPACE to measure temperature", (GetScreenWidth() - MeasureText("Hold SPACE to measure temperature", 36)) / 2, GetScreenHeight() - 40, 36, RAYWHITE);
+
+            // Increment frameCount continuously
+            frameCount++;
+
+            // Draw "Measuring..." text if space key is held down
+            if (IsKeyDown(KEY_SPACE))
+            {
+                DrawText("Temperature in C", GetScreenWidth() - 225, GetScreenHeight() / 2 + 480, 25, WHITE);
+
+                // Generate a random temperature within the specified range
+                float minTemperature = 340.1;
+                float maxTemperature = 340.9;
+                float temperature = GetRandomValue(minTemperature * 10, maxTemperature * 10) / 10.0f; // Random float with one decimal place
+
+                // Display the random temperature
+
+                DrawText(TextFormat("%.1f", temperature), GetScreenWidth() - 70, GetScreenHeight() / 2 + 510, 25, WHITE);
+            }
         }
-
         // Draw text for interacting with machine
-        if (distanceToMachine < 120.0f && measurementComplete)
+        if (distanceToMachine < 120.0f && !fullscreen)
         {
-            DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 40, 36, RAYWHITE);
+            DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
             if (IsKeyPressed(KEY_E))
             {
                 // Process thermometer readings and interact with the machine
-                taskThreeTerminal();
+                mercuryTaskThreeTerminal();
+            }
+        }
+        if (distanceToMachine < 120.0f && fullscreen)
+        {
+            DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 98, 36, RAYWHITE);
+            if (IsKeyPressed(KEY_E))
+            {
+                // Process thermometer readings and interact with the machine
+                mercuryTaskThreeTerminal();
             }
         }
 
         DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
         DrawText("Press ESC to quit", 10, 30, 24, WHITE);
+        DrawText("Press Q to drop the Thermometer", 10, 50, 24, WHITE);
 
         EndDrawing();
     }
@@ -1895,12 +1925,157 @@ void mercuryTaskThree()
     UnloadTexture(background);
     UnloadTexture(characterLeft);
     UnloadTexture(characterRight);
-
-    // Unload thermometer animation frames
-    for (int i = 0; i < MAX_FRAME_COUNT; ++i) {
-        UnloadTexture(thermometerAnimation[i]);
-    }
 }
+
+#include <raylib.h>
+#include <fstream>
+#include <cstdlib>
+
+void mercuryTaskThreeTerminal()
+{
+    const float screenWidth = GetScreenWidth();
+    const float screenHeight = GetScreenHeight();
+    const int maxInputChars = 6;
+    char name[maxInputChars + 1] = "\0";
+    int letterCount = 0;
+    int framesCounter = 0;
+    bool mouseOnText = false;
+    float nameX = 0;
+    float nameY = 0;
+    float nameWidth = 0;
+    int passed = 0;
+    int fontSize;
+    SetExitKey(KEY_ESCAPE);
+
+    if (fullscreen == true)
+    {
+        fontSize = 24;
+        nameX = 480;
+        nameY = 205;
+        nameWidth = 205;
+    }
+    else
+    {
+        fontSize = 19;
+        nameX = 400;
+        nameY = 225;
+        nameWidth = 225;
+    }
+    Rectangle textBox = { nameX - 200, nameY, 0, 0 };
+    Font font = LoadFont("../2324-space-sprint-project-e-c-c-c/E.C.C.C/assets/vcrOsd.ttf");
+
+    char launchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
+    char inputText[] = ". / E.C.C.C > Input the recorded temperature in C";
+    char valueInput[] = ". /E.C.C.C >";
+    char playerNameNotEntered[] = "Please enter a value";
+    char nameSubmit[] = "Hold enter to submit";
+    SetTargetFPS(60);
+
+    while (!WindowShouldClose())
+    {
+        framesCounter += 10;
+
+        if(passed == 1 && IsKeyPressedRepeat(KEY_ENTER))
+        {
+            int money = 0;
+            std::ifstream moneyFile("../data/money.csv");
+            if (moneyFile.is_open())
+            {
+                moneyFile >> money;
+                moneyFile.close();
+            }
+
+            std::ofstream moneyFileOf("../data/money.csv");
+            if (moneyFileOf.is_open())
+            {
+                moneyFileOf << money + 300; // Save earned money to a file
+                moneyFileOf.close();
+            }
+            game();
+        }
+
+        if (framesCounter > 400)
+        {
+            int key = GetCharPressed();
+            while (key > 0)
+            {
+                if ((key >= 32) && (key <= 122) && (letterCount < maxInputChars))
+                {
+                    name[letterCount] = (char)key;
+                    name[letterCount + 1] = '\0';
+                    letterCount++;
+                }
+
+                key = GetCharPressed();
+            }
+        }
+        if (IsKeyPressed(KEY_BACKSPACE))
+        {
+            letterCount--;
+            if (letterCount < 0)
+                letterCount = 0;
+            name[letterCount] = '\0';
+        }
+
+        if (letterCount != 0)
+        {
+            DrawText(nameSubmit, 450, 575, 22, WHITE);
+        }
+
+        BeginDrawing();
+        ClearBackground(BLACK);
+        DrawRectangleRec(textBox, BLACK);
+        if (mouseOnText)
+            DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, RED);
+        else
+            DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, BLACK);
+        if (!fullscreen)
+        {
+            DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX - 100, 10 }, fontSize, 3, WHITE);
+        }
+        else
+        {
+            DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX + 20, 10 }, fontSize, 3, WHITE);
+        }
+
+        DrawTextEx(font, name, Vector2{ nameX - 200, 525 }, fontSize, 2, WHITE);
+        DrawTextEx(font, TextSubtext(inputText, 0, framesCounter / 10), Vector2{ nameX - 320, 425 }, fontSize, 3, WHITE);
+        DrawTextEx(font, TextSubtext(valueInput, 0, framesCounter / 10), Vector2{ nameX - 320, 525}, fontSize, 3, WHITE);
+        if (letterCount < maxInputChars && framesCounter > 8000)
+        {
+            if (((framesCounter / 480) % 2) == 0)
+                DrawTextEx(font, "_", Vector2{ nameX -220 + MeasureText(name, fontSize), 525 }, fontSize, 0, WHITE);
+        }
+
+        float inputValue = std::atof(name);
+        if (IsKeyDown(KEY_ENTER))
+        {
+            if (inputValue >= 340.0f && inputValue <= 340.9f && letterCount != 0)
+            {
+                passed = 1;
+            }
+            else if (!(inputValue >= 340.0f && inputValue <= 340.9f) && letterCount != 0)
+            {
+                passed = 2;
+            }
+        }
+
+        if (passed == 2)
+        {
+            DrawText("Try again", nameX - 150, 520, 22, RED);
+        }
+        else if (passed == 1)
+        {
+            DrawText("Task passed", nameX - 150, 520, 22, GREEN);
+        }
+
+        EndDrawing();
+    }
+
+    UnloadFont(font);
+}
+
+
 
 void venusTaskOne()
 {
@@ -2004,7 +2179,7 @@ void venusTaskOne()
         {
             if (!flaskEquipped)
             {
-                DrawText("Press R to pick up with oxygen", (GetScreenWidth() - MeasureText("Press R to pick up with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+                DrawText("Press R to pick up ", (GetScreenWidth() - MeasureText("Press R to pick up ", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
             }
             if (IsKeyDown(KEY_R))
             {
@@ -2013,7 +2188,7 @@ void venusTaskOne()
         }
         if (flaskEquipped and !scanComplete)
         {
-            DrawText("Hold SPACE to fill with oxygen", (GetScreenWidth() - MeasureText("Hold SPACE to fill with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+            DrawText("Hold SPACE to fill with air", (GetScreenWidth() - MeasureText("Hold SPACE to fill with air", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
         }
 
         if (IsKeyPressed(KEY_Q) and flaskEquipped)
@@ -2023,31 +2198,62 @@ void venusTaskOne()
             flaskPosition.y = characterPosition.y + 115;
         }
         // Draw loading bar if SPACE is held down
-        if (flaskEquipped and IsKeyDown(KEY_SPACE) and !scanComplete)
+        if (flaskEquipped && IsKeyDown(KEY_SPACE) && !scanComplete)
         {
-            // Draw loading bar background
-            DrawRectangle(480, screenHeight - 170, 300, 40, LIGHTGRAY);
-            DrawRectangle(480, screenHeight - 170, loadingBarWidth, 40, GRAY);
+            if (!fullscreen)
+            {
+                // Draw loading bar background
+                DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 250, 300, 40, LIGHTGRAY);
+                DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 250, loadingBarWidth, 40, DARKGREEN); // Draw loading bar
 
-            // Draw "Measuring..." text
-            if ((framesCounter / 59) % 2 == 0)
-            {
-                DrawText("Filling...", 600, screenHeight - 160, 20, WHITE);
-            }
-            if (scanComplete)
-            {
-                DrawText("Complete", 400, 10, 36, WHITE);
-            }
-
-            framesCounter += 4;
-            if (framesCounter >= 60)
-            {
-                framesCounter = 0;
-                loadingBarWidth += 10;
-                if (loadingBarWidth >= 310)
+                // Draw "Measuring..." text
+                if ((framesCounter / 59) % 2 == 0)
                 {
-                    scanComplete = true;
-                    loadingBarWidth = 0;
+                    DrawText("Filling...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 260, 20, WHITE);
+                }
+                if (scanComplete)
+                {
+                    DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 220, 36, WHITE);
+                }
+
+                framesCounter += 4;
+                if (framesCounter >= 60)
+                {
+                    framesCounter = 0;
+                    loadingBarWidth += 10;
+                    if (loadingBarWidth >= 310)
+                    {
+                        scanComplete = true;
+                        loadingBarWidth = 0;
+                    }
+                }
+            }
+            else
+            {
+                // Draw loading bar background
+                DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 430, 300, 40, LIGHTGRAY);
+                DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 430, loadingBarWidth, 40, DARKGREEN); // Draw loading bar
+
+                // Draw "Measuring..." text
+                if ((framesCounter / 59) % 2 == 0)
+                {
+                    DrawText("Filling...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 440, 20, WHITE);
+                }
+                if (scanComplete)
+                {
+                    DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 400, 36, WHITE);
+                }
+
+                framesCounter += 4;
+                if (framesCounter >= 60)
+                {
+                    framesCounter = 0;
+                    loadingBarWidth += 10;
+                    if (loadingBarWidth >= 310)
+                    {
+                        scanComplete = true;
+                        loadingBarWidth = 0;
+                    }
                 }
             }
         }
@@ -2077,18 +2283,18 @@ void venusTaskOne()
                 std::ofstream moneyFileOf("../data/money.csv");
                 if (moneyFileOf.is_open())
                 {
-                    moneyFileOf << money + 350; // Save earned money to a file
+                    moneyFileOf << money + 250; // Save earned money to a file
                     moneyFileOf.close();
                 }
 
-                std::ofstream levelFile("../data/levelsPassedVenus.csv");
+                std::ofstream levelFile("../data/levelsPassedMercury.csv");
                 if (levelFile.is_open())
                 {
                     levelFile << "1"; // Save completed level to a file
                     levelFile.close();
                 }
 
-                venusTaskOneTerminal();
+                mercuryTaskOneTerminal();
             }
         }
 
@@ -2111,7 +2317,7 @@ void venusTaskOne()
     UnloadTexture(characterRight);
 }
 
-void mercuryTaskThree();
+
 
 void venusTaskOneTerminal()
 {
@@ -2557,7 +2763,7 @@ void marsTaskOne()
         {
             if (!flaskEquipped)
             {
-                DrawText("Press R to pick up with oxygen", (GetScreenWidth() - MeasureText("Press R to pick up with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+                DrawText("Press R to pick up", (GetScreenWidth() - MeasureText("Press R to pick up", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
             }
             if (IsKeyDown(KEY_R))
             {
@@ -2566,7 +2772,7 @@ void marsTaskOne()
         }
         if (flaskEquipped and !scanComplete)
         {
-            DrawText("Hold SPACE to fill with oxygen", (GetScreenWidth() - MeasureText("Hold SPACE to fill with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+            DrawText("Hold SPACE to fill with air", (GetScreenWidth() - MeasureText("Hold SPACE to fill with air", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
         }
 
         if (IsKeyPressed(KEY_Q) and flaskEquipped)
@@ -2766,7 +2972,7 @@ void jupiterTaskOne()
         {
             if (!flaskEquipped)
             {
-                DrawText("Press R to pick up with oxygen", (GetScreenWidth() - MeasureText("Press R to pick up with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+                DrawText("Press R to pick up", (GetScreenWidth() - MeasureText("Press R to pick up", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
             }
             if (IsKeyDown(KEY_R))
             {
@@ -2775,7 +2981,7 @@ void jupiterTaskOne()
         }
         if (flaskEquipped and !scanComplete)
         {
-            DrawText("Hold SPACE to fill with oxygen", (GetScreenWidth() - MeasureText("Hold SPACE to fill with oxygen", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+            DrawText("Hold SPACE to fill with air", (GetScreenWidth() - MeasureText("Hold SPACE to fill with air", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
         }
 
         if (IsKeyPressed(KEY_Q) and flaskEquipped)
