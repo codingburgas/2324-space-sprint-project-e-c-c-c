@@ -371,6 +371,29 @@
                         }
                     }
                 }
+
+                if (CheckCollisionPointCircle(GetMousePosition(), Vector2{ marsX, marsY }, marsRadius)) {
+                    isMarsClicked = !isMarsClicked;
+                    if (isMarsClicked) {
+                        if (marsLockedCh == true) {
+							buyMars();
+                        }
+                        else {
+                            if (levelsPassedMars != 1 && levelsPassedMars != 2 && levelsPassedMars != 3) {
+                                marsTaskOne();
+                            }
+                            else if (levelsPassedMars == 1) {
+                                marsTaskTwo();
+                            }
+                            else if (levelsPassedMars == 2) {
+                                //marsTaskThree();
+                            }
+                            else if (levelsPassedMars == 3) {
+                                // Task four
+                            }
+                        }
+                    }
+                }
                 else if (CheckCollisionPointCircle(GetMousePosition(), Vector2{ jupiterX, jupiterY }, jupiterRadius))
                 {
                     isJupiterClicked = !isJupiterClicked;

@@ -39,5 +39,11 @@ void venusTaskTwoTerminal();
 //Mars
 void marsTaskOne();
 
+void marsTaskOneTerminal();
+
+void marsTaskTwo();
+
+void marsTaskTwoTerminal();
+
 //Jupiter
 void jupiterTaskOne();

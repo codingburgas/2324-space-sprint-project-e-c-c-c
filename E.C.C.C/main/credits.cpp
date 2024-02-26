@@ -128,7 +128,7 @@ void credits()
 
         DrawText("Programing languages and Graphics libraries:", 300, (int)slidingSpeed + 1420, 30, WHITE);
         DrawText("Contact us:", 550 , (int)slidingSpeed + 1750, 30, WHITE);
-        DrawText("Send e-mail to DPDimitralov@codingburgas.bg or find the others' e-mail in our repository.", 200, (int)slidingSpeed + 1800, 20, WHITE);
+        DrawText("Send e-mail to DPDimitrakov@codingburgas.bg or find the others' e-mail in our repository.", 200, (int)slidingSpeed + 1800, 20, WHITE);
 
 
 
