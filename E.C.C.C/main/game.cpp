@@ -300,9 +300,17 @@ void game()
                     }
                     else
                     {
-                        if (levelsPassedVenus != 1)
+                        if (levelsPassedVenus != 1 && levelsPassedVenus != 2)
                         {
                             venusTaskOne();
+                        }
+                        else if (levelsPassedVenus == 1)
+                        {
+                            venusTaskTwo();
+                        }
+                        else if (levelsPassedVenus == 2)
+                        {
+                            //venusTaskThree();
                         }
                     }
                 }
@@ -338,17 +346,8 @@ void game()
                         buyMars();
                     }
                     else {
-                        if (levelsPassedMars != 1 && levelsPassedMars != 2 && levelsPassedMars != 3) {
+                        if (levelsPassedMars != 1) {
                             marsTaskOne();
-                        }
-                        else if (levelsPassedMars == 1) {
-                            marsTaskTwo();
-                        }
-                        else if (levelsPassedMars == 2) {
-                            marsTaskThree();
-                        }
-                        else if (levelsPassedMars == 3) {
-                            // Task four
                         }
                     }
                 }

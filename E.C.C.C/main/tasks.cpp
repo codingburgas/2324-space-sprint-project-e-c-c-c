@@ -2401,37 +2401,28 @@ void venusTaskTwo()
     Texture2D characterRightDirt;
 
     switch (characterShop) {
-    case 1:
-        character = LoadTexture("../assets/player/player.png");
-        characterRock = LoadTexture("../assets/player/playerMercuryRock.png");
-        characterReversed = LoadTexture("../assets/player/playerReversed.png");
-        characterReversedRD = LoadTexture("../assets/player/playerRDReversed.png");
-        characterLeft = LoadTexture("../assets/player/playerLeft.png");
-        characterLeftRock = LoadTexture("../assets/player/playerLeftMercuryRock.png");
-        characterRight = LoadTexture("../assets/player/playerRight.png");
-        characterRightRock = LoadTexture("../assets/player/playerRightMercuryRock.png");
     case 2:
 
         break;
     case 3:
         character = LoadTexture("../assets/player/diver.png");
-        characterRock = LoadTexture("../assets/player/diverMercuryRock.png");
+        characterRock = LoadTexture("../assets/player/diverMercuryDirt.png");
         characterReversed = LoadTexture("../assets/player/diverBack.png");
         characterReversedRD = LoadTexture("../assets/player/diverItemBack.png");
         characterLeft = LoadTexture("../assets/player/diverLeft.png");
-        characterLeftRock = LoadTexture("../assets/player/diverMercuryRockLeft.png");
+        characterLeftRock = LoadTexture("../assets/player/diverMercuryDirtLeft.png");
         characterRight = LoadTexture("../assets/player/diverRight.png");
-        characterRightRock = LoadTexture("../assets/player/diverMercuryRockRight.png");
+        characterRightRock = LoadTexture("../assets/player/diverMercuryDirtRight.png");
         break;
     default:
         character = LoadTexture("../assets/player/player.png");
-        characterRock = LoadTexture("../assets/player/playerMercuryRock.png");
+        characterRock = LoadTexture("../assets/player/playerMercuryDirt.png");
         characterReversed = LoadTexture("../assets/player/playerReversed.png");
         characterReversedRD = LoadTexture("../assets/player/playerRDReversed.png");
         characterLeft = LoadTexture("../assets/player/playerLeft.png");
-        characterLeftRock = LoadTexture("../assets/player/playerLeftMercuryRock.png");
+        characterLeftRock = LoadTexture("../assets/player/playerLeftMercuryDirt.png");
         characterRight = LoadTexture("../assets/player/playerRight.png");
-        characterRightRock = LoadTexture("../assets/player/playerRightMercuryRock.png");
+        characterRightRock = LoadTexture("../assets/player/playerMercuryRightDirt.png");
         break;
     }
     Texture2D background = LoadTexture("../assets/background/venusBackground.png");
@@ -3022,15 +3013,15 @@ void marsTaskTwo()
 
 		character = LoadTexture("../assets/player/diver.png");
 		characterRock = LoadTexture("../assets/player/diverMarsDirt.png");
-		characterDirt = LoadTexture("../assets/player/diverMarsRock.png");
+		characterDirt = LoadTexture("../assets/player/diverMarsDirt.png");
 		characterReversed = LoadTexture("../assets/player/diverBack.png");
 		characterReversedRD = LoadTexture("../assets/player/diverItemBack.png");
 		characterLeft = LoadTexture("../assets/player/diverLeft.png");
-		characterLeftRock = LoadTexture("../assets/player/diverRockMarsLeft.png");
-		characterLeftDirt = LoadTexture("../assets/player/diverDirtMarsLeft.png");
+		characterLeftRock = LoadTexture("../assets/player/diverMarsRockLeft.png");
+		characterLeftDirt = LoadTexture("../assets/player/diverMarsDirtLeft.png");
 		characterRight = LoadTexture("../assets/player/diverRight.png");
-		characterRightRock = LoadTexture("../assets/player/diverRockMarsRight.png");
-		characterRightDirt = LoadTexture("../assets/player/diverDirtMarsRight.png");
+		characterRightRock = LoadTexture("../assets/player/diverMarsRockRight.png");
+		characterRightDirt = LoadTexture("../assets/player/diverMarsDirtRight.png");
 		break;
 	default:
 		character = LoadTexture("../assets/player/player.png");
@@ -3240,7 +3231,7 @@ void marsTaskTwo()
 				}
 				levelPassed = true;
 				counterMars = 2;
-				taskTwoTerminal();
+				marsTaskTwoTerminal();
 			}
 		}
 		if (rockEquipped == true)
@@ -3330,106 +3321,106 @@ void marsTaskTwo()
 
 void marsTaskTwoTerminal()
 {
-	const int screenWidth = GetScreenWidth();
-	const int screenHeight = GetScreenHeight();
-    int counterMars = 0;
+    const int screenWidth = GetScreenWidth();
+    const int screenHeight = GetScreenHeight();
 
-	char launchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
-	char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Rock contents:";
-	char terminalMessageTwo[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Dirt contents:";
-	char plagioclaseAmount[] = "~ Plagioclase : 42 %";
-	char feldsparAmount[] = "~ Feldspar: 22 %";
-	char quartzAmount[] = "~ Quartz: 18 %";
-	char amphiboleAmount[] = "~ Amphibole : 5 %";
-	char pyroxeneAmount[] = "~ Pyroxene : 4 %";
-	char biotiteAmount[] = "~ Biotite : 4 %";
-	char waterAmount[] = "~ Water : 25 %";
-	char gasAmount[] = "~ Gases: 25 %";
-	char sandAmount[] = "~ Sand: 18 %";
-	char siltAmount[] = "~ Silt : 18 %";
-	char clayAmount[] = "~ Clay : 9 %";
-	char organicMatterAmount[] = "~ Organic matter : 5 %";
-	char terminalMsg[] = "./E.C.C.C> ";
-	char possibleOrganicLife[] = "  Suitable for organic life";
-	int framesCounter = 0;
-	float nameX = 0;
-	int fontSize;
+    char launchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
+    char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Rock contents:";
+    char terminalMessageTwo[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Dirt contents:";
+    char plagioclaseAmount[] = "~ Plagioclase : 42 %";
+    char feldsparAmount[] = "~ Feldspar: 22 %";
+    char quartzAmount[] = "~ Quartz: 18 %";
+    char amphiboleAmount[] = "~ Amphibole : 5 %";
+    char pyroxeneAmount[] = "~ Pyroxene : 4 %";
+    char biotiteAmount[] = "~ Biotite : 4 %";
+    char waterAmount[] = "~ Water : 25 %";
+    char gasAmount[] = "~ Gases: 25 %";
+    char sandAmount[] = "~ Sand: 18 %";
+    char siltAmount[] = "~ Silt : 18 %";
+    char clayAmount[] = "~ Clay : 9 %";
+    char organicMatterAmount[] = "~ Organic matter : 5 %";
+    char terminalMsg[] = "./E.C.C.C> ";
+    int framesCounter = 0;
+    float nameX = 0;
+    int fontSize;
 
-	if (fullscreen == true)
-	{
-		fontSize = 22;
-		nameX = 500;
-	}
-	else 
+    if (fullscreen == true)
     {
-		fontSize = 18;
-		nameX = 400;
-	}
+        fontSize = 22;
+        nameX = 500;
+    }
+    else {
+        fontSize = 18;
+        nameX = 400;
+    }
 
-	Font font = LoadFont("../2324-space-sprint-project-e-c-c-c/E.C.C.C/assets/vcrOsd.ttf");
+    Font font = LoadFont("../2324-space-sprint-project-e-c-c-c/E.C.C.C/assets/vcrOsd.ttf");
 
-	SetTargetFPS(60);
-	SetExitKey(KEY_ESCAPE);
+    SetTargetFPS(60);
+    SetExitKey(KEY_ESCAPE);
 
-	while (!WindowShouldClose())
-	{
-		framesCounter += 10;
+    while (!WindowShouldClose())
+    {
+        framesCounter += 10;
 
-		if (counterMars == 1)
-		{
-			framesCounter += 10;
-			BeginDrawing();
-			ClearBackground(BLACK);
-			if (!fullscreen)
-			{
-				DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX - 100, 10 }, fontSize, 3, WHITE);
-			}
-			else
-			{
-				DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX + 20, 10 }, fontSize, 3, WHITE);
-			}
-			DrawTextEx(font, TextSubtext(terminalMessageTwo, 0, framesCounter / 10), Vector2{ 40, 250 }, fontSize, 2, WHITE);
-			DrawTextEx(font, TextSubtext(waterAmount, 0, framesCounter / 10), Vector2{ 135, 350 }, fontSize, 2, WHITE);
-			DrawTextEx(font, TextSubtext(gasAmount, 0, framesCounter / 10), Vector2{ 135, 400 }, fontSize, 2, WHITE);
-			DrawTextEx(font, TextSubtext(sandAmount, 0, framesCounter / 10), Vector2{ 135, 450 }, fontSize, 2, WHITE);
-			DrawTextEx(font, TextSubtext(siltAmount, 0, framesCounter / 10), Vector2{ 135, 500 }, fontSize, 2, WHITE);
-			DrawTextEx(font, TextSubtext(clayAmount, 0, framesCounter / 10), Vector2{ 135, 550 }, fontSize, 2, WHITE);
-			DrawTextEx(font, TextSubtext(organicMatterAmount, 0, framesCounter / 10), Vector2{ 135, 600 }, fontSize, 2, WHITE);
-			DrawTextEx(font, TextSubtext(terminalMsg, 0, framesCounter / 10), Vector2{ 40, 650 }, fontSize, 2, WHITE);
-			DrawTextEx(font, TextSubtext(possibleOrganicLife, 0, framesCounter / 10), Vector2{ 135, 650 }, fontSize, 2, GREEN);
-			EndDrawing();
+        if (counter == 1)
+        {
+            if (IsKeyPressed(KEY_ENTER))
+            {
+                taskTwo();
+            }
+            framesCounter += 10;
+            BeginDrawing();
+            ClearBackground(BLACK);
+            if (!fullscreen)
+            {
+                DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX - 100, 10 }, fontSize, 3, WHITE);
+            }
+            else
+            {
+                DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX + 20, 10 }, fontSize, 3, WHITE);
+            }
+            DrawTextEx(font, TextSubtext(terminalMessageTwo, 0, framesCounter / 10), Vector2{ 40, 250 }, fontSize, 2, WHITE);
+            DrawTextEx(font, TextSubtext(waterAmount, 0, framesCounter / 10), Vector2{ 135, 350 }, fontSize, 2, WHITE);
+            DrawTextEx(font, TextSubtext(gasAmount, 0, framesCounter / 10), Vector2{ 135, 400 }, fontSize, 2, WHITE);
+            DrawTextEx(font, TextSubtext(sandAmount, 0, framesCounter / 10), Vector2{ 135, 450 }, fontSize, 2, WHITE);
+            DrawTextEx(font, TextSubtext(siltAmount, 0, framesCounter / 10), Vector2{ 135, 500 }, fontSize, 2, WHITE);
+            DrawTextEx(font, TextSubtext(clayAmount, 0, framesCounter / 10), Vector2{ 135, 550 }, fontSize, 2, WHITE);
+            DrawTextEx(font, TextSubtext(organicMatterAmount, 0, framesCounter / 10), Vector2{ 135, 600 }, fontSize, 2, WHITE);
+            DrawTextEx(font, TextSubtext(terminalMsg, 0, framesCounter / 10), Vector2{ 40, 650 }, fontSize, 2, WHITE);
+            EndDrawing();
 
-		}
-		else if (counterMars == 2)
-		{
-			if (IsKeyPressed(KEY_ENTER))
-			{
-				game();
-			}
-			framesCounter += 10;
-			BeginDrawing();
-			ClearBackground(BLACK);
-			if (!fullscreen)
-			{
-				DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX - 100, 10 }, fontSize, 3, WHITE);
-			}
-			else
-			{
-				DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX + 20, 10 }, fontSize, 3, WHITE);
-			}
-			DrawTextEx(font, TextSubtext(terminalMessage, 0, framesCounter / 10), Vector2{ 40, 300 }, 20, 2, WHITE);
-			DrawTextEx(font, TextSubtext(plagioclaseAmount, 0, framesCounter / 10), Vector2{ 135, 400 }, 20, 2, WHITE);
-			DrawTextEx(font, TextSubtext(feldsparAmount, 0, framesCounter / 10), Vector2{ 135, 450 }, 20, 2, WHITE);
-			DrawTextEx(font, TextSubtext(quartzAmount, 0, framesCounter / 10), Vector2{ 135, 500 }, 20, 2, WHITE);
-			DrawTextEx(font, TextSubtext(amphiboleAmount, 0, framesCounter / 10), Vector2{ 135, 550 }, 20, 2, WHITE);
-			DrawTextEx(font, TextSubtext(pyroxeneAmount, 0, framesCounter / 10), Vector2{ 135, 600 }, 20, 2, WHITE);
-			DrawTextEx(font, TextSubtext(biotiteAmount, 0, framesCounter / 10), Vector2{ 135, 650 }, 20, 2, WHITE);
-			EndDrawing();
-		}
+        }
+        else if (counter == 2)
+        {
+            if (IsKeyPressed(KEY_ENTER))
+            {
+                game();
+            }
+            framesCounter += 10;
+            BeginDrawing();
+            ClearBackground(BLACK);
+            if (!fullscreen)
+            {
+                DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX - 100, 10 }, fontSize, 3, WHITE);
+            }
+            else
+            {
+                DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX + 20, 10 }, fontSize, 3, WHITE);
+            }
+            DrawTextEx(font, TextSubtext(terminalMessage, 0, framesCounter / 10), Vector2{ 40, 300 }, 20, 2, WHITE);
+            DrawTextEx(font, TextSubtext(plagioclaseAmount, 0, framesCounter / 10), Vector2{ 135, 400 }, 20, 2, WHITE);
+            DrawTextEx(font, TextSubtext(feldsparAmount, 0, framesCounter / 10), Vector2{ 135, 450 }, 20, 2, WHITE);
+            DrawTextEx(font, TextSubtext(quartzAmount, 0, framesCounter / 10), Vector2{ 135, 500 }, 20, 2, WHITE);
+            DrawTextEx(font, TextSubtext(amphiboleAmount, 0, framesCounter / 10), Vector2{ 135, 550 }, 20, 2, WHITE);
+            DrawTextEx(font, TextSubtext(pyroxeneAmount, 0, framesCounter / 10), Vector2{ 135, 600 }, 20, 2, WHITE);
+            DrawTextEx(font, TextSubtext(biotiteAmount, 0, framesCounter / 10), Vector2{ 135, 650 }, 20, 2, WHITE);
+            EndDrawing();
+        }
 
-		// Unload the font 
-		UnloadFont(font);
-	}
+        // Unload the font 
+        UnloadFont(font);
+    }
 }
 void marsTaskThree()
 {
