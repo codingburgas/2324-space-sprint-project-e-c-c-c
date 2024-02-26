@@ -144,20 +144,11 @@ void game()
 
     //Get value from diverLockStatus.csv
     int diverLockStatus = 1;
-    std::ifstream diverLockStatusFile("../data/levelsPassedJupiter.csv");
+    std::ifstream diverLockStatusFile("../data/diverLockStatus.csv");
     if (diverLockStatusFile.is_open())
     {
         diverLockStatusFile >> diverLockStatus;
         diverLockStatusFile.close();
-    }
-
-    //Get value from cookieLockStatus.csv
-    int cookieLockStatus = 1;
-    std::ifstream cookieLockStatusFile("../data/cookieLockStatus.csv");
-    if (cookieLockStatusFile.is_open())
-    {
-        cookieLockStatusFile >> cookieLockStatus;
-        cookieLockStatusFile.close();
     }
 
     //std::vector is a template class from the Standard Template Library that represents dynamic array.
@@ -235,20 +226,6 @@ void game()
             jupiterFile >> jupiterLockedCh;
             jupiterFile.close();
         }
-
-        //Get value from money.csv which is created when you complete Level1
-        int money = 0;
-        std::ifstream moneyFile("../data/money.csv");
-        if (moneyFile.is_open())
-        {
-            moneyFile >> money;
-            moneyFile.close();
-        }
-
-        //Convert int to string with <sstream>
-        std::stringstream ss;
-        ss << "Money: " << money;
-        std::string moneyStr = ss.str();
 
         BeginDrawing();
 
@@ -471,6 +448,20 @@ void game()
             DrawTexturePro(jupiter, jupiterRec, { jupiterPos.x, jupiterPos.y, jupiterRadius * 2, jupiterRadius * 2 }, { 0, 0 }, 0, WHITE);
         }
 
+        //Get value from money.csv which is created when you complete Level1
+        int money = 0;
+        std::ifstream moneyFile("../data/money.csv");
+        if (moneyFile.is_open())
+        {
+            moneyFile >> money;
+            moneyFile.close();
+        }
+
+        //Convert int to string with <sstream>
+        std::stringstream ss;
+        ss << "Money: " << money;
+        std::string moneyStr = ss.str();
+
         DrawText("Use scroll wheel to zoom in/out", 10, 10, 24, WHITE);
         DrawText("Press ESC to quit", 10, 30, 24, WHITE);
         DrawText(("Welcome back, " + username).c_str(), GetScreenWidth() / 2 - 125, 10, 24, WHITE);
@@ -483,42 +474,7 @@ void game()
 
         if (CheckCollisionPointRec(GetMousePosition(), button100Bounds) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         {
-            if (cookieLockStatus != 0)
-            {
-                if (money >= 100)
-                {
-                    cookieLockStatus = 0;
-                    money -= 100;
-                    boughtCookie = true;
-                    // Update cookie lock status file
-                    std::ofstream cookieLockStatusFile("../data/cookieLockStatus.csv");
-                    if (cookieLockStatusFile.is_open())
-                    {
-                        cookieLockStatusFile << cookieLockStatus << std::endl;
-                        cookieLockStatusFile.close(); // Close the file after writing
-                    }
-                }
-                else
-                {
-                    noBal = true;
-                }
-            }
-        }
-        else if (cookieLockStatus == 0 && CheckCollisionPointRec(GetMousePosition(), buttonCookie) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-        {
-            characterShop = 2;
-            boughtCookie = false; // Reset flag
-            boughtDiver = false; // Reset diver flag
-        }
-
-        if (characterShop == 2)
-        {
-            DrawText("Equipped cookie successfully", 10, 98, 24, WHITE);
-        }
-
-        if (boughtCookie == true || cookieLockStatus == 0)
-        {
-            DrawText("Purchased cookie successfully!", 10, 53, 24, WHITE);
+            DrawText("In development...", 10, 53, 24, WHITE);
         }
 
         if (noBal == true)
@@ -552,11 +508,13 @@ void game()
                 }
             }
         }
-        else if (diverLockStatus == 0 && CheckCollisionPointRec(GetMousePosition(), buttonDiver) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+
+        if (CheckCollisionPointRec(GetMousePosition(), buttonDiver) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         {
-            characterShop = 3;
-            boughtDiver = false; // Reset flag
-            boughtCookie = false; // Reset cookie flag
+            if (diverLockStatus == 0)
+            {
+                characterShop = 3;
+            }
         }
 
         if (characterShop == 3)
@@ -595,4 +553,5 @@ void game()
     }
 
     CloseWindow();
+    SetTargetFPS(24);
 }

@@ -49,7 +49,10 @@
     
 |                               Main Menu                               |
 | :-------------------------------------------------------------------: | 
-| <img src="https://media.discordapp.net/attachments/1158441474220888074/1204075392223289385/image.png?ex=65d36998&is=65c0f498&hm=f96ef6f040714e15d108145657d4636bad9321a3e86b5ccf6abf3778e0335586&=&format=webp&quality=lossless&width=1602&height=897" alt="Main Menu"></a> |
+ <img src="https://media.discordapp.net/attachments/1158441474220888074/1204075392223289385/image.png?ex=65d36998&is=65c0f498&hm=f96ef6f040714e15d108145657d4636bad9321a3e86b5ccf6abf3778e0335586&=&format=webp&quality=lossless&width=1602&height=897" alt="Main Menu"></a> 
+ <img src="https://cdn.discordapp.com/attachments/1158441474220888074/1211784681918570508/image.png?ex=65ef756e&is=65dd006e&hm=c7f1e79f26b74a3d021af7e4692d1b07ec3b4c543abbbe12c8e5f2342935d0e6&" alt="Game"></a> 
+ <img src="https://cdn.discordapp.com/attachments/1034697798966325309/1211785510410780692/image.png?ex=65ef7633&is=65dd0133&hm=722c4caf4a4a461668c2550baacf19281dfcb68c4392ef0df764bd92928f7efd&" alt="Earth"></a> 
+ <img src="https://cdn.discordapp.com/attachments/1034697798966325309/1211785801050882058/image.png?ex=65ef7678&is=65dd0178&hm=21bb3b178eab397edd302d556267cad6452f08bf074f32911938fa0cee94107d&" alt="Venus"></a> 
 
     
 </details>
@@ -62,7 +65,7 @@
 ##  Used Technologies
 - <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Visual_Studio_Icon_2022.svg/1200px-Visual_Studio_Icon_2022.svg.png" width="20" alt="Visual Studio 2022 Logo"> <a href="https://visualstudio.microsoft.com/vs/">Visual Studio 2022</a>
 - <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/2048px-Visual_Studio_Code_1.35_icon.svg.png" width="20" alt="Visual Studio Code Logo"> <a href="https://code.visualstudio.com/">Visual Studio Code</a>
-- <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="20" alt="GitHub Logo"> <a href="https://github.com/">GitHub</a>
+- <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width="20" alt="GitHub Logo"> <a href="https://github.com/">GitHub</a>
 - <img src="https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png" width="20" alt="Discord Logo"> <a href="https://discord.com/">Discord</a>
 - <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Microsoft_Office_Word_%282019%E2%80%93present%29.svg/2203px-Microsoft_Office_Word_%282019%E2%80%93present%29.svg.png" width="20" alt="MS Word Logo"> <a href="https://en.wikipedia.org/wiki/Microsoft_Word">MS Word</a>
 - <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/2203px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png" width="20" alt="MS Excel Logo"> <a href="https://en.wikipedia.org/wiki/Microsoft_Excel">MS Excel</a>

@@ -1716,7 +1716,7 @@ void mercuryTaskThree()
         character = LoadTexture("../assets/player/diver.png");
         characterThermometer = LoadTexture("../assets/player/diverThermometer.png");
         characterReversed = LoadTexture("../assets/player/diverBack.png");
-        characterReversedThermometer = LoadTexture("../assets/player/diverReversedThermometer.png");
+        characterReversedThermometer = LoadTexture("../assets/player/diverBackThermometer.png");
         characterLeft = LoadTexture("../assets/player/diverLeft.png");
         characterRight = LoadTexture("../assets/player/diverRight.png");
         break;
@@ -2686,7 +2686,7 @@ void marsTaskOne()
 
 		character = LoadTexture("../assets/player/diver.png");
 		characterFlask = LoadTexture("../assets/player/diverFlask.png");
-		characterReversed = LoadTexture("../assets/player/diverReversed.png");
+		characterReversed = LoadTexture("../assets/player/diverBack.png");
 		characterReversedFlask = LoadTexture("../assets/player/diverReversedFlask.png");
 		characterLeft = LoadTexture("../assets/player/diverLeft.png");
 		characterRight = LoadTexture("../assets/player/diverRight.png");
@@ -2994,12 +2994,11 @@ void marsTaskOneTerminal()
 }
 
 //task 2
-int counterMars = 0;
 void marsTaskTwo()
 {
 	const int screenWidth = GetScreenWidth();
 	const int screenHeight = GetScreenHeight();
-
+    int counterMars = 0;
 
 	Texture2D character;
 	Texture2D characterRock;
@@ -3333,6 +3332,7 @@ void marsTaskTwoTerminal()
 {
 	const int screenWidth = GetScreenWidth();
 	const int screenHeight = GetScreenHeight();
+    int counterMars = 0;
 
 	char launchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
 	char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Rock contents:";
@@ -3354,14 +3354,14 @@ void marsTaskTwoTerminal()
 	int framesCounter = 0;
 	float nameX = 0;
 	int fontSize;
-    int counterMars;
 
 	if (fullscreen == true)
 	{
 		fontSize = 22;
 		nameX = 500;
 	}
-	else {
+	else 
+    {
 		fontSize = 18;
 		nameX = 400;
 	}
@@ -3452,8 +3452,8 @@ void marsTaskThree()
 
 		character = LoadTexture("../assets/player/diver.png");
 		charecterGravityDetector = LoadTexture("../assets/player/diverGravityDetector.png");
-		characterReversed = LoadTexture("../assets/player/diverReversed.png");
-		characterReversedGravityDetector = LoadTexture("../assets/player/diverReversedGravityDetector.png");
+		characterReversed = LoadTexture("../assets/player/diverBack.png");
+		characterReversedGravityDetector = LoadTexture("../assets/player/diverBackGravityDetector.png");
 		characterLeft = LoadTexture("../assets/player/diverLeft.png");
 		characterRight = LoadTexture("../assets/player/diverRight.png");
 		break;
