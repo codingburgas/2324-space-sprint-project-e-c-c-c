@@ -2989,7 +2989,6 @@ void marsTaskTwo()
 {
 	const int screenWidth = GetScreenWidth();
 	const int screenHeight = GetScreenHeight();
-    int counterMars = 0;
 
 	Texture2D character;
 	Texture2D characterRock;
@@ -3017,34 +3016,27 @@ void marsTaskTwo()
 		characterReversed = LoadTexture("../assets/player/diverBack.png");
 		characterReversedRD = LoadTexture("../assets/player/diverItemBack.png");
 		characterLeft = LoadTexture("../assets/player/diverLeft.png");
-		characterLeftRock = LoadTexture("../assets/player/diverMarsRockLeft.png");
 		characterLeftDirt = LoadTexture("../assets/player/diverMarsDirtLeft.png");
 		characterRight = LoadTexture("../assets/player/diverRight.png");
-		characterRightRock = LoadTexture("../assets/player/diverMarsRockRight.png");
 		characterRightDirt = LoadTexture("../assets/player/diverMarsDirtRight.png");
 		break;
 	default:
 		character = LoadTexture("../assets/player/player.png");
-		characterRock = LoadTexture("../assets/player/playerMarsDirt.png");
-		characterDirt = LoadTexture("../assets/player/playerMarsRock.png");
+        characterDirt = LoadTexture("../assets/player/playerMarsDirt.png");
 		characterReversed = LoadTexture("../assets/player/playerReversed.png");
 		characterReversedRD = LoadTexture("../assets/player/playerRDReversed.png");
 		characterLeft = LoadTexture("../assets/player/playerLeft.png");
-		characterLeftRock = LoadTexture("../assets/player/playerLeftMarsRock.png");
 		characterLeftDirt = LoadTexture("../assets/player/playerLeftMarsDirt.png");
 		characterRight = LoadTexture("../assets/player/playerRight.png");
-		characterRightRock = LoadTexture("../assets/player/playerRightMarsRock.png");
 		characterRightDirt = LoadTexture("../assets/player/playerRightMarsDirt.png");
 		break;
 	}
 	Texture2D background = LoadTexture("../assets/background/marsBackground.png");
-	Texture2D rock = LoadTexture("../assets/tasks/rockMars.png");
 	Texture2D dirt = LoadTexture("../assets/tasks/dirtMars.png");
 	Texture2D machine = LoadTexture("../assets/tasks/marsMachine.png");
 
 
 
-	Vector2 rockPosition{ (float)GetRandomValue(0, screenWidth - rock.width - 100), (float)GetRandomValue(0, screenHeight - rock.height - 100) };
 	Vector2 dirtPosition{ (float)GetRandomValue(0, screenWidth - dirt.width - 100), (float)GetRandomValue(0, screenHeight - dirt.height - 100) };
 	Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
 	Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
@@ -3054,15 +3046,7 @@ void marsTaskTwo()
 	float minDistanceBetweenDirtAndRock = 200.0f;
 
 
-	// Adjust dirt position if too close to rock
-	while (Vector2Distance(rockPosition, dirtPosition) < minDistanceBetweenDirtAndRock)
-	{
-		dirtPosition =
-		{
-			(float)GetRandomValue(0, screenWidth - dirt.width - 100),
-			(float)GetRandomValue(0, screenHeight - dirt.height - 100)
-		};
-	}
+
 
 	float characterScale = 3.0;
 	float movementSpeed = 8.0;
@@ -3070,252 +3054,203 @@ void marsTaskTwo()
 	SetTargetFPS(60);
 	SetExitKey(KEY_ESCAPE);
 
-	bool rockEquipped = false;
 	bool dirtEquipped = false;
 	bool levelPassed = false;
 
 
 
-	while (!WindowShouldClose())
-	{
-		float distanceToMachine = Vector2Distance(characterPosition, machinePosition);
-		float distanceToRock = Vector2Distance(characterPosition, rockPosition);
-		float distanceToDirt = Vector2Distance(characterPosition, dirtPosition);
+    while (!WindowShouldClose())
+    {
+        float distanceToMachine = Vector2Distance(characterPosition, machinePosition);
+        float distanceToDirt = Vector2Distance(characterPosition, dirtPosition);
 
-		// Update character position
-		if (IsKeyDown(KEY_D)) characterPosition.x += movementSpeed;
-		if (IsKeyDown(KEY_A)) characterPosition.x -= movementSpeed;
-		if (IsKeyDown(KEY_W)) characterPosition.y -= movementSpeed;
-		if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
-
-
-		// Reset character if it goes off-screen
-		if (characterPosition.x > screenWidth)
-			characterPosition.x = -character.width * characterScale;
-		else if (characterPosition.x < -character.width * characterScale)
-			characterPosition.x = screenWidth;
-
-		if (characterPosition.y > screenHeight)
-			characterPosition.y = -character.height * characterScale;
-		else if (characterPosition.y < -character.height * characterScale)
-			characterPosition.y = screenHeight;
-
-		BeginDrawing();
-
-		ClearBackground(DARKGREEN);
-
-		DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
-
-		// Draw character
-		if (IsKeyDown(KEY_W))
-		{
-			if (rockEquipped or dirtEquipped)
-				DrawTextureEx(characterReversedRD, characterPosition, 0.0f, characterScale, WHITE);
-			else
-				DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
-		}
-		else if (IsKeyDown(KEY_D))
-		{
-			if (rockEquipped)
-				DrawTextureEx(characterRightRock, characterPosition, 0.0f, characterScale, WHITE);
-			else if (dirtEquipped)
-				DrawTextureEx(characterRightDirt, characterPosition, 0.0f, characterScale, WHITE);
-			else
-				DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
-		}
-		else if (IsKeyDown(KEY_A))
-		{
-			if (rockEquipped)
-				DrawTextureEx(characterLeftRock, characterPosition, 0.0f, characterScale, WHITE);
-			else if (dirtEquipped)
-				DrawTextureEx(characterLeftDirt, characterPosition, 0.0f, characterScale, WHITE);
-			else
-				DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
-		}
-		else
-		{
-			if (rockEquipped)
-				DrawTextureEx(characterRock, characterPosition, 0.0f, characterScale, WHITE);
-			else if (dirtEquipped)
-				DrawTextureEx(characterDirt, characterPosition, 0.0f, characterScale, WHITE);
-			else
-				DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
-
-		}
+        // Update character position
+        if (IsKeyDown(KEY_D)) characterPosition.x += movementSpeed;
+        if (IsKeyDown(KEY_A)) characterPosition.x -= movementSpeed;
+        if (IsKeyDown(KEY_W)) characterPosition.y -= movementSpeed;
+        if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
 
 
-		// Draw rock if not equipped
-		if (!rockEquipped)
-		{
-			DrawTextureEx(rock, rockPosition, 0.0f, 1.25f, WHITE);
+        // Reset character if it goes off-screen
+        if (characterPosition.x > screenWidth)
+            characterPosition.x = -character.width * characterScale;
+        else if (characterPosition.x < -character.width * characterScale)
+            characterPosition.x = screenWidth;
 
-		}
-		// Draw dirt if not equipped
-		if (!dirtEquipped)
-		{
-			DrawTextureEx(dirt, dirtPosition, 0.0f, 1.25f, WHITE);
-		}
-
-		// Draw machine
-		DrawTextureEx(machine, machinePosition, 0.0f, 4.5f, WHITE);
+        if (characterPosition.y > screenHeight)
+            characterPosition.y = -character.height * characterScale;
+        else if (characterPosition.y < -character.height * characterScale)
+            characterPosition.y = screenHeight;
 
 
-		if (IsKeyPressed(KEY_LEFT_SHIFT) and (!dirtEquipped and !rockEquipped))
-		{
-			movementSpeed = 12;
-		}
-		if (IsKeyReleased(KEY_LEFT_SHIFT) and (!dirtEquipped and !rockEquipped))
-		{
-			movementSpeed = 8;
-		}
+        BeginDrawing();
 
-		if (IsKeyPressed(KEY_Q) and (rockEquipped or dirtEquipped))
-		{
-			if (rockEquipped)
-			{
-				rockEquipped = !rockEquipped;
-				rockPosition.x = characterPosition.x + 45;
-				rockPosition.y = characterPosition.y + 100;
+        ClearBackground(DARKGREEN);
 
-			}
-			else if (dirtEquipped)
-			{
-				dirtEquipped = !dirtEquipped;
-				dirtPosition.x = characterPosition.x + 50;
-				dirtPosition.y = characterPosition.y + 100;
+        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
 
-			}
-		}
+        // Draw character
+        if (IsKeyDown(KEY_W))
+        {
+            if (dirtEquipped)
+                DrawTextureEx(characterReversedRD, characterPosition, 0.0f, characterScale, WHITE);
+            else
+                DrawTextureEx(characterReversed, characterPosition, 0.0f, characterScale, WHITE);
+        }
+        else if (IsKeyDown(KEY_D))
+        {
+          
+             if (dirtEquipped)
+                DrawTextureEx(characterRightDirt, characterPosition, 0.0f, characterScale, WHITE);
+            else
+                DrawTextureEx(characterRight, characterPosition, 0.0f, characterScale, WHITE);
+        }
+        else if (IsKeyDown(KEY_A))
+        {
+            
+             if (dirtEquipped)
+                DrawTextureEx(characterLeftDirt, characterPosition, 0.0f, characterScale, WHITE);
+            else
+                DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
+        }
+        else
+        {
+             if (dirtEquipped)
+                DrawTextureEx(characterDirt, characterPosition, 0.0f, characterScale, WHITE);
+            else
+                DrawTextureEx(character, characterPosition, 0.0f, characterScale, WHITE);
 
-
-		if (distanceToMachine < 120.0f and dirtEquipped)
-		{
-			DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
-
-			// Check if E key is pressed to interact
-			if (IsKeyPressed(KEY_E))
-			{
-				counterMars = 1;
-				marsTaskTwoTerminal();
-			}
-		}
-
-		if (distanceToMachine < 120.0f and (rockEquipped and counterMars == 1))
-		{
-			DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
-
-			// Check if E key is pressed to interact
-			if (IsKeyPressed(KEY_E))
-			{
-				int money = 0;
-				//Get value from money.csv which is created when you complete Level1
-				std::ifstream moneyFile("../data/money.csv");
-				if (moneyFile.is_open())
-				{
-					moneyFile >> money;
-					moneyFile.close();
-				}
-
-				std::ofstream moneyFileOf("../data/money.csv");
-				if (moneyFileOf.is_open())
-				{
-					moneyFileOf << money + 300;  // Save earned money to a file
-					moneyFileOf.close();
-				}
-
-				std::ofstream levelFile("../data/levelsPassedMars.csv");
-				if (levelFile.is_open())
-				{
-					levelFile << "2";  // Save completed level to a file
-					levelFile.close();
-				}
-				levelPassed = true;
-				counterMars = 2;
-				marsTaskTwoTerminal();
-			}
-		}
-		if (rockEquipped == true)
-		{
-			DrawText("Holding rock", (GetScreenWidth() - MeasureText("Holding rock", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
-		}
-		else if (dirtEquipped == true)
-		{
-			DrawText("Holding dirt", (GetScreenWidth() - MeasureText("Holding dirt", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
-		}
-		// Display message when close to rock
-		if (distanceToRock < 80.0f and !dirtEquipped and distanceToDirt > 80.0f and !rockEquipped)
-		{
-			DrawText("Press R to pick up the rock", (GetScreenWidth() - MeasureText("Press R to pick up the rock", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
-			if (IsKeyDown(KEY_R))
-			{
-				rockEquipped = true;
-				rockPickedUpPosition = rockPosition;
-
-			}
-		}
-		// Display message when close to dirt
-		if (distanceToDirt < 80.0f and !rockEquipped and distanceToRock > 80.0f and !dirtEquipped)
-		{
-			DrawText("Press R to pick up dirt", (GetScreenWidth() - MeasureText("Press R to pick up dirt", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
-			if (IsKeyDown(KEY_R))
-			{
-				dirtEquipped = true;
-			}
-		}
-		DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
-		DrawText("Press ESC to quit", 10, 30, 24, WHITE);
-		DrawText("Press Q to drop", 10, 50, 24, WHITE);
-
-		while (dirtEquipped and counterMars == 1)
-		{
-			if (fullscreen == true)
-			{
-				DrawText("Task: Drop dirt and pick up rock", 500, 10, 24, WHITE);
-				break;
-			}
-			if (fullscreen != true)
-			{
-				DrawText("Task: Drop dirt and pick up rock", 400, 10, 24, WHITE);
-				break;
-			}
-
-		}
+        }
 
 
-		if (counterMars == 0 and fullscreen == true)
-		{
-			DrawText("Task: Bring dirt to the machine", 500, 10, 24, WHITE);
-		}
-		if (counterMars == 0 and fullscreen != true)
-		{
-			DrawText("Task: Bring dirt to the machine", 400, 10, 24, WHITE);
-		}
-		if (counterMars == 1 and dirtEquipped == false and !levelPassed and fullscreen == true)
-		{
-			DrawText("Task: Bring a rock to the machine", 500, 10, 24, WHITE);
-		}
-		if (counterMars == 1 and dirtEquipped == false and !levelPassed and fullscreen != true)
-		{
-			DrawText("Task: Bring a rock to the machine", 400, 10, 24, WHITE);
-		}
+        // Draw rock if not equipped
+        // Draw dirt if not equipped
+        if (!dirtEquipped)
+        {
+            DrawTextureEx(dirt, dirtPosition, 0.0f, 1.25f, WHITE);
+        }
 
-		EndDrawing();
-	}
-	UnloadTexture(rock);
+        // Draw machine
+        DrawTextureEx(machine, machinePosition, 0.0f, 4.5f, WHITE);
+
+
+        if (IsKeyPressed(KEY_LEFT_SHIFT) and !dirtEquipped)
+        {
+            movementSpeed = 12;
+        }
+        if (IsKeyReleased(KEY_LEFT_SHIFT) and !dirtEquipped)
+        {
+            movementSpeed = 8;
+        }
+
+        if (IsKeyPressed(KEY_Q) and dirtEquipped)
+        {
+
+                dirtEquipped = !dirtEquipped;
+                dirtPosition.x = characterPosition.x + 50;
+                dirtPosition.y = characterPosition.y + 100;
+
+        }
+
+        //if (distanceToMachine < 120.0f && flaskEquipped)
+        if (distanceToMachine < 120.0f and dirtEquipped)
+        {
+            DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+
+            // Check if E key is pressed to interact
+            if (IsKeyPressed(KEY_E))
+            {
+                int money = 0;
+                //Get value from money.csv which is created when you complete Level1
+                std::ifstream moneyFile("../data/money.csv");
+                if (moneyFile.is_open())
+                {
+                    moneyFile >> money;
+                    moneyFile.close();
+                }
+
+                std::ofstream moneyFileOf("../data/money.csv");
+                if (moneyFileOf.is_open())
+                {
+                    moneyFileOf << money + 300; // Save earned money to a file
+                    moneyFileOf.close();
+                }
+
+                std::ofstream levelFile("../data/levelsPassedMars.csv");
+                if (levelFile.is_open())
+                {
+                    levelFile << "2"; // Save completed level to a file
+                    levelFile.close();
+                }
+                marsTaskTwoTerminal();
+            }
+        }
+
+        
+        else if (dirtEquipped == true)
+        {
+            DrawText("Holding dirt", (GetScreenWidth() - MeasureText("Holding dirt", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
+        }
+        
+        // Display message when close to dirt
+        if (distanceToDirt < 80.0f and !dirtEquipped)
+        {
+            DrawText("Press R to pick up dirt", (GetScreenWidth() - MeasureText("Press R to pick up dirt", 36)) / 2, GetScreenHeight() - 50, 36, RAYWHITE);
+            if (IsKeyDown(KEY_R))
+            {
+                dirtEquipped = true;
+            }
+        }
+        DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
+        DrawText("Press ESC to quit", 10, 30, 24, WHITE);
+        DrawText("Press Q to drop", 10, 50, 24, WHITE);
+
+        while (dirtEquipped and counter == 1)
+        {
+            if (fullscreen == true)
+            {
+                DrawText("Task: Drop dirt and pick up rock", 500, 10, 24, WHITE);
+                break;
+            }
+            if (fullscreen != true)
+            {
+                DrawText("Task: Drop dirt and pick up rock", 400, 10, 24, WHITE);
+                break;
+            }
+
+        }
+
+
+        if (counter == 0 and fullscreen == true)
+        {
+            DrawText("Task: Bring dirt to the machine", 500, 10, 24, WHITE);
+        }
+        if (counter == 0 and fullscreen != true)
+        {
+            DrawText("Task: Bring dirt to the machine", 400, 10, 24, WHITE);
+        }
+        if (counter == 1 and dirtEquipped == false and !levelPassed and fullscreen == true)
+        {
+            DrawText("Task: Bring a rock to the machine", 500, 10, 24, WHITE);
+        }
+        if (counter == 1 and dirtEquipped == false and !levelPassed and fullscreen != true)
+        {
+            DrawText("Task: Bring a rock to the machine", 400, 10, 24, WHITE);
+        }
+
+        EndDrawing();
+    }
 	UnloadTexture(dirt);
 	UnloadTexture(machine);
 	UnloadTexture(character);
 	UnloadTexture(characterReversed);
 	UnloadTexture(background);
-	UnloadTexture(characterRock);
 	UnloadTexture(characterDirt);
 	UnloadTexture(characterReversedRD);
 	UnloadTexture(characterLeft);
-	UnloadTexture(characterLeftRock);
 	UnloadTexture(characterLeftDirt);
 	UnloadTexture(characterRight);
 	UnloadTexture(characterRightDirt);
-	UnloadTexture(characterRightRock);
 }
 
 
@@ -3325,8 +3260,7 @@ void marsTaskTwoTerminal()
     const int screenHeight = GetScreenHeight();
 
     char launchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
-    char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Rock contents:";
-    char terminalMessageTwo[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Dirt contents:";
+    char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Soil contents:";
     char plagioclaseAmount[] = "~ Plagioclase : 42 %";
     char feldsparAmount[] = "~ Feldspar: 22 %";
     char quartzAmount[] = "~ Quartz: 18 %";
@@ -3338,7 +3272,6 @@ void marsTaskTwoTerminal()
     char sandAmount[] = "~ Sand: 18 %";
     char siltAmount[] = "~ Silt : 18 %";
     char clayAmount[] = "~ Clay : 9 %";
-    char organicMatterAmount[] = "~ Organic matter : 5 %";
     char terminalMsg[] = "./E.C.C.C> ";
     int framesCounter = 0;
     float nameX = 0;
@@ -3362,37 +3295,6 @@ void marsTaskTwoTerminal()
     while (!WindowShouldClose())
     {
         framesCounter += 10;
-
-        if (counter == 1)
-        {
-            if (IsKeyPressed(KEY_ENTER))
-            {
-                taskTwo();
-            }
-            framesCounter += 10;
-            BeginDrawing();
-            ClearBackground(BLACK);
-            if (!fullscreen)
-            {
-                DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX - 100, 10 }, fontSize, 3, WHITE);
-            }
-            else
-            {
-                DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX + 20, 10 }, fontSize, 3, WHITE);
-            }
-            DrawTextEx(font, TextSubtext(terminalMessageTwo, 0, framesCounter / 10), Vector2{ 40, 250 }, fontSize, 2, WHITE);
-            DrawTextEx(font, TextSubtext(waterAmount, 0, framesCounter / 10), Vector2{ 135, 350 }, fontSize, 2, WHITE);
-            DrawTextEx(font, TextSubtext(gasAmount, 0, framesCounter / 10), Vector2{ 135, 400 }, fontSize, 2, WHITE);
-            DrawTextEx(font, TextSubtext(sandAmount, 0, framesCounter / 10), Vector2{ 135, 450 }, fontSize, 2, WHITE);
-            DrawTextEx(font, TextSubtext(siltAmount, 0, framesCounter / 10), Vector2{ 135, 500 }, fontSize, 2, WHITE);
-            DrawTextEx(font, TextSubtext(clayAmount, 0, framesCounter / 10), Vector2{ 135, 550 }, fontSize, 2, WHITE);
-            DrawTextEx(font, TextSubtext(organicMatterAmount, 0, framesCounter / 10), Vector2{ 135, 600 }, fontSize, 2, WHITE);
-            DrawTextEx(font, TextSubtext(terminalMsg, 0, framesCounter / 10), Vector2{ 40, 650 }, fontSize, 2, WHITE);
-            EndDrawing();
-
-        }
-        else if (counter == 2)
-        {
             if (IsKeyPressed(KEY_ENTER))
             {
                 game();
@@ -3416,7 +3318,6 @@ void marsTaskTwoTerminal()
             DrawTextEx(font, TextSubtext(pyroxeneAmount, 0, framesCounter / 10), Vector2{ 135, 600 }, 20, 2, WHITE);
             DrawTextEx(font, TextSubtext(biotiteAmount, 0, framesCounter / 10), Vector2{ 135, 650 }, 20, 2, WHITE);
             EndDrawing();
-        }
 
         // Unload the font 
         UnloadFont(font);
@@ -3620,7 +3521,7 @@ void marsTaskThree()
 				// Draw "Measuring..." text
 				if ((framesCounter / 59) % 2 == 0)
 				{
-					DrawText("Measuring...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 260, 20, WHITE);
+					DrawText("Measuring...", GetScreenWidth() / 2 - 50, GetScreenHeight() / 2 + 260, 20, WHITE);
 				}
 				if (scanComplete)
 				{

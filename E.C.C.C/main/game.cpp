@@ -346,8 +346,16 @@ void game()
                         buyMars();
                     }
                     else {
-                        if (levelsPassedMars != 1) {
+                        if (levelsPassedMars != 1 && levelsPassedMars != 2) {
                             marsTaskOne();
+                        }
+                        else if (levelsPassedMars == 1)
+                        {
+                            marsTaskTwo();
+                        }
+                        else if (levelsPassedMars == 2)
+                        {
+                            marsTaskThree();
                         }
                     }
                 }
