@@ -1,5 +1,6 @@
 #include "audio.hpp"
 
+//Assign a value to the global variable soundtrackEnd, which is used to end the soundtrack
 bool soundtrackEnd = false;
 
 void initializeSoundtrack()

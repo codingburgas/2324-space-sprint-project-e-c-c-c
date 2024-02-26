@@ -5,9 +5,6 @@
 
 void buyMercury()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
     int money = 0;
 
     bool bought = false;
@@ -69,7 +66,7 @@ void buyMercury()
             }
         }
 
-        DrawText(moneyStr.c_str(), 15, screenHeight - 40, 35, WHITE);
+        DrawText(moneyStr.c_str(), 15, GetScreenHeight() - 40, 35, WHITE);
         EndDrawing();
 
         //Update files with new values
@@ -89,9 +86,6 @@ void buyMercury()
 
 void buyVenus()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
     int money = 0;
 
     bool bought = false;
@@ -103,8 +97,8 @@ void buyVenus()
 
     while (!WindowShouldClose())
     {
+        //Read values from files
         std::ifstream venusFile("../data/venusLockStatus.csv");
-
         if (venusFile.is_open())
         {
             venusFile >> venusLockedCh;
@@ -153,7 +147,7 @@ void buyVenus()
             }
         }
 
-        DrawText(moneyStr.c_str(), 15, screenHeight - 40, 35, WHITE);
+        DrawText(moneyStr.c_str(), 15, GetScreenHeight() - 40, 35, WHITE);
         EndDrawing();                
 
         //Update files with new values
@@ -173,9 +167,6 @@ void buyVenus()
 
 void buyMars()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
     int money = 0;
 
     bool bought = false;
@@ -237,7 +228,7 @@ void buyMars()
             }
         }
 
-        DrawText(moneyStr.c_str(), 15, screenHeight - 40, 35, WHITE);
+        DrawText(moneyStr.c_str(), 15, GetScreenHeight() - 40, 35, WHITE);
         EndDrawing();                
 
         //Update files with new values
@@ -257,9 +248,6 @@ void buyMars()
 
 void buyJupiter()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
     int money = 0;
 
     bool bought = false;
@@ -321,7 +309,7 @@ void buyJupiter()
             }
         }
 
-        DrawText(moneyStr.c_str(), 15, screenHeight - 40, 35, WHITE);
+        DrawText(moneyStr.c_str(), 15, GetScreenHeight() - 40, 35, WHITE);
         EndDrawing();                
 
         //Update files with new values

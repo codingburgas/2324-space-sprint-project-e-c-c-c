@@ -38,7 +38,7 @@ void terminal()
 	Font font = LoadFont("../2324-space-sprint-project-e-c-c-c/E.C.C.C/assets/vcrOsd.ttf");
 
 	char launchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
-	char contractText[] = "./S.S.C.C> In the year 2035, amidst the expanse of the solar system, this contract binds the undersigned to the monumental task of\n\n             exploring a system brimming with 8 planets. Undertaking the responsibility to discover potential sanctuaries for our surviving\n\n             kindred, the signee commits to confront the inherent hazards and trials that interplanetary exploration entails.\n\n             The objective is clear: evaluate each celestial body for its capacity to sustain and foster human existence. In the \n\n             pursuit of this noble goal, the undersigned acknowledges the risks at hand and dedicates their expertise, valor, and \n\n             fortitude to this unparalleled odyssey, endeavoring to carve out a future for the final remnants of humanity.\n\n\n\n\n./S.S.C.C> Enter your name, spacefarer:  ";
+	char contractText[] = "./E.C.C.C> In the year 2035, amidst the expanse of the solar system, this contract binds the undersigned to the monumental task of\n\n             exploring a system brimming with 8 planets. Undertaking the responsibility to discover potential sanctuaries for our surviving\n\n             kindred, the signee commits to confront the inherent hazards and trials that interplanetary exploration entails.\n\n             The objective is clear: evaluate each celestial body for its capacity to sustain and foster human existence. In the \n\n             pursuit of this noble goal, the undersigned acknowledges the risks at hand and dedicates their expertise, valor, and \n\n             fortitude to this unparalleled odyssey, endeavoring to carve out a future for the final remnants of humanity.\n\n\n\n\n./E.C.C.C> Enter your name, spacefarer:  ";
 	char playerNameNotEntered[] = "Please enter your name ";
 	char nameSubmit[] = "Hold enter to submit";
 	SetTargetFPS(60);
@@ -110,10 +110,10 @@ void terminal()
 		}
 		DrawTextEx(font, TextSubtext(contractText, 0, framesCounter / 10), Vector2 { screenWidth - (screenWidth - 40), 300 }, fontSize, 2, WHITE);
 
-        DrawTextEx(font, name, Vector2{ nameX + 10, 525 }, fontSize, 2, MAROON);
+        DrawTextEx(font, name, Vector2{ nameX + 40, 525 }, fontSize, 2, MAROON);
 		if (letterCount < maxInputChars && framesCounter > 8000)
 		{
-			if (((framesCounter / 480) % 2) == 0) DrawTextEx(font, "_", Vector2{ nameX + 15 + MeasureText(name, fontSize), 525 }, fontSize, 0, RED);
+			if (((framesCounter / 480) % 2) == 0) DrawTextEx(font, "_", Vector2{ nameX + 45 + MeasureText(name, fontSize), 525 }, fontSize, 0, RED);
 	    }
 		EndDrawing();
 		//----------------------------------------------------------------------------------
