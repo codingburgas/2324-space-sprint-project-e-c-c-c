@@ -15,11 +15,6 @@ int characterShop = 1;
 
 void game()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-    const float vectorScreenWidth = GetScreenWidth();
-    const float vectorScreenHeight = GetScreenHeight();
-
     // Texture2D background = LoadTexture("../assets/gameBg.png");
 
     float sunRadius = 25;
@@ -62,10 +57,10 @@ void game()
     Texture2D jupiterLocked = LoadTexture("../assets/planets/jupiterLocked.png");
     Texture2D playerShopOne = LoadTexture("../assets/player/cookie.png");
     Texture2D playerShopTwo = LoadTexture("../assets/player/diver.png");
-    Rectangle button100Bounds = { vectorScreenWidth - 100, vectorScreenHeight / 2 - 50, 60, 20 };
-    Rectangle button200Bounds = { vectorScreenWidth - 100, vectorScreenHeight / 2 + 20, 60, 20 };
-    Rectangle buttonCookie = { vectorScreenWidth - 210, vectorScreenHeight / 2 - 80 , 75, 75 };
-    Rectangle buttonDiver = { vectorScreenWidth - 210, vectorScreenHeight / 2 + 10 , 75, 75 };
+    Rectangle button100Bounds = { GetScreenWidth() - 100, GetScreenHeight() / 2 - 50, 60, 20 };
+    Rectangle button200Bounds = { GetScreenWidth() - 100, GetScreenHeight() / 2 + 20, 60, 20 };
+    Rectangle buttonCookie = { GetScreenWidth() - 210, GetScreenHeight() / 2 - 80 , 75, 75 };
+    Rectangle buttonDiver = { GetScreenWidth() - 210, GetScreenHeight() / 2 + 10 , 75, 75 };
 
 
     bool isMercuryClicked = false;
@@ -170,7 +165,7 @@ void game()
     // Spawn stars
     for (int i = 0; i < 200; ++i)
     {
-        Vector2 position = { (float)GetRandomValue(0, screenWidth), (float)GetRandomValue(0, screenHeight) };
+        Vector2 position = { (float)GetRandomValue(0, GetScreenWidth()), (float)GetRandomValue(0, GetScreenHeight()) };
         Vector2 velocity = { (float)GetRandomValue(-50, 50), (float)GetRandomValue(-50, 50) };
         starPositions.push_back(position);
         starVelocities.push_back(velocity);
@@ -206,10 +201,10 @@ void game()
             starPositions[i].y += starVelocities[i].y * GetFrameTime() * 0.5f;
 
             // Wrap around screen edges
-            if (starPositions[i].x > screenWidth) starPositions[i].x = 0;
-            else if (starPositions[i].x < 0) starPositions[i].x = screenWidth;
-            if (starPositions[i].y > screenHeight) starPositions[i].y = 0;
-            else if (starPositions[i].y < 0) starPositions[i].y = screenHeight;
+            if (starPositions[i].x > GetScreenWidth()) starPositions[i].x = 0;
+            else if (starPositions[i].x < 0) starPositions[i].x = GetScreenWidth();
+            if (starPositions[i].y > GetScreenHeight()) starPositions[i].y = 0;
+            else if (starPositions[i].y < 0) starPositions[i].y = GetScreenHeight();
         }
 
         std::ifstream mercuryFile("../data/mercuryLockStatus.csv");
@@ -250,30 +245,30 @@ void game()
         }
 
 
-        DrawCircleV(Vector2{ (float)screenWidth / 2, (float)screenHeight / 2 }, sunRadius * zoomLevel, GOLD);
+        DrawCircleV(Vector2{ (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 }, sunRadius * zoomLevel, GOLD);
 
         //Draw Orbits
-        DrawCircleLines(screenWidth / 2, screenHeight / 2, mercuryOrbitRadius, WHITE);
-        DrawCircleLines(screenWidth / 2, screenHeight / 2, venusOrbitRadius, WHITE);
-        DrawCircleLines(screenWidth / 2, screenHeight / 2, earthOrbitRadius, WHITE);
-        DrawCircleLines(screenWidth / 2, screenHeight / 2, marsOrbitRadius, WHITE);
-        DrawCircleLines(screenWidth / 2, screenHeight / 2, jupiterOrbitRadius, WHITE);
+        DrawCircleLines(GetScreenWidth() / 2, GetScreenHeight() / 2, mercuryOrbitRadius, WHITE);
+        DrawCircleLines(GetScreenWidth() / 2, GetScreenHeight() / 2, venusOrbitRadius, WHITE);
+        DrawCircleLines(GetScreenWidth() / 2, GetScreenHeight() / 2, earthOrbitRadius, WHITE);
+        DrawCircleLines(GetScreenWidth() / 2, GetScreenHeight() / 2, marsOrbitRadius, WHITE);
+        DrawCircleLines(GetScreenWidth() / 2, GetScreenHeight() / 2, jupiterOrbitRadius, WHITE);
 
         //Get planet coords
-        float mercuryX = screenWidth / 2 + mercuryOrbitRadius * cos(DEG2RAD * (5 + mercuryRotationAngle));
-        float mercuryY = screenHeight / 2 + mercuryOrbitRadius * sin(DEG2RAD * (5 + mercuryRotationAngle));
+        float mercuryX = GetScreenWidth() / 2 + mercuryOrbitRadius * cos(DEG2RAD * (5 + mercuryRotationAngle));
+        float mercuryY = GetScreenHeight() / 2 + mercuryOrbitRadius * sin(DEG2RAD * (5 + mercuryRotationAngle));
 
-        float venusX = screenWidth / 2 + venusOrbitRadius * cos(DEG2RAD * (15 + venusRotationAngle));
-        float venusY = screenHeight / 2 + venusOrbitRadius * sin(DEG2RAD * (15 + venusRotationAngle));
+        float venusX = GetScreenWidth() / 2 + venusOrbitRadius * cos(DEG2RAD * (15 + venusRotationAngle));
+        float venusY = GetScreenHeight() / 2 + venusOrbitRadius * sin(DEG2RAD * (15 + venusRotationAngle));
 
-        float earthX = screenWidth / 2 + earthOrbitRadius * cos(DEG2RAD * (25 + earthRotationAngle));
-        float earthY = screenHeight / 2 + earthOrbitRadius * sin(DEG2RAD * (25 + earthRotationAngle));
+        float earthX = GetScreenWidth() / 2 + earthOrbitRadius * cos(DEG2RAD * (25 + earthRotationAngle));
+        float earthY = GetScreenHeight() / 2 + earthOrbitRadius * sin(DEG2RAD * (25 + earthRotationAngle));
 
-        float marsX = screenWidth / 2 + marsOrbitRadius * cos(DEG2RAD * (45 + marsRotationAngle));
-        float marsY = screenHeight / 2 + marsOrbitRadius * sin(DEG2RAD * (45 + marsRotationAngle));
+        float marsX = GetScreenWidth() / 2 + marsOrbitRadius * cos(DEG2RAD * (45 + marsRotationAngle));
+        float marsY = GetScreenHeight() / 2 + marsOrbitRadius * sin(DEG2RAD * (45 + marsRotationAngle));
 
-        float jupiterX = screenWidth / 2 + jupiterOrbitRadius * cos(DEG2RAD * (35 + jupiterRotationAngle));
-        float jupiterY = screenHeight / 2 + jupiterOrbitRadius * sin(DEG2RAD * (35 + jupiterRotationAngle));
+        float jupiterX = GetScreenWidth() / 2 + jupiterOrbitRadius * cos(DEG2RAD * (35 + jupiterRotationAngle));
+        float jupiterY = GetScreenHeight() / 2 + jupiterOrbitRadius * sin(DEG2RAD * (35 + jupiterRotationAngle));
 
         // Check for clicks on planets
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
@@ -483,12 +478,12 @@ void game()
         DrawText("Use scroll wheel to zoom in/out", 10, 10, 24, WHITE);
         DrawText("Press ESC to quit", 10, 30, 24, WHITE);
         DrawText(("Welcome back, " + username).c_str(), GetScreenWidth() / 2 - 125, 10, 24, WHITE);
-        DrawText(moneyStr.c_str(), 15, screenHeight - 40, 35, WHITE);
+        DrawText(moneyStr.c_str(), 15, GetScreenHeight() - 40, 35, WHITE);
 
-        DrawRectangleLines(screenWidth - 200, screenHeight / 2 - 75, 200, 150, RAYWHITE);
+        DrawRectangleLines(GetScreenWidth() - 200, GetScreenHeight() / 2 - 75, 200, 150, RAYWHITE);
         //cookie
-        DrawTextureEx(playerShopOne, Vector2{ vectorScreenWidth - 210, vectorScreenHeight / 2 - 80 }, 0, 2, WHITE);
-        DrawText("300", screenWidth - 100, screenHeight / 2 - 50, 30, WHITE);
+        DrawTextureEx(playerShopOne, Vector2{ (float)GetScreenWidth() - 210, (float)GetScreenHeight() / 2 - 80 }, 0, 2, WHITE);
+        DrawText("300", GetScreenWidth() - 100, GetScreenHeight() / 2 - 50, 30, WHITE);
         if (CheckCollisionPointRec(GetMousePosition(), button100Bounds) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         {
                 if (cookieLockStatus != 0)
@@ -537,8 +532,8 @@ void game()
                 DrawText("Insufficient balance!", 10, 53, 24, WHITE);
             }
         //diver
-        DrawTextureEx(playerShopTwo, Vector2{ vectorScreenWidth - 210, vectorScreenHeight / 2 - 10 }, 0, 2, WHITE);
-        DrawText("200", screenWidth - 100, screenHeight / 2 + 20, 30, WHITE);
+        DrawTextureEx(playerShopTwo, Vector2{ (float)GetScreenWidth() - 210, (float)GetScreenHeight() / 2 - 10 }, 0, 2, WHITE);
+        DrawText("200", GetScreenWidth() - 100, GetScreenHeight() / 2 + 20, 30, WHITE);
 
         if (CheckCollisionPointRec(GetMousePosition(), button200Bounds) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         {

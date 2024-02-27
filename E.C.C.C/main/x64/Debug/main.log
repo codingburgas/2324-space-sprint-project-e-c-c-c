@@ -1,10 +1,132 @@
-﻿  game.cpp
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(20,51): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(20,35): warning C4244: 'initializing': conversion from 'int' to 'const float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(21,53): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(21,36): warning C4244: 'initializing': conversion from 'int' to 'const float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(210,67): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(212,67): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-  main.vcxproj -> C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\x64\Debug\main.exe
+﻿  tasks.cpp
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(90,49): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(95,50): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(324,110): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(325,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(326,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(327,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(328,96): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(329,101): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(330,103): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(331,102): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(332,107): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(455,49): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(460,50): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(411,13): warning C4101: 'dirtPickedUpPosition': unreferenced local variable
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(735,117): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(739,116): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(741,106): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(742,100): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(743,98): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(744,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(745,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(746,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(747,108): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(748,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(749,108): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(764,117): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(768,116): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(853,49): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(858,50): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1089,110): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1090,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1091,100): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1092,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1170,49): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1175,50): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1406,110): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1407,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1408,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1409,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1410,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1411,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1412,100): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1413,103): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1414,102): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1415,107): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1510,49): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1515,50): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1428,15): warning C4101: 'characterDirt': unreferenced local variable
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1436,15): warning C4101: 'characterRightDirt': unreferenced local variable
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1479,13): warning C4101: 'dirtPickedUpPosition': unreferenced local variable
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1433,15): warning C4101: 'characterLeftDirt': unreferenced local variable
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1695,110): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1696,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1697,98): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1698,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1787,49): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1792,50): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1879,38): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1880,38): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1881,88): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1881,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1907,38): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1908,38): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1909,88): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(1909,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2058,113): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2062,112): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2065,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2066,102): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2067,102): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2071,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2074,26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2089,41): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2093,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2176,49): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2181,50): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2412,110): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2413,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2414,104): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2415,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2416,104): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2417,96): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2418,102): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2419,103): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2420,102): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2421,107): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2516,49): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2521,50): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2434,15): warning C4101: 'characterDirt': unreferenced local variable
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2442,15): warning C4101: 'characterRightDirt': unreferenced local variable
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2485,13): warning C4101: 'dirtPickedUpPosition': unreferenced local variable
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2439,15): warning C4101: 'characterLeftDirt': unreferenced local variable
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2696,110): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2697,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2698,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2699,104): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2780,49): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(2785,50): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3016,104): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3017,93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3018,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3019,93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3020,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3021,95): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3022,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3023,96): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3024,101): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3129,49): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3134,50): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3045,12): warning C4101: 'characterRightRock': unreferenced local variable
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3095,10): warning C4101: 'dirtPickedUpPosition': unreferenced local variable
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3042,12): warning C4101: 'characterLeftRock': unreferenced local variable
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3094,10): warning C4101: 'rockPickedUpPosition': unreferenced local variable
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3355,117): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3359,116): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3449,40): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3454,41): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3685,104): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3686,93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3687,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3688,93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3689,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3690,95): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3691,97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3692,96): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3693,101): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3747,49): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3752,50): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  main.vcxproj -> C:\Users\1337\Desktop\2324-space-sprint-project-e-c-c-c\E.C.C.C\x64\Debug\main.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

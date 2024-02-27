@@ -18,8 +18,6 @@ float Vector2Distance(Vector2 v1, Vector2 v2)
 
 void taskOne()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
     // Load textures outside of switch-case
     Texture2D character;
     Texture2D characterFlask;
@@ -59,9 +57,9 @@ void taskOne()
     Texture2D background = LoadTexture("../assets/background/taskOneBackground.png");
     Texture2D machine = LoadTexture("../assets/tasks/machine.png");
 
-    Vector2 flaskPosition = { (float)GetRandomValue(0, screenWidth - flask.width - 100), (float)GetRandomValue(0, screenHeight - flask.height - 100) };
-    Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
-    Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    Vector2 flaskPosition = { (float)GetRandomValue(0, GetScreenWidth() - flask.width - 100), (float)GetRandomValue(0, GetScreenHeight() - flask.height - 100) };
+    Vector2 machinePosition = { (float)GetRandomValue(0, GetScreenWidth() - machine.width - 100), (float)GetRandomValue(0, GetScreenHeight() - machine.height - 100) };
+    Vector2 characterPosition = { (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 };
 
     float characterScale = 3.0f;
     float movementSpeed = 8.0f;
@@ -86,15 +84,15 @@ void taskOne()
         if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
 
         // Reset character if it goes off-screen
-        if (characterPosition.x > screenWidth)
+        if (characterPosition.x > GetScreenWidth())
             characterPosition.x = -character.width * characterScale;
         else if (characterPosition.x < -character.width * characterScale)
-            characterPosition.x = screenWidth;
+            characterPosition.x = GetScreenWidth();
 
-        if (characterPosition.y > screenHeight)
+        if (characterPosition.y > GetScreenHeight())
             characterPosition.y = -character.height * characterScale;
         else if (characterPosition.y < -character.height * characterScale)
-            characterPosition.y = screenHeight;
+            characterPosition.y = GetScreenHeight();
 
         if (IsKeyPressed(KEY_LEFT_SHIFT))
         {
@@ -109,7 +107,7 @@ void taskOne()
 
         ClearBackground(DARKGREEN);
 
-        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
+        DrawTexture(background, GetScreenWidth() / 2 - background.width / 2, GetScreenHeight() / 2 - background.height / 2, WHITE);
 
         // Draw character
         if (IsKeyDown(KEY_W))
@@ -287,8 +285,6 @@ void taskOne()
 
 void taskOneTerminal()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
     char taskOneLaunchingTerminal[] = "####     E.C.C.C     X64     LAUNCHING     TERMINAL     ####";
     char terminalMessage[] = " . / E.C.C.C> Scan complete. \n\n\n . / E.C.C.C> Contents:";
     char oxygenAmount[] = "~Oxygen: 20.95 %";
@@ -346,10 +342,6 @@ void taskOneTerminal()
 int counter = 0;
 void taskTwo()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
-
     Texture2D character;
     Texture2D characterRock;
     Texture2D characterDirt;
@@ -411,10 +403,10 @@ void taskTwo()
     Texture2D dirt = LoadTexture("../assets/tasks/dirt.png");
     Texture2D machine = LoadTexture("../assets/tasks/machine.png");
 
-    Vector2 rockPosition{ (float)GetRandomValue(0, screenWidth - rock.width - 100), (float)GetRandomValue(0, screenHeight - rock.height - 100) };
-    Vector2 dirtPosition{ (float)GetRandomValue(0, screenWidth - dirt.width - 100), (float)GetRandomValue(0, screenHeight - dirt.height - 100) };
-    Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
-    Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    Vector2 rockPosition{ (float)GetRandomValue(0, GetScreenWidth() - rock.width - 100), (float)GetRandomValue(0, GetScreenHeight() - rock.height - 100) };
+    Vector2 dirtPosition{ (float)GetRandomValue(0, GetScreenWidth() - dirt.width - 100), (float)GetRandomValue(0, GetScreenHeight() - dirt.height - 100) };
+    Vector2 machinePosition = { (float)GetRandomValue(0, GetScreenWidth() - machine.width - 100), (float)GetRandomValue(0, GetScreenHeight() - machine.height - 100) };
+    Vector2 characterPosition = { (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 };
     Vector2 rockPickedUpPosition;
     Vector2 dirtPickedUpPosition;
 
@@ -426,8 +418,8 @@ void taskTwo()
     {
         dirtPosition =
         {
-            (float)GetRandomValue(0, screenWidth - dirt.width - 100),
-            (float)GetRandomValue(0, screenHeight - dirt.height - 100)
+            (float)GetRandomValue(0, GetScreenWidth() - dirt.width - 100),
+            (float)GetRandomValue(0, GetScreenHeight() - dirt.height - 100)
         };
     }
 
@@ -457,22 +449,22 @@ void taskTwo()
 
 
         // Reset character if it goes off-screen
-        if (characterPosition.x > screenWidth)
+        if (characterPosition.x > GetScreenWidth())
             characterPosition.x = -character.width * characterScale;
         else if (characterPosition.x < -character.width * characterScale)
-            characterPosition.x = screenWidth;
+            characterPosition.x = GetScreenWidth();
 
-        if (characterPosition.y > screenHeight)
+        if (characterPosition.y > GetScreenHeight())
             characterPosition.y = -character.height * characterScale;
         else if (characterPosition.y < -character.height * characterScale)
-            characterPosition.y = screenHeight;
+            characterPosition.y = GetScreenHeight();
 
 
         BeginDrawing();
 
         ClearBackground(DARKGREEN);
 
-        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
+        DrawTexture(background, GetScreenWidth() / 2 - background.width / 2, GetScreenHeight() / 2 - background.height / 2, WHITE);
 
         // Draw character
         if (IsKeyDown(KEY_W))
@@ -689,9 +681,6 @@ int rockDirt;
 
 void taskTwoTerminal()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
     char launchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
     char terminalMessage[] = ". /E.C.C.C> Scan complete. \n\n\n. /E.C.C.C> Rock contents:";
     char terminalMessageTwo[] = ". /E.C.C.C> Scan complete. \n\n\n. /E.C.C.C> Dirt contents:";
@@ -795,9 +784,6 @@ void taskTwoTerminal()
 //task 3
 void taskThree()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
     Texture2D character;
     Texture2D characterRadiationDetector;
     Texture2D characterReversed;
@@ -835,9 +821,9 @@ void taskThree()
     Texture2D machine = LoadTexture("../assets/tasks/machine.png");
     Texture2D radiationDetector = LoadTexture("../assets/tasks/radiationDetector.png");
 // Initialize positions and variables
-    Vector2 radiationDetectorPosition = { (float)GetRandomValue(0, screenWidth - radiationDetector.width - 100), (float)GetRandomValue(0, screenHeight - radiationDetector.height - 100) };
-    Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
-    Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    Vector2 radiationDetectorPosition = { (float)GetRandomValue(0, GetScreenWidth() - radiationDetector.width - 100), (float)GetRandomValue(0, GetScreenHeight() - radiationDetector.height - 100) };
+    Vector2 machinePosition = { (float)GetRandomValue(0, GetScreenWidth() - machine.width - 100), (float)GetRandomValue(0, GetScreenHeight() - machine.height - 100) };
+    Vector2 characterPosition = { (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 };
     float characterScale = 3.0;
     float movementSpeed = 8.0;
     bool levelPassed = false;
@@ -861,15 +847,15 @@ void taskThree()
         if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
 
         // Reset character if it goes off-screen
-        if (characterPosition.x > screenWidth)
+        if (characterPosition.x > GetScreenWidth())
             characterPosition.x = -character.width * characterScale;
         else if (characterPosition.x < -character.width * characterScale)
-            characterPosition.x = screenWidth;
+            characterPosition.x = GetScreenWidth();
 
-        if (characterPosition.y > screenHeight)
+        if (characterPosition.y > GetScreenHeight())
             characterPosition.y = -character.height * characterScale;
         else if (characterPosition.y < -character.height * characterScale)
-            characterPosition.y = screenHeight;
+            characterPosition.y = GetScreenHeight();
 
         if (IsKeyPressed(KEY_LEFT_SHIFT))
         {
@@ -884,7 +870,7 @@ void taskThree()
 
         ClearBackground(DARKGREEN);
 
-        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
+        DrawTexture(background, GetScreenWidth() / 2 - background.width / 2, GetScreenHeight() / 2 - background.height / 2, WHITE);
 
         // Draw radiationDetector if not equipped
         if (!radiationDetectorEquipped)
@@ -1069,9 +1055,6 @@ void taskThree()
 
 void taskThreeTerminal()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
     char taskOneLaunchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
     char terminalMessage[] = ". /E.C.C.C> Scan complete. \n\n\n. /E.C.C.C> Radiation level:";
     char radiationAmount[] = "~ 0.21 mSv";
@@ -1116,9 +1099,6 @@ void taskThreeTerminal()
 
 void mercuryTaskOne()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
     Texture2D character;
     Texture2D characterFlask;
     Texture2D characterReversed;
@@ -1157,9 +1137,9 @@ void mercuryTaskOne()
     Texture2D background = LoadTexture("../assets/background/mercuryBackground.png");
     Texture2D flask = LoadTexture("../assets/tasks/flask.png");
     Texture2D machine = LoadTexture("../assets/tasks/mercuryMachine.png");
-    Vector2 flaskPosition = { (float)GetRandomValue(0, screenWidth - flask.width - 100), (float)GetRandomValue(0, screenHeight - flask.height - 100) };
-    Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
-    Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    Vector2 flaskPosition = { (float)GetRandomValue(0, GetScreenWidth() - flask.width - 100), (float)GetRandomValue(0, GetScreenHeight() - flask.height - 100) };
+    Vector2 machinePosition = { (float)GetRandomValue(0, GetScreenWidth() - machine.width - 100), (float)GetRandomValue(0, GetScreenHeight() - machine.height - 100) };
+    Vector2 characterPosition = { (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 };
 
     float characterScale = 3.0f;
     float movementSpeed = 8.0f;
@@ -1184,15 +1164,15 @@ void mercuryTaskOne()
         if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
 
         // Reset character if it goes off-screen
-        if (characterPosition.x > screenWidth)
+        if (characterPosition.x > GetScreenWidth())
             characterPosition.x = -character.width * characterScale;
         else if (characterPosition.x < -character.width * characterScale)
-            characterPosition.x = screenWidth;
+            characterPosition.x = GetScreenWidth();
 
-        if (characterPosition.y > screenHeight)
+        if (characterPosition.y > GetScreenHeight())
             characterPosition.y = -character.height * characterScale;
         else if (characterPosition.y < -character.height * characterScale)
-            characterPosition.y = screenHeight;
+            characterPosition.y = GetScreenHeight();
 
         if (IsKeyPressed(KEY_LEFT_SHIFT))
         {
@@ -1207,7 +1187,7 @@ void mercuryTaskOne()
 
         ClearBackground(DARKGREEN);
 
-        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
+        DrawTexture(background, GetScreenWidth() / 2 - background.width / 2, GetScreenHeight() / 2 - background.height / 2, WHITE);
 
         // Draw flask if not equipped
         if (!flaskEquipped)
@@ -1386,9 +1366,6 @@ void mercuryTaskOne()
 //Mercury tasks terminal
 void mercuryTaskOneTerminal()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
     char taskOneLaunchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
     char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Atmosphere contents:";
     char oxygenAmount[] = "~ Oxygen: 42 %";
@@ -1446,9 +1423,6 @@ void mercuryTaskOneTerminal()
 
 void mercuryTaskTwo()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
     Texture2D character;
     Texture2D characterRock;
     Texture2D characterDirt;
@@ -1498,9 +1472,9 @@ void mercuryTaskTwo()
     Texture2D machine = LoadTexture("../assets/tasks/mercuryMachine.png");
 
 
-    Vector2 rockPosition{ (float)GetRandomValue(0, screenWidth - rock.width - 100), (float)GetRandomValue(0, screenHeight - rock.height - 100) };
-    Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
-    Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    Vector2 rockPosition{ (float)GetRandomValue(0, GetScreenWidth() - rock.width - 100), (float)GetRandomValue(0, GetScreenHeight() - rock.height - 100) };
+    Vector2 machinePosition = { (float)GetRandomValue(0, GetScreenWidth() - machine.width - 100), (float)GetRandomValue(0, GetScreenHeight() - machine.height - 100) };
+    Vector2 characterPosition = { (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 };
     Vector2 rockPickedUpPosition;
     Vector2 dirtPickedUpPosition;
 
@@ -1530,21 +1504,21 @@ void mercuryTaskTwo()
 
 
         // Reset character if it goes off-screen
-        if (characterPosition.x > screenWidth)
+        if (characterPosition.x > GetScreenWidth())
             characterPosition.x = -character.width * characterScale;
         else if (characterPosition.x < -character.width * characterScale)
-            characterPosition.x = screenWidth;
+            characterPosition.x = GetScreenWidth();
 
-        if (characterPosition.y > screenHeight)
+        if (characterPosition.y > GetScreenHeight())
             characterPosition.y = -character.height * characterScale;
         else if (characterPosition.y < -character.height * characterScale)
-            characterPosition.y = screenHeight;
+            characterPosition.y = GetScreenHeight();
 
         BeginDrawing();
 
         ClearBackground(DARKGREEN);
 
-        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
+        DrawTexture(background, GetScreenWidth() / 2 - background.width / 2, GetScreenHeight() / 2 - background.height / 2, WHITE);
 
         // Draw character
         if (IsKeyDown(KEY_W))
@@ -1687,8 +1661,6 @@ void mercuryTaskTwo()
 
 void mercuryTaskTwoTerminal()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
     char taskOneLaunchingTerminal[] = "####     E.C.C.C     X64     LAUNCHING     TERMINAL     ####";
     char terminalMessage[] = " . / E.C.C.C> Scan complete. \n\n\n. / E.C.C.C> Contents:";
     char metalicAmount[] = "~ Metallic: 70 %";
@@ -1733,9 +1705,6 @@ void mercuryTaskTwoTerminal()
 
 void mercuryTaskThree()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
     // Load textures
     Texture2D character;
     Texture2D characterReversed;
@@ -1784,9 +1753,9 @@ void mercuryTaskThree()
     }
 
     // Initialize positions and variables
-    Vector2 thermometerPosition = { (float)GetRandomValue(0, screenWidth - thermometer.width - 100), (float)GetRandomValue(0, screenHeight - thermometer.height - 100) };
-    Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
-    Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    Vector2 thermometerPosition = { (float)GetRandomValue(0, GetScreenWidth() - thermometer.width - 100), (float)GetRandomValue(0, GetScreenHeight() - thermometer.height - 100) };
+    Vector2 machinePosition = { (float)GetRandomValue(0, GetScreenWidth() - machine.width - 100), (float)GetRandomValue(0, GetScreenHeight() - machine.height - 100) };
+    Vector2 characterPosition = { (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 };
     float characterScale = 3.0;
     float movementSpeed = 8.0;
     bool levelPassed = false;
@@ -1812,15 +1781,15 @@ void mercuryTaskThree()
         if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
 
         // Reset character if it goes off-screen
-        if (characterPosition.x > screenWidth)
+        if (characterPosition.x > GetScreenWidth())
             characterPosition.x = -character.width * characterScale;
         else if (characterPosition.x < -character.width * characterScale)
-            characterPosition.x = screenWidth;
+            characterPosition.x = GetScreenWidth();
 
-        if (characterPosition.y > screenHeight)
+        if (characterPosition.y > GetScreenHeight())
             characterPosition.y = -character.height * characterScale;
         else if (characterPosition.y < -character.height * characterScale)
-            characterPosition.y = screenHeight;
+            characterPosition.y = GetScreenHeight();
 
         if (IsKeyPressed(KEY_LEFT_SHIFT))
         {
@@ -1835,7 +1804,7 @@ void mercuryTaskThree()
 
         ClearBackground(DARKGREEN);
 
-        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
+        DrawTexture(background, GetScreenWidth() / 2 - background.width / 2, GetScreenHeight() / 2 - background.height / 2, WHITE);
 
         // Draw thermometer if not equipped
         if (!thermometerEquipped)
@@ -1984,8 +1953,6 @@ void mercuryTaskThree()
 
 void mercuryTaskThreeTerminal()
 {
-    const float screenWidth = GetScreenWidth();
-    const float screenHeight = GetScreenHeight();
     const int maxInputChars = 6;
     char name[maxInputChars + 1] = "\0";
     int letterCount = 0;
@@ -2136,13 +2103,6 @@ void mercuryTaskThreeTerminal()
 
 void venusTaskOne()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
-    
-
-
-    
     Texture2D character;
     Texture2D characterFlask;
     Texture2D characterReversed;
@@ -2183,9 +2143,9 @@ void venusTaskOne()
     Texture2D flask = LoadTexture("../assets/tasks/flask.png");
     Texture2D machine = LoadTexture("../assets/tasks/venusMachine.png");    
 
-    Vector2 flaskPosition = { (float)GetRandomValue(0, screenWidth - flask.width - 100), (float)GetRandomValue(0, screenHeight - flask.height - 100) };
-    Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
-    Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    Vector2 flaskPosition = { (float)GetRandomValue(0, GetScreenWidth() - flask.width - 100), (float)GetRandomValue(0, GetScreenHeight() - flask.height - 100) };
+    Vector2 machinePosition = { (float)GetRandomValue(0, GetScreenWidth() - machine.width - 100), (float)GetRandomValue(0, GetScreenHeight() - machine.height - 100) };
+    Vector2 characterPosition = { (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 };
 
     float characterScale = 3.0f;
     float movementSpeed = 8.0f;
@@ -2210,15 +2170,15 @@ void venusTaskOne()
         if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
 
         // Reset character if it goes off-screen
-        if (characterPosition.x > screenWidth)
+        if (characterPosition.x > GetScreenWidth())
             characterPosition.x = -character.width * characterScale;
         else if (characterPosition.x < -character.width * characterScale)
-            characterPosition.x = screenWidth;
+            characterPosition.x = GetScreenWidth();
 
-        if (characterPosition.y > screenHeight)
+        if (characterPosition.y > GetScreenHeight())
             characterPosition.y = -character.height * characterScale;
         else if (characterPosition.y < -character.height * characterScale)
-            characterPosition.y = screenHeight;
+            characterPosition.y = GetScreenHeight();
 
         if (IsKeyPressed(KEY_LEFT_SHIFT))
         {
@@ -2233,7 +2193,7 @@ void venusTaskOne()
 
         ClearBackground(DARKGREEN);
 
-        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
+        DrawTexture(background, GetScreenWidth() / 2 - background.width / 2, GetScreenHeight() / 2 - background.height / 2, WHITE);
 
         // Draw flask if not equipped
         if (!flaskEquipped)
@@ -2412,9 +2372,6 @@ void venusTaskOne()
 
 void venusTaskOneTerminal()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
     char taskOneLaunchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
     char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Atmosphere contents:";
     char carbonDioxideAmount[] = "~ Carbon Dioxide: 96.5 %";
@@ -2472,9 +2429,6 @@ void venusTaskOneTerminal()
 }
 void venusTaskTwo()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
     Texture2D character;
     Texture2D characterRock;
     Texture2D characterDirt;
@@ -2524,9 +2478,9 @@ void venusTaskTwo()
     Texture2D machine = LoadTexture("../assets/tasks/mercuryMachine.png");
 
 
-    Vector2 rockPosition{ (float)GetRandomValue(0, screenWidth - rock.width - 100), (float)GetRandomValue(0, screenHeight - rock.height - 100) };
-    Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
-    Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    Vector2 rockPosition{ (float)GetRandomValue(0, GetScreenWidth() - rock.width - 100), (float)GetRandomValue(0, GetScreenHeight() - rock.height - 100) };
+    Vector2 machinePosition = { (float)GetRandomValue(0, GetScreenWidth() - machine.width - 100), (float)GetRandomValue(0, GetScreenHeight() - machine.height - 100) };
+    Vector2 characterPosition = { (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 };
     Vector2 rockPickedUpPosition;
     Vector2 dirtPickedUpPosition;
 
@@ -2556,21 +2510,21 @@ void venusTaskTwo()
 
 
         // Reset character if it goes off-screen
-        if (characterPosition.x > screenWidth)
+        if (characterPosition.x > GetScreenWidth())
             characterPosition.x = -character.width * characterScale;
         else if (characterPosition.x < -character.width * characterScale)
-            characterPosition.x = screenWidth;
+            characterPosition.x = GetScreenWidth();
 
-        if (characterPosition.y > screenHeight)
+        if (characterPosition.y > GetScreenHeight())
             characterPosition.y = -character.height * characterScale;
         else if (characterPosition.y < -character.height * characterScale)
-            characterPosition.y = screenHeight;
+            characterPosition.y = GetScreenHeight();
 
         BeginDrawing();
 
         ClearBackground(DARKGREEN);
 
-        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
+        DrawTexture(background, GetScreenWidth() / 2 - background.width / 2, GetScreenHeight() / 2 - background.height / 2, WHITE);
 
         // Draw character
         if (IsKeyDown(KEY_W))
@@ -2708,8 +2662,6 @@ void venusTaskTwo()
 
 void venusTaskTwoTerminal()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
     char taskOneLaunchingTerminal[] = "####     E.C.C.C     X64     LAUNCHING     TERMINAL     ####";
     char terminalMessage[] = " . / E.C.C.C> Scan complete. \n\n\n. / E.C.C.C> Contents:";
     char basaltAmount[] = "~ Metallic: 60 %";
@@ -2752,9 +2704,6 @@ void venusTaskTwoTerminal()
 
 void marsTaskOne()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
     Texture2D character;
     Texture2D characterFlask;
     Texture2D characterReversed;
@@ -2798,9 +2747,9 @@ void marsTaskOne()
 	Texture2D flask = LoadTexture("../assets/tasks/flask.png");
 	Texture2D machine = LoadTexture("../assets/tasks/marsMachine.png");
 
-    Vector2 flaskPosition = { (float)GetRandomValue(0, screenWidth - flask.width - 100), (float)GetRandomValue(0, screenHeight - flask.height - 100) };
-    Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
-    Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    Vector2 flaskPosition = { (float)GetRandomValue(0, GetScreenWidth() - flask.width - 100), (float)GetRandomValue(0, GetScreenHeight() - flask.height - 100) };
+    Vector2 machinePosition = { (float)GetRandomValue(0, GetScreenWidth() - machine.width - 100), (float)GetRandomValue(0, GetScreenHeight() - machine.height - 100) };
+    Vector2 characterPosition = { (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 };
 
     float characterScale = 3.0f;
     float movementSpeed = 8.0f;
@@ -2825,15 +2774,15 @@ void marsTaskOne()
         if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
 
         // Reset character if it goes off-screen
-        if (characterPosition.x > screenWidth)
+        if (characterPosition.x > GetScreenWidth())
             characterPosition.x = -character.width * characterScale;
         else if (characterPosition.x < -character.width * characterScale)
-            characterPosition.x = screenWidth;
+            characterPosition.x = GetScreenWidth();
 
-        if (characterPosition.y > screenHeight)
+        if (characterPosition.y > GetScreenHeight())
             characterPosition.y = -character.height * characterScale;
         else if (characterPosition.y < -character.height * characterScale)
-            characterPosition.y = screenHeight;
+            characterPosition.y = GetScreenHeight();
 
         if (IsKeyPressed(KEY_LEFT_SHIFT))
         {
@@ -2848,7 +2797,7 @@ void marsTaskOne()
 
         ClearBackground(DARKGREEN);
 
-        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
+        DrawTexture(background, GetScreenWidth() / 2 - background.width / 2, GetScreenHeight() / 2 - background.height / 2, WHITE);
 
         // Draw character
         if (IsKeyDown(KEY_W))
@@ -3028,8 +2977,6 @@ void marsTaskOne()
 
 void marsTaskOneTerminal()
 {
-	const int screenWidth = GetScreenWidth();
-	const int screenHeight = GetScreenHeight();
 	char taskOneLaunchingTerminal[] = "####     E.C.C.C     X64     LAUNCHING     TERMINAL     ####";
 	char terminalMessage[] = " . / E.C.C.C> Scan complete. \n\n\n. / E.C.C.C> Contents:";
 	char oxygenAmount[] = "~Oxygen: 20.95 %";
@@ -3086,9 +3033,6 @@ void marsTaskOneTerminal()
 //task 2
 void marsTaskTwo()
 {
-	const int screenWidth = GetScreenWidth();
-	const int screenHeight = GetScreenHeight();
-
 	Texture2D character;
 	Texture2D characterRock;
 	Texture2D characterDirt;
@@ -3144,9 +3088,9 @@ void marsTaskTwo()
 
 
 
-	Vector2 dirtPosition{ (float)GetRandomValue(0, screenWidth - dirt.width - 100), (float)GetRandomValue(0, screenHeight - dirt.height - 100) };
-	Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
-	Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+	Vector2 dirtPosition{ (float)GetRandomValue(0, GetScreenWidth() - dirt.width - 100), (float)GetRandomValue(0, GetScreenHeight() - dirt.height - 100) };
+	Vector2 machinePosition = { (float)GetRandomValue(0, GetScreenWidth() - machine.width - 100), (float)GetRandomValue(0, GetScreenHeight() - machine.height - 100) };
+	Vector2 characterPosition = { (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 };
 	Vector2 rockPickedUpPosition;
 	Vector2 dirtPickedUpPosition;
 
@@ -3179,22 +3123,22 @@ void marsTaskTwo()
 
 
         // Reset character if it goes off-screen
-        if (characterPosition.x > screenWidth)
+        if (characterPosition.x > GetScreenWidth())
             characterPosition.x = -character.width * characterScale;
         else if (characterPosition.x < -character.width * characterScale)
-            characterPosition.x = screenWidth;
+            characterPosition.x = GetScreenWidth();
 
-        if (characterPosition.y > screenHeight)
+        if (characterPosition.y > GetScreenHeight())
             characterPosition.y = -character.height * characterScale;
         else if (characterPosition.y < -character.height * characterScale)
-            characterPosition.y = screenHeight;
+            characterPosition.y = GetScreenHeight();
 
 
         BeginDrawing();
 
         ClearBackground(DARKGREEN);
 
-        DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
+        DrawTexture(background, GetScreenWidth() / 2 - background.width / 2, GetScreenHeight() / 2 - background.height / 2, WHITE);
 
         // Draw character
         if (IsKeyDown(KEY_W))
@@ -3363,9 +3307,6 @@ void marsTaskTwo()
 
 void marsTaskTwoTerminal()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
     char launchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
     char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Soil contents:";
     char plagioclaseAmount[] = "~ Plagioclase : 42 %";
@@ -3432,9 +3373,6 @@ void marsTaskTwoTerminal()
 }
 void marsTaskThree()
 {
-	const int screenWidth = GetScreenWidth();
-	const int screenHeight = GetScreenHeight();
-
 	Texture2D character;
 	Texture2D charecterGravityDetector;
 	Texture2D characterReversed;
@@ -3478,9 +3416,9 @@ void marsTaskThree()
 	Texture2D gravityDetector = LoadTexture("../assets/tasks/gravityDetector.png");
 	Texture2D machine = LoadTexture("../assets/tasks/marsMachine.png");
 
-	Vector2 gravityDetectorPosition = { (float)GetRandomValue(0, screenWidth - gravityDetector.width - 100), (float)GetRandomValue(0, screenHeight - gravityDetector.height - 100) };
-	Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
-	Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+	Vector2 gravityDetectorPosition = { (float)GetRandomValue(0, GetScreenWidth() - gravityDetector.width - 100), (float)GetRandomValue(0, GetScreenHeight() - gravityDetector.height - 100) };
+	Vector2 machinePosition = { (float)GetRandomValue(0, GetScreenWidth() - machine.width - 100), (float)GetRandomValue(0, GetScreenHeight() - machine.height - 100) };
+	Vector2 characterPosition = { (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 };
 
 	float characterScale = 3.0f;
 	float movementSpeed = 8.0f;
@@ -3505,15 +3443,15 @@ void marsTaskThree()
 		if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
 
 		// Reset character if it goes off-screen
-		if (characterPosition.x > screenWidth)
+		if (characterPosition.x > GetScreenWidth())
 			characterPosition.x = -character.width * characterScale;
 		else if (characterPosition.x < -character.width * characterScale)
-			characterPosition.x = screenWidth;
+			characterPosition.x = GetScreenWidth();
 
-		if (characterPosition.y > screenHeight)
+		if (characterPosition.y > GetScreenHeight())
 			characterPosition.y = -character.height * characterScale;
 		else if (characterPosition.y < -character.height * characterScale)
-			characterPosition.y = screenHeight;
+			characterPosition.y = GetScreenHeight();
 
 		if (IsKeyPressed(KEY_LEFT_SHIFT))
 		{
@@ -3528,7 +3466,7 @@ void marsTaskThree()
 
 		ClearBackground(DARKGREEN);
 
-		DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
+		DrawTexture(background, GetScreenWidth() / 2 - background.width / 2, GetScreenHeight() / 2 - background.height / 2, WHITE);
         // Draw machine
         DrawTextureEx(machine, machinePosition, 0.0f, 4.5f, WHITE);
 		// Draw character
@@ -3708,8 +3646,6 @@ void marsTaskThree()
 
 void marsTaskThreeTerminal()
 {
-	const int screenWidth = GetScreenWidth();
-	const int screenHeight = GetScreenHeight();
 	char taskOneLaunchingTerminal[] = "####     E.C.C.C     X64     LAUNCHING     TERMINAL     ####";
 	char terminalMessage[] = " . / E.C.C.C> Scan complete. \n\n\n. / E.C.C.C> Contents:";
 	char oxygenAmount[] = "~Oxygen: 20.95 %";
@@ -3768,9 +3704,6 @@ void marsTaskThreeTerminal()
 
 void jupiterTaskOne()
 {
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
-
     Texture2D background = LoadTexture("../assets/background/mercuryBackground.png");
     Texture2D character = LoadTexture("../assets/player/player.png");
     Texture2D characterFlask = LoadTexture("../assets/player/playerFlask.png");
@@ -3781,9 +3714,9 @@ void jupiterTaskOne()
     Texture2D flask = LoadTexture("../assets/tasks/flask.png");
     Texture2D machine = LoadTexture("../assets/tasks/mercuryMachine.png");
 
-    Vector2 flaskPosition = { (float)GetRandomValue(0, screenWidth - flask.width - 100), (float)GetRandomValue(0, screenHeight - flask.height - 100) };
-    Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
-    Vector2 characterPosition = { (float)screenWidth / 2, (float)screenHeight / 2 };
+    Vector2 flaskPosition = { (float)GetRandomValue(0, GetScreenWidth() - flask.width - 100), (float)GetRandomValue(0, GetScreenHeight() - flask.height - 100) };
+    Vector2 machinePosition = { (float)GetRandomValue(0, GetScreenWidth() - machine.width - 100), (float)GetRandomValue(0, GetScreenHeight() - machine.height - 100) };
+    Vector2 characterPosition = { (float)GetScreenWidth() / 2, (float)GetScreenHeight() / 2 };
 
     float characterScale = 3.0f;
     float movementSpeed = 8.0f;
@@ -3808,15 +3741,15 @@ void jupiterTaskOne()
         if (IsKeyDown(KEY_S)) characterPosition.y += movementSpeed;
 
         // Reset character if it goes off-screen
-        if (characterPosition.x > screenWidth)
+        if (characterPosition.x > GetScreenWidth())
             characterPosition.x = -character.width * characterScale;
         else if (characterPosition.x < -character.width * characterScale)
-            characterPosition.x = screenWidth;
+            characterPosition.x = GetScreenWidth();
 
-        if (characterPosition.y > screenHeight)
+        if (characterPosition.y > GetScreenHeight())
             characterPosition.y = -character.height * characterScale;
         else if (characterPosition.y < -character.height * characterScale)
-            characterPosition.y = screenHeight;
+            characterPosition.y = GetScreenHeight();
 
         if (IsKeyPressed(KEY_LEFT_SHIFT))
         {
@@ -3890,13 +3823,13 @@ void jupiterTaskOne()
         if (flaskEquipped and IsKeyDown(KEY_SPACE) and !scanComplete)
         {
             // Draw loading bar background
-            DrawRectangle(480, screenHeight - 170, 300, 40, LIGHTGRAY);
-            DrawRectangle(480, screenHeight - 170, loadingBarWidth, 40, GRAY);
+            DrawRectangle(480, GetScreenHeight() - 170, 300, 40, LIGHTGRAY);
+            DrawRectangle(480, GetScreenHeight() - 170, loadingBarWidth, 40, GRAY);
 
             // Draw "Measuring..." text
             if ((framesCounter / 59) % 2 == 0)
             {
-                DrawText("Filling...", 600, screenHeight - 160, 20, WHITE);
+                DrawText("Filling...", 600, GetScreenHeight() - 160, 20, WHITE);
             }
             if (scanComplete)
             {
