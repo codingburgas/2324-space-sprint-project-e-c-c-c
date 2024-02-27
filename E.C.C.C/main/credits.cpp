@@ -33,6 +33,7 @@ void credits()
     std::vector<Vector2> starVelocities;
 
     SetExitKey(KEY_ESCAPE);
+    SetTargetFPS(60);
 
     // Spawn stars
     for (int i = 0; i < 200; ++i)
@@ -99,7 +100,7 @@ void credits()
         DrawText("Thank you for playing!", 50, slidingSpeed, 100, WHITE);
 
         DrawText("Our team,\n\n\nEast Coast Coding Crew\n\n\n(E.C.C.C)", 50, slidingSpeed - 300, 50, WHITE);
-        DrawText("What are you searching for?", 50, slidingSpeed - 2000, 100, WHITE);
+        DrawText("What are you searching for?", 50, slidingSpeed - 2000, 60, WHITE);
         DrawText("Scrum Trainer", 96, slidingSpeed + 420 + 20, 20, WHITE);
         DrawText("Dimitar Dimitrakov", 96, slidingSpeed + 420, 20, WHITE);
         DrawText("Back-End Developer", 392, slidingSpeed + 420 + 20, 20, WHITE);

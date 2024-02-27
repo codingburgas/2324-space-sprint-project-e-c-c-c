@@ -945,7 +945,7 @@ void taskThree()
                     // Draw "Measuring..." text
                     if ((framesCounter / 59) % 2 == 0)
                     {
-                        DrawText("Filling...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 240, 20, WHITE);
+                        DrawText("Measuring...", GetScreenWidth() / 2 - 52, GetScreenHeight() / 2 + 240, 20, WHITE);
                     }
                     if (scanComplete)
                     {
@@ -3405,7 +3405,7 @@ void marsTaskThree()
 		character = LoadTexture("../assets/player/player.png");
 		charecterGravityDetector = LoadTexture("../assets/player/playerGravityDetector.png");
 		characterReversed = LoadTexture("../assets/player/playerReversed.png");
-		characterReversedGravityDetector = LoadTexture("../assets/player/playerReversedGravityDetector.png");
+		characterReversedGravityDetector = LoadTexture("../assets/player/playerGravityDetectorBack.png");
 		characterLeft = LoadTexture("../assets/player/playerLeft.png");
 		characterRight = LoadTexture("../assets/player/playerRight.png");
 

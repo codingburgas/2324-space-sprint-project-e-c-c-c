@@ -10,6 +10,7 @@
 #include "terminal.hpp"
 #include "buy.hpp"
 #include "mainMenu.hpp"
+#include "credits.hpp"
 
 int characterShop = 1;
 
@@ -352,7 +353,7 @@ void game()
                         buyMars();
                     }
                     else {
-                        if (levelsPassedMars != 1 && levelsPassedMars != 2) {
+                        if (levelsPassedMars != 1 && levelsPassedMars != 2 && levelsPassedMars != 3) {
                             marsTaskOne();
                         }
                         else if (levelsPassedMars == 1)
@@ -371,16 +372,13 @@ void game()
                 isJupiterClicked = !isJupiterClicked;
                 if (isJupiterClicked)
                 {
-                    if (jupiterLockedCh == true)
+                    if (jupiterLockedCh == true && levelsPassedMercury == 3 && levelsPassedVenus == 2 && levelsPassed == 3 && levelsPassedMars == 3)
                     {
                         buyJupiter();
                     }
-                    else
+                    if (jupiterLockedCh == false)
                     {
-                        if (levelsPassedJupiter != 1)
-                        {
-                            jupiterTaskOne();
-                        }
+                        credits();
                     }
                 }
             }
