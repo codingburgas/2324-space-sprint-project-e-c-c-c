@@ -99,7 +99,7 @@ void credits()
         DrawText("Thank you for playing!", 50, slidingSpeed, 100, WHITE);
 
         DrawText("Our team,\n\n\nEast Coast Coding Crew\n\n\n(E.C.C.C)", 50, slidingSpeed - 300, 50, WHITE);
-        DrawText("Kvo praish tuka ve?", 50, slidingSpeed - 4000, 100, WHITE);
+        DrawText("What are you searching for?", 50, slidingSpeed - 2000, 100, WHITE);
         DrawText("Scrum Trainer", 96, slidingSpeed + 420 + 20, 20, WHITE);
         DrawText("Dimitar Dimitrakov", 96, slidingSpeed + 420, 20, WHITE);
         DrawText("Back-End Developer", 392, slidingSpeed + 420 + 20, 20, WHITE);

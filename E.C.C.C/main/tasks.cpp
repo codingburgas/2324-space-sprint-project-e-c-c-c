@@ -31,6 +31,12 @@ void taskOne()
     // Load textures based on character shop selection
     switch (characterShop) {
     case 2:
+        character = LoadTexture("../assets/player/cookie.png");
+        characterFlask = LoadTexture("../assets/player/cookieFlask.png");
+        characterReversed = LoadTexture("../assets/player/cookieBack.png");
+        characterReversedFlask = LoadTexture("../assets/player/cookieFlaskBack.png");
+        characterLeft = LoadTexture("../assets/player/cookieLeft.png");
+        characterRight = LoadTexture("../assets/player/cookieRight.png");
         break;
     case 3:
         character = LoadTexture("../assets/player/diver.png");
@@ -212,15 +218,15 @@ void taskOne()
                 }
                 if (scanComplete)
                 {
-                    DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 220, 36, WHITE);
+                    DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 260, 36, WHITE);
                 }
 
-                framesCounter += 4;
+                framesCounter += 70;
                 if (framesCounter >= 60)
                 {
                     framesCounter = 0;
-                    loadingBarWidth += 10;
-                    if (loadingBarWidth >= 310)
+                    loadingBarWidth += 1;
+                    if (loadingBarWidth >= 300)
                     {
                         scanComplete = true;
                         loadingBarWidth = 0;
@@ -243,12 +249,12 @@ void taskOne()
                     DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 400, 36, WHITE);
                 }
 
-                framesCounter += 4;
+                framesCounter += 70;
                 if (framesCounter >= 60)
                 {
                     framesCounter = 0;
-                    loadingBarWidth += 10;
-                    if (loadingBarWidth >= 310)
+                    loadingBarWidth += 1;
+                    if (loadingBarWidth >= 300)
                     {
                         scanComplete = true;
                         loadingBarWidth = 0;
@@ -284,7 +290,7 @@ void taskOneTerminal()
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
     char taskOneLaunchingTerminal[] = "####     E.C.C.C     X64     LAUNCHING     TERMINAL     ####";
-    char terminalMessage[] = " . / E.C.C.C> Scan complete. \n\n\n. / E.C.C.C> Contents:";
+    char terminalMessage[] = " . / E.C.C.C> Scan complete. \n\n\n . / E.C.C.C> Contents:";
     char oxygenAmount[] = "~Oxygen: 20.95 %";
     char nitrogenAmount[] = "~ Nitrogen: 78.08 %";
     char argonAmount[] = "~ Argon: 0.93 %";
@@ -356,14 +362,24 @@ void taskTwo()
     Texture2D characterRightRock;
     Texture2D characterRightDirt;
 
-     
+
 
     switch (characterShop) {
     case 2:
-        
+        character = LoadTexture("../assets/player/cookie.png");
+        characterRock = LoadTexture("../assets/player/cookieRock.png");
+        characterDirt = LoadTexture("../assets/player/cookieDirt.png");
+        characterReversed = LoadTexture("../assets/player/cookieBack.png");
+        characterReversedRD = LoadTexture("../assets/player/cookieItemBack.png");
+        characterLeft = LoadTexture("../assets/player/cookieLeft.png");
+        characterLeftRock = LoadTexture("../assets/player/cookieRockLeft.png");
+        characterLeftDirt = LoadTexture("../assets/player/cookieDirtLeft.png");
+        characterRight = LoadTexture("../assets/player/cookieRight.png");
+        characterRightRock = LoadTexture("../assets/player/cookieRockRight.png");
+        characterRightDirt = LoadTexture("../assets/player/cookieDirtRight.png");
         break;
     case 3:
-        
+
         character = LoadTexture("../assets/player/diver.png");
         characterRock = LoadTexture("../assets/player/diverRock.png");
         characterDirt = LoadTexture("../assets/player/diverDirt.png");
@@ -451,7 +467,7 @@ void taskTwo()
         else if (characterPosition.y < -character.height * characterScale)
             characterPosition.y = screenHeight;
 
-        
+
         BeginDrawing();
 
         ClearBackground(DARKGREEN);
@@ -482,7 +498,7 @@ void taskTwo()
             else if (dirtEquipped)
                 DrawTextureEx(characterLeftDirt, characterPosition, 0.0f, characterScale, WHITE);
             else
-            DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
+                DrawTextureEx(characterLeft, characterPosition, 0.0f, characterScale, WHITE);
         }
         else
         {
@@ -677,8 +693,8 @@ void taskTwoTerminal()
     const int screenHeight = GetScreenHeight();
 
     char launchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
-    char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Rock contents:";
-    char terminalMessageTwo[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Dirt contents:";
+    char terminalMessage[] = ". /E.C.C.C> Scan complete. \n\n\n. /E.C.C.C> Rock contents:";
+    char terminalMessageTwo[] = ". /E.C.C.C> Scan complete. \n\n\n. /E.C.C.C> Dirt contents:";
     char plagioclaseAmount[] = "~ Plagioclase : 42 %";
     char feldsparAmount[] = "~ Feldspar: 22 %";
     char quartzAmount[] = "~ Quartz: 18 %";
@@ -791,6 +807,12 @@ void taskThree()
 
     switch (characterShop) {
     case 2:
+        character = LoadTexture("../assets/player/cookie.png");
+        characterRadiationDetector = LoadTexture("../assets/player/cookieRadiationDetector.png");
+        characterReversed = LoadTexture("../assets/player/cookieBack.png");
+        characterReversedRadiationDetector = LoadTexture("../assets/player/cookieRadiationDetectorBack.png");
+        characterLeft = LoadTexture("../assets/player/cookieLeft.png");
+        characterRight = LoadTexture("../assets/player/cookieRight.png");
         break;
     case 3:
         character = LoadTexture("../assets/player/diver.png");
@@ -922,8 +944,8 @@ void taskThree()
         // Draw text for radiation detector equipped and scanning
         if (radiationDetectorEquipped && !scanComplete)
         {
-            DrawText("Radiation detector equipped", (GetScreenWidth() - MeasureText("Radiation detector equipped", 36)) / 2, GetScreenHeight() - 120, 36, RAYWHITE);
-            DrawText("Hold SPACE to measure radiation level", (GetScreenWidth() - MeasureText("Hold SPACE to measure radiation level", 36)) / 2, GetScreenHeight() - 80, 36, RAYWHITE);
+            DrawText("Radiation detector equipped", (GetScreenWidth() - MeasureText("Radiation detector equipped", 36)) / 2, GetScreenHeight() - 80, 36, RAYWHITE);
+            DrawText("Hold SPACE to measure radiation level", (GetScreenWidth() - MeasureText("Hold SPACE to measure radiation level", 36)) / 2, GetScreenHeight() - 40, 36, RAYWHITE);
 
             // Draw loading bar if SPACE is held down
             if (radiationDetectorEquipped && IsKeyDown(KEY_SPACE) && !scanComplete)
@@ -931,25 +953,25 @@ void taskThree()
                 if (!fullscreen)
                 {
                     // Draw loading bar background
-                    DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 200, 300, 40, LIGHTGRAY);
-                    DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 200, loadingBarWidth, 40, DARKGREEN); // Draw loading bar
+                    DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 230, 300, 40, LIGHTGRAY);
+                    DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 230, loadingBarWidth, 40, DARKGREEN); // Draw loading bar
 
                     // Draw "Measuring..." text
                     if ((framesCounter / 59) % 2 == 0)
                     {
-                        DrawText("Filling...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 210, 20, WHITE);
+                        DrawText("Filling...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 240, 20, WHITE);
                     }
                     if (scanComplete)
                     {
                         DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 210, 36, WHITE);
                     }
 
-                    framesCounter += 4;
+                    framesCounter += 70;
                     if (framesCounter >= 60)
                     {
                         framesCounter = 0;
-                        loadingBarWidth += 10;
-                        if (loadingBarWidth >= 310)
+                        loadingBarWidth += 1;
+                        if (loadingBarWidth >= 300)
                         {
                             scanComplete = true;
                             loadingBarWidth = 0;
@@ -959,25 +981,25 @@ void taskThree()
                 else
                 {
                     // Draw loading bar background
-                    DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 380, 300, 40, LIGHTGRAY);
-                    DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 380, loadingBarWidth, 40, DARKGREEN); // Draw loading bar
+                    DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 420, 300, 40, LIGHTGRAY);
+                    DrawRectangle(GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 + 420, loadingBarWidth, 40, DARKGREEN); // Draw loading bar
 
                     // Draw "Measuring..." text
                     if ((framesCounter / 59) % 2 == 0)
                     {
-                        DrawText("Scanning...", GetScreenWidth() / 2 - 50, GetScreenHeight() / 2 + 390, 20, WHITE);
+                        DrawText("Scanning...", GetScreenWidth() / 2 - 50, GetScreenHeight() / 2 + 430, 20, WHITE);
                     }
                     if (scanComplete)
                     {
                         DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 400, 36, WHITE);
                     }
 
-                    framesCounter += 4;
+                    framesCounter += 70;
                     if (framesCounter >= 60)
                     {
                         framesCounter = 0;
-                        loadingBarWidth += 10;
-                        if (loadingBarWidth >= 310)
+                        loadingBarWidth += 1;
+                        if (loadingBarWidth >= 300)
                         {
                             scanComplete = true;
                             loadingBarWidth = 0;
@@ -1051,7 +1073,7 @@ void taskThreeTerminal()
     const int screenHeight = GetScreenHeight();
 
     char taskOneLaunchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
-    char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Radiation level:";
+    char terminalMessage[] = ". /E.C.C.C> Scan complete. \n\n\n. /E.C.C.C> Radiation level:";
     char radiationAmount[] = "~ 0.21 mSv";
     char radiationLevel[] = "Normal level";
     int framesCounter = 0;
@@ -1060,7 +1082,7 @@ void taskThreeTerminal()
     if (fullscreen == true)
     {
         fontSize = 22;
-        nameX = 500;
+        nameX = 700;
     }
     else {
         fontSize = 18;
@@ -1107,6 +1129,12 @@ void mercuryTaskOne()
     switch (characterShop) 
     {
     case 2:
+        character = LoadTexture("../assets/player/cookie.png");
+        characterFlask = LoadTexture("../assets/player/cookieFlask.png");
+        characterReversed = LoadTexture("../assets/player/cookieBack.png");
+        characterReversedFlask = LoadTexture("../assets/player/cookieFlaskBack.png");
+        characterLeft = LoadTexture("../assets/player/cookieLeft.png");
+        characterRight = LoadTexture("../assets/player/cookieRight.png");
         break;
     case 3:
         character = LoadTexture("../assets/player/diver.png");
@@ -1253,12 +1281,12 @@ void mercuryTaskOne()
                     DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 220, 36, WHITE);
                 }
 
-                framesCounter += 4;
+                framesCounter += 70;
                 if (framesCounter >= 60)
                 {
                     framesCounter = 0;
-                    loadingBarWidth += 10;
-                    if (loadingBarWidth >= 310)
+                    loadingBarWidth += 1;
+                    if (loadingBarWidth >= 300)
                     {
                         scanComplete = true;
                         loadingBarWidth = 0;
@@ -1320,7 +1348,7 @@ void mercuryTaskOne()
                 std::ofstream moneyFileOf("../data/money.csv");
                 if (moneyFileOf.is_open())
                 {
-                    moneyFileOf << money + 250; // Save earned money to a file
+                    moneyFileOf << money + 300; // Save earned money to a file
                     moneyFileOf.close();
                 }
 
@@ -1435,7 +1463,14 @@ void mercuryTaskTwo()
 
     switch (characterShop) {
     case 2:
-
+        character = LoadTexture("../assets/player/cookie.png");
+        characterRock = LoadTexture("../assets/player/cookieMercuryRock.png");
+        characterReversed = LoadTexture("../assets/player/cookieBack.png");
+        characterReversedRD = LoadTexture("../assets/player/cookieItemBack.png");
+        characterLeft = LoadTexture("../assets/player/cookieLeft.png");
+        characterLeftRock = LoadTexture("../assets/player/cookieMercuryRockLeft.png");
+        characterRight = LoadTexture("../assets/player/cookieRight.png");
+        characterRightRock = LoadTexture("../assets/player/cookieMercuryRockRight.png");
         break;
     case 3:
         character = LoadTexture("../assets/player/diver.png");
@@ -1711,6 +1746,12 @@ void mercuryTaskThree()
 
     switch (characterShop) {
     case 2:
+        character = LoadTexture("../assets/player/cookie.png");
+        characterThermometer = LoadTexture("../assets/player/cookieThermometer.png");
+        characterReversed = LoadTexture("../assets/player/cookieBack.png");
+        characterReversedThermometer = LoadTexture("../assets/player/cookieThermometerBack.png");
+        characterLeft = LoadTexture("../assets/player/cookieLeft.png");
+        characterRight = LoadTexture("../assets/player/cookieRight.png");
         break;
     case 3:
         character = LoadTexture("../assets/player/diver.png");
@@ -1885,10 +1926,14 @@ void mercuryTaskThree()
             frameCount++;
 
             // Draw "Measuring..." text if space key is held down
+            if (IsKeyPressed(KEY_SPACE))
+            {
+                measurementComplete = true;
+            }
             if (IsKeyDown(KEY_SPACE))
             {
                 DrawText("Temperature in C", GetScreenWidth() - 275, GetScreenHeight() / 2 + 470, 30, WHITE);
-
+                measurementComplete = true;
                 // Generate a random temperature within the specified range
                 float minTemperature = 340.1;
                 float maxTemperature = 340.9;
@@ -1900,7 +1945,7 @@ void mercuryTaskThree()
             }
         }
         // Draw text for interacting with machine
-        if (distanceToMachine < 120.0f && !fullscreen && measurementComplete == true)
+        if (distanceToMachine < 120.0f && !fullscreen && measurementComplete)
         {
             DrawText("Press E to interact", (GetScreenWidth() - MeasureText("Press E to interact", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
             if (IsKeyPressed(KEY_E))
@@ -1994,8 +2039,14 @@ void mercuryTaskThreeTerminal()
             std::ofstream moneyFileOf("../data/money.csv");
             if (moneyFileOf.is_open())
             {
-                moneyFileOf << money + 300; // Save earned money to a file
+                moneyFileOf << money + 400; // Save earned money to a file
                 moneyFileOf.close();
+            }
+            std::ofstream levelFile("../data/levelsPassedMercury.csv");
+            if (levelFile.is_open())
+            {
+                levelFile << "3";  // Save completed level to a file
+                levelFile.close();
             }
             game();
         }
@@ -2041,10 +2092,10 @@ void mercuryTaskThreeTerminal()
         }
         else
         {
-            DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX + 20, 10 }, fontSize, 3, WHITE);
+            DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX + 50, 10 }, fontSize, 3, WHITE);
         }
 
-        DrawTextEx(font, name, Vector2{ nameX - 190, 525 }, fontSize, 2, WHITE);
+        DrawTextEx(font, name, Vector2{ nameX - 150, 525 }, fontSize, 2, WHITE);
         DrawTextEx(font, TextSubtext(inputText, 0, framesCounter / 10), Vector2{ nameX - 320, 425 }, fontSize, 3, WHITE);
         DrawTextEx(font, TextSubtext(valueInput, 0, framesCounter / 10), Vector2{ nameX - 320, 525}, fontSize, 3, WHITE);
         if (letterCount < maxInputChars && framesCounter > 8000)
@@ -2068,11 +2119,11 @@ void mercuryTaskThreeTerminal()
 
         if (passed == 2)
         {
-            DrawText("Try again", nameX - 150, 520, 22, RED);
+            DrawText("Try again", nameX - 80, 525, 22, RED);
         }
         else if (passed == 1)
         {
-            DrawText("Task passed", nameX - 150, 520, 22, GREEN);
+            DrawText("Task passed", nameX - 80, 525, 22, GREEN);
         }
 
         EndDrawing();
@@ -2098,12 +2149,16 @@ void venusTaskOne()
     Texture2D characterReversedFlask;
     Texture2D characterLeft;
     Texture2D characterRight;
-    Texture2D background = LoadTexture("../assets/background/venusBackground.png");
-    Texture2D flask = LoadTexture("../assets/tasks/flask.png");
-    Texture2D machine = LoadTexture("../assets/tasks/venusMachine.png");
+    
     switch (characterShop) 
     {
     case 2:
+        character = LoadTexture("../assets/player/cookie.png");
+        characterFlask = LoadTexture("../assets/player/cookieFlask.png");
+        characterReversed = LoadTexture("../assets/player/cookieBack.png");
+        characterReversedFlask = LoadTexture("../assets/player/cookieFlaskBack.png");
+        characterLeft = LoadTexture("../assets/player/cookieLeft.png");
+        characterRight = LoadTexture("../assets/player/cookieRight.png");
         break;
     case 3:
         character = LoadTexture("../assets/player/diver.png");
@@ -2124,9 +2179,9 @@ void venusTaskOne()
         break;
     }
         
-        
-        
-   
+    Texture2D background = LoadTexture("../assets/background/venusBackground.png");
+    Texture2D flask = LoadTexture("../assets/tasks/flask.png");
+    Texture2D machine = LoadTexture("../assets/tasks/venusMachine.png");    
 
     Vector2 flaskPosition = { (float)GetRandomValue(0, screenWidth - flask.width - 100), (float)GetRandomValue(0, screenHeight - flask.height - 100) };
     Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
@@ -2252,12 +2307,12 @@ void venusTaskOne()
                     DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 220, 36, WHITE);
                 }
 
-                framesCounter += 4;
+                framesCounter += 70;
                 if (framesCounter >= 60)
                 {
                     framesCounter = 0;
-                    loadingBarWidth += 10;
-                    if (loadingBarWidth >= 310)
+                    loadingBarWidth += 1;
+                    if (loadingBarWidth >= 300)
                     {
                         scanComplete = true;
                         loadingBarWidth = 0;
@@ -2319,7 +2374,7 @@ void venusTaskOne()
                 std::ofstream moneyFileOf("../data/money.csv");
                 if (moneyFileOf.is_open())
                 {
-                    moneyFileOf << money + 250; // Save earned money to a file
+                    moneyFileOf << money + 500; // Save earned money to a file
                     moneyFileOf.close();
                 }
 
@@ -2434,9 +2489,16 @@ void venusTaskTwo()
 
     switch (characterShop) {
     case 2:
-
+        character = LoadTexture("../assets/player/cookie.png");
+        characterRock = LoadTexture("../assets/player/cookieMercuryRock.png");
+        characterReversed = LoadTexture("../assets/player/cookieBack.png");
+        characterReversedRD = LoadTexture("../assets/player/cookieItemBack.png");
+        characterLeft = LoadTexture("../assets/player/cookieLeft.png");
+        characterLeftRock = LoadTexture("../assets/player/cookieMercuryRockLeft.png");
+        characterRight = LoadTexture("../assets/player/cookieRight.png");
+        characterRightRock = LoadTexture("../assets/player/cookieMercuryRockRight.png");
         break;
-    case 3:
+    case 3: 
         character = LoadTexture("../assets/player/diver.png");
         characterRock = LoadTexture("../assets/player/diverMercuryDirt.png");
         characterReversed = LoadTexture("../assets/player/diverBack.png");
@@ -2594,7 +2656,7 @@ void venusTaskTwo()
                 std::ofstream moneyFileOf("../data/money.csv");
                 if (moneyFileOf.is_open())
                 {
-                    moneyFileOf << money + 300;  // Save earned money to a file
+                    moneyFileOf << money + 500;  // Save earned money to a file
                     moneyFileOf.close();
                 }
 
@@ -2703,7 +2765,12 @@ void marsTaskOne()
 
     switch (characterShop) {
     case 2:
-
+        character = LoadTexture("../assets/player/cookie.png");
+        characterFlask = LoadTexture("../assets/player/cookieFlask.png");
+        characterReversed = LoadTexture("../assets/player/cookieBack.png");
+        characterReversedFlask = LoadTexture("../assets/player/cookieFlaskBack.png");
+        characterLeft = LoadTexture("../assets/player/cookieLeft.png");
+        characterRight = LoadTexture("../assets/player/cookieRight.png");
         break;
     case 3:
 
@@ -2893,12 +2960,12 @@ void marsTaskOne()
                     DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 220, 36, WHITE);
                 }
 
-                framesCounter += 4;
+                framesCounter += 70;
                 if (framesCounter >= 60)
                 {
                     framesCounter = 0;
-                    loadingBarWidth += 10;
-                    if (loadingBarWidth >= 310)
+                    loadingBarWidth += 1;
+                    if (loadingBarWidth >= 300)
                     {
                         scanComplete = true;
                         loadingBarWidth = 0;
@@ -3038,7 +3105,15 @@ void marsTaskTwo()
 
 	switch (characterShop) {
 	case 2:
-
+        character = LoadTexture("../assets/player/cookie.png");
+        characterRock = LoadTexture("../assets/player/cookieMarsDirt.png");
+        characterDirt = LoadTexture("../assets/player/cookieMarsDirt.png");
+        characterReversed = LoadTexture("../assets/player/cookieBack.png");
+        characterReversedRD = LoadTexture("../assets/player/cookieItemBack.png");
+        characterLeft = LoadTexture("../assets/player/cookieLeft.png");
+        characterLeftDirt = LoadTexture("../assets/player/cookieMarsDirtLeft.png");
+        characterRight = LoadTexture("../assets/player/cookieRight.png");
+        characterRightDirt = LoadTexture("../assets/player/cookieMarsDirtRight.png");
 		break;
 	case 3:
 
@@ -3370,7 +3445,12 @@ void marsTaskThree()
 
 	switch (characterShop) {
 	case 2:
-
+        character = LoadTexture("../assets/player/cookie.png");
+        charecterGravityDetector = LoadTexture("../assets/player/cookieGravityDetector.png");
+        characterReversed = LoadTexture("../assets/player/cookieBack.png");
+        characterReversedGravityDetector = LoadTexture("../assets/player/cookieGravityDetectorBack.png");
+        characterLeft = LoadTexture("../assets/player/cookieLeft.png");
+        characterRight = LoadTexture("../assets/player/cookieRight.png");
 		break;
 	case 3:
 
@@ -3449,7 +3529,8 @@ void marsTaskThree()
 		ClearBackground(DARKGREEN);
 
 		DrawTexture(background, screenWidth / 2 - background.width / 2, screenHeight / 2 - background.height / 2, WHITE);
-
+        // Draw machine
+        DrawTextureEx(machine, machinePosition, 0.0f, 4.5f, WHITE);
 		// Draw character
 		if (IsKeyDown(KEY_W))
 		{
@@ -3560,17 +3641,17 @@ void marsTaskThree()
 					DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 220, 36, WHITE);
 				}
 
-				framesCounter += 4;
-				if (framesCounter >= 60)
-				{
-					framesCounter = 0;
-					loadingBarWidth += 10;
-					if (loadingBarWidth >= 310)
-					{
-						scanComplete = true;
-						loadingBarWidth = 0;
-					}
-				}
+                framesCounter += 70;
+                if (framesCounter >= 60)
+                {
+                    framesCounter = 0;
+                    loadingBarWidth += 1;
+                    if (loadingBarWidth >= 300)
+                    {
+                        scanComplete = true;
+                        loadingBarWidth = 0;
+                    }
+                }
 			}
 			else
 			{
@@ -3602,8 +3683,7 @@ void marsTaskThree()
 			}
 		}
 
-		// Draw machine
-		DrawTextureEx(machine, machinePosition, 0.0f, 4.5f, WHITE);
+		
 
 		// Draw texts
 		DrawText("Hold LEFT SHIFT to sprint", 10, 10, 24, WHITE);
