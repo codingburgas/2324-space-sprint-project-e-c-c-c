@@ -47,5 +47,7 @@ void marsTaskTwoTerminal();
 
 void marsTaskThree();
 
+void marsTaskThreeTerminal();
+
 //Jupiter
 void jupiterTaskOne();

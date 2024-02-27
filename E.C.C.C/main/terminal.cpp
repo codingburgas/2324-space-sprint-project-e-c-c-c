@@ -7,8 +7,6 @@
 
 void terminal()
 {
-	const float screenWidth = GetScreenWidth();
-	const float screenHeight = GetScreenHeight();
 	const int maxInputChars = 16;
 	char name[maxInputChars + 1] = "\0";
 	int letterCount = 0;
@@ -22,7 +20,7 @@ void terminal()
 	if (fullscreen == true)
 	{
 		fontSize = 24;
-		nameX = 480;
+		nameX = 500;
 		nameY = 205;
 		nameWidth = 205;
 	}
@@ -105,15 +103,15 @@ void terminal()
 		}
 		else
 		{
-			DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX+20, 10 }, fontSize, 3, WHITE);
+			DrawTextEx(font, TextSubtext(launchingTerminal, 0, framesCounter / 10), Vector2{ nameX, 10 }, fontSize, 3, WHITE);
 
 		}
 		DrawTextEx(font, TextSubtext(contractText, 0, framesCounter / 10), Vector2 { 40, 300 }, fontSize, 2, WHITE);
 
-        DrawTextEx(font, name, Vector2{ nameX, 555 }, fontSize, 2, MAROON);
+        DrawTextEx(font, name, Vector2{ nameX+10, 555 }, fontSize, 2, MAROON);
 		if (letterCount < maxInputChars && framesCounter > 8000)
 		{
-			if (((framesCounter / 480) % 2) == 0) DrawTextEx(font, "_", Vector2{ nameX + 5 + MeasureText(name, fontSize), 555 }, fontSize, 0, RED);
+			if (((framesCounter / 480) % 2) == 0) DrawTextEx(font, "_", Vector2{ nameX + 15 + MeasureText(name, fontSize), 555 }, fontSize, 0, RED);
 	    }
 		EndDrawing();
 		//----------------------------------------------------------------------------------

@@ -1065,7 +1065,7 @@ void taskThreeTerminal()
     if (fullscreen == true)
     {
         fontSize = 22;
-        nameX = 700;
+        nameX = 550;
     }
     else {
         fontSize = 18;
@@ -1289,12 +1289,12 @@ void mercuryTaskOne()
                     DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 400, 36, WHITE);
                 }
 
-                framesCounter += 4;
+                framesCounter += 70;
                 if (framesCounter >= 60)
                 {
                     framesCounter = 0;
-                    loadingBarWidth += 10;
-                    if (loadingBarWidth >= 310)
+                    loadingBarWidth += 1;
+                    if (loadingBarWidth >= 300)
                     {
                         scanComplete = true;
                         loadingBarWidth = 0;
@@ -2295,12 +2295,12 @@ void venusTaskOne()
                     DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 400, 36, WHITE);
                 }
 
-                framesCounter += 4;
+                framesCounter += 70;
                 if (framesCounter >= 60)
                 {
                     framesCounter = 0;
-                    loadingBarWidth += 10;
-                    if (loadingBarWidth >= 310)
+                    loadingBarWidth += 1;
+                    if (loadingBarWidth >= 300)
                     {
                         scanComplete = true;
                         loadingBarWidth = 0;
@@ -2875,7 +2875,7 @@ void marsTaskOne()
                     levelFile.close();
                 }
 
-                taskOneTerminal();
+                marsTaskOneTerminal();
             }
         }
 
@@ -2937,12 +2937,12 @@ void marsTaskOne()
                     DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 400, 36, WHITE);
                 }
 
-                framesCounter += 4;
+                framesCounter += 70;
                 if (framesCounter >= 60)
                 {
                     framesCounter = 0;
-                    loadingBarWidth += 10;
-                    if (loadingBarWidth >= 310)
+                    loadingBarWidth += 1;
+                    if (loadingBarWidth >= 300)
                     {
                         scanComplete = true;
                         loadingBarWidth = 0;
@@ -2979,13 +2979,13 @@ void marsTaskOneTerminal()
 {
 	char taskOneLaunchingTerminal[] = "####     E.C.C.C     X64     LAUNCHING     TERMINAL     ####";
 	char terminalMessage[] = " . / E.C.C.C> Scan complete. \n\n\n. / E.C.C.C> Contents:";
-	char oxygenAmount[] = "~Oxygen: 20.95 %";
-	char nitrogenAmount[] = "~ Nitrogen: 78.08 %";
-	char argonAmount[] = "~ Argon: 0.93 %";
-	char otherGasesAmount[] = "~ Other: 0.04 %";
-	char atmospherePressure[] = "~ Atmospheric Pressure: 14.7 PSI";
+	char oxygenAmount[] = "~ Carbon dioxide: 95%";
+	char nitrogenAmount[] = "~ Nitrogen: 3 %";
+	char argonAmount[] = "~ Argon: 1.6 %";
+	char otherGasesAmount[] = "~ Other: 0.4 %";
+	char atmospherePressure[] = "~ Atmospheric Pressure: 0.095 PSI";
 	char possibilityOfLife[] = "~ Possible life: ";
-	char possibilityOfLifeValue[] = "Yes"; // Change this line according to the analysis of the atmosphere
+	char possibilityOfLifeValue[] = "No"; // Change this line according to the analysis of the atmosphere
 	int framesCounter = 0;
 	float nameX = 0;
 	int fontSize;
@@ -3021,7 +3021,7 @@ void marsTaskOneTerminal()
 		DrawTextEx(font, TextSubtext(otherGasesAmount, 0, framesCounter / 10), Vector2{ 135, 550 }, fontSize, 2, WHITE);
 		DrawTextEx(font, TextSubtext(atmospherePressure, 0, framesCounter / 10), Vector2{ 135, 600 }, fontSize, 2, WHITE);
 		DrawTextEx(font, TextSubtext(possibilityOfLife, 0, framesCounter / 10), Vector2{ 135, 650 }, fontSize, 2, WHITE);
-		DrawTextEx(font, TextSubtext(possibilityOfLifeValue, 0, framesCounter / 10), Vector2{ 315, 650 }, fontSize, 2, GREEN);
+		DrawTextEx(font, TextSubtext(possibilityOfLifeValue, 0, framesCounter / 10), Vector2{ 315, 650 }, fontSize, 2, MAROON);
 
 		EndDrawing();
 	}
@@ -3309,17 +3309,10 @@ void marsTaskTwoTerminal()
 {
     char launchingTerminal[] = "####       E.C.C.C     X64     LAUNCHING   TERMINAL       ####";
     char terminalMessage[] = "./E.C.C.C> Scan complete. \n\n\n./E.C.C.C> Soil contents:";
-    char plagioclaseAmount[] = "~ Plagioclase : 42 %";
-    char feldsparAmount[] = "~ Feldspar: 22 %";
-    char quartzAmount[] = "~ Quartz: 18 %";
-    char amphiboleAmount[] = "~ Amphibole : 5 %";
-    char pyroxeneAmount[] = "~ Pyroxene : 4 %";
-    char biotiteAmount[] = "~ Biotite : 4 %";
-    char waterAmount[] = "~ Water : 25 %";
-    char gasAmount[] = "~ Gases: 25 %";
-    char sandAmount[] = "~ Sand: 18 %";
-    char siltAmount[] = "~ Silt : 18 %";
-    char clayAmount[] = "~ Clay : 9 %";
+    char plagioclaseAmount[] = "~ Iron : 25 %";
+    char feldsparAmount[] = "~ Oxygen : 45 %";
+    char quartzAmount[] = "~ Sulfur : 5 %";
+    char amphiboleAmount[] = "~ Carbon  : 1 %";
     char terminalMsg[] = "./E.C.C.C> ";
     int framesCounter = 0;
     float nameX = 0;
@@ -3363,8 +3356,6 @@ void marsTaskTwoTerminal()
             DrawTextEx(font, TextSubtext(feldsparAmount, 0, framesCounter / 10), Vector2{ 135, 450 }, 20, 2, WHITE);
             DrawTextEx(font, TextSubtext(quartzAmount, 0, framesCounter / 10), Vector2{ 135, 500 }, 20, 2, WHITE);
             DrawTextEx(font, TextSubtext(amphiboleAmount, 0, framesCounter / 10), Vector2{ 135, 550 }, 20, 2, WHITE);
-            DrawTextEx(font, TextSubtext(pyroxeneAmount, 0, framesCounter / 10), Vector2{ 135, 600 }, 20, 2, WHITE);
-            DrawTextEx(font, TextSubtext(biotiteAmount, 0, framesCounter / 10), Vector2{ 135, 650 }, 20, 2, WHITE);
             EndDrawing();
 
         // Unload the font 
@@ -3534,7 +3525,7 @@ void marsTaskThree()
 				std::ofstream moneyFileOf("../data/money.csv");
 				if (moneyFileOf.is_open())
 				{
-					moneyFileOf << money + 200; // Save earned money to a file
+					moneyFileOf << money + 500; // Save earned money to a file
 					moneyFileOf.close();
 				}
 
@@ -3545,7 +3536,7 @@ void marsTaskThree()
 					levelFile.close();
 				}
 
-				taskOneTerminal();
+				marsTaskThreeTerminal();
 			}
 		}
 
@@ -3600,24 +3591,24 @@ void marsTaskThree()
 				// Draw "Measuring..." text
 				if ((framesCounter / 59) % 2 == 0)
 				{
-					DrawText("Measuring...", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 + 440, 20, WHITE);
+					DrawText("Measuring...", GetScreenWidth() / 2 - 50, GetScreenHeight() / 2 + 440, 20, WHITE);
 				}
 				if (scanComplete)
 				{
 					DrawText("Complete", GetScreenWidth() / 2 - 150, GetScreenHeight() / 2 - 400, 36, WHITE);
 				}
 
-				framesCounter += 4;
-				if (framesCounter >= 60)
-				{
-					framesCounter = 0;
-					loadingBarWidth += 10;
-					if (loadingBarWidth >= 310)
-					{
-						scanComplete = true;
-						loadingBarWidth = 0;
-					}
-				}
+                framesCounter += 70;
+                if (framesCounter >= 60)
+                {
+                    framesCounter = 0;
+                    loadingBarWidth += 1;
+                    if (loadingBarWidth >= 300)
+                    {
+                        scanComplete = true;
+                        loadingBarWidth = 0;
+                    }
+                }
 			}
 		}
 
@@ -3647,14 +3638,8 @@ void marsTaskThree()
 void marsTaskThreeTerminal()
 {
 	char taskOneLaunchingTerminal[] = "####     E.C.C.C     X64     LAUNCHING     TERMINAL     ####";
-	char terminalMessage[] = " . / E.C.C.C> Scan complete. \n\n\n. / E.C.C.C> Contents:";
-	char oxygenAmount[] = "~Oxygen: 20.95 %";
-	char nitrogenAmount[] = "~ Nitrogen: 78.08 %";
-	char argonAmount[] = "~ Argon: 0.93 %";
-	char otherGasesAmount[] = "~ Other: 0.04 %";
-	char atmospherePressure[] = "~ Atmospheric Pressure: 14.7 PSI";
-	char possibilityOfLife[] = "~ Possible life: ";
-	char possibilityOfLifeValue[] = "Yes"; // Change this line according to the analysis of the atmosphere
+	char terminalMessage[] = " . / E.C.C.C> Scan complete. \n\n\n. / E.C.C.C> Gravity:";
+	char oxygenAmount[] = " ~ 3.73 m/s 2";
 	int framesCounter = 0;
 	float nameX = 0;
 	int fontSize;
@@ -3685,12 +3670,6 @@ void marsTaskThreeTerminal()
 		DrawTextEx(font, TextSubtext(taskOneLaunchingTerminal, 0, framesCounter / 10), Vector2{ nameX, 10 }, fontSize, 2, WHITE);
 		DrawTextEx(font, TextSubtext(terminalMessage, 0, framesCounter / 10), Vector2{ 40, 300 }, fontSize, 2, WHITE);
 		DrawTextEx(font, TextSubtext(oxygenAmount, 0, framesCounter / 10), Vector2{ 135, 400 }, fontSize, 2, WHITE);
-		DrawTextEx(font, TextSubtext(nitrogenAmount, 0, framesCounter / 10), Vector2{ 135, 450 }, fontSize, 2, WHITE);
-		DrawTextEx(font, TextSubtext(argonAmount, 0, framesCounter / 10), Vector2{ 135, 500 }, fontSize, 2, WHITE);
-		DrawTextEx(font, TextSubtext(otherGasesAmount, 0, framesCounter / 10), Vector2{ 135, 550 }, fontSize, 2, WHITE);
-		DrawTextEx(font, TextSubtext(atmospherePressure, 0, framesCounter / 10), Vector2{ 135, 600 }, fontSize, 2, WHITE);
-		DrawTextEx(font, TextSubtext(possibilityOfLife, 0, framesCounter / 10), Vector2{ 135, 650 }, fontSize, 2, WHITE);
-		DrawTextEx(font, TextSubtext(possibilityOfLifeValue, 0, framesCounter / 10), Vector2{ 315, 650 }, fontSize, 2, GREEN);
 
 		EndDrawing();
 	}
@@ -3829,7 +3808,7 @@ void jupiterTaskOne()
             // Draw "Measuring..." text
             if ((framesCounter / 59) % 2 == 0)
             {
-                DrawText("Filling...", 600, GetScreenHeight() - 160, 20, WHITE);
+                DrawText("Measuring...", 600, GetScreenHeight() - 160, 20, WHITE);
             }
             if (scanComplete)
             {
