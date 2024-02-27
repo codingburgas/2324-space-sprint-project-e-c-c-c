@@ -28,7 +28,7 @@ void terminal()
 	}
 	else 
 	{
-		fontSize = 19;
+		fontSize = 18;
 		nameX = 400;
 		nameY = 225;
 		nameWidth = 225;

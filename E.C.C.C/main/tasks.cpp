@@ -1716,7 +1716,7 @@ void mercuryTaskThree()
         character = LoadTexture("../assets/player/diver.png");
         characterThermometer = LoadTexture("../assets/player/diverThermometer.png");
         characterReversed = LoadTexture("../assets/player/diverBack.png");
-        characterReversedThermometer = LoadTexture("../assets/player/diverBackThermometer.png");
+        characterReversedThermometer = LoadTexture("../assets/player/diverReversedThermometer.png");
         characterLeft = LoadTexture("../assets/player/diverLeft.png");
         characterRight = LoadTexture("../assets/player/diverRight.png");
         break;
@@ -1754,7 +1754,6 @@ void mercuryTaskThree()
     int framesCounter = 0;
     int frameCount = 0;
     bool measurementComplete = false;
-
 
 
     SetTargetFPS(60);
@@ -1857,7 +1856,10 @@ void mercuryTaskThree()
 
             // Increment frameCount continuously
             frameCount++;
-
+            if (IsKeyPressed(KEY_SPACE))
+            {
+                measurementComplete = true;
+            }
             // Draw "Measuring..." text if space key is held down
             if (IsKeyDown(KEY_SPACE))
             {
@@ -2086,15 +2088,45 @@ void venusTaskOne()
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
 
+    
+
+
+    
+    Texture2D character;
+    Texture2D characterFlask;
+    Texture2D characterReversed;
+    Texture2D characterReversedFlask;
+    Texture2D characterLeft;
+    Texture2D characterRight;
     Texture2D background = LoadTexture("../assets/background/venusBackground.png");
-    Texture2D character = LoadTexture("../assets/player/player.png");
-    Texture2D characterFlask = LoadTexture("../assets/player/playerFlask.png");
-    Texture2D characterReversed = LoadTexture("../assets/player/playerReversed.png");
-    Texture2D characterReversedFlask = LoadTexture("../assets/player/playerReversedFlask.png");
-    Texture2D characterLeft = LoadTexture("../assets/player/playerLeft.png");
-    Texture2D characterRight = LoadTexture("../assets/player/playerRight.png");
     Texture2D flask = LoadTexture("../assets/tasks/flask.png");
     Texture2D machine = LoadTexture("../assets/tasks/venusMachine.png");
+    switch (characterShop) 
+    {
+    case 2:
+        break;
+    case 3:
+        character = LoadTexture("../assets/player/diver.png");
+        characterFlask = LoadTexture("../assets/player/diverFlask.png");
+        characterReversed = LoadTexture("../assets/player/diverBack.png");
+        characterReversedFlask = LoadTexture("../assets/player/diverFlaskBack.png");
+        characterLeft = LoadTexture("../assets/player/diverLeft.png");
+        characterRight = LoadTexture("../assets/player/diverRight.png");
+        break;
+    default:
+       
+        character = LoadTexture("../assets/player/player.png");
+        characterFlask = LoadTexture("../assets/player/playerFlask.png");
+        characterReversed = LoadTexture("../assets/player/playerReversed.png");
+        characterReversedFlask = LoadTexture("../assets/player/playerReversedFlask.png");
+        characterLeft = LoadTexture("../assets/player/playerLeft.png");
+        characterRight = LoadTexture("../assets/player/playerRight.png");
+        break;
+    }
+        
+        
+        
+   
 
     Vector2 flaskPosition = { (float)GetRandomValue(0, screenWidth - flask.width - 100), (float)GetRandomValue(0, screenHeight - flask.height - 100) };
     Vector2 machinePosition = { (float)GetRandomValue(0, screenWidth - machine.width - 100), (float)GetRandomValue(0, screenHeight - machine.height - 100) };
@@ -3345,7 +3377,7 @@ void marsTaskThree()
 		character = LoadTexture("../assets/player/diver.png");
 		charecterGravityDetector = LoadTexture("../assets/player/diverGravityDetector.png");
 		characterReversed = LoadTexture("../assets/player/diverBack.png");
-		characterReversedGravityDetector = LoadTexture("../assets/player/diverBackGravityDetector.png");
+		characterReversedGravityDetector = LoadTexture("../assets/player/diverGravityDetectorBack.png");
 		characterLeft = LoadTexture("../assets/player/diverLeft.png");
 		characterRight = LoadTexture("../assets/player/diverRight.png");
 		break;
