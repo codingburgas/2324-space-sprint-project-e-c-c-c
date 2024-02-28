@@ -7,7 +7,6 @@
 
     
 <p align="center">
-    <img src = "https://img.shields.io/github/languages/count/codingburgas/2324-space-sprint-project-e-c-c-c?style=for-the-badge">
     <img src = "https://img.shields.io/github/contributors/codingburgas/2324-space-sprint-project-e-c-c-c?style=for-the-badge">
     <img src = "https://img.shields.io/github/repo-size/codingburgas/2324-space-sprint-project-e-c-c-c?style=for-the-badge">
     <img src = "https://img.shields.io/github/last-commit/codingburgas/2324-space-sprint-project-e-c-c-c?style=for-the-badge">
@@ -71,11 +70,13 @@
 - <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/2203px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png" width="20" alt="MS Excel Logo"> <a href="https://en.wikipedia.org/wiki/Microsoft_Excel">MS Excel</a>
 - <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Microsoft_PowerPoint_Logo.png" width="20" alt="MS PowerPoint Logo"> <a href="https://bg.wikipedia.org/wiki/Microsoft_PowerPoint">MS PowerPoint</a>
 - <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Microsoft_Office_Teams_%282018%E2%80%93present%29.svg/2203px-Microsoft_Office_Teams_%282018%E2%80%93present%29.svg.png" width="20" alt="MS Teams Logo"> <a href="https://www.microsoft.com/en-us/microsoft-teams/group-chat-software">MS Teams</a>
------------------------------------------------------------------------------------------------------------------------------------
+<hr>
+
 - 👩🏻‍💻 Programing languages: <img src="https://brandslogos.com/wp-content/uploads/thumbs/c-logo-vector.svg" width="20" alt="C++ Logo"> <a href="https://cplusplus.com/">C++</a> 
 - 🗃️ Graphics Libraries: <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Raylib_logo.png" width="20" alt="Raylib Logo"> <a href="https://www.raylib.com/">Raylib</a>
     
-    
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
 <!-- CONTRIBUTORS -->
 <h2 id="contributors">Contributors</h2>
     
@@ -95,7 +96,7 @@
     Email: <a>KKNachev22@codingburgas.bg</a> <br>
     
 
-
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
     
 </p>
     
@@ -103,14 +104,23 @@
     
 <p>To download our project, clone our repository by pasting this command in your command prompt:</p>
     
-<pre align="center">git clone "https://github.com/codingburgas/2324-space-sprint-project-e-c-c-c.git"</pre>
+<b>Step 1</b> <br>
+Install VCPGK and raylib <br>
+<pre>git clone https://github.com/microsoft/vcpkg
+bootstrap-vcpkg.bat
+vcpkg integrate install
+vcpkg install raylib:x64-windows
+</pre>
+<b>Step 2</b> <br>
+Install the game
+<pre>git clone https://github.com/codingburgas/2324-space-sprint-project-e-c-c-c/releases</pre>
 
 <h3 align="center"> Thank you and enjoy our app! <h3>
 <h4 align="center"> Made with C++ & Raylib </h4>
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-<h6 align="center">This README was designed by Konstantin Nachev and Dimitar Dimitrakov.</h6>
+<h6 align="center">This README was designed by Dimitar Dimitrakov and Konstantin Nachev.</h6>
 <h4 align="center"> Created by E.C.C.C | &copy 2023-2024 All rights reserved.</h4>
 <h2 align="center">Thanks for checking out our repo, show us some ❤️ by giving our repo a ⭐️!</h2>
 
