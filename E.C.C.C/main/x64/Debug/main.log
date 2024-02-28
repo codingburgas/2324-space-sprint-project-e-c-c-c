@@ -1,23 +1,4 @@
-﻿  game.cpp
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(61,52): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(61,52): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(61,81): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(61,81): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(62,52): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(62,52): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(62,81): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(62,81): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(63,49): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(63,49): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(63,78): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(63,78): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(64,48): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(64,48): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(64,77): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(64,77): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(206,81): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\game.cpp(208,82): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  tasks.cpp
+﻿  tasks.cpp
 C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(90,49): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(95,50): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(324,110): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
@@ -140,17 +121,6 @@ C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp
 C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3672,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3726,49): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\tasks.cpp(3731,50): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  terminal.cpp
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\terminal.cpp(90,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\terminal.cpp(102,102): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\terminal.cpp(106,98): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\terminal.cpp(109,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\terminal.cpp(111,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\terminal.cpp(114,122): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  settings.cpp
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\settings.cpp(42,81): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\main\settings.cpp(44,82): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
   main.vcxproj -> C:\Users\Nick\Documents\2324-space-sprint-project-e-c-c-c\E.C.C.C\x64\Debug\main.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

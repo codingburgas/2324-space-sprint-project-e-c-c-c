@@ -3504,7 +3504,7 @@ void marsTaskThree()
 		// Check if Enter key is pressed when equipped with the gravityDetector
 		if (gravityDetectorEquipped and scanComplete)
 		{
-			DrawText("Air filled", (GetScreenWidth() - MeasureText("Air filled", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
+			DrawText("Complete", (GetScreenWidth() - MeasureText("Complete", 36)) / 2, GetScreenHeight() - 100, 36, RAYWHITE);
 		}
 		if (distanceToMachine < 120.0f and gravityDetectorEquipped and scanComplete)
 		{
